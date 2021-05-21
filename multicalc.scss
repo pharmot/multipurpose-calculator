@@ -1,0 +1,642 @@
+$len-1: 0.25rem;
+$len-2: 0.5rem;
+$len-25: 0.75rem;
+$len-3: 1rem;
+$len-4: 1.25rem;
+$len-5: 1.5rem;
+$len-55: 2.5rem;
+$len-6: 3rem;
+$bdr-width: 1px;
+$bdr-radius: 0.25rem;
+$bdr-color: #ced4da;
+$bdr-color-light: #dee2e6;
+$clr-primary: #007bff;
+$clr-secondary: #6c757d;
+$clr-lightBlue: #80bdff;
+$clr-gray: #6c757d;
+$clr-veryDarkGray: #495057;
+$clr-white: #fff;
+$clr-bg-text: #e9ecef;
+$clr-bg-output: #f2f7fa;
+$clr-black: #000;
+$clr-highlight: #fcf892;
+$clr-chi-darkblue: #24509A;
+$clr-chi-darkblue-lighter4: #68A3CC;
+$clr-chi-darkblue-lighter3: #488CCB;
+$clr-chi-darkblue-lighter2: #3F77BC;
+$clr-chi-darkblue-lighter1: #2F63AF;
+$clr-chi-darkblue-darker1: #1E487A;
+// $clr-chi-darkblue-darker2: #???;
+$clr-chi-darkblue-darker3: #19395B;
+$clr-chi-white: #FFFFFF;
+$clr-chi-gray-darker1: #76777A;
+$clr-chi-gray: #B1B1B1;
+$clr-chi-gray-lighter1: #D9D8D6;
+$clr-chi-teal: #0097A9;
+$clr-chi-teal-lighter4: #8FD1D8;
+$clr-chi-teal-lighter3: #79C9D1;
+$clr-chi-teal-lighter2: #5CBCC8;
+$clr-chi-teal-lighter1: #2FA9B7;
+$clr-chi-teal-darker1: #047A83;
+$clr-chi-teal-darker2: #005660;
+$clr-chi-teal-darker3: #004546;
+$clr-chi-green: #64A70B;
+$clr-chi-green-lighter4: #AFD68A;
+$clr-chi-green-lighter3: #A4C97B;
+$clr-chi-green-lighter2: #93C160;
+$clr-chi-green-lighter1: #7BB342;
+$clr-chi-green-darker1: #477F3B;
+$clr-chi-green-darker2: #346734;
+$clr-chi-green-darker3: #17431B;
+$clr-chi-lightblue: #59CBE8;
+$clr-chi-lightblue-lighter4: #C7EAFB;
+$clr-chi-lightblue-lighter3: #B1E3FA;
+$clr-chi-lightblue-lighter2: #96D9F0;
+$clr-chi-lightblue-lighter1: #79D0E6;
+$clr-chi-lightblue-darker1: #00B2DD;
+$clr-chi-lightblue-darker2: #009EC2;
+$clr-chi-lightblue-darker3: #0083A2;
+$clr-chi-yellow: #F2A900;
+$clr-chi-yellow-lighter4: #F8E5A0;
+$clr-chi-yellow-lighter3: #FADB7F;
+$clr-chi-yellow-lighter2: #FACE5C;
+$clr-chi-yellow-lighter1: #F8C142;
+$clr-chi-yellow-darker1: #EAAD17;
+$clr-chi-yellow-darker2: #E09B1B;
+$clr-chi-yellow-darker3: #CD861C;
+$clr-chi-coral: #EF6079;
+$clr-chi-coral-lighter4: #F9BAC2;
+$clr-chi-coral-lighter3: #F0AABC;
+$clr-chi-coral-lighter2: #F59AAB;
+$clr-chi-coral-lighter1: #F38095;
+// $clr-chi-coral-darker1: #???;
+// $clr-chi-coral-darker2: #???;
+// $clr-chi-coral-darker3: #???;
+$clr-csh-rose: #BA4896;
+$clr-csh-rose-lighter3: #DC71AC;
+$clr-csh-rose-lighter2: #D065A7;
+$clr-csh-rose-lighter1: #C657A0;
+$clr-csh-rose-darker1: #9E3E85;
+$clr-csh-rose-darker2: #83336E;
+$clr-csh-rose-darker3: #6A2959;
+$clr-csh-rose-compliant: #982F6A;
+$clr-csh-white: #FFFFFF;
+$clr-csh-gray: #8F9397;
+$clr-csh-gray-lighter3: #CACDCE;
+$clr-csh-gray-lighter2: #BFC1C4;
+$clr-csh-gray-lighter1: #A7A9AD;
+$clr-csh-gray-darker1: #767A7D;
+$clr-csh-gray-darker2: #5E6164;
+$clr-csh-gray-darker3: #434648;
+$clr-csh-gray-compliant: #565658;
+$clr-csh-teal: #00AE9D;
+$clr-csh-teal-lighter3: #69C7C1;
+$clr-csh-teal-lighter2: #56C2B6;
+$clr-csh-teal-lighter1: #35BCA8;
+$clr-csh-teal-darker1: #009280;
+$clr-csh-teal-darker2: #007A6B;
+$clr-csh-teal-darker3: #006054;
+$clr-csh-teal-compliant: #00615A;
+$clr-csh-orange: #F47A4B;
+$clr-csh-orange-lighter3: #F9AC95;
+$clr-csh-orange-lighter2: #F79A7C;
+$clr-csh-orange-lighter1: #F58663;
+$clr-csh-orange-darker1: #DE6B4B;
+$clr-csh-orange-darker2: #DD5737;
+$clr-csh-orange-darker3: #CC4A27;
+$clr-csh-orange-compliant: #953309;
+$clr-csh-purple: #7060A7;
+$clr-csh-purple-lighter3: #968AC2;
+$clr-csh-purple-lighter2: #8B7DBB;
+$clr-csh-purple-lighter1: #7C6FB3;
+$clr-csh-purple-darker1: #5A518C;
+$clr-csh-purple-darker2: #494372;
+$clr-csh-purple-darker3: #3B3459;
+$clr-csh-purple-compliant: #6F457D;
+$font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+
+
+
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+  font-size: $len-3;
+  font-weight: 400;
+  line-height: 1.5;
+  //color: #212529;
+  text-align: left;
+  background-color: #fff;
+  max-width: 98vw;
+  min-width: 98vw;
+  width: 98vw;
+  text-align:center;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+@mixin row-base {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.row {
+  @include row-base;
+}
+
+@mixin col-base {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@mixin col {
+  @include col-base;
+  flex-basis: 0;
+  flex-grow: 1;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.col {
+  @include col;
+}
+
+@mixin col-auto {
+  @include col-base;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+.col-auto {
+  @include col-auto;
+}
+
+@mixin make-col($size) {
+  @include col-base;
+  flex: 0 0 percentage($size / 12);
+  // max-width: percentage($size / 12);
+}
+
+@mixin make-col-offset($size) {
+  $num: $size / 12;
+  margin-left: if($num == 0, 0, percentage($num)) !important;
+}
+
+
+
+
+.col-1 {  @include make-col(1);}
+.col-2 {  @include make-col(2);}
+.col-3 {  @include make-col(3);}
+.col-4 {  @include make-col(4);}
+.col-5 {  @include make-col(5);}
+.col-6 {  @include make-col(6);}
+.col-7 {  @include make-col(7);}
+.col-8 {  @include make-col(8);}
+.col-9 {  @include make-col(9);}
+.col-10 {  @include make-col(10);}
+.col-11 {  @include make-col(11);}
+.col-12 {  @include make-col(12);}
+.offset-1 {  @include make-col-offset(1);}
+.offset-2 {  @include make-col-offset(2);}
+.offset-3 {  @include make-col-offset(3);}
+
+@mixin fixed-width($v){
+  flex: 0 0 $v;
+  min-width: $v;
+  max-width: $v;
+  width: $v;
+}
+
+#col--main-left {
+  @include fixed-width(350px);
+}
+#card--current-dose {
+  @include fixed-width(320px);
+}
+#card--steady-state{
+  @include fixed-width(450px);
+}
+
+#card--linear-change {
+  @include fixed-width(550px);
+}
+
+#card--protocol-adjustment {
+  @include fixed-width(750px);
+}
+
+ 
+#card--initial-dosing {
+  @include fixed-width(750px);
+}
+#card--initial-pk {
+  @include fixed-width(750px);
+}
+#card--auc {
+  @include fixed-width(750px);
+}
+
+#card--twolevel {
+  @include fixed-width(650px);
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+button, input {
+  overflow: visible;
+}
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+button, select {
+  text-transform: none;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  &:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+}
+label {
+  display: inline-block;
+  margin-bottom: $len-2;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  border-bottom: $bdr-width solid $bdr-color-light;
+  
+  & .nav-link {
+    display: block;    
+    margin-bottom: -1px;
+    border: $bdr-width solid transparent;
+    border-top-left-radius: $bdr-radius;
+    border-top-right-radius: $bdr-radius;
+    padding: $len-2 $len-3;
+    &:focus,
+    &:hover {
+      border-color: $clr-bg-text $clr-bg-text $bdr-color-light;
+      text-decoration: none;
+    }
+    &.active {
+      color: $clr-veryDarkGray;
+      background-color: #fff;
+      border-color: $bdr-color-light $bdr-color-light #fff;
+    }
+
+  }  
+}
+
+.fade {
+  transition: opacity .15s linear;
+  &:not(.show) {
+    opacity: 0;
+  }
+}
+
+.tab-content>.tab-pane {
+  display: none;
+  &.active {
+    display: block;  
+  }
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $len-2;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.h1, h1 {
+  font-size: $len-55;
+}
+.h5, h5 {
+  font-size: $len-4;
+}
+.h6, h6 {
+  font-size: $len-3;
+}
+
+h2:not(:first-child),
+h3:not(:first-child),
+h4:not(:first-child) {
+  margin-top: $len-4;
+}
+
+.boxed {
+  width: 100%;  
+  margin: $len-2 0 0;
+  border-radius: $bdr-radius;
+  padding: $len-2;
+  font-weight:600;
+  text-align: center;
+  color: $clr-white;
+  box-shadow: 0.2rem 0.2rem 0.5rem gray;
+}
+
+h1.boxed {
+  background-color: $clr-primary;
+  font-size: $len-5;  
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  margin-top: $len-2;
+  border: $bdr-width solid rgba(0,0,0,.125);
+  border-radius: $bdr-radius;
+}
+
+.card-header {
+  padding: $len-25 $len-4;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  &:first-child {
+    border-radius: calc($bdr-radius - $bdr-width) calc($bdr-radius - $bdr-width) 0 0;
+  }
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: $len-4;
+}
+
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+  margin-bottom: $len-1;
+  
+}
+.empty-form-row {
+  height: calc(1.5rem + .5rem + 2px);
+  line-height: 1.5rem;  
+  margin-bottom: $len-1;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group + .input-group {
+  margin-left:0;
+  padding-left: 0;
+}
+
+
+/*
+https://github.com/brandon-rhodes/Concentric-CSS/blob/master/style.css
+https://github.com/necolas/idiomatic-css#declaration-order
+content   position  z-index  top   bottom    left    right
+Flexbox   float   clear
+
+display   opacity   transform
+
+overflow  clip
+
+animation transition
+
+margin    box-shadow  border  border-radius box-sizing  width height  padding
+
+background  cursor
+
+font-size line-height font-family font-weight font-style
+text-align  text-transform  word-spacing  color
+
+:hover  :focus  :active :before :after  :first-child  :last-child
+*/
+%form-element-base {
+  align-items:center;
+  display: flex;
+  background-clip: padding-box;
+  margin: 0;
+  border-radius: $bdr-radius;
+  height: calc(1.5rem + .5rem + 2px);
+  line-height: 1.5rem;  
+  font-weight: 400;
+}
+%form-row-element {
+  @extend %form-element-base;
+  justify-content: center;
+  border:$bdr-width solid $bdr-color;
+  padding: $len-1 $len-2;   
+}
+.form-row label {
+  @extend %form-element-base;
+  justify-content: flex-start;
+  border-width:0;
+  padding: calc(0.25rem + 1px) 0.5rem;
+  font-size: $len-3;
+  color: $clr-veryDarkGray;
+  &.text-center {
+    align-self:stretch;
+    justify-content:center;
+    vertical-align:middle;
+  }
+  &.text-right {
+    align-self: end;
+    justify-content:flex-end;
+  }
+}
+.input-group-text {
+  @extend %form-row-element;
+  background-color: $clr-bg-text;
+  font-size: .875rem;
+  color: $clr-veryDarkGray;
+  
+  white-space: nowrap;
+  &:first-child { margin-right: -1px;justify-content: flex-end;};
+  &:last-child {  margin-left: -1px;justify-content: flex-start;};
+}
+.table-sm {
+  color: $clr-veryDarkGray;
+  font-size: .75rem;
+  margin-top: $len-4;
+  th {
+    background-color: $clr-bg-output;
+    text-align:left;
+  }
+}
+.output {
+  @extend %form-row-element;
+  font-size:.875rem;
+  color: $clr-black;
+  background-color: $clr-bg-output;  
+  position:relative;
+  flex:1 1 auto;
+  width:1%;
+  min-width:0;
+  transition:none;
+  overflow:auto;
+  &.multi-line {
+    height: 4rem;
+    display: block;
+    white-space: wrap;
+    text-align: center;
+  }
+}
+.form-control {
+  @extend %form-row-element;
+  font-size: $len-3;
+  color: $clr-black;
+  background-color: #fff;  
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  transition:
+    border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+  &:focus {
+    color: $clr-veryDarkGray;
+    background-color: #fff;
+    border-color: $clr-lightBlue;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    z-index: 3;
+  }
+  &.dt-time {
+    flex-basis:25%;
+  }
+  &.dt-date {
+    flex-basis:50%;
+  }
+}
+
+.form-control:not(:last-child),
+.input-group-text:not(:last-child),
+.output:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-control:not(:first-child),
+.input-group-text:not(:first-child),
+.output:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.text-white {  color: #fff !important;}
+.font-weight-bold {  font-weight: 700 !important;}
+.p-2 {  padding: $len-2 !important;}
+.pl-2 {  padding-left: $len-2 !important;}
+.pl-3 {  padding-left:$len-3 !important;}
+.pl-4 {  padding-left:$len-4 !important;}
+.mt-1, .my-1 {  margin-top: $len-1 !important;}
+.mb-0, .my-0 {  margin-bottom: 0 !important;}
+.w-100 {  width: 100% !important;}
+.text-left {  text-align: left;}
+.text-center {  text-align: center;}
+.text-right {  text-align: right;}
+.text-muted {  color: $clr-gray;}
+
+.small {
+  font-size: 0.8em !important;
+  font-weight: 400 !important;
+}
+
+::-webkit-calendar-picker-indicator,
+::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input {
+  text-align: center;
+}
+
+.btn:not(:disabled):not(.disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+[type=button], [type=reset], [type=submit], button {
+    -webkit-appearance: button;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: $len-3;
+    line-height: 1.5;
+    border-radius: $len-1;
+    transition:
+      color .15s ease-in-out,
+      background-color .15s ease-in-out,
+      border-color .15s ease-in-out,
+      box-shadow .15s ease-in-out;
+}
+
+.btn-outline-primary {
+  color: $clr-primary;
+  border-color: $clr-primary;
+}
+
+.btn-outline-secondary {
+    color: $clr-secondary;
+    border-color: $clr-secondary;
+}
+.use-this,
+.isTherapeutic,
+.isSuggested{
+  background-color: $clr-highlight;
+  color: $clr-black;
+}
+
+.invalid {
+  border-color: #cc0000;
+}
