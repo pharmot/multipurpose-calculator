@@ -203,18 +203,19 @@ body {
   width: 750px;
 }
 
-#card--initial-pk {
+#card--initial-pk,
+#card--auc {
   flex: 0 0 750px;
   min-width: 750px;
   max-width: 750px;
   width: 750px;
 }
 
-#card--auc {
-  flex: 0 0 750px;
-  min-width: 750px;
-  max-width: 750px;
-  width: 750px;
+#card--vancoHdAdj {
+  flex: 0 0 550px;
+  min-width: 550px;
+  max-width: 550px;
+  width: 550px;
 }
 
 #card--twolevel {
@@ -365,7 +366,7 @@ h1.boxed {
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 1.25rem;
+  padding: 0.5rem 1rem;
 }
 
 .form-row {
@@ -389,13 +390,12 @@ h1.boxed {
   align-items: stretch;
   width: 100%;
 }
-
 .input-group + .input-group {
   margin-left: 0;
   padding-left: 0;
 }
 
-.form-row label, .form-control, .output, .input-group-text {
+.form-row label, .form-control, .output, .input-group-text, .input-group .btn {
   align-items: center;
   display: flex;
   background-clip: padding-box;
@@ -406,7 +406,7 @@ h1.boxed {
   font-weight: 400;
 }
 
-.form-control, .output, .input-group-text {
+.form-control, .output, .input-group-text, .input-group .btn {
   justify-content: center;
   border: 1px solid #ced4da;
   padding: 0.25rem 0.5rem;
@@ -471,6 +471,9 @@ h1.boxed {
   white-space: wrap;
   text-align: center;
 }
+.output.multi-line.multi-line-3 {
+  height: 5.5rem;
+}
 
 .form-control {
   font-size: 1rem;
@@ -483,7 +486,7 @@ h1.boxed {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .form-control:focus {
-  color: #495057;
+  color: #000;
   background-color: #fff;
   border-color: #80bdff;
   outline: 0;
@@ -628,4 +631,9 @@ button:not(:disabled) {
 
 .invalid {
   border-color: #cc0000;
+}
+
+.btn-seconddose-freq,
+.form-row label.btn-seconddose-freq {
+  border: 1px solid #ced4da;
 }
