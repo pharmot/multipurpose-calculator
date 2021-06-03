@@ -637,3 +637,22 @@ button:not(:disabled) {
 .form-row label.btn-seconddose-freq {
   border: 1px solid $bdr-color;
 }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 70px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 98vw;
+  height:50px;
+  margin-top:20px;
+  line-height: 50px;  
+  background-color: #f5f5f5;
+}
