@@ -11,11 +11,7 @@
  * Last modified  : 2021-06-02
  */
 
-// TODO: change other inputs to number
-// TODO: make monitoring box on initial tab expand instead of scrolling (or make bigger)
-// TODO: add infusion time option but set default (for longer infusions)
-
-let debug = true;
+let debug = false;
 let debugDefaultTab = "initial";
 
 $(()=>{
