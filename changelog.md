@@ -2,6 +2,26 @@
 
 ## [Unreleased]
 
+
+## [0.0.3] - 2021-06-02
+### Added
+- Second dose timing tab
+- Card footer for CrCl explaining which value to use
+- Dose adjustment recommendation for HD patients
+- Query string added debug enable query string
+- Option to adjust the recommended dose/frequency in PK calculations (initial and adjustment)
+- Reset button to undo adjustments made to default/recommended dose/frequency
+- Table of dose options and resulting troughs for initial PK calculation
+- FontAwesome stylesheet
+- Form validation for time fields
+- Expanded documentation
+
+### Changed
+- Various input fields: changed type to number, with  min/max/steps
+
+### Fixed
+- Validation of time inputs
+
 ## [0.0.2] - 2021-05-19
 ### Changed
 - Switched order of height and weight inputs to match Epic
