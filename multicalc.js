@@ -25,7 +25,7 @@ $(()=>{
   }
 
   if ( debug ){
-    $("#age").val(90);
+    $("#ptage").val(90);
     $("#sex").val('M');
     $("#height").val(170.2);
     $("#weight").val(93.1);
@@ -332,7 +332,8 @@ const vanco = {
   },
   getInitialVd(){
     if ( pt.bmi === 0 ) return 0;
-    return this.getDosingWt() * 0.7;
+    if ( pt.bmi >= 40 ) return pt.wt * 0.5;
+    return pt.wt * 0.7;
   },
   loadingDoseRange(){
     const {maxLoad, maxHDLoad} = this.config;
@@ -774,7 +775,7 @@ const calculate = {
     $(".outCrCl").removeClass("use-this");
 
     // Set pt properties from inputs
-    pt.age = +$("#age").val();
+    pt.age = +$("#ptage").val();
     pt.sex = $("#sex").val();
     pt.ht = +$("#height").val();
     pt.wt = +$("#weight").val();
@@ -1384,7 +1385,7 @@ function displayChange(el, d = 0, f = 0) {
 
 const formValidation = [
   {
-    selector: "#age",
+    selector: "#ptage",
     min: pt.config.check.ageMin,
     max:  pt.config.check.ageMax
   },
