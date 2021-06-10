@@ -77,18 +77,8 @@
                 <option>No</option>
                 <option>HD</option>
                 <option>PD</option>
-                <option>CVVH</option>
-                <option>CVVHD</option>
-                <option>CVVHDF</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="goal" class="col-5">Target trough</label>
-            <div class="col-7 input-group">
-              <select id="goal" class="form-control">
-                <option>10-15</option>
-                <option>15-20</option>
+                <option>CVVH/CVVHD/CVVHDF</option>
+                <option>SLED</option>
               </select>
             </div>
           </div>
@@ -175,16 +165,32 @@
             </div>
             <div class="card-body">
               <div class="form-row">
+              <label for="vancoIndication" class="col-2">Indication</label>
+                <div class="input-group col-7">
+                  <select id="vancoIndication" class="form-control small">
+                    <option>Most Indications</option>
+                    <option>Mild-Moderate Infection (e.g. SSTI, UTI)</option>
+                    <option>Severe sepsis, septic shock, critically ill</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
                 <label for="vancoInitialLoad" class="col-2">Load</label>
-                <div class="output multi-line col-10" id="vancoInitialLoad"></div>
+                <div class="input-group col-10">
+                  <div class="output multi-line" id="vancoInitialLoad"></div>
+                </div>
               </div>
               <div class="form-row">
                 <label for="vancoInitialMaintenance" class="col-2">Maintenance</label>
-                <div class="output multi-line col-10" id="vancoInitialMaintenance"></div>
+                <div class="input-group col-10">
+                  <div class="output multi-line" id="vancoInitialMaintenance"></div>
+                </div>
               </div>
               <div class="form-row">
                 <label for="vancoInitialMonitoring" class="col-2">Monitoring</label>
-                <div class="output multi-line multi-line-3 col-10" id="vancoInitialMonitoring"></div>
+                <div class="input-group col-10">
+                  <div class="output multi-line multi-line-3" id="vancoInitialMonitoring"></div>
+                </div>
               </div>
             </div>
           </div>

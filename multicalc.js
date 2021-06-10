@@ -11,7 +11,7 @@
  * Last modified  : 2021-06-02
  */
 
-let debug = false;
+let debug = true;
 let debugDefaultTab = "initial";
 
 $(()=>{
@@ -48,7 +48,6 @@ $(()=>{
     $("#revision-curDose").val(1000);
     $("#revision-curFreq").val(12);
     $("#revision-curTrough").val(11);
-    document.getElementById('goal').selectedIndex = 1;
     LOG.enable();
     const triggerElement = document.querySelector(`#nav-${debugDefaultTab}-tab`);
     const tab = new bootstrap.Tab(triggerElement)
@@ -96,7 +95,8 @@ $(".input-patient").on('keyup', () => {
   calculate.vancoAUC();
 });
 
-$("#goal").on('change', () => {
+$("#vancoIndication").on('change', () => {
+  // TODO: confirm all of these are still affected, suspect not last two
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
@@ -181,7 +181,7 @@ $("#btnReset").on('click', () => {
   $("input").val("");
   resetDates();
   ($("#hd")[0]).selectedIndex = 0;
-  ($("#goal")[0]).selectedIndex = 0;
+  ($("#vancoIndication")[0]).selectedIndex = 0;
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
@@ -292,23 +292,24 @@ const vanco = {
   config: {
     doses: [500, 750, 1000, 1250, 1500, 1750, 2000],
     maxHDLoad: 2000,
-    maxLoad: 2500,
-    maxHD: 1500,
-    maxDailyDose: 4000,
+    maxLoad: 3000,
+    maxHD: 2000,
+    maxDailyDose: 4500,
     aucLowNormal: 400,
     aucHighNormal: 600,
     check: {
       doseMin: 250,
-      doseMax: 2500,
+      doseMax: 3000,
       freqMin: 6,
       freqMax: 48,
       levelMin: 3,
       levelMax: 100,
       infMin: 0.5,
-      infMax: 4
+      infMax: 6
     }
   },
   getInfusionTime(dose) {
+    if ( dose > 2500 ) return 3;
     if ( dose > 2000 ) return 2.5;
     if ( dose > 1500 ) return 2;
     if ( dose > 1000 ) return 1.5;
@@ -335,27 +336,26 @@ const vanco = {
     if ( pt.bmi >= 40 ) return pt.wt * 0.5;
     return pt.wt * 0.7;
   },
-  loadingDoseRange(){
+  getLoadingDoseRange(){
     const {maxLoad, maxHDLoad} = this.config;
-    if( pt.hd > 2 ) return {low: 15, high: 25, max: maxLoad};
-    if( pt.hd === 1 ) return {low: 15, high: 20, max: maxHDLoad};
-    if( pt.cgProtocol < 30 ) {
-      if ( pt.goal === 0 ) return {low: 15, high: 20, max: maxLoad};
-      return {low: 20, high: 25, max: maxLoad};
+    if( pt.hd > 2 ) return {low: 20, high: 25, max: maxLoad};
+    if( pt.hd > 0 ) return {low: 25, high: 25, max: maxHDLoad};
+    if ( pt.vancoIndication === 2 && pt.bmi < 30 ) {
+        return {low: 25, high: 35, max: maxLoad};
     }
-    if ( pt.goal === 0 ) return {low: 20, high: 25, max: maxLoad};
-    return {low: 25, high: 30, max: maxLoad};
+    return {low: 25, high: 25, max: maxLoad};
   },
-  maintenanceDoseRange(){
+  getMaintenanceDoseRange(){
     const { maxDailyDose } = this.config;
     if ( pt.hd === 0 ) {
       if ( pt.cgProtocol >= 90 ) {
         if ( pt.age < 25 ) return {low: 20, high: 20, freq: 8, maxDaily: maxDailyDose};
-        if ( pt.age > 40 && pt.goal === 1 ) return {low: 20, high: 20, freq: 12, maxDaily: maxDailyDose};
-        if ( pt.age > 40 ) return {low: 15, high: 20, freq: 12, consider: 15, maxDaily: maxDailyDose};
-        if ( pt.goal === 0 ) return {low: 15, high: 20, freq: 8, consider: 15, maxDaily: maxDailyDose};
-        return {low: 15, high: 20, freq: 8, maxDaily: maxDailyDose};
+        if ( pt.age > 40 && pt.goal === 1 ) return {low: 15, high: 20, freq: 12, consider: 15, maxDaily: maxDailyDose};
+        if ( pt.age > 40 ) return {low: 15, high: 20, freq: 12, maxDaily: maxDailyDose};
+        if ( pt.goal === 1 ) return {low: 15, high: 20, freq: 8, consider: 15, maxDaily: maxDailyDose};
+        return {low: 15, high: 20, freq: 8, consider: 15, maxDaily: maxDailyDose};
       }
+      // TODO: what are the new maintenance doses for other CrCls?
       let res = {high: 20, maxDaily: maxDailyDose};
       res.low = pt.goal === 1 ? 20 : 15;
       if ( pt.goal === 0 ) {
@@ -369,33 +369,32 @@ const vanco = {
 
       return res;
     }
+    // HD
     if ( pt.hd === 1 ) {
-      if ( pt.goal === 0 ) return {
-        lowMg: 500,
-        highMg: 1000,
-        freqText: 'after each HD',
-        considerText: `Consider high end of range ${pt.bmi >= 30 ? 'for BMI &ge; 30' : 'if residual renal function'}.`
-      };
+      // TODO: what is HD dosing?
       return {
         low: 10,
         high: 10,
         freqText: 'after each HD',
-        maxDose: 1500
+        maxDose: this.config.maxHD;
       };
     }
+    // PD
     if ( pt.hd === 2 ) return {
+      // TODO: what is PD dosing?
       low: 10,
       high: 15,
       freqText: 'when random level &lt; 15 (check first random level with AM labs ~48 hrs after load)',
       maxDaily: maxDailyDose
     }
-    if ( pt.hd === 5 ) return {
-      low: 7.5,
-      high: 10,
-      freq: 12,
-      textBeforeDose: 'Check random level q12h until &lt; 20, then start ',
+    // SLED
+    if ( pt.hd === 4 ) return {
+      low: 15,
+      high: 20,
+      freqText: 'after SLED session ends (or in last 60-90 minutes)',
       maxDaily: maxDailyDose
     };
+    // CRRT
     return {
       low: 15,
       high: 15,
@@ -406,13 +405,15 @@ const vanco = {
   },
   loadingDose(){
     if ( pt.ibw === 0 || pt.age === 0 ) return '';
-    const {low, high, max} = this.loadingDoseRange();
+    const {low, high, max} = this.getLoadingDoseRange();
     let d1 = roundTo(low * pt.wt, 250);
     let d2 = roundTo(high * pt.wt, 250);
-    let result = `<br><i>(${low} - ${high} mg/kg) `;
+    let result = `<br><i>(${low}${low === high ? "" : (" - " + high)} mg/kg${pt.bmi >= 30 && pt.vancoIndication === 2 ? " for BMI &ge; 30" : ""}) `;
     if (d1 > max || d2 > max) {
       if( pt.hd === 1) {
         result += ` [Max ${max} mg for HD]`;
+      } else if ( pt.hd === 2 ) {
+        result += ` [Max ${max} mg for PD]`;
       } else {
         result += ` [Max ${max} mg]`;
       }
@@ -436,7 +437,7 @@ const vanco = {
       considerText = '',
       maxDaily = 0,
       maxDose = 0
-    } = this.maintenanceDoseRange();
+    } = this.getMaintenanceDoseRange();
 
     let lowDose = lowMg > 0 ? lowMg : roundTo(pt.wt * low, 250),
         highDose = highMg > 0 ? highMg : roundTo(pt.wt * high, 250),
@@ -466,10 +467,7 @@ const vanco = {
       }
     }
     if ( consider > 0 ) {
-      considerText = `Consider dosing closer to ${lowDose} mg.`;
-    }
-    if ( considerText !== '' ) {
-      considerText = `<br><i>${considerText}</i>`;
+      considerText = `<br><i>Consider dosing closer to ${lowDose} mg.</i>`;
     }
     if ( lowDose !== highDose ) {
       txtDose = `${lowDose} - `;
@@ -479,12 +477,13 @@ const vanco = {
   monitoring(freq){
     if ( pt.hd === 0 && pt.cgProtocol === 0 ) return '';
     if ( pt.hd === 1 ) {
-      if ( pt.goal === 0 ) return "Draw level before every other HD, starting with 2nd HD after load, until 2 consecutive levels therapeutic";
       return "Draw level before every HD, starting with 2nd HD after load, until 2 consecutive levels therapeutic";
     }
-    if ( pt.hd === 2 ) return "Recheck random levels q24-48h, or as clinically indicated, and re-dose 10-15 mg/kg when level &lt; 15 mcg/mL";
-    if ( pt.hd === 5 ) return "Check trough levels q24h";
-    if ( pt.hd !== 0 ) return "Check trough levels q48h";
+    if ( pt.hd === 2 ) {
+      return "Recheck random levels q24-48h, or as clinically indicated, and re-dose 10-15 mg/kg when level &lt; 15 mcg/mL";
+    }
+    if ( pt.hd === 4 ) return ""; // TODO: when to check SLED troughs?
+    if ( pt.hd !== 0 ) return "Check trough levels q24h";
 
     let txt = '',
         lowCrCl = pt.cgProtocol < 50,
@@ -496,6 +495,7 @@ const vanco = {
       return `Obtain random level within 24 hrs after load<br> <i>(to spot check for clearance, for ${lowCrCl ? 'CrCl &lt; 50' : ''}${lowCrCl && highSCr ? ' and ' : ''}${highSCr ? 'SCr &ge; 1.2' : ''})</i>`;
     }
 
+// TODO: replace this with AUC rec's
     if ( freq === 6 ) {
       txt = 'Initial trough level before the 6th, 7th, or 8th dose.';
     } else if ( freq === 8 ) {
@@ -507,6 +507,7 @@ const vanco = {
     }
 
     if ( lowSCr || highBMI ) {
+      // TODO: is this still correct?
       txt += `<br>Consider ${freq < 24 ? 'level prior to 3rd dose to check for clearance, and' : ''} frequent levels to monitor for therapeutic levels <i>(${lowSCr ? 'SCr &lt; 0.5' : ''}${lowSCr && highBMI ? ' and ' : ''}${highBMI ? 'BMI &ge; 30' : ''})</i>`;
     }
     return txt;
@@ -803,9 +804,9 @@ const calculate = {
     }
 
     let cboHD = $("#hd")[0];
-    let cboGoal = $("#goal")[0];
+    let cboIndication = $("#vancoIndication")[0];
     pt.hd = cboHD.selectedIndex;
-    pt.goal = cboGoal.selectedIndex;
+    pt.vancoIndication = cboIndication.selectedIndex;
   },
   vancoInitial(newRegimen=false){
     $("#vancoInitialLoad").html(vanco.loadingDose());
