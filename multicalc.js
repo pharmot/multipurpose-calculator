@@ -17,34 +17,34 @@ let debugDefaultTab = "initial";
 $(()=>{
   $(".show-if-hd").hide();
   $(".show-if-hd-only").hide();
-  
+
   if ( /debug/.test(location.search) ) {
     debug = true;
   } else if ( /log/.test(location.search) ) {
     LOG.enable();
   }
- 
+
   if ( debug ){
-    $("#age").val(90);
+    $("#ptage").val(90);
     $("#sex").val('M');
     $("#height").val(170.2);
     $("#weight").val(93.1);
     $("#scr").val(1.65);
     $("#vancoAUCPeakTime").val(5);
     $("#vancoAUCTroughTime").val(11.5);
-    
+
     $("#auc-curPeak").val(40);
     $("#auc-curTrough").val(11);
     $("#auc-curDose").val(1000);
-    $("#auc-curFreq").val(12);  
-    
+    $("#auc-curFreq").val(12);
+
     $("#twolevelDate1").val("2021-01-16");
-    $("#twolevelDate2").val("2021-01-16");    
+    $("#twolevelDate2").val("2021-01-16");
     $("#twolevelTime1").val("0000");
     $("#twolevelTime2").val("1500");
     $("#twolevelLevel1").val(20);
     $("#twolevelLevel2").val(12);
-      
+
     $("#revision-curDose").val(1000);
     $("#revision-curFreq").val(12);
     $("#revision-curTrough").val(11);
@@ -52,8 +52,8 @@ $(()=>{
     LOG.enable();
     const triggerElement = document.querySelector(`#nav-${debugDefaultTab}-tab`);
     const tab = new bootstrap.Tab(triggerElement)
-    tab.show();    
-    
+    tab.show();
+
     calculate.patientData();
     calculate.vancoInitial();
     calculate.vancoLinearChange();
@@ -62,12 +62,12 @@ $(()=>{
   } else {
     resetDates();
   }
-  
+
   for ( let item of formValidation ) {
     $(item.selector).on("focus", e => {
       $(e.target).removeClass("invalid");
     })
-    if ( item.max ) {    
+    if ( item.max ) {
       $( item.selector ).on("focusout", e => {
         if( $( e.target ).val() !== "" ) {
           validateRange(e.target, item);
@@ -140,7 +140,7 @@ $(".input-auc").on('keyup', () => {
   calculate.vancoLinearChange();
 });
 $(".input-auc-interval").on('keyup', () => {
-  calculate.vancoAUC(false);  
+  calculate.vancoAUC(false);
 });
 
 $(".input-revision").on('keyup', () => {
@@ -195,8 +195,8 @@ $("#btnReset").on('click', () => {
  * Resets date input fields to today's date.
  */
 function resetDates(){
-  const today = new Date();  
-  $(".dt-date").val(`${today.getFullYear()}-${('0' + (today.getMonth()+1)).slice(-2)}-${('0' + today.getDate()).slice(-2)}`);  
+  const today = new Date();
+  $(".dt-date").val(`${today.getFullYear()}-${('0' + (today.getMonth()+1)).slice(-2)}-${('0' + today.getDate()).slice(-2)}`);
 }
 
 let pt = {
@@ -212,7 +212,7 @@ let pt = {
       scrMax: 20
     }
   },
-  set sex(x){    
+  set sex(x){
     this._sex = /^[MmFf]$/.test(x) ? x.toUpperCase() : 0;
   },
   get sex(){ return this._sex || 0; },
@@ -230,13 +230,13 @@ let pt = {
     if ( this.wt > 0 && this.ht > 0 ) {
       return this.wt / (( this.ht / 100 )**2);
     }
-    return 0;    
+    return 0;
   },
   get ibw(){
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
-      return ( this.sex === "M" ? 50 : 45.5 ) + 2.3 * ( this.ht / 2.54 - 60 );  
+      return ( this.sex === "M" ? 50 : 45.5 ) + 2.3 * ( this.ht / 2.54 - 60 );
     }
-    return 0;    
+    return 0;
   },
   get adjBW(){
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
@@ -247,7 +247,7 @@ let pt = {
   },
   get overUnder(){
     if ( this.ht > 0 && this.wt > 0 && this._sex && this.adjBW > 0 ) {
-      return (this.wt / this.ibw - 1) * 100  
+      return (this.wt / this.ibw - 1) * 100
     }
     return 0;
   },
@@ -256,7 +256,7 @@ let pt = {
       if ( this.sex === "F" ) {
         return 9270 * this.wt / ( 8780 + 244 * this.bmi )
       }
-      return 9270 * this.wt / ( 6680 + 216 * this.bmi )  
+      return 9270 * this.wt / ( 6680 + 216 * this.bmi )
     }
     return 0;
   },
@@ -264,26 +264,26 @@ let pt = {
     if ( this.wt > 0 && this.age > 0 && this.scr > 0 && this._sex ) {
       return this.cg(this.wt);
     }
-    return 0;   
+    return 0;
   },
   get cgAdjusted(){
     if ( this.adjBW > 0 && this.age > 0 && this.scr > 0 ) {
       return this.cg(this.adjBW);
     }
-    return 0;   
+    return 0;
   },
   get cgIdeal(){
     if ( this.ibw > 0 && this.age > 0 && this.scr > 0 ) {
       return this.cg(this.ibw);
     }
-    return 0;   
+    return 0;
   },
   get cgProtocol(){
     if ( this.ibw === 0 || this.age === 0 || this.scr === 0 ) return 0;
     if ( this.wt < this.ibw ) return this.cgActual;
     if ( this.overUnder > 30 ) return this.cgAdjusted;
     return this.cgIdeal;
-  },  
+  },
   cg(weight){
     return (140 - this.age) * weight / (this.scr * 72) * (pt.sex === "F" ? 0.85 : 1);
   }
@@ -307,7 +307,7 @@ const vanco = {
       infMin: 0.5,
       infMax: 4
     }
-  },  
+  },
   getInfusionTime(dose) {
     if ( dose > 2000 ) return 2.5;
     if ( dose > 1500 ) return 2;
@@ -332,7 +332,8 @@ const vanco = {
   },
   getInitialVd(){
     if ( pt.bmi === 0 ) return 0;
-    return this.getDosingWt() * 0.7;    
+    if ( pt.bmi >= 40 ) return pt.wt * 0.5;
+    return pt.wt * 0.7;
   },
   loadingDoseRange(){
     const {maxLoad, maxHDLoad} = this.config;
@@ -363,7 +364,7 @@ const vanco = {
       if ( pt.cgProtocol < 10 ) {
         res.freqText = 'Consider checking level in 24-48 hours. Repeat dose when level &le; 15-20.'
       } else {
-        res.freq = pt.cgProtocol < 20 ? 48 : pt.cgProtocol < 50 ? 24 : 12;  
+        res.freq = pt.cgProtocol < 20 ? 48 : pt.cgProtocol < 50 ? 24 : 12;
       }
 
       return res;
@@ -379,7 +380,7 @@ const vanco = {
         low: 10,
         high: 10,
         freqText: 'after each HD',
-        maxDose: 1500        
+        maxDose: 1500
       };
     }
     if ( pt.hd === 2 ) return {
@@ -455,7 +456,7 @@ const vanco = {
         lowDose = Math.min(lowDose, maxDose);
         highDose = Math.min(highDose, maxDose);
         txtExceeds = `[Max ${maxDose} mg for HD]`;
-      }  
+      }
     }
     if ( maxDaily > 0 ) { // i.e. non-HD
       if ( lowDaily > maxDaily ) {
@@ -492,8 +493,8 @@ const vanco = {
         lowSCr = pt.scr < 0.5;
 
     if ( lowCrCl || highSCr ) {
-      return `Obtain random level within 24 hrs after load<br> <i>(to spot check for clearance, for ${lowCrCl ? 'CrCl &lt; 50' : ''}${lowCrCl && highSCr ? ' and ' : ''}${highSCr ? 'SCr &ge; 1.2' : ''})</i>`;      
-    }   
+      return `Obtain random level within 24 hrs after load<br> <i>(to spot check for clearance, for ${lowCrCl ? 'CrCl &lt; 50' : ''}${lowCrCl && highSCr ? ' and ' : ''}${highSCr ? 'SCr &ge; 1.2' : ''})</i>`;
+    }
 
     if ( freq === 6 ) {
       txt = 'Initial trough level before the 6th, 7th, or 8th dose.';
@@ -508,7 +509,7 @@ const vanco = {
     if ( lowSCr || highBMI ) {
       txt += `<br>Consider ${freq < 24 ? 'level prior to 3rd dose to check for clearance, and' : ''} frequent levels to monitor for therapeutic levels <i>(${lowSCr ? 'SCr &lt; 0.5' : ''}${lowSCr && highBMI ? ' and ' : ''}${highBMI ? 'BMI &ge; 30' : ''})</i>`;
     }
-    return txt;   
+    return txt;
   },
   getSuggestedInterval(halflife) {
     const h = checkValue(halflife);
@@ -520,10 +521,10 @@ const vanco = {
     if ( h < 36 ) return 24;
     return 48;
   },
-  initialPKLoad(cMax){    
+  initialPKLoad(cMax){
     const roundedDose = Math.floor( ( ( cMax * this.getInitialVd() ) + 125 ) / 250) * 250;
     const cappedDose = Math.min( roundedDose, this.config.maxLoad );
-    return cappedDose;   
+    return cappedDose;
   },
   initialPK({selectedDose = 0, selectedInterval = 0, selectedInfTime = 0} = {}){
     let useDose = -1;
@@ -582,7 +583,7 @@ const vanco = {
       res.pkDose = selectedDose;
       let p = this.getCmax(res.pkDose, ke, newInfTime, vd, res.pkFreq);
       res.pkLoad = this.initialPKLoad(p);
-    } 
+    }
     return res;
   },
   aucTherapeutic(auc){
@@ -627,15 +628,15 @@ const vanco = {
       peak: [],
       therapeutic: []
     };
-    
+
     if ( interval === 0 || aucCurrent === undefined ) return res;
-    
+
     const {vd, ke, auc24, therapeutic, oldDose, oldInterval} = aucCurrent;
 
     for (let dose of this.config.doses) {
-      let infTime = this.getInfusionTime(dose);      
+      let infTime = this.getInfusionTime(dose);
       let auc = auc24*(dose*24/interval)/(oldDose*24/oldInterval);
-      let peak = (dose/infTime)*(1-Math.exp(-ke*infTime))/(vd*ke*(1-Math.exp(-ke*interval))); 
+      let peak = (dose/infTime)*(1-Math.exp(-ke*infTime))/(vd*ke*(1-Math.exp(-ke*interval)));
       let trough = peak*Math.exp(-ke*(interval-infTime));
       let thx = ( auc >= this.config.aucLowNormal && auc <= this.config.aucHighNormal ) ? true : false;
       res.dose.push(dose);
@@ -676,20 +677,20 @@ const vanco = {
     // being called from twolevel section, we already know ke
     // otherwise must have dose/freq/trough/general info
     let halflife;
-    
+
     let twolevel = false;
-    
+
     // reset this in case info is now missing
     pt.adjHalflife = 0;
-    
+
     if ( ke !== 0 ) {
       twolevel = true;
       halflife = getHalflife(ke);
     }
 
-    
+
     if ( twolevel || ( pt.cgAdjusted > 0 && pt.curDose > 0 && pt.curFreq > 0 && pt.curTrough > 0 ) ) {
-      
+
       // Calculate ke from current trough/dose/freq
       if ( !twolevel ) {
         const peak = pt.curTrough + pt.curDose / vd;
@@ -697,17 +698,17 @@ const vanco = {
         halflife = getHalflife(ke);
         pt.adjHalflife = halflife;
       }
-  
-      
+
+
       res.pkFreq = selectedInterval > 0 ? selectedInterval : this.getSuggestedInterval(halflife);
       res.halflife = halflife;
-            
+
       // Calculate linear revision unless calculating two-level PK
       if ( !twolevel ) {
         res.linearDose = Math.floor((pt.curDose / pt.curTrough * Math.floor(goal + 2.5) + 125) / 250) * 250;
-        res.linearTrough = res.linearDose / pt.curDose * pt.curTrough;  
+        res.linearTrough = res.linearDose / pt.curDose * pt.curTrough;
       }
-    
+
       this.config.doses.forEach((d, i) => {
         res.newDose.push(d);
         const infTime = this.getInfusionTime(d);
@@ -733,13 +734,13 @@ const vanco = {
       }
       res.pkTrough = useDose < 0 ? 0 : res.newTrough[useDose];
       res.pkDose = useDose < 0 ? 0 : res.newDose[useDose];
-      
+
       if ( selectedDose > 0 && selectedInterval > 0 ){
         let newInfTime = selectedInfTime > 0 ? selectedInfTime : this.getInfusionTime(selectedDose);
         let pkNewPeak = this.getCmax(selectedDose, ke, newInfTime, vd, res.pkFreq);
         res.pkTrough = this.getCmin(pkNewPeak, ke, newInfTime, res.pkFreq);
         res.pkDose = selectedDose;
-      } 
+      }
     }
     return res;
   },
@@ -751,7 +752,7 @@ const vanco = {
     if ( trough === 0 ) return "";
     if ( goal === 1 ) {
       trough -= 5;
-    }    
+    }
     if ( trough < 5 ) {
       if ( wt === 0 ) return "Reload with 15-20 mg/kg (max 1.5 g)<br>and increase maintenance dose by 250-500 mg";
       const lowRange = Math.min(roundTo(15*wt, 250), this.config.maxHD);
@@ -774,8 +775,8 @@ const calculate = {
     $(".outCrCl").removeClass("use-this");
 
     // Set pt properties from inputs
-    pt.age = +$("#age").val();
-    pt.sex = $("#sex").val();  
+    pt.age = +$("#ptage").val();
+    pt.sex = $("#sex").val();
     pt.ht = +$("#height").val();
     pt.wt = +$("#weight").val();
     pt.scr = +$("#scr").val();
@@ -798,7 +799,7 @@ const calculate = {
         $("#cgAdjusted").addClass("use-this");
       } else {
         $("#cgIdeal").addClass("use-this");
-      }    
+      }
     }
 
     let cboHD = $("#hd")[0];
@@ -809,15 +810,15 @@ const calculate = {
   vancoInitial(newRegimen=false){
     $("#vancoInitialLoad").html(vanco.loadingDose());
     const { doseMin, doseMax, freqMin, freqMax, infMin, infMax } = vanco.config.check;
-    const { maintText, freq } = vanco.maintenanceDose();    
+    const { maintText, freq } = vanco.maintenanceDose();
     $("#vancoInitialMaintenance").html(maintText);
     $("#vancoInitialMonitoring").html(vanco.monitoring(freq));
-    displayValue("#vancoInitialPK-wt", vanco.getDosingWt(), 0.1, " kg");    
+    displayValue("#vancoInitialPK-wt", vanco.getDosingWt(), 0.1, " kg");
     displayValue("#vancoInitialPK-crcl", pt.cgProtocol, 0.1, " mL/min");
     let selectedDose = newRegimen ? checkValue(+$("#vancoInitialPK-dose").val(), doseMin, doseMax) : 0;
     let selectedInterval = newRegimen ? checkValue(+$("#vancoInitialPK-interval").val(), freqMin, freqMax) : 0;
     let selectedInfTime = 0; // TODO: allow infusion time choice
-        
+
     let {
       newDose, newPeak, newTrough, infTime, newViable, newLoad,
       pkDose, pkFreq, pkTrough, pkLoad, halflife
@@ -825,21 +826,21 @@ const calculate = {
       selectedDose: selectedDose,
       selectedInterval: selectedInterval,
       selectedInfTime: selectedInfTime});
-    
+
     displayValue("#vancoInitialPK-halflife", halflife, 0.1, " hrs");
-    
+
     if ( !newRegimen ) {
       $("#vancoInitialPK-dose").val(pkDose || "");
       $("#vancoInitialPK-interval").val(pkFreq || "");
     }
-    
-    
-    
+
+
+
     if ( newRegimen && ( selectedDose === 0 || selectedInterval === 0 ) ) {
       pkTrough = 0;
       pkLoad = 0;
     }
-    
+
     displayValue("#vancoInitialPK-trough", pkTrough, 0.1, " mcg/mL");
     displayValue("#vancoInitialPK-load", pkLoad, 250, " mg");
 
@@ -851,7 +852,7 @@ const calculate = {
       highlightColumns: newViable
     });
     $("#vancoInitialPK-table").html(tableHtml);
-    
+
   },
   createVancoTable({rows, highlightColumns} = {}){
     let rowHtml = "";
@@ -880,12 +881,12 @@ const calculate = {
     return `<tbody>${rowHtml}</tbody>`;
   },
   vancoRevision(newRegimen=false){
-    
+
     const { doseMin, doseMax, freqMin, freqMax, infMin, infMax } = vanco.config.check;
     const selectedDose = newRegimen ? checkValue(+$("#adjPKDose").val(), doseMin, doseMax) : 0;
     const selectedInterval = newRegimen ? checkValue(+$("#adjPKFreq").val(), freqMin, freqMax) : 0;
     //TODO: const selectedInfTime = checkValue(+$("#adjPKInfTime").val(), infMin, infMax);
-    
+
     const { newDose, newPeak, newTrough,
            infTime, newViable, linearDose,
            linearTrough, pkDose, pkFreq,
@@ -893,18 +894,18 @@ const calculate = {
              selectedDose: selectedDose,
              selectedInterval: selectedInterval
            });
-    
-    displayValue("#tdd",dailyDose(pt.curDose, pt.curFreq), 1, " mg");  
+
+    displayValue("#tdd",dailyDose(pt.curDose, pt.curFreq), 1, " mg");
     displayValue("#adjHalflife", pt.adjHalflife, 0.1, " hours");
     $("#adjLinDose").html( linearDose === 0 ? "" : `${roundTo(linearDose, 1)} mg q${pt.curFreq}h`);
     displayChange("#adjLinDoseChange", linearDose, pt.curFreq);
     displayValue("#adjLinTrough", linearTrough, 0.1, " mcg/mL");
-    
+
     if (!newRegimen) {
       $("#adjPKFreq").val(pkFreq > 0 ? pkFreq : "");
       $("#adjPKDose").val(pkDose > 0 ? pkDose : "");
     }
-    
+
     displayChange("#adjPKDoseChange", pkDose, pkFreq);
     displayValue("#adjPKTrough", pkTrough, 0.1, " mcg/mL");
     this.vancoSteadyStateCheck();
@@ -952,7 +953,7 @@ const calculate = {
       if ( newDose > 0 && newFreq > 0 ){
         $(row.tdd).html(roundTo(dailyDose(newDose, newFreq), 1) + " mg");
         if ( curDose > 0 && curFreq > 0 && curTrough > 0 ) {
-          const linNewTrough = curTrough * dailyDose(newDose, newFreq) / dailyDose(curDose, curFreq);  
+          const linNewTrough = curTrough * dailyDose(newDose, newFreq) / dailyDose(curDose, curFreq);
           $(row.trough).html(roundTo(linNewTrough, 0.1) + " mcg/mL");
         } else {
           $(row.trough).html("");
@@ -1016,7 +1017,7 @@ const calculate = {
     displayValue("#twolevelNewDose", pkDose, 1, " mg");
     if ( resetInterval ) {
       $("#twolevelInterval").val(pkFreq === 0 ? "" : pkFreq);
-    }    
+    }
     displayValue("#twolevelNewTrough", pkTrough, 0.1, " mcg/mL");
     const tableHtml = this.createVancoTable({
       rows: [{ title: "Maint. dose", data: newDose, units: " mg"},
@@ -1034,7 +1035,7 @@ const calculate = {
     if ( sd === undefined ) {
       $(".output[id^='seconddose']").html("");
       $("#seconddose-row-1").show();
-    } else {      
+    } else {
       sd.forEach( (me, i) => {
         $(`#seconddose-text-${i}`).html(`${me.hours} hours (${me.diff} hours ${me.direction})`);
         me.times.forEach( (time, j) => {
@@ -1062,15 +1063,15 @@ const seconddose = {
    * @property {Number}         interval   dosing interval in hours
    * @property {(Number|Array)} startHour  first dosing time of the day, or array of times if multiple options
    */
-  
+
   /**
-   * @type {Frequency[]} 
+   * @type {Frequency[]}
    */
   freqs: [
     { id: "q6vanco", interval: 6, startHour: 5 },
     { id: "q8", interval: 8, startHour: 5 },
     { id: "q12vanco", interval: 12, startHour: [5, 9] },
-    { id: "q24vanco", interval: 24, startHour: [5, 9, 13, 17, 21] }    
+    { id: "q24vanco", interval: 24, startHour: [5, 9, 13, 17, 21] }
   ],
   /**
    * Generate an array of standard times for the selected frequency
@@ -1099,8 +1100,8 @@ const seconddose = {
     timeArray.sort((a,b)=>{
       if (a<b) return -1;
       return 1;
-    });    
-    return {timeArray: timeArray, interval: interval};    
+    });
+    return {timeArray: timeArray, interval: interval};
   },
   getSecondDose({fd = "", freqId} = {} ){
     if ( fd === "" ) return undefined; // TODO: return something?
@@ -1117,9 +1118,9 @@ const seconddose = {
         di1,
         di2,
         singleLine = false;
-    
+
     arFreq2Diff.forEach( (x, i) => {
-      
+
       if ( Math.abs(x) <= 0.25 && !singleLine ) {
         bestValue1 = x;
         bestValue2 = x;
@@ -1163,7 +1164,7 @@ const seconddose = {
         let h = Math.floor(m);
         m = Math.round((m - h) * 60);
         return `${("0" + h).slice(-2)}:${("0" + m).slice(-2)}`;
-      });      
+      });
       delete me._times;
     });
     return res;
@@ -1187,14 +1188,14 @@ function displayValue( el, num = 0, round = -1, unit = "", pre = ""){
     txt = pre + roundTo(num, round) + unit;
   }
   if ( el === '' ) return txt;
-  $(el).html(txt);  
+  $(el).html(txt);
   return el;
 };
 
 /**
  * Evaluates a number, returns if is valid, between optional minimum
  * and maximum, otherwise returns zero.
- * 
+ *
  * @param   {(Number|String)}  x                Value to check
  * @param   {Number}          [min=-Infinity]   Minimum of acceptable range
  * @param   {Number}          [max=Infinity]    Maximum of acceptable range
@@ -1246,7 +1247,7 @@ function roundTo(x, n = 0) {
  * Provides a color to highlight the percent change of total daily vancomycin dose.
  * Color stops are: red at 35%, yellow at 30%, and green at 20%
  * Values in between color stops are scaled using R, G, and B values
- * 
+ *
  * @param   {Number} x  percent change (from -100 to 100)
  * @returns {String}    color as rgb(__, __, __)
  */
@@ -1257,13 +1258,13 @@ function colorScale(x) {
     arr = [248, 105, 107];
   } else if (x < 20) {
     arr = [100, 221, 67];
-  } else if (x <= 30) { 
+  } else if (x <= 30) {
     arr = [
       Math.floor(100 + 155 * ((x - 20) / 10)),
       Math.floor(221 + 14 * ((x - 20) / 10)),
       Math.floor(67 + 65 * ((x - 20) / 10))
     ];
-  } else { 
+  } else {
     arr = [
       Math.ceil(255 - 7 * ((x - 30) / 5)),
       Math.ceil(235 - 130 * ((x - 30) / 5)),
@@ -1283,7 +1284,7 @@ function displayDate(d) {
   let mm = ("0" + d.getMinutes()).slice(-2),
       hh = ("0" + d.getHours()).slice(-2),
       mo = d.getMonth() + 1,
-      dd = d.getDate();	
+      dd = d.getDate();
   return mo + "/" + dd + " @ " + hh + mm;
 }
 
@@ -1327,7 +1328,7 @@ function getHalflife(ke){
 
 /**
  * Calculates a daily dose from a given frequency text
- * 
+ *
  * @param   {Number} d     dose in mg
  * @param   {String} freq  Frequency starting with q*h where * is the frequency
  * @returns {Number}       Total daily dose
@@ -1336,12 +1337,12 @@ function dailyDose(d, freq){
   if ( d === 0 || freq === 0 ) return 0;
   let f = 0;
   if(typeof freq === "string") {
-    f = +freq.substring(0, 5).replace("q", "").replace("h", "").trim();	
+    f = +freq.substring(0, 5).replace("q", "").replace("h", "").trim();
   } else {
     f = freq;
   }
-  if ( isNaN(f) || isNaN(d) ) { return 0; } 
-  return d * ( 24 / f );		
+  if ( isNaN(f) || isNaN(d) ) { return 0; }
+  return d * ( 24 / f );
 }
 
 /**
@@ -1384,7 +1385,7 @@ function displayChange(el, d = 0, f = 0) {
 
 const formValidation = [
   {
-    selector: "#age",
+    selector: "#ptage",
     min: pt.config.check.ageMin,
     max:  pt.config.check.ageMax
   },
@@ -1440,7 +1441,7 @@ function checkTimeInput(x){
   x += "";
   if (/(^[0-1]{0,1}[0-9]{1}$)|(^2[0-3]{1}$)/.test(x)) {
     return ("0" + x + "00").slice(-4);
-  } 
+  }
   if ( /^(([0-1]{0,1}[0-9]{1})|2{1}[0-4]{1})[0-5]{1}[0-9]{1}$/.test(x) ) {
     return ("0"+ x.slice(0, -2) ).slice(-2) + x.slice(-2);
   }
@@ -1487,5 +1488,5 @@ let LOG = {
     if (!this.enabled) return;
     console.groupEnd();
   }
-    
+
 }

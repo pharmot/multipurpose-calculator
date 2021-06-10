@@ -1,0 +1,51 @@
+{
+  env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+      "indent": ["error", 2],
+      "linebreak-style": ["error", "unix"],
+      "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+      "semi": ["error", "always"],
+      "no-empty": "warn",
+      "no-cond-assign": ["error", "always"],
+      "for-direction": "off",
+      "eqeqeq": ["error", "smart"],
+      "dot-notation": "error",
+      "no-extra-parens": "warn",
+      "no-unused-vars": "warn",
+      //"space-in-parens": ["warn", "always", { "exceptions": ["{}", "[]"] }],
+      "array-bracket-newline": ["warn", "consistent"],
+      "array-bracket-spacing": ["warn", "never"],
+      "comma-spacing": ["warn", { "before": false, "after": true}],
+      "comma-dangle": "warn",
+      "key-spacing": ["warn", {"mode": "minimum"}],
+      "keyword-spacing": "warn",
+      "object-curly-spacing": ["warn", "always", { "arraysInObjects": true }],
+      "no-trailing-spaces": ["warn", { "ignoreComments": true }],
+      "semi-spacing": "warn",
+      "space-before-blocks": "warn",
+      "space-before-function-paren": ["error", "never"],
+      "space-unary-ops": "error",
+      "space-infix-ops": "error",
+      "arrow-spacing": "warn",
+      "block-scoped-var": "error",
+      "one-var-declaration-per-line": "error",
+      "no-var": "error",
+      "default-case": "error",
+      "default-case-last": "error",
+      "default-param-last": "error",
+      "curly": ["error", "multi-line"],
+      "new-cap": "error",
+      "prefer-const": [ "error", {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }],
+      "prefer-template": "warn"
+    },
+    "globals": {
+      "$": "readonly"
+  }
+}
