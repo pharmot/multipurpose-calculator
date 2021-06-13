@@ -7,6 +7,7 @@
 html {
     position: relative;
     min-height: 100%;
+    font-size: 14px;
 }
 
 body {
@@ -183,10 +184,10 @@ body {
 }
 
 #card--steady-state {
-    flex: 0 0 450px;
-    min-width: 450px;
-    max-width: 450px;
-    width: 450px;
+    flex: 0 0 350px;
+    min-width: 350px;
+    max-width: 350px;
+    width: 350px;
 }
 
 #card--linear-change {
@@ -197,25 +198,25 @@ body {
 }
 
 #card--protocol-adjustment {
-    flex: 0 0 750px;
-    min-width: 750px;
-    max-width: 750px;
-    width: 750px;
+    flex: 0 0 600px;
+    min-width: 600px;
+    max-width: 600px;
+    width: 600px;
 }
 
 #card--initial-dosing {
-    flex: 0 0 750px;
-    min-width: 750px;
-    max-width: 750px;
-    width: 750px;
+    flex: 0 0 550px;
+    min-width: 550px;
+    max-width: 550px;
+    width: 550px;
 }
 
 #card--initial-pk,
 #card--auc {
-    flex: 0 0 750px;
-    min-width: 750px;
-    max-width: 750px;
-    width: 750px;
+    flex: 0 0 650px;
+    min-width: 650px;
+    max-width: 650px;
+    width: 650px;
 }
 
 #card--vancoHdAdj {
@@ -226,10 +227,17 @@ body {
 }
 
 #card--twolevel {
-    flex: 0 0 650px;
-    min-width: 650px;
-    max-width: 650px;
-    width: 650px;
+    flex: 0 0 580px;
+    min-width: 580px;
+    max-width: 580px;
+    width: 580px;
+}
+
+#card--seconddose {
+    flex: 0 0 550px;
+    min-width: 550px;
+    max-width: 550px;
+    width: 550px;
 }
 
 article,
@@ -515,10 +523,13 @@ h1.boxed {
 }
 
 .output.multi-line {
-    height: 4rem;
     display: block;
     white-space: wrap;
     text-align: center;
+}
+
+.output.multi-line.multi-line-2 {
+    height: 4rem;
 }
 
 .output.multi-line.multi-line-3 {
@@ -714,4 +725,22 @@ button:not(:disabled) {
 .hd-3 .hide-hd-3,
 .hd-4 .hide-hd-4 {
     display: none;
+}
+
+.age-adult .hide-age-adult,
+.age-child .hide-age-child,
+.age-infant .hide-age-infant {
+    display: none;
+}
+
+#btnReset {
+    margin-right: 1.5rem;
+}
+
+#col--main-left,
+#col--page-title {
+    flex: 0 0 300px;
+    min-width: 300px;
+    max-width: 300px;
+    width: 300px;
 }

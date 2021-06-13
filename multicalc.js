@@ -8,10 +8,10 @@
  * Based on Excel Multipurpose Calculator created by Dennis Tran
  *
  * Created at     : 2021-01-15
- * Last modified  : 2021-06-02
+ * Last modified  : 2021-06-12
  */
 
-let debug = true;
+let debug = false;
 let debugDefaultTab = "initial";
 
 $(()=>{
@@ -92,13 +92,14 @@ $(".input-patient").on('keyup', () => {
   calculate.vancoRevision();
   calculate.vancoAUC();
 });
+$('#ptage').on('keyup', () => {
+  $("#top-container").removeClass('age-adult age-child age-infant');
+  $("#top-container").addClass(`age-${pt.ageContext}`);
+});
 
 $("#vancoIndication").on('change', () => {
-  // TODO: confirm all of these are still affected, suspect not last two
   calculate.patientData();
   calculate.vancoInitial();
-  calculate.vancoRevision();
-  calculate.vancoAUC();
 });
 $("#hd").on("change", (e) => {
   const hd = e.target.selectedIndex;
@@ -151,8 +152,12 @@ $(".input-twolevel").on('keyup', () => {
 $(".input-twolevel-interval").on('keyup', () => {
   calculate.vancoTwolevel(false);
 });
-
-
+$("#schwartz-k-infant").on('change', () => {
+  calculate.patientData();
+  calculate.vancoInitial();
+  calculate.vancoRevision();
+  calculate.vancoAUC();
+});
 $(".input-steadystate").on('keyup', () => {
   calculate.vancoSteadyStateCheck();
 });
@@ -191,11 +196,11 @@ function resetDates(){
 let pt = {
   config: {
     check: {
-      wtMin: 20,
+      wtMin: 1,
       wtMax: 300,
-      htMin: 90,
+      htMin: 60,
       htMax: 250,
-      ageMin: 0.1,
+      ageMin: 0.25, // minimum 3 months old
       ageMax: 120,
       scrMin: 0.1,
       scrMax: 20
@@ -209,8 +214,28 @@ let pt = {
   get wt(){ return this._wt || 0; },
   set ht(x){ this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
   get ht(){ return this._ht || 0; },
-  set age(x){ this._age = checkValue(x, this.config.check.ageMin, this.config.check.ageMax); },
+  set age(x){
+    if ( /^\d+ *[Dd]$/.test(x) ) {
+      const days = +x.replace(/ *d */gi, '');
+      this._age = days/365.25;
+    } else if ( /^\d+ *[Mm]$/.test(x) ) {
+      const months = +x.replace(/ *m */gi, '');
+      this._age = months/12;
+    } else if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
+      let arrAge = x.split('m');
+      arrAge[1] = arrAge[1].replace('d', '');
+      this._age = arrAge[0]/12 + arrAge[1]/365.25;
+    } else {
+      this._age = checkValue(x, this.config.check.ageMin, this.config.check.ageMax);
+    }
+    // TODO: add tooltip or something to tell how to enter m/d ages
+  },
   get age(){ return this._age || 0; },
+  get ageContext(){
+    if ( this.age < 1 ) return 'infant';
+    if ( this.age < 18 ) return 'child';
+    return 'adult';
+  },
   set scr(x){
     this._scr = checkValue(x, this.config.check.scrMin, this.config.check.scrMax);
   },
@@ -268,6 +293,7 @@ let pt = {
     return 0;
   },
   get crcl(){
+    if ( this.age < 18 ) return this.schwartz;
     if ( this.ibw === 0 || this.age === 0 || this.scr === 0 ) return 0;
     if ( this.wt < this.ibw ) return this.cgActual;
     if ( this.overUnder > 30 ) return this.cgAdjusted;
@@ -275,6 +301,26 @@ let pt = {
   },
   cg(weight){
     return (140 - this.age) * weight / (this.scr * 72) * (pt.sex === "F" ? 0.85 : 1);
+  },
+  set schwartzK(term){
+    if ( this.age === 0 || this.age >= 18 || ( this.age >= 13 && this.sex === 0 ) ) {
+      this._schwartzK = 0;
+    } else if ( this.age <= 1 ) {
+      this._schwartzK = term === 0 ? 0.45 : 0.33;
+    } else if ( this.age >= 13 && this.sex === "M" ) {
+      this._schwartzK = 0.7;
+    } else {
+      this._schwartzK = 0.55
+    }
+    return this._schwartzK;
+  },
+  get schwartzK(){
+    return this._schwartzK || 0;
+  },
+  get schwartz(){
+    const k = this.schwartzK;
+    if ( k === 0 || this.ht === 0 || this.scr === 0 ) return 0;
+    return ( k * this.ht ) / this.scr;
   }
 };
 const vanco = {
@@ -810,7 +856,9 @@ const calculate = {
     pt.ht = +$("#height").val();
     pt.wt = +$("#weight").val();
     pt.scr = +$("#scr").val();
+    pt.schwartzK = $("#schwartz-k-infant")[0].selectedIndex;
 
+    displayValue("#schwartz-crcl", pt.schwartz, 0.1, " mL/min");
     // Display weights and CrCl
     displayValue("#ibw", pt.ibw, 0.1, " kg");
     displayValue("#overUnder", pt.overUnder, 0.1, "%");
@@ -1423,16 +1471,10 @@ function displayChange(el, d = 0, f = 0) {
   }
   return el;
 }
-
-
-
-
-
 const formValidation = [
   {
     selector: "#ptage",
-    min: pt.config.check.ageMin,
-    max:  pt.config.check.ageMax
+    validator: validateAge
   },
   {
     selector: "#sex",
@@ -1473,6 +1515,29 @@ const formValidation = [
     validator: validateTime
   }
 ]
+function validateAge(el, item){
+  let x = $(el).val();
+  let yearsOld = 0;
+  if ( /^\d+ *[Dd]$/.test(x) ) {
+    const days = +x.replace(/ *d */gi, '');
+    yearsOld = days/365.25;
+  } else if ( /^\d+ *[Mm]$/.test(x) ) {
+    const months = +x.replace(/ *m */gi, '');
+    yearsOld = months/12;
+  } else if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
+    let arrAge = x.split('m');
+    arrAge[1] = arrAge[1].replace('d', '');
+    yearsOld = arrAge[0]/12 + arrAge[1]/365.25;
+  } else {
+    yearsOld = x
+  }
+  const validatedAge = checkValue(yearsOld, pt.config.check.ageMin, pt.config.check.ageMax);
+  if ( validatedAge === 0 ) {
+    $(el).addClass("invalid");
+  } else {
+    $(el).removeClass("invalid");
+  }
+}
 function validateTime(el, item){
   let x = $(el).val();
   let corrected = checkTimeInput(x);
@@ -1535,3 +1600,4 @@ let LOG = {
   }
 
 }
+// TODO: add reset interval button to AUC calc

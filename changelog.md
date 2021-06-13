@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Added
+- Linter configs and license
+- Pediatric CrCl calculation using Schwartz equation
+- Option to enter age in months and/or days instead of years
+
+### Changed
+- Vancomycin initial dosing and monitoring per updated protocol
+- Serve FontAwesome from local directory instead of CDN
+- Age input validation
+
 ## [0.1.0] - 2021-06-02
 Initial POC Release
 
