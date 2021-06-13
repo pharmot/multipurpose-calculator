@@ -766,3 +766,25 @@ button:not(:disabled) {
 #col--page-title {
   @include fixed-width(300px);
 }
+
+#card--ivig {
+  @include fixed-width(600px);
+}
+
+#ivig-text {
+  padding: 1em;
+  font-family: "Arial", sans-serif;
+  font-size: 11pt;
+  line-height: 1.1em;
+  text-align: left;
+  justify-content: flex-start;
+  height: 10em;
+}
+
+textarea {
+  resize: none;
+}
+
+#ivig-text[readonly] {
+  background: fade-out($clr-bg-output, 0.7);
+}

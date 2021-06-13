@@ -11,6 +11,8 @@
  * Last modified  : 2021-06-12
  */
 
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './modules/util.js'
+import { default as ivig } from './modules/ivig.js';
 let debug = false;
 let debugDefaultTab = "initial";
 
@@ -59,7 +61,7 @@ $(()=>{
   } else {
     resetDates();
   }
-
+  calculate.ivig();
   for ( let item of formValidation ) {
     $(item.selector).on("focus", e => {
       $(e.target).removeClass("invalid");
@@ -183,7 +185,19 @@ $("#btnReset").on('click', () => {
   calculate.vancoLinearChange();
   calculate.vancoTwolevel();
   calculate.secondDose();
+  calculate.ivig();
 });
+
+$("#ivig-product").on("change", () => {
+  calculate.ivig();
+});
+$("#weight").on("keyup", () => {
+  calculate.ivig();
+});
+$("#ivig-dose").on("keyup", ()=>{
+  calculate.ivig();
+});
+
 
 /**
  * Resets date input fields to today's date.
@@ -647,7 +661,7 @@ const vanco = {
         res.newViable.push(tr > goal - 1 && tr < goal + 6);
       }
     });
-    for (i = 0; i < res.newViable.length; i++) {
+    for (let i = 0; i < res.newViable.length; i++) {
       if (res.newViable[i]) {
         useDose = i;
         break;
@@ -807,7 +821,7 @@ const vanco = {
           res.newViable.push(tr > goal - 1 && tr < goal + 6);
         }
       });
-      for (i = 0; i < res.newViable.length; i++) {
+      for (let i = 0; i < res.newViable.length; i++) {
         if (res.newViable[i]) {
           useDose = i;
           break;
@@ -955,7 +969,7 @@ const calculate = {
       rowHtml += `<tr><th scope="row">${row.title}</th>`;
       if ( row.units === undefined ) { row.units = ""; }
       if ( row.roundTo === undefined ) { row.roundTo = -1; }
-      for ( i=0; i<vanco.config.doses.length; i++ ){
+      for ( let i=0; i<vanco.config.doses.length; i++ ){
         let value = "";
         if ( Array.isArray(row.data) ) {
           if ( row.data.length > 0 ) { value = row.data[i] };
@@ -1141,6 +1155,11 @@ const calculate = {
         $("#seconddose-row-1").show();
       }
     }
+  },
+  ivig(){
+    const dose = checkValue(+$("#ivig-dose").val());
+    const selected = $("#ivig-product")[0].selectedIndex;
+    $("#ivig-text").html(ivig.getText(selected, pt.wt, dose));
   }
 }
 
@@ -1185,7 +1204,7 @@ const seconddose = {
     const innerLength = (24/interval)*2+2;
     startHour.forEach( start => {
       let j = start;
-      for ( i=0;i<innerLength;i++){
+      for ( let i=0;i<innerLength;i++){
         timeArray.push(j);
         j += interval;
       }
@@ -1264,41 +1283,6 @@ const seconddose = {
   }
 }
 
-/**
- * Displays a number, rounded, with units in the specified input element.
- * If number is zero, clears input element instead.
- *
- * @param   {String|HTMLElement} el           Valid jQuery selector for target element
- * @param   {Number}            [num = 0]     The number to go in the input field
- * @param   {Number}            [round = -1]  The desired rounding factor
- * @param   {String}            [unit = ""]   Units to append to rounded value
- * @param   {String}            [pre = ""]    Text to prepend to rounded value
- * @returns {HTMLElement}                     The original DOM element, for chaining
- */
-function displayValue( el, num = 0, round = -1, unit = "", pre = ""){
-  let txt = '';
-  if( num > 0 ) {
-    txt = pre + roundTo(num, round) + unit;
-  }
-  if ( el === '' ) return txt;
-  $(el).html(txt);
-  return el;
-};
-
-/**
- * Evaluates a number, returns if is valid, between optional minimum
- * and maximum, otherwise returns zero.
- *
- * @param   {(Number|String)}  x                Value to check
- * @param   {Number}          [min=-Infinity]   Minimum of acceptable range
- * @param   {Number}          [max=Infinity]    Maximum of acceptable range
- * @returns {Number}                            The input value if acceptable, or zero
- */
-function checkValue(x, min = -Infinity, max = Infinity ) {
-  x = parseFloat(x);
-  if ( isNaN(x) || x < min || x > max ) return 0;
-  return x;
-}
 
 /**
  * Evaluates the value of an input field against minimum and maximum
@@ -1321,20 +1305,6 @@ function validate(el, min = -Infinity, max = Infinity ) {
   return el;
 }
 
-/**
- * Rounds a number to a specified factor.
- *
- * @param   {Number} x  The number to round
- * @param   {Number} n  The rounding factor
- * @returns {Number}    The rounded number
- */
-function roundTo(x, n = 0) {
-  if ( n <= 0 || isNaN(x) ) return x;
-  let t = Math.round(x / n) * n;
-  t = Math.floor(t * 1000);
-  t = t / 1000;
-  return t;
-}
 
 /**
  * Provides a color to highlight the percent change of total daily vancomycin dose.
@@ -1367,48 +1337,6 @@ function colorScale(x) {
   return `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`;
 }
 
-/**
- * Convert date object to string formatted as 'MM/dd @ HHmm'
- *
- * @param   {Date}   d   date object to convert
- * @returns {String}
- */
-function displayDate(d) {
-  let mm = ("0" + d.getMinutes()).slice(-2),
-      hh = ("0" + d.getHours()).slice(-2),
-      mo = d.getMonth() + 1,
-      dd = d.getDate();
-  return mo + "/" + dd + " @ " + hh + mm;
-}
-
-/**
- * Convert date and time raw input to a date object.
- *
- * @param   {String} d   date string from input field
- * @param   {String} t   time string from input field
- * @returns {Date}       date object (returns 0 if input is invalid)
- */
-function getDateTime(d, t) {
-  t = checkTimeInput(t);
-  if ( d === "" || t === "" ) return 0;
-  let dy = +d.slice(0, 4),
-      dm = +d.slice(5, 7),
-      dd = +d.slice(8, 10),
-      th = +t.slice(0, 2),
-      tm = +t.slice(2, 4);
-  return new Date(dy, dm - 1, dd, th, tm, 0, 0);
-}
-
-/**
- * Calculate the number of hours between two dates
- *
- * @param   {Date}   first   first Date object
- * @param   {Date}   second  second Date object
- * @returns {Number}         hours between first and second date
- */
-function getHoursBetweenDates(first, second){
-  return (second - first)/ 1000 / 60 / 60;
-}
 /**
  * Calculate halflife from ke
  *
@@ -1547,16 +1475,7 @@ function validateTime(el, item){
     $(el).val(corrected);
   }
 }
-function checkTimeInput(x){
-  x += "";
-  if (/(^[0-1]{0,1}[0-9]{1}$)|(^2[0-3]{1}$)/.test(x)) {
-    return ("0" + x + "00").slice(-4);
-  }
-  if ( /^(([0-1]{0,1}[0-9]{1})|2{1}[0-4]{1})[0-5]{1}[0-9]{1}$/.test(x) ) {
-    return ("0"+ x.slice(0, -2) ).slice(-2) + x.slice(-2);
-  }
-  return "";
-}
+
 function validateRange(el, item){
   if ( checkValue(+$(el).val(), item.min, item.max) === 0 ) {
     $(el).addClass("invalid");

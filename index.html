@@ -22,6 +22,7 @@
           <a class="nav-item nav-link" id="nav-auc-tab" data-toggle="tab" href="#nav-auc" role="tab">AUC Dosing</a>
           <a class="nav-item nav-link" id="nav-twolevel-tab" data-toggle="tab" href="#nav-twolevel" role="tab">Two-Level PK</a>
           <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose Timing</a>
+          <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
         </div>
       </nav>
     </div>
@@ -846,6 +847,49 @@
             </div>
           </div>
         </div>
+        <div class="tab-pane fade" id="nav-ivig">
+          <div class="card" id="card--ivig">
+            <div class="card-header h6">IVIG Rate Calculator</div>
+            <div class="card-body">
+              <div class="form-row">
+                <label for="ivig-product" class="col-2">Select Drug</label>
+                <div class="col-8 input-group">
+                  <select id="ivig-product" class="form-control small">
+                    <option>Octagam 10% (10 g/100 mL)</option>
+                    <option>Octagam 5% (10 g/200 mL)</option>
+                    <option>Gamunex-C (10 g/100 mL) for ITP/Primary Immunodeficiency</option>
+                    <option>Gamunex-C (10 g/100 mL) for CIDP</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="ivig-dose" class="col-2">Dose</label>
+                <div class="col-3 input-group">
+                  <input type="number" class="form-control" id="ivig-dose">
+                  <div class="input-group-append">
+                    <div class="input-group-text">g</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-6 input-group">
+                  <div class="text-left"><i class="fa fa-arrow-left"></i> Enter patient's actual weight</div>
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="ivig-text" class="col-2">Rate</label>
+                <div class="input-group col-9">
+                  <textarea class="form-control" id="ivig-text" readonly></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="card-text small text-left">
+                Dose is not required for calculation.  If dose is specified, total infusion time will be calculated.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -860,6 +904,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js'></script>
-<script src='multicalc.js'></script>
+<script type='module' src='multicalc.js'></script>
 </body>
 </html>
