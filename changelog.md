@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- Serve jQuery from local directory instead of CDN
+
 ## [0.1.1] - 2021-06-13
 
 ### Added
