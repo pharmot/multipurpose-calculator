@@ -8,10 +8,10 @@
  * Based on Excel Multipurpose Calculator created by Dennis Tran
  *
  * Created at     : 2021-01-15
- * Last modified  : 2021-06-02
+ * Last modified  : 2021-06-12
  */
 
-let debug = true;
+let debug = false;
 let debugDefaultTab = "initial";
 
 $(()=>{
