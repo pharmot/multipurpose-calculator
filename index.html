@@ -8,7 +8,7 @@
   <link rel='stylesheet' href='multicalc.css'>
 </head>
 <body>
-<div class="container-fluid mx-1 my-2">
+<div class="container-fluid mx-1 my-2 hd-0" id="top-container">
   <div class="row">
     <div class="col-4">
       <h1 class="h4" id="page-title">Multipurpose Calculator</h1>
@@ -77,18 +77,8 @@
                 <option>No</option>
                 <option>HD</option>
                 <option>PD</option>
-                <option>CVVH</option>
-                <option>CVVHD</option>
-                <option>CVVHDF</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="goal" class="col-5">Target trough</label>
-            <div class="col-7 input-group">
-              <select id="goal" class="form-control">
-                <option>10-15</option>
-                <option>15-20</option>
+                <option>CVVH/CVVHD/CVVHDF</option>
+                <option>SLED</option>
               </select>
             </div>
           </div>
@@ -175,20 +165,43 @@
             </div>
             <div class="card-body">
               <div class="form-row">
+              <label for="vancoIndication" class="col-2">Indication</label>
+                <div class="input-group col-7">
+                  <select id="vancoIndication" class="form-control small">
+                    <option>Most Indications</option>
+                    <option>Mild-Moderate Infection (e.g. SSTI, UTI)</option>
+                    <option>Severe sepsis, septic shock, critically ill</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
                 <label for="vancoInitialLoad" class="col-2">Load</label>
-                <div class="output multi-line col-10" id="vancoInitialLoad"></div>
+                <div class="input-group col-10">
+                  <div class="output multi-line" id="vancoInitialLoad"></div>
+                </div>
               </div>
               <div class="form-row">
                 <label for="vancoInitialMaintenance" class="col-2">Maintenance</label>
-                <div class="output multi-line col-10" id="vancoInitialMaintenance"></div>
+                <div class="input-group col-10">
+                  <div class="output multi-line" id="vancoInitialMaintenance"></div>
+                </div>
               </div>
+
               <div class="form-row">
                 <label for="vancoInitialMonitoring" class="col-2">Monitoring</label>
-                <div class="output multi-line multi-line-3 col-10" id="vancoInitialMonitoring"></div>
+                <div class="input-group col-10">
+                  <div class="output multi-line multi-line-3" id="vancoInitialMonitoring"></div>
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="vancoInitialTargetLevel" class="col-2">Target Level</label>
+                <div class="input-group col-6">
+                  <div class="output" id="vancoInitialTargetLevel"></div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="card hide-if-hd" id="card--initial-pk">
+          <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
             <div class="card-header h6">Initial Vancomycin PK Dosing</div>
             <div class="card-body">
               <div class="row">
@@ -257,12 +270,21 @@
           </div>
         </div>
         <div class="tab-pane fade" id="nav-adjustment">
-          <div class="row">
+          <div class="row hide-hd-0 hide-hd-1">
+            <div class="col-4"></div>
+            <div class="col-4">
+              <div class="alert alert-info mt-5 hide-hd-3 hide-hd-4">Not applicable to PD patients</div>
+              <div class="alert alert-info mt-5 hide-hd-2 hide-hd-4">Not applicable to CRRT patients</div>
+              <div class="alert alert-info mt-5 hide-hd-2 hide-hd-3">Not applicable to SLED patients</div>
+            </div>
+            <div class="col-4"></div>
+          </div>
+          <div class="row hide-hd-2 hide-hd-3 hide-hd-4">
             <div class="col-auto" id="col--current-dose">
               <div class="card" id="card--current-dose">
                 <div class="card-header h6">Current Dose</div>
                 <div class="card-body">
-                  <div class="form-row hide-if-hd">
+                  <div class="form-row hide-hd-1">
                     <label for="revision-curDose" class="col-6">Dose</label>
                     <div class="col-6 input-group">
                       <input type="number" class="form-control input-revision current-dose validate-dose" step="250" id="revision-curDose">
@@ -271,7 +293,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-row hide-if-hd">
+                  <div class="form-row hide-hd-1">
                     <label for="revision-curFreq" class="col-6">Frequency</label>
                     <div class="input-group col-6">
                       <div class="input-group-prepend">
@@ -288,7 +310,7 @@
                       <div class="input-group-text">mcg/mL</div>
                     </div>
                   </div>
-                  <div class="form-row hide-if-hd">
+                  <div class="form-row hide-hd-1">
                     <label class="col-6" for="adjHalflife">Est. Half Life</label>
                     <div class="col-6 input-group">
                       <div class="output" id="adjHalflife"></div>
@@ -298,7 +320,7 @@
               </div>
             </div>
             <div class="col-auto">
-              <div class="card hide-if-hd" id="card--steady-state">
+              <div class="card hide-hd-1" id="card--steady-state">
                 <div class="card-header h6">Steady State Check</div>
                 <div class="card-body">
                   <div class="form-row">
@@ -336,7 +358,7 @@
               </div>
             </div>
           </div>
-          <div class="row show-if-hd-only">
+          <div class="row hide-hd-0 hide-hd-2 hide-hd-3 hide-hd-4">
             <div class="col-12">
               <div class="card" id="card--vancoHdAdj">
                 <div class="card-header h6">Dose Adjustment for HD Patient</div>
@@ -350,7 +372,7 @@
               </div>
             </div>
           </div>
-          <div class="row hide-if-hd">
+          <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
             <div class="col-auto" id="col--protocol-adjustment">
               <div class="card" id="card--protocol-adjustment">
                 <div class="card-header h6">Protocol Adjustment</div>
@@ -530,14 +552,14 @@
           </div>
         </div>
         <div class="tab-pane fade" id="nav-auc">
-          <div class="row show-if-hd ">
+          <div class="row hide-hd-0">
             <div class="col-4"></div>
             <div class="col-4">
-              <div class="alert alert-info mt-5">Not applicable to HD patients</div>
+              <div class="alert alert-info mt-5">Not applicable to dialysis patients</div>
             </div>
             <div class="col-4"></div>
           </div>
-          <div class="card hide-if-hd" id="card--auc">
+          <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--auc">
             <div class="card-header h6">Vancomycin AUC Calculator</div>
             <div class="card-body">
               <div class="form-row mb-3">
@@ -621,14 +643,14 @@
           </div>
         </div>
         <div class="tab-pane fade" id="nav-twolevel">
-          <div class="row show-if-hd ">
+          <div class="row hide-hd-0">
             <div class="col-4"></div>
             <div class="col-4">
-              <div class="alert alert-info mt-5">Not applicable to HD patients</div>
+              <div class="alert alert-info mt-5">Not applicable to dialysis patients</div>
             </div>
             <div class="col-4"></div>
           </div>
-          <div class="card hide-if-hd" id="card--twolevel">
+          <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--twolevel">
             <div class="card-header h6">Two-Level PK</div>
             <div class="card-body">
               <div class="form-row">
