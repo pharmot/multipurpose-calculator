@@ -707,3 +707,11 @@ button:not(:disabled) {
     line-height: 50px;
     background-color: #f5f5f5;
 }
+
+.hd-0 .hide-hd-0,
+.hd-1 .hide-hd-1,
+.hd-2 .hide-hd-2,
+.hd-3 .hide-hd-3,
+.hd-4 .hide-hd-4 {
+    display: none;
+}
