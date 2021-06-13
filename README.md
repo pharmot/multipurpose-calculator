@@ -12,11 +12,11 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 ## Work In Progress
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/pharmot/multipurpose-calculator)](https://github.com/pharmot/multipurpose-calculator/issues)
-![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/pharmot/multipurpose-calculator)
-![GitHub issues by-label](https://img.shields.io/github/issues-raw/pharmot/multipurpose-calculator/bug?color=%23D73A4A&label=bugs)
-![GitHub issues by-label](https://img.shields.io/github/issues-raw/pharmot/multipurpose-calculator/enhancement?color=%23A2EEEF&label=enhancements)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/pharmot/multipurpose-calculator)](https://github.com/pharmot/multipurpose-calculator/pulls)
+[![GitHub issues by-label](https://img.shields.io/github/issues-raw/pharmot/multipurpose-calculator/bug?color=%23D73A4A&label=bugs)](https://github.com/pharmot/multipurpose-calculator/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+[![GitHub issues by-label](https://img.shields.io/github/issues-raw/pharmot/multipurpose-calculator/enhancement?color=%23A2EEEF&label=enhancements)](https://github.com/pharmot/multipurpose-calculator/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 
 
-### Vancomycin Protocol Update 2021
+### [Vancomycin Protocol Update 2021](https://github.com/pharmot/multipurpose-calculator/milestone/1)
 
 ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/pharmot/multipurpose-calculator/1?label="Progress") ![GitHub milestone](https://img.shields.io/github/milestones/issues-open/pharmot/multipurpose-calculator/1?label=Items%20remaining)
