@@ -134,6 +134,7 @@ $font-family-sans-serif: -apple-system,blinkmacsystemfont,"Segoe UI",roboto,"Hel
 html {
   position: relative;
   min-height: 100%;
+  font-size: 14px;
 }
 
 body {
@@ -248,7 +249,7 @@ body {
 }
 
 #card--steady-state {
-  @include fixed-width(450px);
+  @include fixed-width(350px);
 }
 
 #card--linear-change {
@@ -256,16 +257,16 @@ body {
 }
 
 #card--protocol-adjustment {
-  @include fixed-width(750px);
+  @include fixed-width(600px);
 }
 
 #card--initial-dosing {
-  @include fixed-width(750px);
+  @include fixed-width(550px);
 }
 
 #card--initial-pk,
 #card--auc {
-  @include fixed-width(750px);
+  @include fixed-width(650px);
 }
 
 #card--vancoHdAdj {
@@ -273,7 +274,11 @@ body {
 }
 
 #card--twolevel {
-  @include fixed-width(650px);
+  @include fixed-width(580px);
+}
+
+#card--seconddose {
+  @include fixed-width(550px);
 }
 
 article,
@@ -565,10 +570,13 @@ h1.boxed {
   overflow: auto;
 
   &.multi-line {
-    height: 4rem;
     display: block;
     white-space: wrap;
     text-align: center;
+
+    &.multi-line-2 {
+      height: 4rem;
+    }
 
     &.multi-line-3 {
       height: 5.5rem;
@@ -742,4 +750,19 @@ button:not(:disabled) {
 .hd-3 .hide-hd-3,
 .hd-4 .hide-hd-4 {
   display: none;
+}
+
+.age-adult .hide-age-adult,
+.age-child .hide-age-child,
+.age-infant .hide-age-infant {
+  display: none;
+}
+
+#btnReset {
+  margin-right: $len-5;
+}
+
+#col--main-left,
+#col--page-title {
+  @include fixed-width(300px);
 }

@@ -9,7 +9,7 @@
   <link rel='stylesheet' href='multicalc.css'>
 </head>
 <body>
-<div class="container-fluid mx-1 my-2 hd-0" id="top-container">
+<div class="container-fluid mx-1 my-2 hd-0 age-adult" id="top-container">
   <div class="row">
     <div class="col-4">
       <h1 class="h4" id="page-title">Multipurpose Calculator</h1>
@@ -120,30 +120,46 @@
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" id="card--crcl">
         <div class="card-header h6">Creatinine Clearance</div>
         <div class="card-body">
-          <div class="form-row">
+          <div class="form-row hide-age-infant hide-age-child">
             <label for="cgActual" class="col-5">C-G (Actual)</label>
             <div class="col-7 input-group">
               <div class="output outCrCl" id="cgActual"></div>
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row hide-age-infant hide-age-child">
             <label for="cgIdeal" class="col-5">C-G (Ideal)</label>
             <div class="col-7 input-group">
               <div class="output outCrCl" id="cgIdeal"></div>
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row hide-age-infant hide-age-child">
             <label for="cgAdjusted" class="col-5 col-form-label">C-G (Adjusted)</label>
             <div class="col-7 input-group">
               <div class="output outCrCl" id="cgAdjusted"></div>
             </div>
           </div>
+          <div class="form-row hide-age-adult hide-age-child">
+            <label for="schwartz-k-infant" class="col-4 col-form-label">K value</label>
+            <div class="col-8 input-group">
+              <select id="schwartz-k-infant" class="form-control">
+                <option>0.45 (Term Infant)</option>
+                <option>0.33 (LBW Infant)</option>
+              </select>
+
+            </div>
+          </div>
+          <div class="form-row hide-age-adult">
+            <label for="schwartz-crcl" class="col-4 col-form-label">Schwartz</label>
+            <div class="col-8 input-group">
+              <div class="output font-weight-bold" id="schwartz-crcl"></div>
+            </div>
+          </div>
 
         </div>
-        <div class="card-footer text-left">
+        <div class="card-footer text-left hide-age-infant hide-age-child">
           <div class="card-text small">
             Use highlighted CrCl for most medications.
           </div>
@@ -165,7 +181,7 @@
               Initial Vancomycin Dosing
             </div>
             <div class="card-body">
-              <div class="form-row">
+              <div class="form-row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
               <label for="vancoIndication" class="col-2">Indication</label>
                 <div class="input-group col-7">
                   <select id="vancoIndication" class="form-control small">
@@ -178,13 +194,13 @@
               <div class="form-row">
                 <label for="vancoInitialLoad" class="col-2">Load</label>
                 <div class="input-group col-10">
-                  <div class="output multi-line" id="vancoInitialLoad"></div>
+                  <div class="output multi-line multi-line-2" id="vancoInitialLoad"></div>
                 </div>
               </div>
               <div class="form-row">
                 <label for="vancoInitialMaintenance" class="col-2">Maintenance</label>
                 <div class="input-group col-10">
-                  <div class="output multi-line" id="vancoInitialMaintenance"></div>
+                  <div class="output multi-line multi-line-2" id="vancoInitialMaintenance"></div>
                 </div>
               </div>
 
@@ -196,8 +212,8 @@
               </div>
               <div class="form-row">
                 <label for="vancoInitialTargetLevel" class="col-2">Target Level</label>
-                <div class="input-group col-6">
-                  <div class="output" id="vancoInitialTargetLevel"></div>
+                <div class="input-group col-10">
+                  <div class="output multi-line" id="vancoInitialTargetLevel"></div>
                 </div>
               </div>
             </div>
