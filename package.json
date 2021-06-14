@@ -1,0 +1,22 @@
+{
+  "name": "multipurpose-calculator",
+  "version": "0.1.1",
+  "description": "A dosing and kinetics calculator for VMFH pharmacists",
+  "main": "multicalc.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pharmot/multipurpose-calculator.git"
+  },
+  "keywords": [
+    "kinetics"
+  ],
+  "author": "Andy Briggs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pharmot/multipurpose-calculator/issues"
+  },
+  "homepage": "https://github.com/pharmot/multipurpose-calculator#readme"
+}
