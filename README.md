@@ -6,7 +6,7 @@
 
 A dosing and kinetics calculator for pharmacists.  This calculator is intended to be used in conjunction with reasonable clinical judgement and current dosing protocols.
 
-
+:arrow_right: [Open the calculator](https://pharmot.github.io/multipurpose-calculator/)
 
 
 ## Work In Progress

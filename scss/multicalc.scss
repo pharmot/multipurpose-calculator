@@ -1,0 +1,289 @@
+// compileCompressed: ../$1.min.css, sourceMap: true, sourceMapEmbed: true
+@import './variables';
+
+html {
+  position: relative;
+  min-height: 100%;
+  font-size: 14px;
+}
+
+body {
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+  margin-bottom: 70px;
+  max-width: 98vw;
+  min-width: 98vw;
+  width: 98vw;
+  text-align: center;
+}
+
+@mixin fixed-width($v) {
+  flex: 0 0 $v;
+  min-width: $v;
+  max-width: $v;
+  width: $v;
+}
+
+#col--main-left { @include fixed-width(350px); }
+#card--current-dose { @include fixed-width(320px); }
+#card--steady-state { @include fixed-width(350px); }
+#card--linear-change { @include fixed-width(550px); }
+#card--protocol-adjustment { @include fixed-width(600px); }
+#card--initial-dosing { @include fixed-width(550px); }
+#card--vancoHdAdj { @include fixed-width(550px); }
+#card--twolevel { @include fixed-width(580px); }
+#card--seconddose { @include fixed-width(550px); }
+#card--initial-pk { @include fixed-width(650px); }
+#card--auc { @include fixed-width(650px); }
+
+.h1,
+h1 {
+  font-size: $len-55;
+}
+
+.card {
+  margin-top: $len-2;
+}
+
+.form-row {
+  margin-bottom: $len-1;
+}
+
+.input-group {
+  flex-wrap: nowrap;
+}
+
+.input-group + .input-group {
+  margin-left: 0;
+  padding-left: 0;
+}
+%form-element-base {
+  align-items: center;
+  display: flex;
+  background-clip: padding-box;
+  margin: 0;
+  border-radius: $bdr-radius;
+  height: calc(1.5rem + 0.5rem + 2px);
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+%form-row-element {
+  @extend %form-element-base;
+
+  justify-content: center;
+  border: $bdr-width solid $bdr-color;
+  padding: $len-1 $len-2;
+}
+
+.form-row label {
+  @extend %form-element-base;
+
+  justify-content: flex-start;
+  border-width: 0;
+  padding: calc(0.25rem + 1px) 0.5rem;
+  font-size: $len-3;
+  color: $clr-veryDarkGray;
+
+  &.text-center {
+    align-self: stretch;
+    justify-content: center;
+    vertical-align: middle;
+  }
+
+  &.text-right {
+    align-self: end;
+    justify-content: flex-end;
+  }
+}
+
+.input-group-text {
+  @extend %form-row-element;
+
+  background-color: $clr-bg-text;
+  font-size: 0.875rem;
+  color: $clr-veryDarkGray;
+  white-space: nowrap;
+
+  &:first-child {
+    margin-right: -1px;
+    justify-content: flex-end;
+  }
+
+  &:last-child {
+    margin-left: -1px;
+    justify-content: flex-start;
+  }
+}
+
+.table-sm {
+  color: $clr-veryDarkGray;
+  font-size: 0.75rem;
+  margin-top: $len-4;
+
+  th {
+    background-color: $clr-bg-output;
+    text-align: left;
+  }
+}
+
+.output {
+  @extend %form-row-element;
+
+  font-size: 0.875rem;
+  color: $clr-black;
+  background-color: $clr-bg-output;
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  transition: none;
+  overflow: auto;
+
+  &.multi-line {
+    display: block;
+    white-space: wrap;
+    text-align: center;
+
+    &.multi-line-2 {
+      height: 4rem;
+    }
+
+    &.multi-line-3 {
+      height: 5.5rem;
+    }
+  }
+}
+
+.form-control {
+  @extend %form-row-element;
+
+  font-size: $len-3;
+  color: $clr-black;
+  background-color: #fff;
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    color: $clr-black;
+    background-color: #fff;
+    border-color: $clr-lightBlue;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    z-index: 3;
+  }
+
+  &.dt-time {
+    flex-basis: 25%;
+  }
+
+  &.dt-date {
+    flex-basis: 50%;
+  }
+}
+
+.form-control:not(:last-child),
+.input-group-text:not(:last-child),
+.output:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-control:not(:first-child),
+.input-group-text:not(:first-child),
+.output:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+::-webkit-calendar-picker-indicator,
+::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input {
+  text-align: center;
+}
+
+.input-group .btn {
+  @extend %form-row-element;
+}
+
+.use-this,
+.isTherapeutic,
+.isSuggested {
+  background-color: $clr-highlight;
+  color: $clr-black;
+}
+
+.invalid {
+  border-color: #c00;
+}
+
+.btn-seconddose-freq,
+.form-row label.btn-seconddose-freq {
+  border: 1px solid $bdr-color;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 98vw;
+  height: 50px;
+  margin-top: 20px;
+  line-height: 50px;
+  background-color: #f5f5f5;
+}
+
+.hd-0 .hide-hd-0,
+.hd-1 .hide-hd-1,
+.hd-2 .hide-hd-2,
+.hd-3 .hide-hd-3,
+.hd-4 .hide-hd-4 {
+  display: none;
+}
+
+.age-adult .hide-age-adult,
+.age-child .hide-age-child,
+.age-infant .hide-age-infant {
+  display: none;
+}
+
+#btnReset {
+  margin-right: $len-5;
+}
+
+#col--main-left,
+#col--page-title {
+  @include fixed-width(300px);
+}
+
+#card--ivig {
+  @include fixed-width(600px);
+}
+
+#ivig-text {
+  padding: 1em;
+  font-family: "Arial", sans-serif;
+  font-size: 11pt;
+  line-height: 1.1em;
+  text-align: left;
+  justify-content: flex-start;
+  height: 10em;
+}
+
+textarea {
+  resize: none;
+}
+
+#ivig-text[readonly] {
+  background: fade-out($clr-bg-output, 0.7);
+}
