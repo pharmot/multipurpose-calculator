@@ -1,3 +1,16 @@
+/**
+* Copyright (c) 2021
+*
+* VMFH Pharmacy Multipurpose Calculator
+*
+* IVIG Rate Calculation and admin instruciton generation module
+*
+* @author Andy Briggs <andrewbriggs@chifranciscan.org>
+* @since v0.2.0
+* Created at     : 2021-06-20
+* Last modified  : 2021-06-20
+*/
+
 import { default as arial } from './arial.js';
 import { roundTo } from './util.js';
 const drugs = [

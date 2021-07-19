@@ -1,4 +1,18 @@
-function test(target){
+/**
+ * Copyright (c) 2021
+ *
+ * VMFH Pharmacy Multipurpose Calculator
+ *
+ * Module for spacing text output (in Arial font) to optimize formatting of
+ * admin instructions to copy and paste to Epic.
+ *
+ * @author Andy Briggs <andrewbriggs@chifranciscan.org>
+ * @since v0.2.0
+ * Created at     : 2021-06-20
+ * Last modified  : 2021-06-20
+ */
+
+ function test(target){
     const chars = ["I","R","T",".","a","e","f","o","s","t","u"];
     let txt = "";
     for ( let char of chars ) {
