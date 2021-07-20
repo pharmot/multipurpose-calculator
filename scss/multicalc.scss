@@ -12,8 +12,7 @@ body {
   margin-left: 0.25rem;
   margin-bottom: 70px;
   max-width: 98vw;
-  min-width: 98vw;
-  width: 98vw;
+  min-width: 75rem;
   text-align: center;
 }
 
@@ -24,17 +23,53 @@ body {
   width: $v;
 }
 
-#col--main-left { @include fixed-width(350px); }
+#col--main-left { @include fixed-width(300px); }
+
+#col--page-title {
+  @include fixed-width(300px);
+
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 0;
+}
+
 #card--current-dose { @include fixed-width(320px); }
 #card--steady-state { @include fixed-width(350px); }
 #card--linear-change { @include fixed-width(550px); }
-#card--protocol-adjustment { @include fixed-width(600px); }
-#card--initial-dosing { @include fixed-width(550px); }
+#card--protocol-adjustment { @include fixed-width(650px); }
 #card--vancoHdAdj { @include fixed-width(550px); }
 #card--twolevel { @include fixed-width(580px); }
-#card--seconddose { @include fixed-width(550px); }
+#card--seconddose { @include fixed-width(650px); }
+#card--initial-dosing { @include fixed-width(650px); }
 #card--initial-pk { @include fixed-width(650px); }
 #card--auc { @include fixed-width(650px); }
+#card--ivig { @include fixed-width(600px); }
+#col--logo { @include fixed-width(300px); }
+
+#col--resetButton {
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// #col-alert--initial-dosing { @include fixed-width(315px); }
+#page-title {
+  margin: $len-1;
+}
+
+#img--logo {
+  margin: $len-2;
+}
+
+#row--main {
+  margin-top: -20px;
+}
+
+#form-row--ivig-weight-note {
+  margin-top: 35px;
+}
 
 .h1,
 h1 {
@@ -149,7 +184,7 @@ h1 {
     }
 
     &.multi-line-3 {
-      height: 5.5rem;
+      height: 6rem;
     }
   }
 }
@@ -243,6 +278,8 @@ input {
   background-color: #f5f5f5;
 }
 
+/* ----------------------------------------------- */
+
 .hd-0 .hide-hd-0,
 .hd-1 .hide-hd-1,
 .hd-2 .hide-hd-2,
@@ -257,17 +294,23 @@ input {
   display: none;
 }
 
+.age-child.hd-1,
+.age-child.hd-2,
+.age-child.hd-3,
+.age-child.hd-4,
+.age-child.hd-5,
+.age-infant.hd-1,
+.age-infant.hd-2,
+.age-infant.hd-3,
+.age-infant.hd-4,
+.age-infant.hd-5 {
+  .hide-peds-hd {
+    display: none;
+  }
+}
+
 #btnReset {
-  margin-right: $len-5;
-}
-
-#col--main-left,
-#col--page-title {
-  @include fixed-width(300px);
-}
-
-#card--ivig {
-  @include fixed-width(600px);
+  height: 35px;
 }
 
 #ivig-text {
@@ -286,4 +329,39 @@ textarea {
 
 #ivig-text[readonly] {
   background: fade-out($clr-bg-output, 0.7);
+}
+
+.demo-only {
+  display: none;
+}
+
+.like-card-header {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: black;
+  border-radius: $bdr-radius;
+  border: $bdr-width solid $bdr-color;
+  font-weight: 500;
+}
+
+i.fa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container {
+  @extend %form-element-base;
+}
+
+a[data-toggle="popover"] {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.fa-info-circle,
+.fa-question-circle {
+  color: $clr-vmfh-blue;
 }

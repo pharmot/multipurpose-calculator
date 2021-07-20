@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2021
+ *
+ * VMFH Pharmacy Multipurpose Calculator
+ * Utilities module
+ *
+ * @author Andy Briggs <andrewbriggs@chifranciscan.org>
+ * @since v0.1.1
+ * Created at     : 2021-06-13
+ * Last modified  : 2021-07-18
+ */
 
 /**
  * Convert date object to string formatted as 'MM/dd @ HHmm'
@@ -62,18 +73,33 @@ export function roundTo(x, n = 0) {
  * Displays a number, rounded, with units in the specified input element.
  * If number is zero, clears input element instead.
  *
- * @param   {String|HTMLElement} el           Valid jQuery selector for target element
- * @param   {Number}            [num = 0]     The number to go in the input field
- * @param   {Number}            [round = -1]  The desired rounding factor
- * @param   {String}            [unit = ""]   Units to append to rounded value
- * @param   {String}            [pre = ""]    Text to prepend to rounded value
- * @returns {HTMLElement}                     The original DOM element, for chaining
+ * @param   {String|HTMLElement} el                        Valid jQuery selector for target element
+ * @param   {Number}            [num = 0]                  The number to go in the input field
+ * @param   {Number}            [round = -1]               The desired rounding factor
+ * @param   {String}            [unit = ""]                Units to append to rounded value
+ * @param   {String}            [pre = ""]                 Text to prepend to rounded value
+ * @param   {Boolean}           [allowNegative = false]    Accept negative values as valid
+ * @returns {HTMLElement}                                  The original DOM element, for chaining
  */
-export function displayValue( el, num = 0, round = -1, unit = "", pre = ""){
+export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false){
   let txt = '';
-  if( num > 0 ) {
-    txt = pre + roundTo(num, round) + unit;
+  let wasNeg = false;
+  if ( num < 0 && allowNegative ) {
+    num = 0 - num;
+    wasNeg = true;
   }
+  if( num > 0 ) {
+    txt = roundTo(num, round);
+  }
+
+  if ( wasNeg ) {
+    txt = 0 - txt;
+  }
+
+  if ( txt !== '' ) {
+    txt = pre + txt + unit;
+  }
+
   if ( el === '' ) return txt;
   $(el).html(txt);
   return el;
@@ -81,16 +107,22 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = ""){
 
 /**
  * Evaluates a number, returns if is valid, between optional minimum
- * and maximum, otherwise returns zero.
+ * and maximum, otherwise returns zero (or undefined if zero is allowed).
  *
- * @param   {(Number|String)}  x                Value to check
- * @param   {Number}          [min=-Infinity]   Minimum of acceptable range
- * @param   {Number}          [max=Infinity]    Maximum of acceptable range
- * @returns {Number}                            The input value if acceptable, or zero
+ * @param   {(Number|String)}  x                  Value to check
+ * @param   {Number}          [min=-Infinity]     Minimum of acceptable range
+ * @param   {Number}          [max=Infinity]      Maximum of acceptable range
+ * @param   {Boolean}         [zeroAllowed=false] Is zero acceptable?
+ * @returns {Number}                              The input value if acceptable,
+ *                                                zero if unacceptable, or undefined
+ *                                                if unacceptable and zero is allowed
  */
-export function checkValue(x, min = -Infinity, max = Infinity ) {
+export function checkValue(x, min = -Infinity, max = Infinity, zeroAllowed = false ) {
+  if ( zeroAllowed ) {
+    if ( x === "" ) return undefined;
+  }
   x = parseFloat(x);
-  if ( isNaN(x) || x < min || x > max ) return 0;
+  if ( typeof x === 'string' || isNaN(x) || x < min || x > max ) return 0;
   return x;
 }
 

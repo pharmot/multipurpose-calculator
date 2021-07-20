@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <title>Multi-Purpose Calculator</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" integrity="sha512-jQqzj2vHVxA/yCojT8pVZjKGOe9UmoYvnOuM/2sQ110vxiajBU+4WkyRs1ODMmd4AfntwUEV4J+VfM6DkfjLRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel='stylesheet' href='multicalc.min.css'>
 </head>
 <body>
   <div class="container-fluid mx-1 my-2 hd-0 age-adult" id="top-container">
     <div class="row">
-      <div class="col-4">
-        <h1 class="h4" id="page-title">Multipurpose Calculator</h1>
+      <div class="col" id="col--logo">
+        <img id="img--logo" src="img/vmfh-logo.png" alt="Virginia Mason Franciscan Health" width="181" height="50">
       </div>
-      <div class="col-7" id="col--top-nav">
+      <div class="col" id="col--top-nav">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-initial-tab" data-toggle="tab" href="#nav-initial" role="tab">Initial</a>
-            <a class="nav-item nav-link" id="nav-adjustment-tab" data-toggle="tab" href="#nav-adjustment" role="tab">Adjustment</a>
+            <a class="nav-item nav-link" id="nav-adjustment-tab" data-toggle="tab" href="#nav-adjustment" role="tab">Single Level</a>
             <a class="nav-item nav-link" id="nav-auc-tab" data-toggle="tab" href="#nav-auc" role="tab">AUC Dosing</a>
             <a class="nav-item nav-link" id="nav-twolevel-tab" data-toggle="tab" href="#nav-twolevel" role="tab">Two-Level PK</a>
             <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose Timing</a>
@@ -25,23 +25,29 @@
           </div>
         </nav>
       </div>
-      <button type="button" class="btn btn-outline-secondary" id="btnReset" tabindex="999">Reset</button>
+      <div class="col" id="col--resetButton">
+        <button type="button" class="btn btn-outline-secondary" id="btnReset" tabindex="999">Reset</button>
+      </div>
     </div>
-    <div class="row">
+    <div class="row" id="row--main">
       <div class="col" id="col--main-left">
+        <h1 class="h4" id="page-title">Multipurpose Calculator</h1>
         <div class="card">
-          <div class="card-header h6">Patient Data</div>
+          <!-- <div class="card-header h6">Patient Data</div> -->
           <div class="card-body">
             <div class="form-row">
-              <label for="ptage" class="col-5">Age</label>
-              <div class="input-group col-7">
+              <label for="ptage" class="col-4">Age</label>
+              <div class="col-1 icon-container">
+                <a tabindex="-1" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Enter age in years.  To enter in months or days, enter in the format: #m, #d, or #m#d." title="Age"><i class="fa fa-question-circle"></i></a>
+              </div>
+              <div class="input-group col-7" data-toggle="popover" data-placement="right" data-content="">
                 <input type="text" id="ptage" class="form-control input-patient">
               </div>
             </div>
             <div class="form-row">
               <label for="sex" class="col-5">Sex</label>
               <div class="input-group col-7">
-                <input type="text" id="sex" class="form-control input-patient">
+                <input type="text" id="sex" class="form-control input-patient" placeholder="M or F">
               </div>
             </div>
             <div class="form-row">
@@ -88,25 +94,25 @@
         <div class="card">
           <div class="card-header h6">Calculated Weights</div>
           <div class="card-body">
-            <div class="form-row">
+            <div class="form-row hide-age-infant hide-age-child">
               <label for="ibw" class="col-5">IBW</label>
               <div class="input-group col-7">
                 <div class="output" id="ibw"></div>
               </div>
             </div>
-            <div class="form-row">
+            <div class="form-row hide-age-infant hide-age-child">
               <label for="overUnder" class="col-5 pl-3">Over/Under</label>
               <div class="input-group col-7">
                 <div class="output" id="overUnder"></div>
               </div>
             </div>
-            <div class="form-row">
+            <div class="form-row hide-age-infant hide-age-child">
               <label for="adjBW" class="col-5">AdjBW</label>
               <div class="input-group col-7">
                 <div class="output" id="adjBW"></div>
               </div>
             </div>
-            <div class="form-row">
+            <div class="form-row hide-age-infant hide-age-child">
               <label for="lbw" class="col-5">LBW</label>
               <div class="input-group col-7">
                 <div class="output" id="lbw"></div>
@@ -166,6 +172,7 @@
             <div class="card-text small mt-2">
               C-G (Actual) should <strong>always</strong> be used for:
               <ul>
+                <li>dofetilide (Tikosyn)</li>
                 <li>rivaroxaban (Xarelto)</li>
                 <li>zoledronic acid (Reclast)</li>
               </ul>
@@ -173,113 +180,135 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col" id="col--main-right">
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-initial">
-            <div class="card" id="card--initial-dosing">
-              <div class="card-header h6">
-                Initial Vancomycin Dosing
+            <div class="row">
+                <div class="alert alert-primary mt-2 mb-0" role="alert">
+                  This protocol is to be used as a guideline, not a rule, and must be combined with clinical judgment.<br>
+                  For outliers or exceptions, consult with another pharmacist.<br>
+                  See <a class="alert-link" href="https://drive.google.com/file/d/1RvYP8NsGDjidsuapBvWDnR2gPIlo0OCx/view?usp=sharing">VMFH Vancomycin Dosing Guidelines</a>
+                  for full recommendations.
+                </div>
+            </div>
+            <div class="row hide-age-adult hide-hd-0">
+              <div class="col-2"></div>
+              <div class="col-4">
+                <div class="alert alert-info mt-5">Not applicable to pediatric dialysis patients.</div>
               </div>
-              <div class="card-body">
-                <div class="form-row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
-                  <label for="vancoIndication" class="col-2">Indication</label>
-                  <div class="input-group col-7">
-                    <select id="vancoIndication" class="form-control small">
-                      <option>Most Indications</option>
-                      <option>Mild-Moderate Infection (e.g. SSTI, UTI)</option>
-                      <option>Severe sepsis, septic shock, critically ill</option>
-                    </select>
-                  </div>
+            </div>
+            <div class="row hide-peds-hd">
+              <div class="card" id="card--initial-dosing">
+                <div class="card-header h6">
+                  Initial Vancomycin Dosing
                 </div>
-                <div class="form-row">
-                  <label for="vancoInitialLoad" class="col-2">Load</label>
-                  <div class="input-group col-10">
-                    <div class="output multi-line multi-line-2" id="vancoInitialLoad"></div>
+                <div class="card-body">
+                  <div class="form-row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
+                    <label for="vancoIndication" class="col-3">Indication</label>
+                    <div class="input-group col-9">
+                      <select id="vancoIndication" class="form-control small">
+                        <option>Serious Infection (e.g. bacteremia, endocarditis, osteomyelitis, pneumonia, meningitis)</option>
+                        <option>Non-Life Threatening Infection (e.g. SSTI, UTI)</option>
+                        <option>Severe sepsis, septic shock, critically ill</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <label for="vancoInitialMaintenance" class="col-2">Maintenance</label>
-                  <div class="input-group col-10">
-                    <div class="output multi-line multi-line-2" id="vancoInitialMaintenance"></div>
+                  <div class="form-row">
+                    <label for="vancoInitialTargetLevel" class="col-3">Target Level</label>
+                    <div class="input-group col-9">
+                      <div class="output multi-line" id="vancoInitialTargetLevel"></div>
+                    </div>
                   </div>
-                </div>
-
-                <div class="form-row">
-                  <label for="vancoInitialMonitoring" class="col-2">Monitoring</label>
-                  <div class="input-group col-10">
-                    <div class="output multi-line multi-line-3" id="vancoInitialMonitoring"></div>
+                  <div class="form-row">
+                    <label for="vancoInitialLoad" class="col-3">Load</label>
+                    <div class="input-group col-9">
+                      <div class="output multi-line multi-line-2" id="vancoInitialLoad"></div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <label for="vancoInitialTargetLevel" class="col-2">Target Level</label>
-                  <div class="input-group col-10">
-                    <div class="output multi-line" id="vancoInitialTargetLevel"></div>
+                  <div class="form-row">
+                    <label for="vancoInitialMaintenance" class="col-3">Maintenance</label>
+                    <div class="input-group col-9">
+                      <div class="output multi-line multi-line-2" id="vancoInitialMaintenance"></div>
+                    </div>
+                  </div>
+                  <div class="form-row hide-age-adult">
+                    <div class="input-group col-9 offset-3 small">
+                      See NeoFax/Pediatrics for more detailed information as different disease states have different maximum daily doses.
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <label for="vancoInitialMonitoring" class="col-3">Monitoring</label>
+                    <div class="input-group col-9">
+                      <div class="output multi-line multi-line-3" id="vancoInitialMonitoring"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
-              <div class="card-header h6">Initial Vancomycin PK Dosing</div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5">
-                    <div class="form-row">
-                      <label for="vancoInitialPK-crcl" class="col-5">CrCl</label>
-                      <div class="col-6 input-group">
-                        <div class="output" id="vancoInitialPK-crcl"></div>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <label for="vancoInitialPK-wt" class="col-5">Dosing Weight</label>
-                      <div class="col-6 input-group">
-                        <div class="output" id="vancoInitialPK-wt"></div>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <label for="vancoInitialPK-halflife" class="col-5">Est. Halflife</label>
-                      <div class="col-6 input-group">
-                        <div class="output" id="vancoInitialPK-halflife"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-7">
-                    <div class="form-row">
-                      <label for="vancoInitialPK-dose" class="col-4">Maint. Dose</label>
-                      <div class="col-4 input-group">
-                        <input type="number" id="vancoInitialPK-dose" class="form-control input-initialPK-new validate-dose" step="250">
-                        <div class="input-group-append">
-                          <div class="input-group-text">mg</div>
+            <div class="row">
+              <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
+                <div class="card-header h6">Initial Vancomycin PK Dosing</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-row">
+                        <label for="vancoInitialPK-halflife" class="col-6">Est. Halflife</label>
+                        <div class="col-6 input-group">
+                          <div class="output" id="vancoInitialPK-halflife"></div>
                         </div>
                       </div>
-                      <div class="input-group col-3">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">q</div>
-                        </div>
-                        <input type="number" id="vancoInitialPK-interval" class="form-control input-initialPK-new validate-freq" min="0" max="48" step="6">
-                        <div class="input-group-append">
-                          <div class="input-group-text">h</div>
+                      <div class="form-row">
+                        <label for="vancoInitialPK-recDose" class="col-6">Suggested Dose</label>
+                        <div class="col-6 input-group">
+                          <div class="output" id="vancoInitialPK-recDose"></div>
                         </div>
                       </div>
-                      <div class="col-1 input-group">
-                        <button class="btn btn-light" id="vancoInitialPK-reset"><i class="fas fa-undo"></i></button>
+                      <div class="form-row">
+                        <label for="vancoInitialPK-recFreq" class="col-6">Suggested Frequency</label>
+                        <div class="col-6 input-group">
+                          <div class="output" id="vancoInitialPK-recFreq"></div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <label for="vancoInitialPK-recLevel" id="vancoInitialPK-recLevel-label" class="col-6">Est. Level</label>
+                        <div class="col-6 input-group">
+                          <div class="output" id="vancoInitialPK-recLevel"></div>
+                        </div>
                       </div>
                     </div>
-                    <div class="form-row">
-                      <label for="vancoInitialPK-trough" class="col-4">Est. Trough</label>
-                      <div class="col-5 input-group">
-                        <div class="output" id="vancoInitialPK-trough"></div>
+                    <div class="col-6">
+                      <div class="form-row">
+                        <label for="vancoInitialPK-dose" class="col-6">Choose Dose</label>
+                        <div class="col-5 input-group">
+                          <input type="number" id="vancoInitialPK-dose" class="form-control input-initialPK validate-dose" step="250">
+                          <div class="input-group-append">
+                            <div class="input-group-text">mg</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <label for="vancoInitialPK-interval" class="col-6">Choose Frequency</label>
+                        <div class="input-group col-4">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">q</div>
+                          </div>
+                          <input type="number" id="vancoInitialPK-interval" class="form-control input-initialPK validate-freq" min="0" max="48" step="6">
+                          <div class="input-group-append">
+                            <div class="input-group-text">h</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <label for="vancoInitialPK-level" id="vancoInitialPK-level-label" class="col-6">Est. Level</label>
+                        <div class="col-5 input-group">
+                          <div class="output" id="vancoInitialPK-level"></div>
+                        </div>
                       </div>
                     </div>
-                    <div class="form-row">
-                      <label for="vancoInitialPK-load" class="col-4">Suggested LD</label>
-                      <div class="col-5 input-group">
-                        <div class="output" id="vancoInitialPK-load"></div>
+                    <div class="col-12">
+                      <div class="form-row">
+                        <table class="table table-sm table-bordered" id="vancoInitialPK-table"></table>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-row">
-                      <table class="table table-sm table-bordered" id="vancoInitialPK-table"></table>
                     </div>
                   </div>
                 </div>
@@ -287,32 +316,44 @@
             </div>
           </div>
           <div class="tab-pane fade" id="nav-adjustment">
-            <div class="row hide-hd-0 hide-hd-1">
-              <div class="col-4"></div>
+            <div class="row hide-age-adult hide-hd-0">
+              <div class="col-2"></div>
+              <div class="col-4">
+                <div class="alert alert-info mt-5">Not applicable to pediatric dialysis patients</div>
+              </div>
+            </div>
+            <div class="row hide-hd-0 hide-hd-1 hide-age-infant hide-age-child">
+              <div class="col-2"></div>
               <div class="col-4">
                 <div class="alert alert-info mt-5 hide-hd-3 hide-hd-4">Not applicable to PD patients</div>
                 <div class="alert alert-info mt-5 hide-hd-2 hide-hd-4">Not applicable to CRRT patients</div>
                 <div class="alert alert-info mt-5 hide-hd-2 hide-hd-3">Not applicable to SLED patients</div>
               </div>
-              <div class="col-4"></div>
             </div>
-            <div class="row hide-hd-2 hide-hd-3 hide-hd-4">
+            <div class="row hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
               <div class="col-auto" id="col--current-dose">
                 <div class="card" id="card--current-dose">
                   <div class="card-header h6">Current Dose</div>
                   <div class="card-body">
-                    <div class="form-row hide-hd-1">
-                      <label for="revision-curDose" class="col-6">Dose</label>
-                      <div class="col-6 input-group">
+                    <div class="form-row mb-3">
+                      <label for="revision-goalTrough" class="col-4">Goal Trough</label>
+                      <div class="input-group col-7">
+                        <select id="revision-goalTrough" class="form-control small">
+                          <option data-goalMin="10" data-goalMax="20" data-goalTrough="15">10-20 mcg/mL</option>
+                          <option data-goalMin="10" data-goalMax="15" data-goalTrough="12.5">10-15 mcg/mL</option>
+                          <option data-goalMin="15" data-goalMax="20" data-goalTrough="17.5">15-20 mcg/mL</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row hide-hd-1 mb-3">
+                      <label for="revision-curDose" class="col-4">Current Dose</label>
+                      <div class="col-4 input-group">
                         <input type="number" class="form-control input-revision current-dose validate-dose" step="250" id="revision-curDose">
                         <div class="input-group-append">
                           <div class="input-group-text">mg</div>
                         </div>
                       </div>
-                    </div>
-                    <div class="form-row hide-hd-1">
-                      <label for="revision-curFreq" class="col-6">Frequency</label>
-                      <div class="input-group col-6">
+                      <div class="input-group col-4">
                         <div class="input-group-prepend">
                           <div class="input-group-text">q</div>
                         </div>
@@ -321,18 +362,26 @@
                       </div>
                     </div>
                     <div class="form-row">
-                      <label class="col-6" for="revision-curTrough">Trough</label>
-                      <div class="col-6 input-group">
+                      <label class="col-4" for="revision-curTrough">Trough</label>
+                      <div class="col-5 input-group">
                         <input type="text" class="form-control input-revision current-trough validate-level" id="revision-curTrough">
                         <div class="input-group-text">mcg/mL</div>
                       </div>
                     </div>
-                    <div class="form-row hide-hd-1">
-                      <label class="col-6" for="adjHalflife">Est. Half Life</label>
-                      <div class="col-6 input-group">
-                        <div class="output" id="adjHalflife"></div>
+                    <div class="form-row hide-hd-1 mb-3">
+                      <label class="col-4" for="revision-curTroughTime">Time Drawn</label>
+                      <div class="col-7 input-group">
+                        <input type="number" class="form-control input-revision" id="revision-curTroughTime" min="-24" max="24" step="0.25">
+                        <div class="input-group-text">hrs before dose</div>
                       </div>
                     </div>
+                    <div class="form-row hide-hd-1">
+                      <label class="col-4" for="revision-halflife">Est. Half Life</label>
+                      <div class="col-5 input-group">
+                        <div class="output" id="revision-halflife"></div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -341,41 +390,41 @@
                   <div class="card-header h6">Steady State Check</div>
                   <div class="card-body">
                     <div class="form-row">
-                      <label for="dateFirst" class="col-4">First Dose</label>
+                      <label for="steadystate-dateFirst" class="col-3">First Dose</label>
                       <div class="col-8 input-group">
-                        <input type="date" class="form-control dt-date input-steadystate" id="dateFirst">
+                        <input type="date" class="form-control dt-date input-steadystate" data-form-type="other" id="steadystate-dateFirst">
                         <div class="input-group-prepend">
                           <div class="input-group-text border-left-0">@</div>
                         </div>
-                        <input type="text" class="form-control dt-time validate-time input-steadystate" id="timeFirst" placeholder="0000">
+                        <input type="text" class="form-control dt-time validate-time input-steadystate" data-form-type="other" id="steadystate-timeFirst" placeholder="0000">
                       </div>
                     </div>
                     <div class="form-row">
-                      <label for="dateTrough" class="col-4">Trough</label>
+                      <label for="steadystate-dateTrough" class="col-3">Trough</label>
                       <div class="col-8 input-group">
-                        <input type="date" class="form-control dt-date input-steadystate" id="dateTrough">
+                        <input type="date" class="form-control dt-date input-steadystate" id="steadystate-dateTrough" data-form-type="other">
                         <div class="input-group-prepend">
                           <div class="input-group-text border-left-0">@</div>
                         </div>
-                        <input type="text" class="form-control dt-time validate-time input-steadystate" id="timeTrough" placeholder="0000">
+                        <input type="text" class="form-control dt-time validate-time input-steadystate" id="steadystate-timeTrough" placeholder="0000">
                       </div>
                     </div>
                     <div class="form-row">
-                      <label for="timeDiff" class="col-3">Difference</label>
+                      <label for="steadystate-timeDiff" class="col-3">Difference</label>
                       <div class="col-8 input-group">
-                        <div class="output" id="timeDiff"></div>
+                        <div class="output" id="steadystate-timeDiff"></div>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="col-8 offset-3 input-group">
-                        <div class="output" id="atSS"></div>
+                        <div class="output" id="steadystate-atSS"></div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row hide-hd-0 hide-hd-2 hide-hd-3 hide-hd-4">
+            <div class="row hide-hd-0 hide-hd-2 hide-hd-3 hide-hd-4 hide-age-infant hide-age-child">
               <div class="col-12">
                 <div class="card" id="card--vancoHdAdj">
                   <div class="card-header h6">Dose Adjustment for HD Patient</div>
@@ -389,32 +438,33 @@
                 </div>
               </div>
             </div>
-            <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
+            <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
               <div class="col-auto" id="col--protocol-adjustment">
                 <div class="card" id="card--protocol-adjustment">
-                  <div class="card-header h6">Protocol Adjustment</div>
-                  <div class="card-body pt-1">
+                  <div class="card-header h6">Single Level (Trough) Adjustment</div>
+                  <div class="card-body">
                     <div class="form-row">
-                      <div class="col-4 offset-2 small">New Dose</div>
+                      <div class="col-2 like-card-header">Linear</div>
+                      <div class="col-4 small">New Dose</div>
                       <div class="col-2 small">Change</div>
                       <div class="col-3 small">Est. Trough</div>
                     </div>
                     <div class="form-row">
-                      <label for="adjLinDose" class="col-2">Linear</label>
+                      <label for="revision-linearDose" class="col-2">Suggested</label>
                       <div class="col-4 input-group">
-                        <div class="output" id="adjLinDose"></div>
+                        <div class="output" id="revision-linearDose"></div>
                       </div>
                       <div class="col-2 input-group">
-                        <div class="output" id="adjLinDoseChange"></div>
+                        <div class="output" id="revision-linearDoseChange"></div>
                       </div>
                       <div class="col-3 input-group">
-                        <div class="output" id="adjLinTrough"></div>
+                        <div class="output" id="revision-linearTrough"></div>
                       </div>
                     </div>
                     <div class="form-row">
-                      <label for="adjPKDose" class="col-2">PK</label>
+                      <label for="revision-linearTestDose" class="col-2">Try Other Dose</label>
                       <div class="input-group col-2">
-                        <input type="number" id="adjPKDose" class="form-control input-revision-new validate-dose" step="250">
+                        <input type="number" id="revision-linearTestDose" class="form-control input-revision validate-dose" min="0" max="3000" step="250">
                         <div class="input-group-append">
                           <div class="input-group-text">mg</div>
                         </div>
@@ -423,158 +473,77 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text">q</div>
                         </div>
-                        <input type="number" id="adjPKFreq" class="form-control input-revision-new validate-freq" min="0" max="48" step="6">
+                        <input type="number" id="revision-linearTestFreq" class="form-control input-revision validate-freq" min="0" max="48" step="6">
                         <div class="input-group-append">
                           <div class="input-group-text">h</div>
                         </div>
                       </div>
                       <div class="col-2 input-group">
-                        <div class="output" id="adjPKDoseChange"></div>
+                        <div class="output" id="revision-testLinearDoseChange"></div>
                       </div>
                       <div class="col-3 input-group">
-                        <div class="output" id="adjPKTrough"></div>
+                        <div class="output" id="revision-testLinearTrough"></div>
                       </div>
-                      <div class="col-1 input-group">
-                        <button class="btn btn-light" id="adjPKReset"><i class="fas fa-undo"></i></button>
+                    </div>
+                  </div>
+                  <div class="card-body border-top">
+                    <div class="form-row">
+                      <div class="col-2 like-card-header">PK</div>
+                      <div class="col-4 small">New Dose</div>
+                      <div class="col-2 small">Change</div>
+                      <div class="col-3 small">Est. Trough</div>
+                    </div>
+                    <div class="form-row">
+                      <label for="revision-pkDose" class="col-2">Suggested</label>
+                      <div class="col-4 input-group">
+                        <div class="output" id="revision-pkDose"></div>
+                      </div>
+                      <div class="col-2 input-group">
+                        <div class="output" id="revision-pkDoseChange"></div>
+                      </div>
+                      <div class="col-3 input-group">
+                        <div class="output" id="revision-pkTrough"></div>
                       </div>
                     </div>
                     <div class="form-row">
-                      <table class="table table-sm table-bordered" id="adjTable"></table>
+                      <label for="revision-pkTestDose" class="col-2">Try Other Dose</label>
+                      <div class="input-group col-2">
+                        <input type="number" id="revision-pkTestDose" class="form-control input-revision validate-dose" min="0" max="3000" step="250">
+                        <div class="input-group-append">
+                          <div class="input-group-text">mg</div>
+                        </div>
+                      </div>
+                      <div class="input-group col-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">q</div>
+                        </div>
+                        <input type="number" id="revision-pkTestFreq" class="form-control input-revision validate-freq" min="0" max="48" step="6">
+                        <div class="input-group-append">
+                          <div class="input-group-text">h</div>
+                        </div>
+                      </div>
+                      <div class="col-2 input-group">
+                        <div class="output" id="revision-pkTestDoseChange"></div>
+                      </div>
+                      <div class="col-3 input-group">
+                        <div class="output" id="revision-pkTestTrough"></div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <table class="table table-sm table-bordered" id="revision-pkTable"></table>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-auto" id="col--linear-change">
-                <div class="card" id="card--linear-change">
-                  <div class="card-header h6">Linear Change</div>
-                  <div class="card-body">
-                    <div class="form-row">
-                      <label for="tdd" class="col-4 text-right">Current TDD:</label>
-                      <div class="col-3 input-group">
-                        <div class="output" id="tdd"></div>
-                      </div>
-                    </div>
-                    <div class="form-row mb-0">
-                      <label for="linearChangeDose1" class="col-2 text-center pb-1">Dose</label>
-                      <label for="linearChangeFreq1" class="col-2 text-center pb-1">Freq</label>
-                      <label for="linearChangeTdd1" class="col-2 text-center pb-1">TDD</label>
-                      <label for="linearChangeChange1" class="col-3 text-center pb-1">Change</label>
-                      <label for="linearChangeTrough1" class="col-3 text-center pb-1">Trough</label>
-                    </div>
-                    <div class="form-row linear-row">
-                      <div class="col-2 input-group px-1">
-                        <input type="number" class="form-control linear-1 linear-dose validate-dose" step="250" id="linearChangeDose1">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <input type="number" class="form-control linear-1 linear-freq validate-freq" min="0" max="48" step="6" id="linearChangeFreq1">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <div class="output linear-1 linear-tdd" id="linearChangeTdd1"></div>
-                      </div>
-                      <div class="col-3 input-group pl-0 pr-1">
-                        <div class="output linear-1 linear-change" id="linearChangeChange1"></div>
-                      </div>
-                      <div class="col-3 input-group px-0">
-                        <div class="output linear-1 linear-trough" id="linearChangeTrough1"></div>
-                      </div>
-                    </div>
-                    <div class="form-row linear-row">
-                      <div class="col-2 input-group px-1">
-                        <input type="number" class="form-control linear-2 linear-dose validate-dose" step="250" id="linearChangeDose2">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <input type="number" class="form-control linear-2 linear-freq validate-freq" min="0" max="48" step="6" id="linearChangeFreq2">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <div class="output linear-2 linear-tdd" id="linearChangeTdd2"></div>
-                      </div>
-                      <div class="col-3 input-group pl-0 pr-1">
-                        <div class="output linear-2 linear-change" id="linearChangeChange2"></div>
-                      </div>
-                      <div class="col-3 input-group px-0">
-                        <div class="output linear-2 linear-trough" id="linearChangeTrough2"></div>
-                      </div>
-                    </div>
-                    <div class="form-row linear-row">
-                      <div class="col-2 input-group px-1">
-                        <input type="number" class="form-control linear-3 linear-dose validate-dose" step="250" id="linearChangeDose3">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <input type="number" class="form-control linear-3 linear-freq validate-freq" min="0" max="48" step="6" id="linearChangeFreq3">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <div class="output linear-3 linear-tdd" id="linearChangeTdd3"></div>
-                      </div>
-                      <div class="col-3 input-group pl-0 pr-1">
-                        <div class="output linear-3 linear-change" id="linearChangeChange3"></div>
-                      </div>
-                      <div class="col-3 input-group px-0">
-                        <div class="output linear-3 linear-trough" id="linearChangeTrough3"></div>
-                      </div>
-                    </div>
-                    <div class="form-row linear-row">
-                      <div class="col-2 input-group px-1">
-                        <input type="number" class="form-control linear-4 linear-dose validate-dose" step="250" id="linearChangeDose4">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <input type="number" class="form-control linear-4 linear-freq validate-freq" min="0" max="48" step="6" id="linearChangeFreq4">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <div class="output linear-4 linear-tdd" id="linearChangeTdd4"></div>
-                      </div>
-                      <div class="col-3 input-group pl-0 pr-1">
-                        <div class="output linear-4 linear-change" id="linearChangeChange4"></div>
-                      </div>
-                      <div class="col-3 input-group px-0">
-                        <div class="output linear-4 linear-trough" id="linearChangeTrough4"></div>
-                      </div>
-                    </div>
-                    <div class="form-row linear-row">
-                      <div class="col-2 input-group px-1">
-                        <input type="number" class="form-control linear-5 linear-dose validate-dose" step="250" id="linearChangeDose5">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <input type="number" class="form-control linear-5 linear-freq validate-freq" min="0" max="48" step="6" id="linearChangeFreq5">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <div class="output linear-5 linear-tdd" id="linearChangeTdd5"></div>
-                      </div>
-                      <div class="col-3 input-group pl-0 pr-1">
-                        <div class="output linear-5 linear-change" id="linearChangeChange5"></div>
-                      </div>
-                      <div class="col-3 input-group px-0">
-                        <div class="output linear-5 linear-trough" id="linearChangeTrough5"></div>
-                      </div>
-                    </div>
-                    <div class="form-row linear-row">
-                      <div class="col-2 input-group px-1">
-                        <input type="number" class="form-control linear-6 linear-dose validate-dose" step="250" id="linearChangeDose6">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <input type="number" class="form-control linear-6 linear-freq validate-freq" min="0" max="48" step="6" id="linearChangeFreq6">
-                      </div>
-                      <div class="col-2 input-group pl-0 pr-1">
-                        <div class="output linear-6 linear-tdd" id="linearChangeTdd6"></div>
-                      </div>
-                      <div class="col-3 input-group pl-0 pr-1">
-                        <div class="output linear-6 linear-change" id="linearChangeChange6"></div>
-                      </div>
-                      <div class="col-3 input-group px-0">
-                        <div class="output linear-6 linear-trough" id="linearChangeTrough6"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
           <div class="tab-pane fade" id="nav-auc">
             <div class="row hide-hd-0">
-              <div class="col-4"></div>
+              <div class="col-2"></div>
               <div class="col-4">
                 <div class="alert alert-info mt-5">Not applicable to dialysis patients</div>
               </div>
-              <div class="col-4"></div>
             </div>
             <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--auc">
               <div class="card-header h6">Vancomycin AUC Calculator</div>
@@ -652,6 +621,9 @@
                       <div class="input-group-text">h</div>
                     </div>
                   </div>
+                  <div class="col-1 input-group">
+                    <button class="btn btn-light" id="auc-reset"><i class="fas fa-undo"></i></button>
+                  </div>
                 </div>
                 <div class="form-row">
                   <table class="table table-sm table-bordered" id="aucTable"></table>
@@ -661,11 +633,13 @@
           </div>
           <div class="tab-pane fade" id="nav-twolevel">
             <div class="row hide-hd-0">
-              <div class="col-4"></div>
+              <div class="col-2"></div>
               <div class="col-4">
                 <div class="alert alert-info mt-5">Not applicable to dialysis patients</div>
               </div>
-              <div class="col-4"></div>
+            </div>
+            <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
+              <div class="alert alert-warning ml-3">Note: This tab does not apply to AUC dosing.  Use the previous tab for AUC calculations.</div>
             </div>
             <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--twolevel">
               <div class="card-header h6">Two-Level PK</div>
@@ -673,14 +647,14 @@
                 <div class="form-row">
                   <label for="twolevelDate1" class="col-2 col-form-label">First Level</label>
                   <div class="col-6 input-group">
-                    <input type="date" id="twolevelDate1" class="form-control input-twolevel dt-date">
+                    <input type="date" id="twolevelDate1" class="form-control input-twolevel dt-date" data-form-type="other">
                     <div class="input-group-prepend">
                       <div class="input-group-text">@</div>
                     </div>
-                    <input type="text" class="form-control input-twolevel dt-time validate-time" size="4" id="twolevelTime1" placeholder="HHmm">
+                    <input type="text" class="form-control input-twolevel dt-time validate-time" size="4" id="twolevelTime1" placeholder="HHmm" data-form-type="other">
                   </div>
                   <div class="col-4 input-group">
-                    <input type="text" class="form-control input-twolevel validate-level" id="twolevelLevel1">
+                    <input type="text" class="form-control input-twolevel validate-level" id="twolevelLevel1" data-form-type="other">
                     <div class="input-group-append">
                       <div class="input-group-text">mcg/mL</div>
                     </div>
@@ -689,14 +663,14 @@
                 <div class="form-row">
                   <label for="twolevelDate2" class="col-2 col-form-label">Second Level</label>
                   <div class="col-6 input-group">
-                    <input type="date" id="twolevelDate2" class="form-control input-twolevel dt-date">
+                    <input type="date" id="twolevelDate2" class="form-control input-twolevel dt-date" data-form-type="other">
                     <div class="input-group-prepend">
                       <div class="input-group-text">@</div>
                     </div>
-                    <input type="text" class="form-control input-twolevel dt-time validate-time" size="4" id="twolevelTime2" placeholder="HHmm">
+                    <input type="text" class="form-control input-twolevel dt-time validate-time" size="4" id="twolevelTime2" placeholder="HHmm" data-form-type="other">
                   </div>
                   <div class="col-4 input-group">
-                    <input type="text" class="form-control input-twolevel validate-level" id="twolevelLevel2">
+                    <input type="text" class="form-control input-twolevel validate-level" id="twolevelLevel2" data-form-type="other">
                     <div class="input-group-append">
                       <div class="input-group-text">mcg/mL</div>
                     </div>
@@ -722,6 +696,9 @@
                       <div class="input-group-text">h</div>
                     </div>
                   </div>
+                  <div class="input-group col-1">
+                    <button class="btn btn-light" id="twolevel-reset"><i class="fas fa-undo"></i></button>
+                  </div>
                 </div>
                 <div class="form-row">
                   <label for="twolevelNewTrough" class="col-3">Est. Trough</label>
@@ -738,15 +715,15 @@
           <div class="tab-pane fade" id="nav-seconddose">
             <div class="row">
               <div class="col-12">
-                <div class="card">
+                <div class="card" id="card--seconddose">
                   <div class="card-header h6">Vancomycin Second Dose Timing</div>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-12">
                         <div class="form-row">
-                          <label for="seconddose-first" class="col-2 col-form-label">First Dose</label>
+                          <label for="seconddose-time1" class="col-2 col-form-label">First Dose</label>
                           <div class="col-3 input-group">
-                            <input type="text" class="form-control validate-time" size="4" id="seconddose-first" placeholder="HHmm">
+                            <input type="text" class="form-control validate-time" size="4" id="seconddose-time1" placeholder="HHmm"  data-form-type="other">
                           </div>
                         </div>
                         <div class="form-row">
@@ -823,7 +800,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-xl-5 mt-3">
+                      <div class="col-8 offset-2 mt-3">
                         <div class="card">
                           <div class="card-header">Standard Times for Vancomycin</div>
                           <div class="card-body">
@@ -870,9 +847,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row" id="form-row--ivig-weight-note">
                   <div class="col-6 input-group">
-                    <div class="text-left"><i class="fa fa-arrow-left"></i> Enter patient's actual weight</div>
+                    <div class="text-left d-flex"><i class="fa fa-arrow-left mr-1"></i> Enter patient's actual weight</div>
                   </div>
                 </div>
                 <div class="form-row">
@@ -889,17 +866,17 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </div> <!-- #nav-tabContent -->
+      </div> <!-- main right column -->
+    </div> <!-- row -->
+  </div> <!-- container-fluid -->
   <footer class="footer">
     <div class="container">
-      <span class="text-muted small">v0.1.1 &copy; 2021
+      <span class="text-muted small">v0.2.0 &copy; 2021 VMFH Pharmacy Services
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
-        <a href="https://github.com/pharmot/multipurpose-calculator/" target="_blank">Repository</a>
+        <a href="https://github.com/pharmot/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Repository</a>
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
-        <a href="https://github.com/pharmot/multipurpose-calculator/issues" target="_blank">Issues</a>
+        <a href="https://github.com/pharmot/multipurpose-calculator/issues" target="_blank" rel="noopener noreferrer">Issues</a>
       </span>
     </div>
   </footer>

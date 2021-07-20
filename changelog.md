@@ -1,9 +1,29 @@
 # Changelog
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [0.2.0] - 2021-07-18
+**Release for Go-Live of Vancomycin Dosing Protocol Update** (Aug 2021)
+
+### Added
+- Pediatric vancomycin dosing recommendations
+- Pediatric obesity check (using 95th percentile of bmi-for-age CDC data)
+- IVIG rate calculator
+- Module to optimize admin instruction formatting/spacing for copy-paste to Epic
 
 ### Changed
-- Serve jQuery from local directory instead of CDN
+- Initial PK dosing calculation - to match Epic Kinetics Navigator
+- Added dofetilide to list of drugs to always use ABW CrCl
+- checkValue function can check values where zero is acceptable
+- Rearranged single level (trough) adjustment section, leaving suggested doses displayed if user enters test doses
+- displayValue can be set to allow negative values
+- Reworded indication drop-down [#16](https://github.com/pharmot/multipurpose-calculator/issues/16)
+
+### Removed
+- Local hosting of libraries (inconsistent functionality across environments)
+
+### Fixed
+- Changed input elements to data-form-type="other" so Dashlane would not try to autofill [#10](https://github.com/pharmot/multipurpose-calculator/issues/10)
 
 ## [0.1.1] - 2021-06-13
 
@@ -55,7 +75,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.0.3...v0.1.0
 [0.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v0.0.2...v0.0.3
