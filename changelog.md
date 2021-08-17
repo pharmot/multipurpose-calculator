@@ -2,6 +2,11 @@
 
 <!-- ## [Unreleased] -->
 
+## [0.2.1] - 2021-08-17
+
+### Fixed
+- New link to PDF of updated protocol
+
 ## [0.2.0] - 2021-07-18
 **Release for Go-Live of Vancomycin Dosing Protocol Update** (Aug 2021)
 
@@ -75,7 +80,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.0.3...v0.1.0
