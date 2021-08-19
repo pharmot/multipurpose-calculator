@@ -187,7 +187,7 @@
                 <div class="alert alert-primary mt-2 mb-0" role="alert">
                   This protocol is to be used as a guideline, not a rule, and must be combined with clinical judgment.<br>
                   For outliers or exceptions, consult with another pharmacist.<br>
-                  See <a class="alert-link" href="https://drive.google.com/file/d/1jFfC4BofGKeMhmedE32WWvNNVxwKZQM8/view?usp=sharing">VMFH Vancomycin Dosing Guidelines</a>
+                  See <a class="alert-link" href="https://drive.google.com/file/d/1jFfC4BofGKeMhmedE32WWvNNVxwKZQM8/view?usp=sharing" target="_blank">VMFH Vancomycin Dosing Guidelines</a>
                   for full recommendations.
                 </div>
             </div>
@@ -208,7 +208,7 @@
                     <div class="input-group col-9">
                       <select id="vancoIndication" class="form-control small">
                         <option>Serious Infection (e.g. bacteremia, endocarditis, osteomyelitis, pneumonia, meningitis)</option>
-                        <option>Non-Life Threatening Infection (e.g. SSTI, UTI)</option>
+                        <option>SSTI or UTI (without concurrent sepsis)</option>
                         <option>Severe sepsis, septic shock, critically ill</option>
                       </select>
                     </div>
@@ -248,7 +248,15 @@
             <div class="row">
               <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
                 <div class="card-header h6">Initial Vancomycin PK Dosing</div>
-                <div class="card-body">
+                <div class="card-body pt-1">
+                  <div class="row mb-2">
+                    <div class="col-10 offset-1">
+                      <div class="alert alert-secondary mx-3 my-2">
+                        For pharmacokinetic outliers (e.g. BMI &gt; 30), consider using a<br>
+                        <a class="alert-link" href="https://clincalc.com/Vancomycin/" rel="noopener noreferrer" target="_blank">calculator with Bayesian modeling</a> instead.
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-6">
                       <div class="form-row">
@@ -872,7 +880,7 @@
   </div> <!-- container-fluid -->
   <footer class="footer">
     <div class="container">
-      <span class="text-muted small">v0.2.1 &copy; 2021 VMFH Pharmacy Services
+      <span class="text-muted small">v0.2.2 &copy; 2021 VMFH Pharmacy Services
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
         <a href="https://github.com/pharmot/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Repository</a>
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
