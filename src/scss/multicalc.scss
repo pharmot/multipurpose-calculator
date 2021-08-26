@@ -1,4 +1,4 @@
-// compileCompressed: ../$1.min.css, sourceMap: true, sourceMapEmbed: true
+// compileOnSave: true, compileCompressed: ../../multicalc.min.css
 @import './variables';
 
 html {
@@ -59,8 +59,9 @@ body {
   margin: $len-1;
 }
 
-#img--logo {
+#svg--logo {
   margin: $len-2;
+  margin-bottom: $len-4;
 }
 
 #row--main {
@@ -313,13 +314,18 @@ input {
   height: 35px;
 }
 
-#ivig-text {
-  padding: 1em;
+%arial-text {
   font-family: "Arial", sans-serif;
   font-size: 11pt;
   line-height: 1.1em;
   text-align: left;
   justify-content: flex-start;
+}
+
+#ivig-text {
+  @extend %arial-text;
+
+  padding: 1em;
   height: 10em;
 }
 
@@ -364,4 +370,31 @@ a[data-toggle="popover"] {
 .fa-info-circle,
 .fa-question-circle {
   color: $clr-vmfh-blue;
+}
+
+#vancoAUC-cardBody {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#vancoAUC-row--currentDose { order: 1; }
+#vancoAUC-row--dose1 { order: 2; }
+#vancoAUC-row--dose2 { order: 4; }
+#vancoAUC-row--peak { order: 5; }
+#vancoAUC-row--trough { order: 3; }
+#vancoAUC-row--result1 { order: 6; }
+#vancoAUC-row--result2 { order: 7; }
+#vancoAUC-row--result3 { order: 8; }
+#vancoAUC-row--result4 { order: 9; }
+
+.tape {
+  @extend %arial-text;
+
+  font-size: 8pt;
+  margin: $len-1;
+  padding: $len-2;
+}
+
+.modal-dialog {
+    max-width: 800px !important;
 }

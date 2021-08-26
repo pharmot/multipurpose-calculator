@@ -11,17 +11,18 @@
  */
 
 /**
- * Convert date object to string formatted as 'MM/dd @ HHmm'
+ * Convert date object to string formatted as 'M/d/yyyy HH:mm'
  *
  * @param   {Date}   d   date object to convert
  * @returns {String}
  */
 export function displayDate(d) {
-  let mm = ("0" + d.getMinutes()).slice(-2),
+  const mm = ("0" + d.getMinutes()).slice(-2),
       hh = ("0" + d.getHours()).slice(-2),
       mo = d.getMonth() + 1,
-      dd = d.getDate();
-  return mo + "/" + dd + " @ " + hh + mm;
+      dd = d.getDate(),
+      yyyy = d.getFullYear();
+  return `${mo}/${dd}/${yyyy} ${hh}:${mm}`;
 }
 
 /**

@@ -2,6 +2,22 @@
 
 <!-- ## [Unreleased] -->
 
+## [0.2.3] - 2021-
+
+### Added
+- Input date and time of levels and doses instead of just time in hours
+- Color change of Bayesian calculator alert when BMI > 30
+- Output of inputs, outputs, and calculation steps
+
+### Changed
+- Added year to displayDate Util function
+- VMFH Logo as svg instead of png
+
+
+
+
+
+
 ## [0.2.2] - 2021-08-19
 
 ### Added
