@@ -1,15 +1,15 @@
 /**
-* Copyright (c) 2021
-*
-* VMFH Pharmacy Multipurpose Calculator
-*
-* @author Andy Briggs <andrewbriggs@chifranciscan.org>
-*
-* Based on Excel Multipurpose Calculator created by Dennis Tran
-*
-* Created at     : 2021-01-15
-* Last modified  : 2021-08-21
-*/
+ * Copyright (c) 2021
+ *
+ * VMFH Pharmacy Multipurpose Calculator
+ *
+ * @author Andy Briggs <andrewbriggs@chifranciscan.org>
+ *
+ * Based on Excel Multipurpose Calculator created by Dennis Tran
+ *
+ * Created at     : 2021-01-15
+ * Last modified  : 2021-08-21
+ */
 
 
 // TODO: add reset button to AUC interval
@@ -431,10 +431,10 @@ const vanco = {
     return 1;
   },
   /**
-  * Calculate halflife from ke
-  * @param   {Number} ke    elimination rate constant
-  * @returns {Number}       halflife in hours
-  */
+   * Calculate halflife from ke
+   * @param   {Number} ke    elimination rate constant
+   * @returns {Number}       halflife in hours
+   */
   getHalflife(ke){
     return Math.log(2) / ke;
   },

@@ -9,17 +9,14 @@
 - Color change of Bayesian calculator alert when BMI > 30
 - Output of inputs, outputs, and calculation steps
 - Hour calculator for AUC dosing (modal)
+- Confirmation before showing initial PK recommendations
 
 ### Changed
 - Added year to displayDate Util function
+- Reposition Bayesian calculator alert higher on page
 - VMFH Logo as svg instead of png
 - Focus on age input when page loads
 - Modified monitoring recommendations to clarify when to draw trough
-
-
-
-
-
 
 ## [0.2.2] - 2021-08-19
 
