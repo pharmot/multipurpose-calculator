@@ -1,4 +1,4 @@
-// compileCompressed: ../$1.min.css, sourceMap: true, sourceMapEmbed: true
+// compileOnSave: true, compileCompressed: ../../multicalc.min.css, sourceMap: true, sourceMapEmbed: true
 
 @import './variables';
 
@@ -60,6 +60,7 @@ body {
   margin: $len-1;
 }
 
+#svg--logo,
 #img--logo {
   margin: $len-2;
 }
@@ -314,13 +315,19 @@ input {
   height: 35px;
 }
 
-#ivig-text {
-  padding: 1em;
+%arial-text {
   font-family: "Arial", sans-serif;
   font-size: 11pt;
   line-height: 1.1em;
   text-align: left;
   justify-content: flex-start;
+  height: 10em;
+}
+
+#ivig-text {
+  @extend %arial-text;
+
+  padding: 1em;
   height: 10em;
 }
 
@@ -338,7 +345,7 @@ textarea {
 
 .like-card-header {
   background-color: rgba(0, 0, 0, 0.03);
-  color: #212529;
+  color: $clr-blackish;
   border-radius: $bdr-radius;
   border: $bdr-width solid $bdr-color;
   font-weight: 500;
@@ -362,7 +369,7 @@ i.fa {
     margin-left: $len-2;
   }
 }
-// CHANGED
+
 a[data-toggle="popover"],
 a[data-toggle="modal"] {
   cursor: pointer;
@@ -372,25 +379,28 @@ a[data-toggle="modal"] {
   }
 }
 
-// CHANGED
 .fa-info-circle,
 .fa-question-circle,
 .fa-calculator {
   color: $clr-vmfh-blue;
 }
 
-// new
-
-// changed like-card-header's color
-
 #nav-initial .has-alert-only .alert {
   @include fixed-width(650px);
 
-  font-size: 0.875em;
+  font-size: $len-275;
 }
 
 .alert-secondary button.btn-outline-secondary {
   color: inherit;
+}
+
+.tape {
+  @extend %arial-text;
+
+  font-size: 8pt;
+  margin: $len-1;
+  padding: $len-2;
 }
 
 .semibold {

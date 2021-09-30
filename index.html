@@ -5,10 +5,29 @@
     <title>Multi-Purpose Calculator</title>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel='stylesheet' href='multicalc.processed.css'>
+    <link rel='stylesheet' href='multicalc.min.css'>
   </head>
   <body>
-    <!-- Modal               change class back to modal fade-->
+    <!-- Tape Modal -->
+    <div class="modal fade" id="tapeModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tapeModalLabel">All Data</h5>
+          </div>
+          <div class="modal-body" id="tapeModalBody">
+            <div class="row">
+              <div class="col-4 tape" id="tape--pt"></div>
+              <div class="col-4 tape" id="tape--auc"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primnary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AUC Dates Modal -->
     <div class="modal fade" id="aucDatesModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -105,6 +124,7 @@
         </div>
       </div>
     </div>
+    <!-- Main Container -->
     <div class="container-fluid mx-1 my-2 hd-0 age-adult" id="top-container">
       <div class="row">
         <div class="col" id="col--logo">
@@ -178,7 +198,6 @@
         <div class="col" id="col--main-left">
           <h1 class="h4" id="page-title">Multipurpose Calculator</h1>
           <div class="card">
-            <!-- <div class="card-header h6">Patient Data</div> -->
             <div class="card-body">
               <div class="form-row">
                 <label for="ptage" class="col-4">Age</label>
