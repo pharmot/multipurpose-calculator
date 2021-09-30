@@ -1,3 +1,7 @@
+// change the monitoring recommendation
+
+
+
 /**
  * Copyright (c) 2021
  *
@@ -8,7 +12,7 @@
  * Based on Excel Multipurpose Calculator created by Dennis Tran
  *
  * Created at     : 2021-01-15
- * Last modified  : 2021-08-21
+ * Last modified  : 2021-07-18
  */
 
 
@@ -20,19 +24,14 @@ import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBe
 import { default as ivig } from './modules/ivig.js';
 import { childIsObese } from './modules/growthCharts.js';
 import { getSecondDose } from './modules/seconddose.js';
-import { default as arial } from './modules/arial.js';
-// TODO: set false
 let debug = true;
-let debugDefaultTab = "auc";
+let debugDefaultTab = "initial";
 
-let tape = {};
+// CHANGED
 
-$(function () {
-  $('[data-toggle="popover"]').popover()
+$( function(){
+  $('[data-toggle="popover"]').popover({html: true});
   $('[data-toggle="tooltip"]').tooltip()
-})
-
-$(()=>{
 
   if ( /debug/.test(location.search) ) {
     debug = true;
@@ -40,27 +39,24 @@ $(()=>{
     LOG.enable();
   }
 
+  // ADDED
+
+
+  // \ADDED
+
   if ( debug ){
     $("#ptage").val(60);
     $("#sex").val('M');
     $("#height").val(170.2);
     $("#weight").val(83.1);
     $("#scr").val(0.9);
+    $("#vancoAUCPeakTime").val(5);
+    $("#vancoAUCTroughTime").val(11.5);
 
     $("#auc-curPeak").val(40);
     $("#auc-curTrough").val(11);
     $("#auc-curDose").val(1000);
     $("#auc-curFreq").val(12);
-
-    $("#vancoAUCPeakDate").val("2021-01-16");
-    $("#vancoAUCDose2Date").val("2021-01-16");
-    $("#vancoAUCDose1Date").val("2021-01-16");
-    $("#vancoAUCTroughDate").val("2021-01-16");
-    $("#vancoAUCDose1Time").val("0900");
-    $("#vancoAUCDose2Time").val("2100");
-    $("#vancoAUCPeakTime").val("2330");
-    $("#vancoAUCTroughTime").val("2030");
-
 
     $("#twolevelDate1").val("2021-01-16");
     $("#twolevelDate2").val("2021-01-16");
@@ -110,6 +106,8 @@ $(()=>{
       })
     }
   }
+  // ADDED
+  $('#ptage').get(0).focus();
 });
 
 $(".input-patient").on('keyup', () => {
@@ -156,13 +154,20 @@ $(".input-auc-interval").on('keyup', () => {
 $("#auc-reset").on('click', () => {
   calculate.vancoAUC();
 });
+$('#btnShowInitialPk').on('click', () => {
+  $('#row--initialPkAlert').hide(50, "linear");
+  $('#row--initialPkCalc').addClass('show');
+
+});
 
 $(".input-revision").on('keyup', () => {
   vanco.syncCurrentDFT("revision");
   calculate.vancoRevision();
   calculate.vancoAUC();
 });
-
+$(".input-aucDates").on('keyup', () => {
+  calculate.vancoAUCDates();
+});
 $(".input-twolevel").on('keyup', () => {
   calculate.vancoTwolevel();
 });
@@ -218,20 +223,34 @@ $("#ivig-dose").on("keyup", ()=>{
   calculate.ivig();
 });
 
-$("#vancoAUCSameInterval").on("change", (e) => {
+$("#aucDates-sameInterval").on("change", (e) => {
+  const tr = document.getElementById('aucDates-row--trough');
+  const pk = document.getElementById('aucDates-row--peak');
+  const spacer = document.getElementById('aucDates-row--spacer');
+  const last = document.getElementById('aucDates-row--last');
+  const par = tr.parentNode;
   if ( e.target.checked ){
-    $("#vancoAUCDose1Date-label").html("Dose prior to levels");
-    $("#vancoAUC-row--trough").css("order", 5);
-    $("#vancoAUC-row--peak").css("order", 3);
-    $("#vancoAUC-row--dose2").hide();
+    $("#aucDates-label--dose1").html("Dose prior to levels");
+    par.insertBefore(pk, tr);
+    par.insertBefore(tr, spacer);
+    $("#aucDates-row--dose2").hide();
   } else {
-    $("#vancoAUCDose1Date-label").html("Dose before trough");
-    $("#vancoAUC-row--trough").css("order", 3);
-    $("#vancoAUC-row--peak").css("order", 5);
-    $("#vancoAUC-row--dose2").show();
+    $("#aucDates-label--dose1").html("Dose before trough");
+    $("#aucDates-row--dose2").show();
+    par.insertBefore(tr, pk);
+    par.insertBefore(pk, spacer);
+
   }
-  console.log(e.target.checked);
+  calculate.vancoAUCDates();
 });
+
+$("#aucDates-apply").on('click', ()=> {
+  $('#vancoAUCPeakTime').val($('#aucDates-peakResult').html());
+  $('#vancoAUCTroughTime').val($('#aucDates-troughResult').html());
+  $('#aucDatesModal').modal('hide');
+});
+
+
 
 /**
  * Resets date input fields to today's date.
@@ -392,9 +411,7 @@ const vanco = {
       freqMin: 6,
       freqMax: 48,
       levelMin: 3,
-      levelMax: 100,
-      timeMin: 0,
-      timeMax: 36
+      levelMax: 100
     }
   },
   roundDose(dose, age = 18){
@@ -491,7 +508,7 @@ const vanco = {
         } else if ( crcl >= 10 ) {
           res.freq = 48;
         } else {
-          res.freqText = 'Consider checking level in 24-48 hours. Repeat dose when level &le; 10-20 mcg/mL.'
+          res.freqText = 'x 1 and consider checking level in 24-48 hours.<br>Repeat dose when level &le;10-20 mcg/mL.'
         }
         if ( indication === 1 ) {
           res.consider = 15;
@@ -511,14 +528,14 @@ const vanco = {
     if ( pt.hd === 2 ) return { // PD
       low: 10,
       high: 15,
-      freqText: 'when random level &lt; 15 mcg/mL<br>Check first random level with AM labs ~48 hrs after load.',
+      freqText: 'when random level &lt;&nbsp;15&nbsp;mcg/mL<br>Check first random level with AM labs ~48&nbsp;hrs after load.',
       maxDose: maxPDDose,
       maxDoseExceededText: `[max ${maxPDDose} mg initial dose for PD]`
     }
     if ( pt.hd === 4 ) return { // SLED
       low: 15,
       high: 20,
-      freqText: 'after SLED session ends (or in last 60-90 minutes)',
+      freqText: 'after SLED session ends (or in last 60-90&nbsp;minutes)',
       maxDaily: maxDailyDose
     };
     return { // CVVH/CVVHD/CVVHDF
@@ -639,8 +656,6 @@ const vanco = {
         txtExceeds = `[Max ${maxDose} mg]`;
       }
     }
-    // TODO: CRRT doses > max/day not adding comment?
-    // BUG: CRRT doses > max/day not adding comment?
     if ( maxDaily > 0 ) {
       if ( lowDaily > maxDaily ) {
         txtExceeds = `<br>***Protocol exceeds ${maxDaily/1000} g/day***`;
@@ -648,7 +663,11 @@ const vanco = {
         txtExceeds = `<br>***Upper range of protocol exceeds ${maxDaily/1000} g/day***`;
       }
     }
-    if ( consider > 0 ) {
+    // CHANGED
+
+
+
+    if ( consider > 0 && lowDose !== highDose ) {
       considerText = `<br><i>Consider dosing closer to ${lowDose} mg.</i>`;
     }
     if ( lowDose !== highDose ) {
@@ -667,9 +686,13 @@ const vanco = {
         min: 10, // change to 400 for initial auc dosing.
         max: 20, // change to 600 for initial auc dosing.
         text: 'AUC:MIC 400-600&nbsp;mcg&middot;hr/mL',
-        goalTroughIndex: 0
+        goalTroughIndex: 0,
+        monitoring: 'Draw levels for AUC calculation when at steady state<br><span class="semibold">(if therapy anticipated to be &gt;&nbsp;72&nbsp;hours)</span>'
       },
-      // 20210622
+
+
+      // CHANGED (unless kinetic outlier, monitoring rec's)
+
       pedsAuc: {
         param: 'trough',
         min: 10,
@@ -688,15 +711,16 @@ const vanco = {
         param: 'trough',
         min: 10,
         max: 15,
-        text: 'Trough 10-15&nbsp;mcg/mL',
+        text: 'Trough 10-15&nbsp;mcg/mL (unless kinetic outlier)',
         goalTroughIndex: 1
       },
       adultTrough: {
         param: 'trough',
         min: 10,
         max: 20,
-        text: 'Trough 10-20&nbsp;mcg/mL',
-        goalTroughIndex: 0
+        text: 'Trough 10-20&nbsp;mcg/mL (unless kinetic outlier)',
+        goalTroughIndex: 0,
+        monitoring: 'Initial trough level when at steady state (before 4th dose, including load)<br><span class="semibold">(if therapy anticipated to be &gt;&nbsp;72&nbsp;hours)</span>'
       }
     }
     let res = {
@@ -774,14 +798,19 @@ const vanco = {
     const highSCr = scr >= 1.2;
     const highBMI = bmi > 30;
     const lowSCr = scr < 0.5;
-    const earlyTroughReason = `${crcl < 50 ? 'CrCl &lt; 50' : ''}${crcl < 50 && scr >= 1.2 ? ' and ' : ''}${scr >= 1.2 ? 'SCr &ge; 1.2' : ''}`;
+    // CHANGED
+
+    const earlyTroughReason = `${lowCrCl ? 'CrCl &lt; 50' : ''}${lowCrCl && highSCr ? ' and ' : ''}${highSCr ? 'SCr &ge; 1.2' : ''}`;
+
+
+    // CHANGED
+
+
+
+
 
     if ( lowCrCl || highSCr ) {
       res.monitoring = `Consider pre-steady state level<br><i>(to spot check for clearance, for ${earlyTroughReason})</i>`;
-    } else if ( freq < 24 ) {
-      res.monitoring = 'Initial trough level before the 3rd dose<br>(if therapy anticipated to be &gt;&nbsp;72&nbsp;hours)';
-    } else {
-      res.monitoring = 'Initial trough level before the 4th dose<br>(if therapy anticipated to be &gt;&nbsp;72&nbsp;hours)';
     }
 
     if ( indication === 1 && ( scr >= 0.5 && bmi <= 30 ) ) {
@@ -789,17 +818,25 @@ const vanco = {
       res.targetMin = goals.adultTrough.min;
       res.targetMax = goals.adultTrough.max;
       res.pkParam = goals.adultTrough.param;
+      if ( res.monitoring === '' ) {
+        res.monitoring = goals.adultTrough.monitoring;
+      }
       res.goalTroughIndex = goals.adultTrough.goalTroughIndex;
     } else {
       res.targetLevelText = goals.auc.text;
       res.targetMin = goals.auc.min;
       res.targetMax = goals.auc.max;
       res.pkParam = goals.auc.param;
+      if ( res.monitoring === '' ) {
+        res.monitoring = goals.auc.monitoring;
+      }
       res.goalTroughIndex = goals.auc.goalTroughIndex;
       if ( scr < 0.5 || bmi > 30 && indication === 1 ) {
         res.targetLevelText += `&nbsp;&nbsp;<i>(kinetic outlier)</i>`;
       }
     }
+
+    // \CHANGED
     return res;
   },
   getSuggestedInterval(halflife) {
@@ -923,11 +960,6 @@ const vanco = {
       vd: vd,
       ke: ke,
       auc24: auc24,
-      aucInf: aucInf,
-      aucElim: aucElim,
-      truePeak: truePeak,
-      trueTrough: trueTrough,
-      tInf: tInf,
       therapeutic: this.aucTherapeutic(auc24),
       oldDose: dose,
       oldInterval: interval,
@@ -1210,34 +1242,6 @@ const vanco = {
      let cboIndication = $("#vancoIndication")[0];
      pt.hd = cboHD.selectedIndex;
      pt.vancoIndication = cboIndication.selectedIndex;
-     let tapePt = [[
-       ["Age", displayValue('', pt.age, 0.01, " years")],
-       ["Sex", pt.sex === 0 ? "" : pt.sex],
-       ["Weight", displayValue('', pt.wt, 0.0001, " kg")],
-       ["Height", displayValue('', pt.ht, 0.0001, " cm")],
-       ["SCr", displayValue('', pt.scr, 0.0001, " mg/dL")]
-     ]];
-     if ( pt.ageContext === "adult" ){
-       tapePt.push([
-         ["Ideal body weight", displayValue('', pt.ibw, 0.1, ' kg')],
-         ["Over/Under IBW", displayValue('', pt.overUnder, 0.1, "%", '', true)],
-         ["Adjusted body weight", displayValue('', pt.adjBW, 0.1, " kg")],
-         ["Lean body weight", displayValue('', pt.lbw, 0.1, " kg")],
-         ["Body mass index", displayValue('', pt.bmi, 0.1, " kg/m²")]
-       ]);
-       tapePt.push([
-         ["CrCl (C-G Actual)", displayValue('', pt.cgActual, 0.1, " mL/min")],
-         ["CrCl (C-G Ideal)", displayValue('', pt.cgIdeal, 0.1, " mL/min")],
-         ["CrCl (C-G Adjusted)", displayValue('', pt.cgAdjusted, 0.1, " mL/min")],
-         ["CrCl (Protocol)", displayValue('', pt.crcl, 0.1, " mL/min")]
-       ]);
-     } else {
-       tapePt.push([
-         ["Body mass index", displayValue('', pt.bmi, 0.1, " kg/m²")],
-         ["CrCl (Schwartz)", displayValue('', pt.schwartz, 0.1, " mL/min")]
-       ]);
-     }
-     $("#tape--pt").html(LOG.outputTape(tapePt, "Patient Info"));
    },
    vancoInitial(){
      $("#vancoInitialLoad").html(vanco.loadingDose());
@@ -1312,13 +1316,6 @@ const vanco = {
        highlightColumns: arrViable
      });
      $("#vancoInitialPK-table").html(tableHtml);
-     let tableText = [];
-// WORKING ON THIS
-
-     // for ( let i = 0; i < arrDose.length; i++ ){
-     //   tableText.push([`${aucNew.dose[i]} mg q${newInterval}h`,
-     //        `predicted AUC = ${roundTo(aucNew.auc[i], 0.1)}, est. trough = ${roundTo(aucNew.trough[i],0.1)} mcg/mL`])
-     // }
 
    },
    createVancoTable({rows, highlightColumns} = {}){
@@ -1425,25 +1422,27 @@ const vanco = {
        $("#steadystate-timeDiff").html("");
      }
    },
+   // ADDED
+   vancoAUCDates(){
+     const sameInterval = $('#aucDates-sameInterval').is(':checked');
+     const dose1 = getDateTime($('#aucDates-doseDate-1').val(), $('#aucDates-doseTime-1').val());
+     const dose2 = sameInterval ? dose1 : getDateTime($('#aucDates-doseDate-2').val(), $('#aucDates-doseTime-2').val());
+     const trough = getDateTime($('#aucDates-troughDate').val(), $('#aucDates-troughTime').val());
+     const peak = getDateTime($('#aucDates-peakDate').val(), $('#aucDates-peakTime').val());
+
+     const troughHrs = roundTo(checkValue(getHoursBetweenDates(dose1, trough), 0, 48), 0.1);
+     const peakHrs = roundTo(checkValue(getHoursBetweenDates(dose2, peak), 0, 48), 0.1);
+
+     displayValue("#aucDates-troughResult", troughHrs, 0.1);
+     displayValue("#aucDates-peakResult", peakHrs, 0.1);
+   },
    vancoAUC(resetInterval = true){
-     const dose1DT = getDateTime($("#vancoAUCDose1Date").val(), $("#vancoAUCDose1Time").val());
-     const dose2DT = $("#vancoAUCSameInterval").prop("checked") ? dose1DT : getDateTime($("#vancoAUCDose2Date").val(), $("#vancoAUCDose2Time").val());
-     const troughDT = getDateTime($("#vancoAUCTroughDate").val(), $("#vancoAUCTroughTime").val());
-     const peakDT = getDateTime($("#vancoAUCPeakDate").val(), $("#vancoAUCPeakTime").val());
-     let peakTime = 0;
-     let troughTime = 0;
-
-     if ( dose1DT !== 0 && dose2DT !== 0 && troughDT !== 0 && peakDT !== 0 ) {
-       peakTime = getHoursBetweenDates(dose2DT, peakDT);
-       troughTime = getHoursBetweenDates(dose1DT, troughDT);
-     }
-
      let params = {
        dose: pt.curDose,
        interval: pt.curFreq,
        peak: checkValue(+$("#auc-curPeak").val(), vanco.config.check.levelMin, vanco.config.check.levelMax),
-       peakTime: checkValue(peakTime, vanco.config.check.timeMin, vanco.config.check.timeMax),
-       troughTime: checkValue(troughTime, vanco.config.check.timeMin, vanco.config.check.timeMax),
+       peakTime: checkValue(+$("#vancoAUCPeakTime").val(), 0, 36),
+       troughTime: checkValue(+$("#vancoAUCTroughTime").val(), 0, 36),
        trough: pt.curTrough
      };
      const aucCurrent = vanco.calculateAUC(params);
@@ -1473,52 +1472,7 @@ const vanco = {
      highlightColumns: aucNew.therapeutic
    });
    $("#aucTable").html(tableHtml);
-   let tableText = [["Predicted AUC (est. trough) for New Dose", []]];
-   for ( let i = 0; i < aucNew.dose.length; i++ ){
-     tableText[0][1].push([`${aucNew.dose[i]} mg q${newInterval}h`,
-          `${arial.padArray(["9999.99", roundTo(aucNew.auc[i], 0.1)], 0)[1]} (${roundTo(aucNew.trough[i],0.1)} mcg/mL)`])
-   }
-
-   tape.auc = [
-     [
-       ["Current dose", `${params.dose} mg q${params.interval}h`],
-       ["Peak level", displayValue('', params.peak, 0.1, " mcg/mL")],
-       ["Trough level", displayValue('', params.trough, 0.1, " mcg/mL")],
-       ["Dose before trough", `${displayDate(dose1DT)}`],
-       ["Trough drawn at", `${displayDate(peakDT)}`],
-       ["Dose before peak", `${displayDate(dose2DT)}`],
-       ["Peak drawn at", `${displayDate(peakDT)}`],
-     ],
-     [
-       ["Peak time", displayValue('', params.peakTime, 0.01, " hrs")],
-       ["Trough time", displayValue('', params.troughTime, 0.01, " hrs")],
-       ["Vd", displayValue('', aucCurrent.vd, 0.01, " L")],
-       ["Infusion time", displayValue('', aucCurrent.tInf, 1, ' min')],
-       ["ke", displayValue('', aucCurrent.ke, 0.0001, ` hr^-1`)],
-       ["True peak", displayValue('', aucCurrent.truePeak, 0.1, ' mcg/mL')],
-       ["True trough", displayValue('', aucCurrent.trueTrough, 0.1, ' mcg/mL')],
-       ["AUC (inf)", displayValue('', aucCurrent.aucInf, 0.1)],
-       ["AUC (elim)", displayValue('', aucCurrent.aucElim, 0.1)],
-     ],
-     [
-       ["AUC₂₄", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
-       [
-         `Trough goal`,
-         `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`],
-       ],
-     ]
-     /********************************************
-         #     #
-          #   #   ####  #    #      ##   #####  ######    #    # ###### #####  ######
-           # #   #    # #    #     #  #  #    # #         #    # #      #    # #
-            #    #    # #    #    #    # #    # #####     ###### #####  #    # #####
-            #    #    # #    #    ###### #####  #         #    # #      #####  #
-            #    #    # #    #    #    # #   #  #         #    # #      #   #  #
-            #     ####   ####     #    # #    # ######    #    # ###### #    # ######
-      ********************************************/
-     $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing"));
-     $("#tape--auc").append(LOG.outputTape(tableText));
-   },
+ },
  vancoTwolevel(resetInterval = true){
    const { levelMin, levelMax, freqMin, freqMax, doseMin, doseMax } = vanco.config.check;
    const time1 = getDateTime($("#twolevelDate1").val(), $("#twolevelTime1").val());
@@ -1787,47 +1741,6 @@ let LOG = {
   groupEnd(){
     if (!this.enabled) return;
     console.groupEnd();
-  },
-  outputTape(parent, title=""){
-    let titleHtml = "";
-    title = title.toUpperCase();
-    const divider = arial.underline(title, "=");
-    if ( title !== "" ) {
-      titleHtml = `${title}<br>${divider}<br>`
-    }
-    let txt = "";
-    let items = [];
-    parent.forEach(child => {
-      if ( !( child[1] instanceof Array ) ) {
-        items.push(child);
-      } else {
-        if ( child[0] instanceof Array ) {
-          txt += `<br>` ;
-          txt += this.printArray(child);
-        } else {
-          txt += `<br><u>${child[0]}</u><br>`;
-          txt += this.printArray(child[1]);
-        }
-      }
-    });
-    return `${titleHtml}${this.printArray(items)}${txt}`
-  },
-  printArray(arr){
-    let labels = [];
-    let values = [];
-    let txt = "";
-    arr.forEach(el => {
-      if ( el[1] !== "" ){
-        labels.push(el[0]+":");
-        values.push(el[1]);
-      }
-    });
-
-    labels = arial.padArray(labels);
-
-    for ( let i = 0; i < labels.length; i++ ){
-      txt += labels[i] + values[i] + "<br>";
-    }
-    return txt;
   }
+
 }
