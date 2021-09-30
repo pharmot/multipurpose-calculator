@@ -424,6 +424,10 @@ a[data-toggle="modal"] {
   min-width: 600px !important;
 }
 
+#tapeModal .modal-dialog {
+  min-width: 800px !important;
+}
+
 .fade-opacity {
   transition: opacity 0.3s linear;
   transition-property: opacity;
