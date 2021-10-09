@@ -15,14 +15,15 @@
           <div class="modal-header">
             <h5 class="modal-title" id="tapeModalLabel">All Data</h5>
           </div>
-          <div class="modal-body" id="tapeModalBody">
+          <div class="modal-body modal-body--scroll" id="tapeModalBody">
             <div class="row">
-              <div class="col-4 tape" id="tape--pt"></div>
+              <div class="col-3 tape" id="tape--pt"></div>
+              <div class="col-4 tape" id="tape--initialPK"></div>
               <div class="col-4 tape" id="tape--auc"></div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primnary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -190,9 +191,6 @@
             </div>
           </nav>
         </div>
-        <div class="col" id="col--resetButton">
-          <button type="button" class="btn btn-outline-secondary" id="btnReset" tabindex="999">Reset</button>
-        </div>
       </div>
       <div class="row" id="row--main">
         <div class="col" id="col--main-left">
@@ -256,7 +254,8 @@
             </div>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#tapeModal" id="btnTape" tabindex="999">Show Data</button>
+            <!-- <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#tapeModal" id="btnTape" tabindex="-1">Show Data</button> -->
+            <button type="button" class="btn btn-outline-secondary" id="btnReset" tabindex="999">Reset All</button>
           </div>
           <div class="card">
             <div class="card-header h6">Calculated Weights</div>
@@ -352,9 +351,9 @@
             <div class="tab-pane fade show active" id="nav-initial">
               <div class="row has-alert-only">
                 <div class="alert alert-primary alert-dismissible fade show mt-2 mb-0" role="alert" id="alert--see-protocol">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                  </button>
+                  </button> -->
                   This protocol is to be used as a guideline, not a rule, and must be combined with clinical judgment.<br>
                   For outliers or exceptions, consult with another pharmacist.<br>
                   See <a class="alert-link" href="https://drive.google.com/file/d/1jFfC4BofGKeMhmedE32WWvNNVxwKZQM8/view?usp=sharing" target="_blank">VMFH Vancomycin Dosing Guidelines</a>
@@ -366,7 +365,7 @@
                   For <span class="font-italic semibold">initial dosing</span> in pharmacokinetic outliers (e.g. BMI &gt; 30), consider<br>
                   using a
                   <a class="alert-link" href="https://clincalc.com/Vancomycin/" rel="noopener noreferrer" target="_blank">calculator with Bayesian modeling</a> instead.
-                  <p class="mt-1 mb-0">*The "AUC Dosing" tab of this calculator should be used when levels are available (i.e. dose adjustment).</p>
+                  <p class="mt-1 mb-0">The "AUC Dosing" tab of this calculator should be used when levels are available (i.e. dose adjustment).</p>
                 </div>
               </div>
               <div class="row hide-age-adult hide-hd-0">
@@ -841,6 +840,52 @@
                   </div>
                 </div>
               </div>
+
+              <!-- <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--aucLinear">
+                <div class="card-header h6">AUC Linear Proportion</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-3">
+                      <p class="card-text">
+                      Use this to... TODO </p>
+                    </div>
+                    <div class="col-9">
+                      <div class="form-row">
+                        <label for="aucLinear-auc" class="col-4 col-form-label">Calculated AUC</label>
+                        <div class="input-group col-4">
+                          <input type="number" id="aucLinear-auc" class="form-control input-aucLinear validate-dose">
+                          <div class="input-group-append">
+                            <div class="input-group-text">mcg&centerdot;hr/mL</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <label for="aucLinear-trough" class="col-4 col-form-label">Calculated Trough</label>
+                        <div class="input-group col-4">
+                          <input type="number" id="aucLinear-trough" class="form-control input-aucLinear validate-dose">
+                          <div class="input-group-append">
+                            <div class="input-group-text">mcg/mL</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <label for="aucLinear-desiredMin" class="col-4 col-form-label">Goal AUC</label>
+                        <div class="input-group col-6">
+                          <input type="number" id="aucLinear-desiredMin" class="form-control input-aucLinear validate-dose" value="400">
+                          <div class="input-group-append">
+                            <div class="input-group-text">&nbsp;&ndash;&nbsp;</div>
+                          </div>
+                          <input type="number" id="aucLinear-desiredMax" class="form-control input-aucLinear validate-dose" value="600">
+                          <div class="input-group-append">
+                            <div class="input-group-text">mcg&centerdot;hr/mL</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div> -->
             </div>
             <div class="tab-pane fade" id="nav-twolevel">
               <div class="row hide-hd-0">
@@ -1088,7 +1133,7 @@
     </div> <!-- container-fluid -->
     <footer class="footer">
       <div class="container">
-        <span class="text-muted small">v0.2.2 &copy; 2021 VMFH Pharmacy Services
+        <span class="text-muted small">v0.3.0 &copy; 2021 VMFH Pharmacy Services
           &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
           <a href="https://github.com/pharmot/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Repository</a>
           &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;

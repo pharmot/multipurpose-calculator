@@ -1,0 +1,15 @@
+@mixin fixed-width($key) {
+  @if map-has-key($fixedWidths, $key) {
+    flex: 0 0 map-get($fixedWidths, $key);
+    min-width: map-get($fixedWidths, $key);
+    max-width: map-get($fixedWidths, $key);
+    width: map-get($fixedWidths, $key);
+  }
+
+  @else {
+    flex: 0 0 $key;
+    min-width: $key;
+    max-width: $key;
+    width: $key;
+  }
+}

@@ -1,22 +1,28 @@
 # Changelog
 
-<!-- ## [Unreleased] -->
-
-## [0.2.3] - 2021-
+## [Unreleased]
 
 ### Added
-- Input date and time of levels and doses instead of just time in hours
-- Color change of Bayesian calculator alert when BMI > 30
-- Output of inputs, outputs, and calculation steps
-- Hour calculator for AUC dosing (modal)
-- Confirmation before showing initial PK recommendations
+- Linear proportion calculator for vanco AUC([#33])
+- Output of inputs, outputs, and calculation steps ([#24])
+
+## [0.3.0] - 2021-10-09
+
+### Added
+- Color change of Bayesian calculator alert when BMI > 30 ([#35])
+- Hour calculator for AUC dosing (modal) ([#22])
+- Confirmation before showing initial PK recommendations ([#35])
+- Focus on age input when page loads ([#25])
+- Highlight BMI when above 30
 
 ### Changed
 - Added year to displayDate Util function
-- Reposition Bayesian calculator alert higher on page
+- Reposition Bayesian calculator alert higher on page ([#35])
 - VMFH Logo as svg instead of png
-- Focus on age input when page loads
-- Modified monitoring recommendations to clarify when to draw trough
+- Modified monitoring recommendations to clarify when to draw trough ([#31], [#35])
+
+### Fixed
+- IVIG calculator weight note aligned correctly ([#20])
 
 ## [0.2.2] - 2021-08-19
 
@@ -46,13 +52,13 @@
 - checkValue function can check values where zero is acceptable
 - Rearranged single level (trough) adjustment section, leaving suggested doses displayed if user enters test doses
 - displayValue can be set to allow negative values
-- Reworded indication drop-down [#16](https://github.com/pharmot/multipurpose-calculator/issues/16)
+- Reworded indication drop-down ([#16])
 
 ### Removed
 - Local hosting of libraries (inconsistent functionality across environments)
 
 ### Fixed
-- Changed input elements to data-form-type="other" so Dashlane would not try to autofill [#10](https://github.com/pharmot/multipurpose-calculator/issues/10)
+- Changed input elements to data-form-type="other" so Dashlane would not try to autofill ([#10])
 
 ## [0.1.1] - 2021-06-13
 
@@ -104,7 +110,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.1...v0.2.0
@@ -112,3 +119,13 @@ Initial POC Release
 [0.1.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.0.3...v0.1.0
 [0.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.0.2
+
+[#10]: https://github.com/pharmot/multipurpose-calculator/issues/10
+[#16]: https://github.com/pharmot/multipurpose-calculator/issues/16
+[#20]: https://github.com/pharmot/multipurpose-calculator/issues/20
+[#22]: https://github.com/pharmot/multipurpose-calculator/issues/22
+[#24]: https://github.com/pharmot/multipurpose-calculator/issues/24
+[#25]: https://github.com/pharmot/multipurpose-calculator/issues/25
+[#31]: https://github.com/pharmot/multipurpose-calculator/issues/31
+[#33]: https://github.com/pharmot/multipurpose-calculator/issues/33
+[#35]: https://github.com/pharmot/multipurpose-calculator/issues/35

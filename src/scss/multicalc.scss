@@ -1,6 +1,7 @@
 // compileOnSave: true, compileCompressed: ../../multicalc.min.css, sourceMap: true, sourceMapEmbed: true
 
 @import './variables';
+@import './mixins';
 
 html {
   position: relative;
@@ -9,45 +10,36 @@ html {
 }
 
 body {
-  margin-right: 0.25rem;
-  margin-left: 0.25rem;
+  margin-right: $len-1;
+  margin-left: $len-1;
   margin-bottom: 70px;
   max-width: 98vw;
   min-width: 75rem;
   text-align: center;
 }
 
-@mixin fixed-width($v) {
-  flex: 0 0 $v;
-  min-width: $v;
-  max-width: $v;
-  width: $v;
+#col--logo,
+#col--main-left {
+  @include fixed-width('leftCol');
 }
 
-#col--main-left { @include fixed-width(300px); }
-
-#col--page-title {
-  @include fixed-width(300px);
-
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-grow: 0;
+#card--initial-pk,
+#card--initial-dosing,
+#nav-initial .has-alert-only .alert {
+  @include fixed-width('initial');
 }
-
-#card--current-dose { @include fixed-width(320px); }
-#card--steady-state { @include fixed-width(350px); }
-#card--linear-change { @include fixed-width(550px); }
-#card--protocol-adjustment { @include fixed-width(650px); }
-#card--vancoHdAdj { @include fixed-width(550px); }
-#card--twolevel { @include fixed-width(580px); }
-#card--seconddose { @include fixed-width(650px); }
-#card--initial-dosing { @include fixed-width(650px); }
-#card--initial-pk { @include fixed-width(650px); }
-#card--auc { @include fixed-width(650px); }
+#card--current-dose { @include fixed-width('currentDose'); }
+#card--steady-state { @include fixed-width('steadyState'); }
+#card--protocol-adjustment { @include fixed-width('protocolAdjustment'); }
+#card--vancoHdAdj { @include fixed-width('vancoHdAdj'); }
+#card--twolevel { @include fixed-width('twoLevel'); }
+#card--seconddose { @include fixed-width('secondDose'); }
 #card--ivig { @include fixed-width(600px); }
-#col--logo { @include fixed-width(300px); }
+
+#card--auc,
+#card--aucLinear {
+  @include fixed-width('auc');
+}
 
 #col--resetButton {
   flex-grow: 0;
@@ -80,6 +72,7 @@ h1 {
 
 .card {
   margin-top: $len-2;
+  margin-bottom: $len-2;
 }
 
 .form-row {
@@ -100,7 +93,7 @@ h1 {
   background-clip: padding-box;
   margin: 0;
   border-radius: $bdr-radius;
-  height: calc(1.5rem + 0.5rem + 2px);
+  height: calc(2rem + 2px);
   line-height: 1.5rem;
   font-weight: 400;
 }
@@ -253,7 +246,8 @@ input {
 
 .use-this,
 .isTherapeutic,
-.isSuggested {
+.isSuggested,
+.highlighted {
   background-color: $clr-highlight;
   color: $clr-black;
 }
@@ -309,10 +303,6 @@ input {
   .hide-peds-hd {
     display: none;
   }
-}
-
-#btnReset {
-  height: 35px;
 }
 
 %arial-text {
@@ -386,8 +376,6 @@ a[data-toggle="modal"] {
 }
 
 #nav-initial .has-alert-only .alert {
-  @include fixed-width(650px);
-
   font-size: $len-275;
 }
 
@@ -428,6 +416,10 @@ a[data-toggle="modal"] {
   min-width: 800px !important;
 }
 
+.modal-body--scroll {
+  height: 80vh;
+}
+
 .fade-opacity {
   transition: opacity 0.3s linear;
   transition-property: opacity;
@@ -444,4 +436,12 @@ a[data-toggle="modal"] {
 .btn-primary:hover {
   background-color: $clr-vmfh-green-dark;
   border-color: $clr-vmfh-green-dark;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+.card-footer {
+  padding: $len-2 $len-4;
 }

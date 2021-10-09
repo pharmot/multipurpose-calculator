@@ -8,22 +8,16 @@
  * Based on Excel Multipurpose Calculator created by Dennis Tran
  *
  * Created at     : 2021-01-15
- * Last modified  : 2021-08-21
+ * Last modified  : 2021-10-09
  */
-
-
-// TODO: add reset button to AUC interval
-// TODO: add reset button to two level PK
-
 
 import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './modules/util.js'
 import { default as ivig } from './modules/ivig.js';
 import { childIsObese } from './modules/growthCharts.js';
 import { getSecondDose } from './modules/seconddose.js';
 import { default as arial } from './modules/arial.js';
-// TODO: set false
-let debug = true;
-let debugDefaultTab = "initial";
+let debug = false;
+let debugDefaultTab = "auc";
 
 let tape = {};
 
@@ -213,6 +207,8 @@ $("#btnReset").on('click', () => {
   calculate.ivig();
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
+  // $('#aucLinear-desiredMin').val(400);
+  // $('#aucLinear-desiredMin').val(600);
 });
 
 $("#ivig-product").on("change", () => {
@@ -1211,8 +1207,10 @@ const calculate = {
     displayValue("#bmi", pt.bmi, 0.1, " kg/m²");
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
+      $("#bmi").addClass("text-danger font-weight-bold")
     } else {
       $("#alert--bayesian").removeClass("alert-warning").addClass("alert-secondary");
+      $("#bmi").removeClass("text-danger font-weight-bold")
     }
     displayValue("#cgIdeal", pt.cgIdeal, 0.1, " mL/min");
     displayValue("#cgActual", pt.cgActual, 0.1, " mL/min");
@@ -1232,34 +1230,35 @@ const calculate = {
     let cboIndication = $("#vancoIndication")[0];
     pt.hd = cboHD.selectedIndex;
     pt.vancoIndication = cboIndication.selectedIndex;
-    let tapePt = [[
+    tape.pt = [[
       ["Age", displayValue('', pt.age, 0.01, " years")],
       ["Sex", pt.sex === 0 ? "" : pt.sex],
       ["Weight", displayValue('', pt.wt, 0.0001, " kg")],
       ["Height", displayValue('', pt.ht, 0.0001, " cm")],
-      ["SCr", displayValue('', pt.scr, 0.0001, " mg/dL")]
+      ["SCr", displayValue('', pt.scr, 0.0001, " mg/dL")],
+      ["Dialysis", cboHD.options[pt.hd].innerHTML]
     ]];
     if ( pt.ageContext === "adult" ){
-      tapePt.push([
+      tape.pt.push([
         ["Ideal body weight", displayValue('', pt.ibw, 0.1, ' kg')],
         ["Over/Under IBW", displayValue('', pt.overUnder, 0.1, "%", '', true)],
         ["Adjusted body weight", displayValue('', pt.adjBW, 0.1, " kg")],
         ["Lean body weight", displayValue('', pt.lbw, 0.1, " kg")],
         ["Body mass index", displayValue('', pt.bmi, 0.1, " kg/m²")]
       ]);
-      tapePt.push([
+      tape.pt.push([
         ["CrCl (C-G Actual)", displayValue('', pt.cgActual, 0.1, " mL/min")],
         ["CrCl (C-G Ideal)", displayValue('', pt.cgIdeal, 0.1, " mL/min")],
         ["CrCl (C-G Adjusted)", displayValue('', pt.cgAdjusted, 0.1, " mL/min")],
         ["CrCl (Protocol)", displayValue('', pt.crcl, 0.1, " mL/min")]
       ]);
     } else {
-      tapePt.push([
+      tape.pt.push([
         ["Body mass index", displayValue('', pt.bmi, 0.1, " kg/m²")],
         ["CrCl (Schwartz)", displayValue('', pt.schwartz, 0.1, " mL/min")]
       ]);
     }
-    $("#tape--pt").html(LOG.outputTape(tapePt, "Patient Info"));
+    $("#tape--pt").html(LOG.outputTape(tape.pt, "Patient Info"));
   },
   vancoInitial(){
     $("#vancoInitialLoad").html(vanco.loadingDose());
@@ -1334,14 +1333,25 @@ const calculate = {
       highlightColumns: arrViable
     });
     $("#vancoInitialPK-table").html(tableHtml);
-    let tableText = [];
-    // WORKING ON THIS
 
-    // for ( let i = 0; i < arrDose.length; i++ ){
-    //   tableText.push([`${aucNew.dose[i]} mg q${newInterval}h`,
-    //        `predicted AUC = ${roundTo(aucNew.auc[i], 0.1)}, est. trough = ${roundTo(aucNew.trough[i],0.1)} mcg/mL`])
-    // }
+    let tableText = [[pkLevelLabel, []]];
+    for ( let i = 0; i < arrDose.length; i++ ){
+      tableText[0][1].push(
+        [
+          `${arrDose[i]} mg q${pkFreq}h`,
+          arial.padArray(["9999.99", displayValue('', arrLevel[i], 0.1, pkLevelUnits)], 0)[1]
+        ]
+      )
+    }
+    tape.initialPK = [
+      ["Est. halflife", displayValue('', pkHalflife, 0.1, ' hrs')],
+      ["Suggested dose", (pkRecDose > 0 && pkRecFreq > 0 ? `${displayValue('', pkRecDose, 0.1)} mg q${pkRecFreq}h` : '')]
+    ]
+    if ( tape.initialPK[0][1] !== ''  && tape.initialPK[1][1] !== '' ) {
+      $("#tape--initialPK").html(LOG.outputTape(tape.initialPK, "Initial PK Dosing"));
+    }
 
+    $("#tape--initialPK").append(LOG.outputTape(tableText));
   },
   createVancoTable({rows, highlightColumns} = {}){
     let rowHtml = "";
@@ -1506,36 +1516,39 @@ const calculate = {
         ]
       )
     }
-    tape.auc = [
-      [
-        ["Current dose", `${params.dose} mg q${params.interval}h`],
-        ["Peak level", displayValue('', params.peak, 0.1, " mcg/mL")],
-        ["Trough level", displayValue('', params.trough, 0.1, " mcg/mL")],
-        ["Dose before trough", `${displayDate(dose1DT)}`],
-        ["Trough drawn at", `${displayDate(peakDT)}`],
-        ["Dose before peak", `${displayDate(dose2DT)}`],
-        ["Peak drawn at", `${displayDate(peakDT)}`],
-      ],
-      [
-        ["Peak time", displayValue('', params.peakTime, 0.01, " hrs")],
-        ["Trough time", displayValue('', params.troughTime, 0.01, " hrs")],
-        ["Vd", displayValue('', aucCurrent.vd, 0.01, " L")],
-        ["Infusion time", displayValue('', aucCurrent.tInf, 1, ' min')],
-        ["ke", displayValue('', aucCurrent.ke, 0.0001, ` hr^-1`)],
-        ["True peak", displayValue('', aucCurrent.truePeak, 0.1, ' mcg/mL')],
-        ["True trough", displayValue('', aucCurrent.trueTrough, 0.1, ' mcg/mL')],
-        ["AUC (inf)", displayValue('', aucCurrent.aucInf, 0.1)],
-        ["AUC (elim)", displayValue('', aucCurrent.aucElim, 0.1)],
-      ],
-      [
-        ["AUC₂₄", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
+    if ( aucCurrent !== undefined ) {
+      tape.auc = [
         [
-          `Trough goal`,
-          `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`],
+          ["Current dose", `${params.dose} mg q${params.interval}h`],
+          ["Peak level", displayValue('', params.peak, 0.1, " mcg/mL")],
+          ["Trough level", displayValue('', params.trough, 0.1, " mcg/mL")],
+          ["Peak time", displayValue('', params.peakTime, 0.01, " hrs")],
+          ["Trough time", displayValue('', params.troughTime, 0.01, " hrs")],
         ],
-      ]
-      $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing"));
-      $("#tape--auc").append(LOG.outputTape(tableText));
+        [
+          ["Vd", displayValue('', aucCurrent.vd, 0.01, " L")],
+          ["Infusion time", displayValue('', 60 * aucCurrent.tInf, 1, ' min')],
+          ["ke", displayValue('', aucCurrent.ke, 0.0001, ` hr^-1`)],
+          ["True peak", displayValue('', aucCurrent.truePeak, 0.1, ' mcg/mL')],
+          ["True trough", displayValue('', aucCurrent.trueTrough, 0.1, ' mcg/mL')],
+          ["AUC (inf)", displayValue('', aucCurrent.aucInf, 0.1)],
+          ["AUC (elim)", displayValue('', aucCurrent.aucElim, 0.1)],
+        ],
+        [
+          ["AUC₂₄", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
+          [
+            `Trough goal`,
+            `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`],
+          ],
+        ]
+        $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing"));
+        $("#tape--auc").append(LOG.outputTape(tableText));
+      } else {
+        tape.auc = [];
+        $("#tape--auc").html('');
+      }
+
+
     },
   vancoTwolevel(resetInterval = true){
     const { levelMin, levelMax, freqMin, freqMax, doseMin, doseMax } = vanco.config.check;
