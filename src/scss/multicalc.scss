@@ -1,5 +1,7 @@
-// compileCompressed: ../$1.min.css, sourceMap: true, sourceMapEmbed: true
+// compileOnSave: true, compileCompressed: ../../multicalc.min.css, sourceMap: true, sourceMapEmbed: true
+
 @import './variables';
+@import './mixins';
 
 html {
   position: relative;
@@ -8,45 +10,36 @@ html {
 }
 
 body {
-  margin-right: 0.25rem;
-  margin-left: 0.25rem;
+  margin-right: $len-1;
+  margin-left: $len-1;
   margin-bottom: 70px;
   max-width: 98vw;
   min-width: 75rem;
   text-align: center;
 }
 
-@mixin fixed-width($v) {
-  flex: 0 0 $v;
-  min-width: $v;
-  max-width: $v;
-  width: $v;
+#col--logo,
+#col--main-left {
+  @include fixed-width('leftCol');
 }
 
-#col--main-left { @include fixed-width(300px); }
-
-#col--page-title {
-  @include fixed-width(300px);
-
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-grow: 0;
+#card--initial-pk,
+#card--initial-dosing,
+#nav-initial .has-alert-only .alert {
+  @include fixed-width('initial');
 }
-
-#card--current-dose { @include fixed-width(320px); }
-#card--steady-state { @include fixed-width(350px); }
-#card--linear-change { @include fixed-width(550px); }
-#card--protocol-adjustment { @include fixed-width(650px); }
-#card--vancoHdAdj { @include fixed-width(550px); }
-#card--twolevel { @include fixed-width(580px); }
-#card--seconddose { @include fixed-width(650px); }
-#card--initial-dosing { @include fixed-width(650px); }
-#card--initial-pk { @include fixed-width(650px); }
-#card--auc { @include fixed-width(650px); }
+#card--current-dose { @include fixed-width('currentDose'); }
+#card--steady-state { @include fixed-width('steadyState'); }
+#card--protocol-adjustment { @include fixed-width('protocolAdjustment'); }
+#card--vancoHdAdj { @include fixed-width('vancoHdAdj'); }
+#card--twolevel { @include fixed-width('twoLevel'); }
+#card--seconddose { @include fixed-width('secondDose'); }
 #card--ivig { @include fixed-width(600px); }
-#col--logo { @include fixed-width(300px); }
+
+#card--auc,
+#card--aucLinear {
+  @include fixed-width('auc');
+}
 
 #col--resetButton {
   flex-grow: 0;
@@ -59,16 +52,17 @@ body {
   margin: $len-1;
 }
 
+#svg--logo,
 #img--logo {
   margin: $len-2;
 }
 
 #row--main {
-  margin-top: -20px;
+  // margin-top: -20px;
 }
 
 #form-row--ivig-weight-note {
-  margin-top: 35px;
+  // margin-top: 35px;
 }
 
 .h1,
@@ -78,6 +72,7 @@ h1 {
 
 .card {
   margin-top: $len-2;
+  margin-bottom: $len-2;
 }
 
 .form-row {
@@ -98,7 +93,7 @@ h1 {
   background-clip: padding-box;
   margin: 0;
   border-radius: $bdr-radius;
-  height: calc(1.5rem + 0.5rem + 2px);
+  height: calc(2rem + 2px);
   line-height: 1.5rem;
   font-weight: 400;
 }
@@ -110,7 +105,7 @@ h1 {
   padding: $len-1 $len-2;
 }
 
-.form-row label {
+.form-row label:not(.form-check-label) {
   @extend %form-element-base;
 
   justify-content: flex-start;
@@ -135,7 +130,7 @@ h1 {
   @extend %form-row-element;
 
   background-color: $clr-bg-text;
-  font-size: 0.875rem;
+  font-size: $len-275;
   color: $clr-veryDarkGray;
   white-space: nowrap;
 
@@ -152,7 +147,7 @@ h1 {
 
 .table-sm {
   color: $clr-veryDarkGray;
-  font-size: 0.75rem;
+  font-size: $len-25;
   margin-top: $len-4;
 
   th {
@@ -164,7 +159,7 @@ h1 {
 .output {
   @extend %form-row-element;
 
-  font-size: 0.875rem;
+  font-size: $len-275;
   color: $clr-black;
   background-color: $clr-bg-output;
   position: relative;
@@ -251,7 +246,8 @@ input {
 
 .use-this,
 .isTherapeutic,
-.isSuggested {
+.isSuggested,
+.highlighted {
   background-color: $clr-highlight;
   color: $clr-black;
 }
@@ -309,17 +305,19 @@ input {
   }
 }
 
-#btnReset {
-  height: 35px;
-}
-
-#ivig-text {
-  padding: 1em;
+%arial-text {
   font-family: "Arial", sans-serif;
   font-size: 11pt;
   line-height: 1.1em;
   text-align: left;
   justify-content: flex-start;
+  height: 10em;
+}
+
+#ivig-text {
+  @extend %arial-text;
+
+  padding: 1em;
   height: 10em;
 }
 
@@ -337,7 +335,7 @@ textarea {
 
 .like-card-header {
   background-color: rgba(0, 0, 0, 0.03);
-  color: black;
+  color: $clr-blackish;
   border-radius: $bdr-radius;
   border: $bdr-width solid $bdr-color;
   font-weight: 500;
@@ -351,9 +349,19 @@ i.fa {
 
 .icon-container {
   @extend %form-element-base;
+
+  a {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .icon-container-text {
+    margin-left: $len-2;
+  }
 }
 
-a[data-toggle="popover"] {
+a[data-toggle="popover"],
+a[data-toggle="modal"] {
   cursor: pointer;
 
   &:hover {
@@ -362,6 +370,78 @@ a[data-toggle="popover"] {
 }
 
 .fa-info-circle,
-.fa-question-circle {
+.fa-question-circle,
+.fa-calculator {
   color: $clr-vmfh-blue;
+}
+
+#nav-initial .has-alert-only .alert {
+  font-size: $len-275;
+}
+
+.alert-secondary button.btn-outline-secondary {
+  color: inherit;
+}
+
+.tape {
+  @extend %arial-text;
+
+  font-size: 8pt;
+  margin: $len-1;
+  padding: $len-2;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.alert-dismissible .close {
+  padding: $len-2;
+  padding-top: 0;
+}
+
+.form-check-label.small {
+  font-size: $len-275;
+}
+
+.form-check-input + .form-check-label.small {
+  padding-left: 0;
+}
+
+#aucDatesModal .modal-dialog {
+  min-width: 600px !important;
+}
+
+#tapeModal .modal-dialog {
+  min-width: 800px !important;
+}
+
+.modal-body--scroll {
+  height: 80vh;
+}
+
+.fade-opacity {
+  transition: opacity 0.3s linear;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+}
+
+.btn-primary {
+  background-color: $clr-vmfh-green;
+  border-color: $clr-vmfh-green-dark;
+}
+
+.btn-primary:hover {
+  background-color: $clr-vmfh-green-dark;
+  border-color: $clr-vmfh-green-dark;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+.card-footer {
+  padding: $len-2 $len-4;
 }

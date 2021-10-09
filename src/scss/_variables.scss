@@ -1,6 +1,7 @@
 $len-1: 0.25rem;
 $len-2: 0.5rem;
 $len-25: 0.75rem;
+$len-275: 0.875rem;
 $len-3: 1rem;
 $len-4: 1.25rem;
 $len-5: 1.5rem;
@@ -18,6 +19,7 @@ $clr-veryDarkGray: #495057;
 $clr-white: #fff;
 $clr-bg-text: #e9ecef;
 $clr-bg-output: #f2f7fa;
+$clr-blackish: #212529;
 $clr-black: #000;
 $clr-highlight: #fcf892;
 $clr-chi-darkblue: #24509a;
@@ -123,3 +125,15 @@ $clr-vmfh-yellow: #f2a900;
 $clr-vmfh-red: #8f3a49;
 
 $font-family-sans-serif: -apple-system,blinkmacsystemfont,"Segoe UI",roboto,"Helvetica Neue",arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+
+$fixedWidths: (
+  "initial": 650px,
+  "leftCol": 320px,
+  "currentDose": 320px,
+  "steadyState": 350px,
+  "protocolAdjustment": 650px,
+  "vancoHdAdj": 550px,
+  "twoLevel": 580px,
+  "secondDose": 650px,
+  "auc": 650px,
+);
