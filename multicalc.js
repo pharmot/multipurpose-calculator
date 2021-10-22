@@ -209,6 +209,7 @@ $("#btnReset").on('click', () => {
   $("#top-container").addClass('age-adult');
   // $('#aucLinear-desiredMin').val(400);
   // $('#aucLinear-desiredMin').val(600);
+  $('#ptage').get(0).focus();
 });
 
 $("#ivig-product").on("change", () => {
@@ -837,6 +838,8 @@ const vanco = {
   },
   getInitialDosing({method, crcl, age, scr, sex, wt, bmi, infTime = 1, goalMin, goalMax, selDose, selFreq } = {}){
     let res = {
+      vd: 0,
+      ke: 0,
       arrDose: [],
       arrViable: [],
       arrLevel: [],
@@ -851,21 +854,49 @@ const vanco = {
       pkLevelLabel: 'Est. Level'
     };
     if ( crcl === 0 ) return res;
-    const vd = this.getVd({bmi: bmi, wt: wt});
+    res.vd = this.getVd({bmi: bmi, wt: wt});
 
     if ( method === 'trough') {
       res.pkLevelRowHeading = 'Est. Trough (mcg/mL)';
       res.pkLevelUnits = ' mcg/mL';
       res.pkLevelLabel = 'Est. Trough';
-      const ke = ( (0.695 * crcl + 0.05) * 0.06 ) / vd;
-      res.pkHalflife = this.getHalflife(ke);
+      res.ke = ( (0.695 * crcl + 0.05) * 0.06 ) / res.vd;
+      res.pkHalflife = this.getHalflife(res.ke);
       res.pkRecFreq = this.getSuggestedInterval(res.pkHalflife);
       res.pkFreq = selFreq > 0 ? selFreq : res.pkRecFreq;
       let useDose = 0;
+
+      let rec = {
+        arrDose: [],
+        arrLevel: [],
+        arrViable: [],
+        useDose: 0
+      }
+
+      this.config.doses.forEach( (d, i) => {
+        rec.arrDose.push(d);
+        const infTime = this.getInfusionTime(d);
+        const {p, tr} = this.getPeakAndTrough({dose: d, ke: res.ke, inf: infTime, vd: res.vd, interval: res.pkRecFreq});
+        rec.arrLevel.push(tr);
+        rec.arrViable.push(tr >= goalMin && tr <= goalMax);
+      });
+      for (let i = 0; i < rec.arrViable.length; i++) {
+        if ( rec.arrViable[i] ) {
+          rec.useDose = i;
+          break;
+        }
+      }
+      res.pkRecLevel = rec.arrLevel[rec.useDose];
+      res.pkRecDose = rec.arrDose[rec.useDose];
+
+
+
+
+
       this.config.doses.forEach( (d, i) => {
         res.arrDose.push(d);
         const infTime = this.getInfusionTime(d);
-        const {p, tr} = this.getPeakAndTrough({dose: d, ke: ke, inf: infTime, vd: vd, interval: res.pkFreq});
+        const {p, tr} = this.getPeakAndTrough({dose: d, ke: res.ke, inf: infTime, vd: res.vd, interval: res.pkFreq});
         res.arrLevel.push(tr);
         res.arrViable.push(tr >= goalMin && tr <= goalMax);
       });
@@ -875,12 +906,9 @@ const vanco = {
           break;
         }
       }
-      res.pkRecLevel = res.arrLevel[useDose];
-      res.pkRecDose = res.arrDose[useDose];
-
       if ( selDose > 0 && selFreq > 0 ){
         const newInfTime = this.getInfusionTime(selDose);
-        const {p, tr} = this.getPeakAndTrough({dose: selDose, ke: ke, inf: newInfTime, vd: vd, interval: selFreq})
+        const {p, tr} = this.getPeakAndTrough({dose: selDose, ke: res.ke, inf: newInfTime, vd: res.vd, interval: selFreq})
         res.pkLevel = tr;
         res.pkDose = selDose;
       }
@@ -1297,6 +1325,8 @@ const calculate = {
       arrDose,
       arrViable,
       arrLevel,
+      vd,
+      ke,
       pkLevel,
       pkRecLevel,
       pkRecDose,
@@ -1527,20 +1557,18 @@ const calculate = {
           ["AUC (elim)", displayValue('', aucCurrent.aucElim, 0.1)],
         ],
         [
-          ["AUC₂₄", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
+          ["AUC24", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
           [
             `Trough goal`,
             `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`],
           ],
         ]
-        $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing"));
+        $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing Calculation"));
         $("#tape--auc").append(LOG.outputTape(tableText));
       } else {
         tape.auc = [];
         $("#tape--auc").html('');
       }
-
-
     },
   vancoTwolevel(resetInterval = true){
     const { levelMin, levelMax, freqMin, freqMax, doseMin, doseMax } = vanco.config.check;
@@ -1816,7 +1844,7 @@ let LOG = {
     title = title.toUpperCase();
     const divider = arial.underline(title, "=");
     if ( title !== "" ) {
-      titleHtml = `${title}<br>${divider}<br>`
+      titleHtml = `${title}<br>${divider}`
     }
     let txt = "";
     let items = [];

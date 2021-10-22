@@ -14,16 +14,23 @@
   <body>
     <!-- Tape Modal -->
     <div class="modal fade" id="tapeModal" tabindex="-1">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="tapeModalLabel">All Data</h5>
+            <h5 class="modal-title" id="tapeModalLabel">Calculation Details</h5>
           </div>
           <div class="modal-body modal-body--scroll" id="tapeModalBody">
             <div class="row">
-              <div class="col-3 tape" id="tape--pt"></div>
-              <div class="col-4 tape" id="tape--initialPK"></div>
-              <div class="col-4 tape" id="tape--auc"></div>
+              <div class="col-12">
+                <table class="tape">
+                  <tbody>
+                    <tr>
+                    <td id="tape--pt"></td>
+                    <td id="tape--auc"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -817,6 +824,9 @@
                     </div>
                     <div class="col-1 input-group">
                       <button class="btn btn-light" id="auc-reset"><i class="fas fa-undo"></i></button>
+                    </div>
+                    <div class="col-3 input-group offset-1">
+                      <button type="button" class="btn btn-light small" id="btnTape" data-toggle="modal" data-target="#tapeModal">Show Calculations</button>
                     </div>
                   </div>
                   <div class="form-row" id="vancoAUC-row--result4">
