@@ -210,6 +210,7 @@ $("#btnReset").on('click', () => {
   // $('#aucLinear-desiredMin').val(400);
   // $('#aucLinear-desiredMin').val(600);
   $('#ptage').get(0).focus();
+
 });
 
 $("#ivig-product").on("change", () => {
@@ -1093,7 +1094,6 @@ const vanco = {
       }
       res.recTrough = arrTrough[useDose];
       res.recDose = arrDose[useDose];
-
       res.newFreq = selFreq > 0 ? selFreq : res.recFreq;
 
       this.config.doses.forEach( (d, i) => {
@@ -1157,6 +1157,29 @@ const vanco = {
           pt.adjHalflife = halflife;
         }
 
+
+    $("#revision-linearDose").html( linearDose === 0 ? "" : `${roundTo(linearDose, 1)} mg q ${linearFreq} h`);
+    displayChange("#revision-linearDoseChange", linearDose, linearFreq);
+    displayValue("#revision-linearTrough", linearTrough, 0.1, " mcg/mL");
+
+    displayChange("#revision-testLinearDoseChange", testLinearDose, testLinearFreq);
+    displayValue("#revision-testLinearTrough", testLinearTrough, 0.1, " mcg/mL");
+
+    const { halflife, newDose, newFreq, newTrough, newViable, recDose, recTrough, recFreq, selTrough, selDose, selFreq } = vanco.getSingleLevelAdjustment({
+      bmi: pt.bmi,
+      wt: pt.wt,
+      curDose: pt.curDose,
+      curFreq: pt.curFreq,
+      curTrough: pt.curTrough,
+      troughTime: troughTime,
+      goalTrough: goaltrough,
+      goalMin: goalmin,
+      goalMax: goalmax,
+      goalPeak: 35,
+      selFreq: selectedInterval,
+      selDose: selectedDose
+    });
+    pt.adjHalflife = halflife;
 
         res.pkFreq = selectedInterval > 0 ? selectedInterval : this.getSuggestedInterval(halflife);
         res.halflife = halflife;
@@ -1396,6 +1419,7 @@ const calculate = {
           }
         }
         rowHtml += `<td class="${rowClass}">${displayValue("", value, row.roundTo, row.units)}</td>`
+
       }
       rowHtml += `</tr>`
     }
@@ -1444,7 +1468,6 @@ const calculate = {
       selDose: selectedDose
     });
     pt.adjHalflife = halflife;
-
     displayValue("#revision-halflife", halflife, 0.1, " hours");
 
     $("#revision-pkDose").html( recDose === 0 ? "" : `${roundTo(recDose, 1)} mg q ${roundTo(recFreq, 0.1)} h`);

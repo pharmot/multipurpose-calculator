@@ -1,6 +1,28 @@
 # Changelog
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+- Linear proportion calculator for vanco AUC([#33])
+- Output of inputs, outputs, and calculation steps ([#24])
+
+## [0.3.0] - 2021-10-09
+
+### Added
+- Color change of Bayesian calculator alert when BMI > 30 ([#35])
+- Hour calculator for AUC dosing (modal) ([#22])
+- Confirmation before showing initial PK recommendations ([#35])
+- Focus on age input when page loads ([#25])
+- Highlight BMI when above 30
+
+### Changed
+- Added year to displayDate Util function
+- Reposition Bayesian calculator alert higher on page ([#35])
+- VMFH Logo as svg instead of png
+- Modified monitoring recommendations to clarify when to draw trough ([#31], [#35])
+
+### Fixed
+- IVIG calculator weight note aligned correctly ([#20])
 
 
 ## [0.4.0] - 2021-10-21

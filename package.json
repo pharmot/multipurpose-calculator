@@ -1,6 +1,7 @@
 {
   "name": "multipurpose-calculator",
   "version": "0.4.0",
+
   "description": "A dosing and kinetics calculator for VMFH pharmacists",
   "main": "multicalc.js",
   "directories": {
