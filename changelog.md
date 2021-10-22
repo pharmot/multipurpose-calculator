@@ -6,8 +6,14 @@
 ## [0.4.0] - 2021-10-21
 
 ### Added
-- Linear proportion calculator for vanco AUC([#33])
+
 - Output of inputs, outputs, and calculation steps ([#24])
+- Favicon and manifest ([#21])
+
+### Fixed
+
+- Autofocus on "Reset All" ([#37])
+- Initial PK Dosing no longer changes when modifying frequency ([#32])
 
 ## [0.3.0] - 2021-10-09
 
