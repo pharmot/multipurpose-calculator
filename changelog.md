@@ -1,10 +1,17 @@
 # Changelog
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+
+## [0.4.0] - 2021-10-21
 
 ### Added
-- Linear proportion calculator for vanco AUC([#33])
 - Output of inputs, outputs, and calculation steps ([#24])
+- Favicon and manifest ([#21])
+
+### Fixed
+- Focus on age input when on Reset All ([#37])
+- Initial PK Dosing no longer changes if interval is modified after first calculation ([#32])
 
 ## [0.3.0] - 2021-10-09
 
@@ -123,9 +130,12 @@ Initial POC Release
 [#10]: https://github.com/pharmot/multipurpose-calculator/issues/10
 [#16]: https://github.com/pharmot/multipurpose-calculator/issues/16
 [#20]: https://github.com/pharmot/multipurpose-calculator/issues/20
+[#21]: https://github.com/pharmot/multipurpose-calculator/issues/21
 [#22]: https://github.com/pharmot/multipurpose-calculator/issues/22
 [#24]: https://github.com/pharmot/multipurpose-calculator/issues/24
 [#25]: https://github.com/pharmot/multipurpose-calculator/issues/25
 [#31]: https://github.com/pharmot/multipurpose-calculator/issues/31
+[#32]: https://github.com/pharmot/multipurpose-calculator/issues/32
 [#33]: https://github.com/pharmot/multipurpose-calculator/issues/33
 [#35]: https://github.com/pharmot/multipurpose-calculator/issues/35
+[#37]: https://github.com/pharmot/multipurpose-calculator/issues/37
