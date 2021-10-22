@@ -190,7 +190,7 @@ $("[name='seconddose-freq']").on("change", () => {
 
 $("#revision-goalTrough").on("change", () => {
   calculate.vancoRevision();
-})
+});
 
 $("#btnReset").on('click', () => {
   $("input").val("");
@@ -489,7 +489,6 @@ const vanco = {
         freqs: [6, 8]
       }
     }
-    // TODO: what if peds on HD?
     const { maxDailyDose, maxHDDose, maxPDDose } = this.config;
     if ( hd === 0 ) {
       let res = { low: 15, high: 20, maxDaily: maxDailyDose };
@@ -1282,9 +1281,11 @@ const calculate = {
       indication: pt.vancoIndication,
       age: pt.age
     });
+
     $("#vancoInitialMonitoring").html(monitoring);
     $("#vancoInitialTargetLevel").html(targetLevelText);
 
+    // Set goal trough selection on the single level tab
     if( goalTroughIndex >= 0 ) {
       $("#revision-goalTrough")[0].selectedIndex = goalTroughIndex;
     }
@@ -1343,15 +1344,6 @@ const calculate = {
         ]
       )
     }
-    tape.initialPK = [
-      ["Est. halflife", displayValue('', pkHalflife, 0.1, ' hrs')],
-      ["Suggested dose", (pkRecDose > 0 && pkRecFreq > 0 ? `${displayValue('', pkRecDose, 0.1)} mg q${pkRecFreq}h` : '')]
-    ]
-    if ( tape.initialPK[0][1] !== ''  && tape.initialPK[1][1] !== '' ) {
-      $("#tape--initialPK").html(LOG.outputTape(tape.initialPK, "Initial PK Dosing"));
-    }
-
-    $("#tape--initialPK").append(LOG.outputTape(tableText));
   },
   createVancoTable({rows, highlightColumns} = {}){
     let rowHtml = "";
