@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Multi-Purpose Calculator</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel='stylesheet' href='multicalc.min.css'>
@@ -10,16 +14,24 @@
   <body>
     <!-- Tape Modal -->
     <div class="modal fade" id="tapeModal" tabindex="-1">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="tapeModalLabel">All Data</h5>
+            <h5 class="modal-title" id="tapeModalLabel">Calculation Details</h5>
           </div>
           <div class="modal-body modal-body--scroll" id="tapeModalBody">
             <div class="row">
-              <div class="col-3 tape" id="tape--pt"></div>
-              <div class="col-4 tape" id="tape--initialPK"></div>
-              <div class="col-4 tape" id="tape--auc"></div>
+              <div class="col-12">
+                <table class="tape">
+                  <tbody>
+                    <tr>
+                    <td id="tape--pt"></td>
+                    <td id="tape--auc"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
           </div>
           <div class="modal-footer">
@@ -92,10 +104,12 @@
                 <input type="date" class="form-control dt-date input-aucDates" data-form-type="other" id="aucDates-peakDate">
                 <div class="input-group-prepend">
                   <div class="input-group-text border-left-0">@</div>
+
                 </div>
                 <input type="text" class="form-control dt-time validate-time input-aucDates" data-form-type="other" id="aucDates-peakTime" placeholder="0000">
               </div>
             </div>
+
             <div class="form-row" id="aucDates-row--spacer">
               <div class="col-1">&nbsp;</div>
             </div>
@@ -254,7 +268,6 @@
             </div>
           </div>
           <div class="col">
-            <!-- <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#tapeModal" id="btnTape" tabindex="-1">Show Data</button> -->
             <button type="button" class="btn btn-outline-secondary" id="btnReset" tabindex="999">Reset All</button>
           </div>
           <div class="card">
@@ -351,9 +364,6 @@
             <div class="tab-pane fade show active" id="nav-initial">
               <div class="row has-alert-only">
                 <div class="alert alert-primary alert-dismissible fade show mt-2 mb-0" role="alert" id="alert--see-protocol">
-                  <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button> -->
                   This protocol is to be used as a guideline, not a rule, and must be combined with clinical judgment.<br>
                   For outliers or exceptions, consult with another pharmacist.<br>
                   See <a class="alert-link" href="https://drive.google.com/file/d/1jFfC4BofGKeMhmedE32WWvNNVxwKZQM8/view?usp=sharing" target="_blank">VMFH Vancomycin Dosing Guidelines</a>
@@ -790,23 +800,8 @@
                         <div class="input-group-text">mcg/mL</div>
                       </div>
                     </div>
+                    <div class="col-6 text-left d-flex align-items-center">(for AUC:MIC of 400-600 mcg&centerdot;hr/mL)</div>
                   </div>
-
-
-
-
-                  <!--     /new             -->
-
-
-
-
-
-
-
-
-
-
-
                   <div class="form-row mt-3" id="vancoAUC-row--result1">
                     <label for="vancoAUC24" class="col-2">AUC 24</label>
                     <div class="col-5 input-group">
@@ -834,58 +829,15 @@
                     <div class="col-1 input-group">
                       <button class="btn btn-light" id="auc-reset"><i class="fas fa-undo"></i></button>
                     </div>
+                    <div class="col-3 input-group offset-1">
+                      <button type="button" class="btn btn-light small" id="btnTape" data-toggle="modal" data-target="#tapeModal">Show Calculations</button>
+                    </div>
                   </div>
                   <div class="form-row" id="vancoAUC-row--result4">
                     <table class="table table-sm table-bordered" id="aucTable"></table>
                   </div>
                 </div>
               </div>
-
-              <!-- <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--aucLinear">
-                <div class="card-header h6">AUC Linear Proportion</div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-3">
-                      <p class="card-text">
-                      Use this to... TODO </p>
-                    </div>
-                    <div class="col-9">
-                      <div class="form-row">
-                        <label for="aucLinear-auc" class="col-4 col-form-label">Calculated AUC</label>
-                        <div class="input-group col-4">
-                          <input type="number" id="aucLinear-auc" class="form-control input-aucLinear validate-dose">
-                          <div class="input-group-append">
-                            <div class="input-group-text">mcg&centerdot;hr/mL</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="aucLinear-trough" class="col-4 col-form-label">Calculated Trough</label>
-                        <div class="input-group col-4">
-                          <input type="number" id="aucLinear-trough" class="form-control input-aucLinear validate-dose">
-                          <div class="input-group-append">
-                            <div class="input-group-text">mcg/mL</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="aucLinear-desiredMin" class="col-4 col-form-label">Goal AUC</label>
-                        <div class="input-group col-6">
-                          <input type="number" id="aucLinear-desiredMin" class="form-control input-aucLinear validate-dose" value="400">
-                          <div class="input-group-append">
-                            <div class="input-group-text">&nbsp;&ndash;&nbsp;</div>
-                          </div>
-                          <input type="number" id="aucLinear-desiredMax" class="form-control input-aucLinear validate-dose" value="600">
-                          <div class="input-group-append">
-                            <div class="input-group-text">mcg&centerdot;hr/mL</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div> -->
             </div>
             <div class="tab-pane fade" id="nav-twolevel">
               <div class="row hide-hd-0">
@@ -895,11 +847,6 @@
                 </div>
               </div>
               <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
-
-                <!-- CHANGED -->
-
-
-
                 <div class="alert alert-warning ml-3 mt-2 mb-0">Note: This tab does not apply to AUC dosing.  Use the previous tab for AUC calculations.</div>
               </div>
               <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--twolevel">
@@ -1133,7 +1080,7 @@
     </div> <!-- container-fluid -->
     <footer class="footer">
       <div class="container">
-        <span class="text-muted small">v0.3.0 &copy; 2021 VMFH Pharmacy Services
+        <span class="text-muted small">v0.4.0 &copy; 2021 VMFH Pharmacy Services
           &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
           <a href="https://github.com/pharmot/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Repository</a>
           &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;

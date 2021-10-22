@@ -24,6 +24,35 @@
 ### Fixed
 - IVIG calculator weight note aligned correctly ([#20])
 
+
+## [0.4.0] - 2021-10-21
+
+### Added
+- Output of inputs, outputs, and calculation steps ([#24])
+- Favicon and manifest ([#21])
+
+### Fixed
+- Focus on age input when on Reset All ([#37])
+- Initial PK Dosing no longer changes if interval is modified after first calculation ([#32])
+
+## [0.3.0] - 2021-10-09
+
+### Added
+- Color change of Bayesian calculator alert when BMI > 30 ([#35])
+- Hour calculator for AUC dosing (modal) ([#22])
+- Confirmation before showing initial PK recommendations ([#35])
+- Focus on age input when page loads ([#25])
+- Highlight BMI when above 30
+
+### Changed
+- Added year to displayDate Util function
+- Reposition Bayesian calculator alert higher on page ([#35])
+- VMFH Logo as svg instead of png
+- Modified monitoring recommendations to clarify when to draw trough ([#31], [#35])
+
+### Fixed
+- IVIG calculator weight note aligned correctly ([#20])
+
 ## [0.2.2] - 2021-08-19
 
 ### Added
@@ -123,9 +152,12 @@ Initial POC Release
 [#10]: https://github.com/pharmot/multipurpose-calculator/issues/10
 [#16]: https://github.com/pharmot/multipurpose-calculator/issues/16
 [#20]: https://github.com/pharmot/multipurpose-calculator/issues/20
+[#21]: https://github.com/pharmot/multipurpose-calculator/issues/21
 [#22]: https://github.com/pharmot/multipurpose-calculator/issues/22
 [#24]: https://github.com/pharmot/multipurpose-calculator/issues/24
 [#25]: https://github.com/pharmot/multipurpose-calculator/issues/25
 [#31]: https://github.com/pharmot/multipurpose-calculator/issues/31
+[#32]: https://github.com/pharmot/multipurpose-calculator/issues/32
 [#33]: https://github.com/pharmot/multipurpose-calculator/issues/33
 [#35]: https://github.com/pharmot/multipurpose-calculator/issues/35
+[#37]: https://github.com/pharmot/multipurpose-calculator/issues/37

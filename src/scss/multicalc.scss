@@ -389,6 +389,15 @@ a[data-toggle="modal"] {
   font-size: 8pt;
   margin: $len-1;
   padding: $len-2;
+
+  td {
+    vertical-align: top;
+
+    &:not(:first-child) {
+      padding-left: $len-4;
+    }
+  }
+
 }
 
 .semibold {
@@ -400,7 +409,9 @@ a[data-toggle="modal"] {
   padding-top: 0;
 }
 
-.form-check-label.small {
+.form-check-label.small,
+.input-group .btn.small {
+
   font-size: $len-275;
 }
 
@@ -412,12 +423,13 @@ a[data-toggle="modal"] {
   min-width: 600px !important;
 }
 
-#tapeModal .modal-dialog {
-  min-width: 800px !important;
-}
+// #tapeModal .modal-dialog {
+//   min-width: 800px !important;
+// }
 
 .modal-body--scroll {
-  height: 80vh;
+  overflow-x: clip;
+
 }
 
 .fade-opacity {

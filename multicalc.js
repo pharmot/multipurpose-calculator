@@ -8,7 +8,7 @@
  * Based on Excel Multipurpose Calculator created by Dennis Tran
  *
  * Created at     : 2021-01-15
- * Last modified  : 2021-10-09
+ * Last modified  : 2021-10-21
  */
 
 import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './modules/util.js'
@@ -190,7 +190,7 @@ $("[name='seconddose-freq']").on("change", () => {
 
 $("#revision-goalTrough").on("change", () => {
   calculate.vancoRevision();
-})
+});
 
 $("#btnReset").on('click', () => {
   $("input").val("");
@@ -209,6 +209,8 @@ $("#btnReset").on('click', () => {
   $("#top-container").addClass('age-adult');
   // $('#aucLinear-desiredMin').val(400);
   // $('#aucLinear-desiredMin').val(600);
+  $('#ptage').get(0).focus();
+
 });
 
 $("#ivig-product").on("change", () => {
@@ -489,7 +491,6 @@ const vanco = {
         freqs: [6, 8]
       }
     }
-    // TODO: what if peds on HD?
     const { maxDailyDose, maxHDDose, maxPDDose } = this.config;
     if ( hd === 0 ) {
       let res = { low: 15, high: 20, maxDaily: maxDailyDose };
@@ -838,6 +839,8 @@ const vanco = {
   },
   getInitialDosing({method, crcl, age, scr, sex, wt, bmi, infTime = 1, goalMin, goalMax, selDose, selFreq } = {}){
     let res = {
+      vd: 0,
+      ke: 0,
       arrDose: [],
       arrViable: [],
       arrLevel: [],
@@ -852,21 +855,49 @@ const vanco = {
       pkLevelLabel: 'Est. Level'
     };
     if ( crcl === 0 ) return res;
-    const vd = this.getVd({bmi: bmi, wt: wt});
+    res.vd = this.getVd({bmi: bmi, wt: wt});
 
     if ( method === 'trough') {
       res.pkLevelRowHeading = 'Est. Trough (mcg/mL)';
       res.pkLevelUnits = ' mcg/mL';
       res.pkLevelLabel = 'Est. Trough';
-      const ke = ( (0.695 * crcl + 0.05) * 0.06 ) / vd;
-      res.pkHalflife = this.getHalflife(ke);
+      res.ke = ( (0.695 * crcl + 0.05) * 0.06 ) / res.vd;
+      res.pkHalflife = this.getHalflife(res.ke);
       res.pkRecFreq = this.getSuggestedInterval(res.pkHalflife);
       res.pkFreq = selFreq > 0 ? selFreq : res.pkRecFreq;
       let useDose = 0;
+
+      let rec = {
+        arrDose: [],
+        arrLevel: [],
+        arrViable: [],
+        useDose: 0
+      }
+
+      this.config.doses.forEach( (d, i) => {
+        rec.arrDose.push(d);
+        const infTime = this.getInfusionTime(d);
+        const {p, tr} = this.getPeakAndTrough({dose: d, ke: res.ke, inf: infTime, vd: res.vd, interval: res.pkRecFreq});
+        rec.arrLevel.push(tr);
+        rec.arrViable.push(tr >= goalMin && tr <= goalMax);
+      });
+      for (let i = 0; i < rec.arrViable.length; i++) {
+        if ( rec.arrViable[i] ) {
+          rec.useDose = i;
+          break;
+        }
+      }
+      res.pkRecLevel = rec.arrLevel[rec.useDose];
+      res.pkRecDose = rec.arrDose[rec.useDose];
+
+
+
+
+
       this.config.doses.forEach( (d, i) => {
         res.arrDose.push(d);
         const infTime = this.getInfusionTime(d);
-        const {p, tr} = this.getPeakAndTrough({dose: d, ke: ke, inf: infTime, vd: vd, interval: res.pkFreq});
+        const {p, tr} = this.getPeakAndTrough({dose: d, ke: res.ke, inf: infTime, vd: res.vd, interval: res.pkFreq});
         res.arrLevel.push(tr);
         res.arrViable.push(tr >= goalMin && tr <= goalMax);
       });
@@ -876,12 +907,9 @@ const vanco = {
           break;
         }
       }
-      res.pkRecLevel = res.arrLevel[useDose];
-      res.pkRecDose = res.arrDose[useDose];
-
       if ( selDose > 0 && selFreq > 0 ){
         const newInfTime = this.getInfusionTime(selDose);
-        const {p, tr} = this.getPeakAndTrough({dose: selDose, ke: ke, inf: newInfTime, vd: vd, interval: selFreq})
+        const {p, tr} = this.getPeakAndTrough({dose: selDose, ke: res.ke, inf: newInfTime, vd: res.vd, interval: selFreq})
         res.pkLevel = tr;
         res.pkDose = selDose;
       }
@@ -1066,7 +1094,6 @@ const vanco = {
       }
       res.recTrough = arrTrough[useDose];
       res.recDose = arrDose[useDose];
-
       res.newFreq = selFreq > 0 ? selFreq : res.recFreq;
 
       this.config.doses.forEach( (d, i) => {
@@ -1130,6 +1157,29 @@ const vanco = {
           pt.adjHalflife = halflife;
         }
 
+
+    $("#revision-linearDose").html( linearDose === 0 ? "" : `${roundTo(linearDose, 1)} mg q ${linearFreq} h`);
+    displayChange("#revision-linearDoseChange", linearDose, linearFreq);
+    displayValue("#revision-linearTrough", linearTrough, 0.1, " mcg/mL");
+
+    displayChange("#revision-testLinearDoseChange", testLinearDose, testLinearFreq);
+    displayValue("#revision-testLinearTrough", testLinearTrough, 0.1, " mcg/mL");
+
+    const { halflife, newDose, newFreq, newTrough, newViable, recDose, recTrough, recFreq, selTrough, selDose, selFreq } = vanco.getSingleLevelAdjustment({
+      bmi: pt.bmi,
+      wt: pt.wt,
+      curDose: pt.curDose,
+      curFreq: pt.curFreq,
+      curTrough: pt.curTrough,
+      troughTime: troughTime,
+      goalTrough: goaltrough,
+      goalMin: goalmin,
+      goalMax: goalmax,
+      goalPeak: 35,
+      selFreq: selectedInterval,
+      selDose: selectedDose
+    });
+    pt.adjHalflife = halflife;
 
         res.pkFreq = selectedInterval > 0 ? selectedInterval : this.getSuggestedInterval(halflife);
         res.halflife = halflife;
@@ -1282,9 +1332,11 @@ const calculate = {
       indication: pt.vancoIndication,
       age: pt.age
     });
+
     $("#vancoInitialMonitoring").html(monitoring);
     $("#vancoInitialTargetLevel").html(targetLevelText);
 
+    // Set goal trough selection on the single level tab
     if( goalTroughIndex >= 0 ) {
       $("#revision-goalTrough")[0].selectedIndex = goalTroughIndex;
     }
@@ -1296,6 +1348,8 @@ const calculate = {
       arrDose,
       arrViable,
       arrLevel,
+      vd,
+      ke,
       pkLevel,
       pkRecLevel,
       pkRecDose,
@@ -1343,15 +1397,6 @@ const calculate = {
         ]
       )
     }
-    tape.initialPK = [
-      ["Est. halflife", displayValue('', pkHalflife, 0.1, ' hrs')],
-      ["Suggested dose", (pkRecDose > 0 && pkRecFreq > 0 ? `${displayValue('', pkRecDose, 0.1)} mg q${pkRecFreq}h` : '')]
-    ]
-    if ( tape.initialPK[0][1] !== ''  && tape.initialPK[1][1] !== '' ) {
-      $("#tape--initialPK").html(LOG.outputTape(tape.initialPK, "Initial PK Dosing"));
-    }
-
-    $("#tape--initialPK").append(LOG.outputTape(tableText));
   },
   createVancoTable({rows, highlightColumns} = {}){
     let rowHtml = "";
@@ -1374,6 +1419,7 @@ const calculate = {
           }
         }
         rowHtml += `<td class="${rowClass}">${displayValue("", value, row.roundTo, row.units)}</td>`
+
       }
       rowHtml += `</tr>`
     }
@@ -1422,7 +1468,6 @@ const calculate = {
       selDose: selectedDose
     });
     pt.adjHalflife = halflife;
-
     displayValue("#revision-halflife", halflife, 0.1, " hours");
 
     $("#revision-pkDose").html( recDose === 0 ? "" : `${roundTo(recDose, 1)} mg q ${roundTo(recFreq, 0.1)} h`);
@@ -1535,20 +1580,18 @@ const calculate = {
           ["AUC (elim)", displayValue('', aucCurrent.aucElim, 0.1)],
         ],
         [
-          ["AUC₂₄", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
+          ["AUC24", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
           [
             `Trough goal`,
             `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`],
           ],
         ]
-        $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing"));
+        $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing Calculation"));
         $("#tape--auc").append(LOG.outputTape(tableText));
       } else {
         tape.auc = [];
         $("#tape--auc").html('');
       }
-
-
     },
   vancoTwolevel(resetInterval = true){
     const { levelMin, levelMax, freqMin, freqMax, doseMin, doseMax } = vanco.config.check;
@@ -1824,7 +1867,7 @@ let LOG = {
     title = title.toUpperCase();
     const divider = arial.underline(title, "=");
     if ( title !== "" ) {
-      titleHtml = `${title}<br>${divider}<br>`
+      titleHtml = `${title}<br>${divider}`
     }
     let txt = "";
     let items = [];

@@ -61,7 +61,7 @@ function createTimeArray(id){
   return {timeArray: timeArray, interval: interval};
 }
 export function getSecondDose({fd = "", freqId} = {} ){
-  if ( fd === "" ) return undefined; // TODO: return something?
+  if ( fd === "" ) return undefined;
 
   fd = parseFloat(fd.slice(-2)) / 60 + parseFloat(fd.slice(0, -2));
   const {timeArray, interval} = createTimeArray(freqId);
