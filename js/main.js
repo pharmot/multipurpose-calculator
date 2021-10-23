@@ -10,12 +10,14 @@
  * Created at     : 2021-01-15
  * Last modified  : 2021-10-21
  */
-
-import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './modules/util.js'
-import { default as ivig } from './modules/ivig.js';
-import { childIsObese } from './modules/growthCharts.js';
-import { getSecondDose } from './modules/seconddose.js';
-import { default as arial } from './modules/arial.js';
+$ = require('jquery');
+// bootstrap = require('bootstrap');
+import 'bootstrap';
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './util.js'
+import { default as ivig } from './ivig.js';
+import { childIsObese } from './growthCharts.js';
+import { getSecondDose } from './seconddose.js';
+import { default as arial } from './arial.js';
 let debug = false;
 let debugDefaultTab = "auc";
 
@@ -58,8 +60,8 @@ $(()=>{
     $("#revision-curTroughTime").val(0.5);
     LOG.enable();
     const triggerElement = document.querySelector(`#nav-${debugDefaultTab}-tab`);
-    const tab = new bootstrap.Tab(triggerElement)
-    tab.show();
+    // const tab = new bootstrap.Tab(triggerElement)
+    // tab.show();
     vanco.syncCurrentDFT("revision");
     calculate.patientData();
     calculate.vancoInitial();

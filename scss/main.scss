@@ -1,5 +1,7 @@
-// compileOnSave: true, compileCompressed: ../../multicalc.min.css, sourceMap: true, sourceMapEmbed: true
+// compileOnSave: true, compileExpanded: ../dist/multicalc.min.css, sourceMap: true, sourceMapEmbed: true
 
+@import '../node_modules/bootstrap/dist/css/bootstrap';
+@import './fontawesome';
 @import './variables';
 @import './mixins';
 
@@ -397,7 +399,6 @@ a[data-toggle="modal"] {
       padding-left: $len-4;
     }
   }
-
 }
 
 .semibold {
@@ -411,7 +412,6 @@ a[data-toggle="modal"] {
 
 .form-check-label.small,
 .input-group .btn.small {
-
   font-size: $len-275;
 }
 
@@ -429,7 +429,6 @@ a[data-toggle="modal"] {
 
 .modal-body--scroll {
   overflow-x: clip;
-
 }
 
 .fade-opacity {
