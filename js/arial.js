@@ -1,8 +1,4 @@
 /**
- * Copyright (c) 2021
- *
- * VMFH Pharmacy Multipurpose Calculator
- *
  * Module for spacing text output (in Arial font) to optimize formatting of
  * admin instructions to copy and paste to Epic.
  *

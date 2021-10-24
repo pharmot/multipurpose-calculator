@@ -15,7 +15,12 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin({
-      extractComments: false,
+      extractComments: {
+        condition: "some",
+        filename: (fileData) => {
+           return `${fileData.filename}.LICENSE.txt${fileData.query}`;
+         },
+      },
     })],
   },
 };

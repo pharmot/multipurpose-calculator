@@ -1,8 +1,4 @@
 /**
-* Copyright (c) 2021
-*
-* VMFH Pharmacy Multipurpose Calculator
-*
 * IVIG Rate Calculation and admin instruciton generation module
 *
 * @author Andy Briggs <andrewbriggs@chifranciscan.org>

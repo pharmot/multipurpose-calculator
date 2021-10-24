@@ -1,7 +1,4 @@
 /**
- * Copyright (c) 2021
- *
- * VMFH Pharmacy Multipurpose Calculator
  * Utilities module
  *
  * @author Andy Briggs <andrewbriggs@chifranciscan.org>

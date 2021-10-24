@@ -1,15 +1,9 @@
-/**
- * Copyright (c) 2021
- *
- * VMFH Pharmacy Multipurpose Calculator
- *
- * @author Andy Briggs <andrewbriggs@chifranciscan.org>
- *
- * Based on Excel Multipurpose Calculator created by Dennis Tran
- *
- * Created at     : 2021-01-15
- * Last modified  : 2021-10-21
- */
+/*!
+  * VMFH Pharmacy Multipurpose Calculator v0.4.0
+  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
+  * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
+  */
+
 $ = require('jquery');
 // bootstrap = require('bootstrap');
 import 'bootstrap';

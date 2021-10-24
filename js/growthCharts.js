@@ -1,7 +1,4 @@
 /**
- * Copyright (c) 2021
- *
- * VMFH Pharmacy Multipurpose Calculator
  * Growth Chart module
  *
  * @author Andy Briggs <andrewbriggs@chifranciscan.org>
