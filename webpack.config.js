@@ -9,7 +9,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'bundle.js',
+    filename: 'bundle.min.js',
   },
   resolve: {
     alias: {
@@ -45,7 +45,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      linkType: 'text/css'
+      linkType: 'text/css',
+      filename: 'main.min.css'
     }),
     new HtmlWebpackPlugin({
       template: './template.html',
