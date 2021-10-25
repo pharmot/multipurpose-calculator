@@ -5,13 +5,13 @@
   */
 
 $ = require('jquery');
-// bootstrap = require('bootstrap');
 import 'bootstrap';
-import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './util.js'
-import { default as ivig } from './ivig.js';
-import { childIsObese } from './growthCharts.js';
-import { getSecondDose } from './seconddose.js';
-import { default as arial } from './arial.js';
+import "./scss/main.scss";
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './js/util.js'
+import { default as ivig } from './js/ivig.js';
+import { childIsObese } from './js/growthCharts.js';
+import { getSecondDose } from './js/seconddose.js';
+import { default as arial } from './js/arial.js';
 let debug = false;
 let debugDefaultTab = "auc";
 

@@ -8,21 +8,7 @@
 @import '../node_modules/@fortawesome/fontawesome-free/scss/core';
 @import '../node_modules/@fortawesome/fontawesome-free/scss/icons';
 
-$fa-font-path: "./webfonts";
-
-@font-face {
-  font-family: 'Font Awesome 5 Free';
-  font-style: normal;
-  font-weight: 400;
-  font-display: $fa-font-display;
-  src: url('#{$fa-font-path}/fa-regular-400.eot');
-  src:
-    url('#{$fa-font-path}/fa-regular-400.eot?#iefix') format('embedded-opentype'),
-    url('#{$fa-font-path}/fa-regular-400.woff2') format('woff2'),
-    url('#{$fa-font-path}/fa-regular-400.woff') format('woff'),
-    url('#{$fa-font-path}/fa-regular-400.ttf') format('truetype'),
-    url('#{$fa-font-path}/fa-regular-400.svg#fontawesome') format('svg');
-}
+$fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts";
 
 @font-face {
   font-family: 'Font Awesome 5 Free';
@@ -42,9 +28,4 @@ $fa-font-path: "./webfonts";
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
-}
-
-.far {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 400;
 }
