@@ -1,10 +1,7 @@
 /**
- * Utilities module
- *
- * @author Andy Briggs <andrewbriggs@chifranciscan.org>
+ * Common utility methods
+ * @module util
  * @since v0.1.1
- * Created at     : 2021-06-13
- * Last modified  : 2021-07-18
  */
 
 /**
