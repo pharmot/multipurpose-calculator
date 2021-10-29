@@ -1,7 +1,8 @@
 <p align="center"><img src="dist/icon.svg" width="150"></p>
 
-<h1 align="center">VMFH Multipurpose Calculator</h1>
 <div align="center">
+
+# VMFH Multipurpose Calculator
 
 [![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)
 ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)
@@ -10,7 +11,7 @@
 
 
 
-# Quick Links
+## Quick Links
 
 [![CURRENT VERSION](https://img.shields.io/badge/-CURRENT%20VERSION-%2355a63a?style=flat-square)](https://pharmot.github.io/multipurpose-calculator/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![TEST RELEASE](https://img.shields.io/badge/-TEST%20RELEASE%20VERSION-%2327aae1?style=flat-square)](https://pharmot.github.io/multipurpose-calculator-TST/)
 
