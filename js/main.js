@@ -161,6 +161,7 @@ $("#btnReset").on('click', () => {
   $("input").val("");
   calculate.syncCurrentDFT('revision');
   resetDates();
+  $("#aucDates-apply").removeClass('datesApplied');
   ($("#hd")[0]).selectedIndex = 0;
   ($("#vancoIndication")[0]).selectedIndex = 0;
   calculate.patientData();
@@ -201,10 +202,13 @@ $("#aucDates-sameInterval").on("change", e => {
   calculate.vancoAUCDates();
 });
 
-$("#aucDates-apply").on('click', () => {
+$("#aucDates-apply").on('click', e => {
+  $(e.target).addClass('datesApplied');
+  console.log(e);
   $('#vancoAUCPeakTime').val($('#aucDates-peakResult').html());
   $('#vancoAUCTroughTime').val($('#aucDates-troughResult').html());
   $('#aucDatesModal').modal('hide');
+  calculate.vancoAUC();
 });
 
 /**
@@ -689,14 +693,17 @@ const calculate = {
         ]
       )
     }
+
     if ( aucCurrent !== undefined ) {
+      // was the date-time calculator modal used?
+      const usedDateTimeCalculator = $("#aucDates-apply").hasClass('datesApplied')
       tape.auc = [
         [
           ["Current dose", `${params.dose} mg q${params.interval}h`],
           ["Peak level", displayValue('', params.peak, 0.1, " mcg/mL")],
           ["Trough level", displayValue('', params.trough, 0.1, " mcg/mL")],
-          ["Peak time", displayValue('', params.peakTime, 0.01, " hrs")],
-          ["Trough time", displayValue('', params.troughTime, 0.01, " hrs")],
+          ["Time to peak", displayValue('', params.peakTime, 0.01, " hrs")],
+          ["Time to trough", displayValue('', params.troughTime, 0.01, " hrs")],
         ],
         [
           ["Vd", displayValue('', aucCurrent.vd, 0.01, " L")],
@@ -714,6 +721,32 @@ const calculate = {
             `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`],
           ],
         ]
+        if ( usedDateTimeCalculator ) {
+          const sameInterval = $('#aucDates-sameInterval').is(':checked');
+          tape.auc.unshift([
+            [
+              "Drawn in same interval?",
+              sameInterval ? "Yes" : "No"
+            ],
+            [
+              "Dose before trough",
+              displayDate( getDateTime( $('#aucDates-doseDate-1').val(), $('#aucDates-doseTime-1').val() ) )
+            ],
+            [
+              "Trough time",
+              displayDate( getDateTime($('#aucDates-troughDate').val(), $('#aucDates-troughTime').val() ) )
+            ],
+            [
+              "Dose before peak",
+              displayDate( sameInterval ? dateTimeInputs.troughDose : getDateTime($('#aucDates-doseDate-2').val(), $('#aucDates-doseTime-2').val() ) )
+            ],
+            [
+              "Peak time",
+              displayDate( getDateTime($('#aucDates-peakDate').val(), $('#aucDates-peakTime').val() ) )
+            ]
+          ]);
+        }
+
         $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing Calculation"));
         $("#tape--auc").append(LOG.outputTape(tableText));
       } else {

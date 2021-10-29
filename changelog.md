@@ -7,6 +7,14 @@
 
 - Documentation of PK Equations and Calculations ([#40])
 - Webpack bundling of all previously external scripts/stylesheets so calculator can be function independently
+- Expanded code documentation (jsdoc)
+- Output of date and time inputs to calculation details modal when date/time modal is used ([#43])
+
+### Fixed
+
+- Age validation function didn't have access to min and max values from validation config
+- Allow any value for number inputs without defined step ([#41])
+- Trigger AUC calculation when inputs from modal are copied to calculator ([#42])
 
 ## [0.4.0] - 2021-10-21
 
@@ -146,3 +154,6 @@ Initial POC Release
 [#35]: https://github.com/pharmot/multipurpose-calculator/issues/35
 [#37]: https://github.com/pharmot/multipurpose-calculator/issues/37
 [#40]: https://github.com/pharmot/multipurpose-calculator/issues/40
+[#41]: https://github.com/pharmot/multipurpose-calculator/issues/41
+[#42]: https://github.com/pharmot/multipurpose-calculator/issues/42
+[#43]: https://github.com/pharmot/multipurpose-calculator/issues/43
