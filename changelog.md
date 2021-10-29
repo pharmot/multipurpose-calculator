@@ -1,7 +1,20 @@
 # Changelog
 
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+
+- Documentation of PK Equations and Calculations ([#40])
+- Webpack bundling of all previously external scripts/stylesheets so calculator can be function independently
+
+<!-- ### Changed -->
+
+
+<!-- ### Fixed -->
+
+
+
 
 ## [0.4.0] - 2021-10-21
 
@@ -171,3 +184,4 @@ Initial POC Release
 [#33]: https://github.com/pharmot/multipurpose-calculator/issues/33
 [#35]: https://github.com/pharmot/multipurpose-calculator/issues/35
 [#37]: https://github.com/pharmot/multipurpose-calculator/issues/37
+[#40]: https://github.com/pharmot/multipurpose-calculator/issues/40
