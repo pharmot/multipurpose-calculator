@@ -19,7 +19,7 @@ import * as LOG from './logger.js'
 let debug = false;
 let debugDefaultTab = "auc";
 let tape = {};
-
+let validatedFields;
 $(()=>{
   $('[data-toggle="popover"]').popover({html: true});
   $('[data-toggle="tooltip"]').tooltip()
@@ -68,8 +68,8 @@ $(()=>{
     resetDates();
   }
 
-  setupValidation([
-    { selector: "#ptage", inputType: 'age', min: pt.config.check.minAge, max: pt.config.check.maxAge },
+  validatedFields = setupValidation([
+    { selector: "#ptage", inputType: 'age', min: pt.config.check.ageMin, max: pt.config.check.ageMax },
     { selector: "#sex", match: /^[MmFf]$/ },
     { selector: "#height", min: pt.config.check.htMin, max: pt.config.check.htMax, },
     { selector: "#weight", min: pt.config.check.wtMin, max: pt.config.check.wtMax },
@@ -172,7 +172,9 @@ $("#btnReset").on('click', () => {
   calculate.ivig();
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
+  $(validatedFields).removeClass('invalid');
   $('#ptage').get(0).focus();
+
 });
 
 $("#ivig-product").on("change", () => calculate.ivig() );

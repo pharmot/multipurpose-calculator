@@ -8,13 +8,17 @@
 /**
  * Set up event listeners for form validation
  * @param   {FormValidationConfig[]} config  configuration for setup
- * @returns {undefined}
+ * @returns {String} space-delimited list of all selectors used
  */
 export default function setup(config){
+  let fields = "";
   for ( let item of config ) {
+    fields += `${item.selector}, `;
+    // Remove 'invalid' class on focus
     $(item.selector).on("focus", e => {
       $(e.target).removeClass("invalid");
     })
+    // Handle items with an itemType
     if ( item.inputType ) {
       if ( item.inputType === "age" ) {
         $(item.selector).on("focusout", e => {
@@ -30,12 +34,14 @@ export default function setup(config){
         })
       }
     } else if ( item.max ) {
+      // Handle items with a range
       $( item.selector ).on("focusout", e => {
         if( $( e.target ).val() !== "" ) {
           validateRange(e.target, item);
         }
       });
     } else if ( item.match ) {
+      // Handle items with a RegExp match
       $(item.selector).on("focusout", e => {
         if( $(e.target).val() !== "" ) {
           validateMatch(e.target, item);
@@ -43,6 +49,8 @@ export default function setup(config){
       });
     }
   }
+  // Remove trailing comma-space
+  return fields.slice(0,-2);
 };
 
 /**
