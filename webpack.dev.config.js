@@ -3,7 +3,7 @@ const thisYear = (new Date()).getFullYear();
 const HtmlWebpackPlugin = require ('html-webpack-plugin');
 
 module.exports = {
-  entry: './main.js',
+  entry: './js/main.js',
   mode: 'development',
   output: {
     path: `${__dirname}/dist`,

@@ -4,7 +4,7 @@
  * @requires module:arial
  */
 
-import { default as arial } from './arial.js';
+import * as arial from './arial.js';
 /** Status of logger */
 export let enabled = false;
 /** Enable logging */

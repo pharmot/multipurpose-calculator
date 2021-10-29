@@ -1,22 +1,23 @@
 /**
  * Module for spacing text output (in Arial font) to optimize formatting of
  * admin instructions to copy and paste to Epic.
- *
- * @author Andy Briggs <andrewbriggs@chifranciscan.org>
+ * @module arial
  * @since v0.2.0
- * Created at     : 2021-06-20
- * Last modified  : 2021-08-25
  */
 
- function test(target){
-    const chars = ["I","R","T",".","a","e","f","o","s","t","u"];
-    let txt = "";
-    for ( let char of chars ) {
-      txt += `<span style="white-space:nowrap">${char.repeat(100)}</span><br>`
-    }
-    document.getElementById(target).innerHTML = txt;
+function test(target){
+  const chars = ["I","R","T",".","a","e","f","o","s","t","u"];
+  let txt = "";
+  for ( let char of chars ) {
+    txt += `<span style="white-space:nowrap">${char.repeat(100)}</span><br>`
+  }
+  document.getElementById(target).innerHTML = txt;
 }
-
+/**
+ * Width in px of characters in Arial font at 14.66667px (11pt)
+ * @constant
+ * @type {{Object.<string, number>}}
+ */
 const charWidths = {
   // widths of character at 14.66667px (11pt)
     "/": 4.0731,
@@ -162,6 +163,13 @@ const charWidths = {
     "ⁿ": 5.3472,
     "ⁱ": 2.4409
 };
+/**
+ * Get the width of a character or string in pixels (11pt Arial font)
+ *
+ * @param   {string} str string you want the width of
+ * @returns {number}  width of input string in pixels
+ * @throws Will log an error to the console if no width is defined for a character
+ */
 function getWidth(str){
     str += "";
     const arr = str.split("");
@@ -174,7 +182,14 @@ function getWidth(str){
     }
     return w;
 }
-function padArray(rows, extra=4){
+/**
+ * Pads each member of an array with sufficient nonbreaking spaces
+ * to make them all the same width in 11 pt Arial font.
+ * @param   {string[]} rows       Strings to be padded to the same width
+ * @param   {number}  [extra=4]   Number of extra spaces to pad longest string with
+ * @returns {string[]}            Same strings as 'rows' with spaces appended to each
+ */
+export function padArray(rows, extra=4){
   const spaceWidth = charWidths[" "];
   const widths = rows.map( str => getWidth(str) );
   const max = Math.max(...widths);
@@ -186,7 +201,7 @@ function padArray(rows, extra=4){
   for(let i=0;i<rows.length;i++){
     result.push(rows[i]+pads[i]);
   }
-  return result;
+  return result;z
 }
 /**
  * Returns a divider the length of a given string.
@@ -197,10 +212,9 @@ function padArray(rows, extra=4){
  * @param   {Number} [extra = 0]    Number of extra characters to add beyond the length of the string
  * @returns {String}                The 'char' repeated to be the same length as 'str' plus 'extra' extra times
  */
-function underline(str, char="-", extra=0){
+export function underline(str, char="-", extra=0){
   const dividerWidth = getWidth(char);
   const titleWidth = getWidth(str);
   const dividers = Math.round(titleWidth/dividerWidth)+extra;
   return char.repeat(dividers);
 }
-export default { padArray, underline };

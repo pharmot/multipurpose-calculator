@@ -1,4 +1,5 @@
 /**
+ * Form input validation module
  * @module formValidation
  * @requires module:util
  */

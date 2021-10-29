@@ -1,10 +1,7 @@
 /**
  * Second Dose timing module
- *
- * @author Andy Briggs <andrewbriggs@chifranciscan.org>
+ * @module secondDose
  * @since v0.2.0
- * Created at     : 2021-06-13
- * Last modified  : 2021-07-18
  */
 
 /**
@@ -18,8 +15,9 @@
 */
 
 /**
-* @type {Frequency[]}
-*/
+ * Array of standard dosing frequencies and their scheduled times.
+ * @type {Frequency[]}
+ */
 const freqs = [
   { id: "q6vanco", interval: 6, startHour: 5 },
   { id: "q8", interval: 8, startHour: 5 },

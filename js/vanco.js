@@ -2,9 +2,11 @@
  * Vancomycin dosing calculations
  * @module vanco
  * @requires module:util
+ * @requires module:growthCharts
  */
 
 import { checkValue, roundTo } from './util.js'
+import { childIsObese } from './growthCharts.js';
 
 /**
  * Loading dose configuration
@@ -125,8 +127,7 @@ function aucTherapeutic(auc){
   return 'therapeutic';
 };
 /**
- * Get peak and trough from kinetic parameters
- *
+ * Get peak and trough from kinetic parameters *
  * @param   {Object} obj           Input parameters
  * @param   {Number} obj.dose      Dose in mg
  * @param   {Number} obj.ke        Elimination rate constant
@@ -250,10 +251,11 @@ function getMaintenanceDoseRange({age, indication, crcl, hd} = {}){
   };
 };
 /**
- * Round a dosing interval to the nearest common frequency
+ * Round a dosing interval to the nearest common frequency.
+ * Possible return values are 0, 6, 8, 12, 18, 24, and 48
  *
  * @param   {Number} freq  Interval in hours
- * @returns {Number}       Rounded frequency [0|6|8|12|18|24|48]
+ * @returns {Number}       Rounded frequency
  */
 function getRoundedFrequency(freq){
   if ( freq === 0 ) return 0;

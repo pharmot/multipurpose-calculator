@@ -1,5 +1,3 @@
 node_modules/*
 package-lock.json
-lib/*
-dist/multicalc.min.css.map
 ignore_index.html
