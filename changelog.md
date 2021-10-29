@@ -8,45 +8,6 @@
 - Documentation of PK Equations and Calculations ([#40])
 - Webpack bundling of all previously external scripts/stylesheets so calculator can be function independently
 
-<!-- ### Changed -->
-
-
-<!-- ### Fixed -->
-
-
-
-
-## [0.4.0] - 2021-10-21
-
-### Added
-
-- Output of inputs, outputs, and calculation steps ([#24])
-- Favicon and manifest ([#21])
-
-### Fixed
-
-- Autofocus on "Reset All" ([#37])
-- Initial PK Dosing no longer changes when modifying frequency ([#32])
-
-## [0.3.0] - 2021-10-09
-
-### Added
-- Color change of Bayesian calculator alert when BMI > 30 ([#35])
-- Hour calculator for AUC dosing (modal) ([#22])
-- Confirmation before showing initial PK recommendations ([#35])
-- Focus on age input when page loads ([#25])
-- Highlight BMI when above 30
-
-### Changed
-- Added year to displayDate Util function
-- Reposition Bayesian calculator alert higher on page ([#35])
-- VMFH Logo as svg instead of png
-- Modified monitoring recommendations to clarify when to draw trough ([#31], [#35])
-
-### Fixed
-- IVIG calculator weight note aligned correctly ([#20])
-
-
 ## [0.4.0] - 2021-10-21
 
 ### Added
