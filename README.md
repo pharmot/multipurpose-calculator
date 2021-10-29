@@ -1,6 +1,6 @@
 <p align="center"><img src="dist/icon.svg" width="150"></p>
 
-<p align="center" style="padding-bottom: 0.3em;font-size:2em;border-bottom: 1px solid #D8DEE4;">VMFH Multipurpose Calculator</p>
+<h1 align="center">VMFH Multipurpose Calculator</h1>
 <div align="center">
 
 [![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)
