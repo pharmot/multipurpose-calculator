@@ -220,8 +220,19 @@ function resetDates(){
 }
 
 // TODO: doc: pt requires module:util
-
+/**
+ * Object representing the patient.
+ *
+ * @namespace
+ * @property {string|number} _sex patient's sex (after validation)
+ * @property {number} _wt patient's weight in kg (after validation)
+ */
 let pt = {
+  /**
+   * Contains the min and max values for input validation
+   * @const
+   * @readonly
+   */
   config: {
     check: {
       wtMin: 1,
@@ -234,14 +245,43 @@ let pt = {
       scrMax: 20
     }
   },
+  /**
+   * Gets/sets the sex of the patient.  Accepts a single letter - m or f - and
+   * stores as uppercase.  If invalid, stores 0.
+   * @function
+   * @returns {string|number} Patient's sex as `M`, `F`, or 0 if invalid
+   */
   set sex(x){
     this._sex = /^[MmFf]$/.test(x) ? x.toUpperCase() : 0;
   },
   get sex(){ return this._sex || 0; },
+  /**
+   * Gets/sets the weight of the patient.
+   * @function
+   * @returns {number} Patient's weight in kg, or 0 if invalid
+   */
   set wt(x){ this._wt = checkValue(x, this.config.check.wtMin, this.config.check.wtMax); },
   get wt(){ return this._wt || 0; },
+  /**
+   * Gets/sets the height of the patient.
+   * @function
+   * @requires module:util
+   * @returns {number} Patient's height in cm, or 0 if invalid
+   */
   set ht(x){ this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
   get ht(){ return this._ht || 0; },
+  /**
+   * Gets/sets the age of the patient.
+   * Accepts in years, months, days, or months/days.
+   * @example
+   * pt.age("50");    // sets patient's age to 50 years
+   * pt.age("23m");   // sets patient's age to 23 months (getter returns in years)
+   * pt.age("16m3d"); // sets patient's age to 16 months, 3 days (getter returns in years)
+   * pt.age("300d");  // sets patient's age to 300 days (getter returns in years)
+   * @function
+   * @requires module:util
+   * @returns {number} Patient's height in cm, or 0 if invalid
+   */
   set age(x){
     if ( /^\d+ *[Dd]$/.test(x) ) {
       const days = +x.replace(/ *d */gi, '');
@@ -258,6 +298,16 @@ let pt = {
     }
   },
   get age(){ return this._age || 0; },
+  /**
+   * Gets the age context of the patient
+   *
+   * Possible values:
+   * - `adult` (default)
+   * - `child`
+   * - `infant`
+   * @function
+   * @returns {string} Patient's age context (adult, child, or infant)
+   */
   get ageContext(){
     if ( this.age < 1 && this.age > 0 ) return 'infant';
     if ( this.age < 18 && this.age !== 0 ) return 'child';
