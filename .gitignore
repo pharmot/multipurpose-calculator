@@ -2,3 +2,4 @@ node_modules/*
 package-lock.json
 ignore_index.html
 docs/jsdoc/*
+jsdoc-template/*

@@ -68,7 +68,6 @@ export default function setup(config){
 /**
  * Callback for validating age input.  Adds 'invalid' class to DOM element if
  * input is invalid or removes if valid.
- * @callback
  * @requires module:util
  * @param   {HTMLElement}          el     DOM element
  * @param   {FormValidationConfig} item   Current element's validation configuration
@@ -102,7 +101,6 @@ function validateAge(el, item){
  * Callback for validating time input.  Adds 'invalid' class to DOM element if
  * input is invalid.  If valid, replaces input value with correctly formatted
  * time input string and removes 'invalid' class.
- * @callback
  * @requires module:util
  * @param   {HTMLElement}          el    DOM element
  * @param   {FormValidationConfig} item  Current element's validation configuration
@@ -124,7 +122,6 @@ function validateTime(el, item){
  * Callback for validating numerical input with defined minimum and maximum.
  * Adds 'invalid' class to DOM element if input is invalid, otherwise removes
  * 'invalid' class.
- * @callback
  * @param   {HTMLElement}          el    DOM element
  * @param   {FormValidationConfig} item  Current element's validation configuration
  * @returns {HTMLElement}                The original DOM element, for chaining
@@ -140,7 +137,6 @@ function validateRange(el, item){
 /**
  * Callback for validating input against a regular expression.  Adds 'invalid'
  * class to DOM element if input is invalid, otherwise removes 'invalid' class.
- * @callback
  * @param   {HTMLElement}          el    DOM element
  * @param   {FormValidationConfig} item  Current element's validation configuration
  * @returns {HTMLElement}                The original DOM element, for chaining

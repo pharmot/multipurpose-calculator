@@ -23,8 +23,7 @@
     "watch": "webpack --config webpack.dev.config.js --watch",
     "build": "webpack",
     "dev": "webpack --config webpack.dev.config.js",
-    "jsdoc": "jsdoc -c jsdoc.config.json",
-    "docs": "jsdoc2md js/*.js > doc.md"
+    "jsdoc": "jsdoc  -c ./jsdoc.config.json"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
@@ -35,7 +34,6 @@
     "html-webpack-plugin": "^5.5.0",
     "jquery": "^3.6.0",
     "jsdoc": "^3.6.7",
-    "jsdoc-to-markdown": "^7.1.0",
     "mini-css-extract-plugin": "^2.4.3",
     "popper.js": "^1.16.1",
     "postcss-loader": "^6.2.0",
