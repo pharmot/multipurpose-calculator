@@ -10,6 +10,10 @@
 - Expanded code documentation (jsdoc)
 - Output of date and time inputs to calculation details modal when date/time modal is used ([#43])
 
+### Changed
+
+- Return zero for IBW, AdjBW, OverUnder, LBW if age < 18
+
 ### Fixed
 
 - Age validation function didn't have access to min and max values from validation config

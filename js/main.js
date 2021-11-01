@@ -224,8 +224,11 @@ function resetDates(){
  * Object representing the patient.
  *
  * @namespace
- * @property {string|number} _sex patient's sex (after validation)
- * @property {number} _wt patient's weight in kg (after validation)
+ * @property {string|number} _sex  patient's sex, or 0 if invalid input
+ * @property {number}        _age  petiant's age in years, or 0 if invalid input
+ * @property {number}        _wt   patient's weight in kg, or 0 if invalid input
+ * @property {number}        _ht   petiant's height in cm, or 0 if invalid input
+ * @property {number}        _scr  patient's serum creatinine, or 0 if invalid input
  */
 let pt = {
   /**
@@ -249,6 +252,7 @@ let pt = {
    * Gets/sets the sex of the patient.  Accepts a single letter - m or f - and
    * stores as uppercase.  If invalid, stores 0.
    * @function
+   * @param {any} [x] Patient's sex
    * @returns {string|number} Patient's sex as `M`, `F`, or 0 if invalid
    */
   set sex(x){
@@ -257,6 +261,8 @@ let pt = {
   get sex(){ return this._sex || 0; },
   /**
    * Gets/sets the weight of the patient.
+   * @requires module:util
+   * @param {number} [x] Patient's weight
    * @function
    * @returns {number} Patient's weight in kg, or 0 if invalid
    */
@@ -266,6 +272,7 @@ let pt = {
    * Gets/sets the height of the patient.
    * @function
    * @requires module:util
+   * @param {number} [x] Patient's height
    * @returns {number} Patient's height in cm, or 0 if invalid
    */
   set ht(x){ this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
@@ -280,6 +287,7 @@ let pt = {
    * pt.age("300d");  // sets patient's age to 300 days (getter returns in years)
    * @function
    * @requires module:util
+   * @param {string|number} [x] Patient's age in days, months, or years
    * @returns {number} Patient's height in cm, or 0 if invalid
    */
   set age(x){
@@ -313,36 +321,79 @@ let pt = {
     if ( this.age < 18 && this.age !== 0 ) return 'child';
     return 'adult';
   },
+  /**
+   * Gets/sets the patient's serum creatinine.
+   * @function
+   * @requires module:util
+   * @param {number} [x] Patient's SCr
+   * @returns {number} Patient's SCr in mg/dL, or 0 if invalid
+   */
   set scr(x){
     this._scr = checkValue(x, this.config.check.scrMin, this.config.check.scrMax);
   },
   get scr(){ return this._scr || 0; },
+  /**
+   * Gets the patient's body mass index
+   * @see [equations.md](/docs/equations.md/#body-mass-index)
+   * @function
+   * @returns {number} Patient's BMI in kg/m^2, or 0 if insufficient input
+   */
   get bmi() {
     if ( this.wt > 0 && this.ht > 0 ) {
       return this.wt / (( this.ht / 100 )**2);
     }
     return 0;
   },
+  /**
+   * Gets the patient's ideal body weight.  Returns 0 if age < 18.
+   * @see [equations.md](/docs/equations.md/#ideal-body-weight)
+   * @function
+   * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
+   */
   get ibw(){
+    if ( age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       return ( this.sex === "M" ? 50 : 45.5 ) + 2.3 * ( this.ht / 2.54 - 60 );
     }
     return 0;
   },
+  /**
+   * Gets the patient's adjusted body weight, using a factor of 0.4.  Returns 0 if age < 18.
+   * @see [equations.md](/docs/equations.md/#adjusted-body-weight)
+   * @function
+   * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
+   */
   get adjBW(){
+    if ( age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       if ( this.wt <= this.ibw ) return this.wt;
       return 0.4 * (this.wt - this.ibw) + this.ibw;
     }
     return 0;
   },
+  /**
+   * Gets the percent the patient is over or under ideal body weight.  Returns 0 if age < 18.
+   * @see [equations.md](/docs/equations.md#percent-over-or-under-ibw)
+   * @example
+   * If patient is 30% above their IBW, returns `30`
+   * @function
+   * @returns {number} Percent over or under ideal body weight, or 0 if insufficient input
+   */
   get overUnder(){
+    if ( age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex && this.adjBW > 0 ) {
       return (this.wt / this.ibw - 1) * 100
     }
     return 0;
   },
+  /**
+   * Gets the patient's lean body weight.  Returns 0 if age < 18.
+   * @see [equations.md](/docs/equations.md#lean-body-weight)
+   * @function
+   * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
+   */
   get lbw(){
+    if ( age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       if ( this.sex === "F" ) {
         return 9270 * this.wt / ( 8780 + 244 * this.bmi )
@@ -351,24 +402,48 @@ let pt = {
     }
     return 0;
   },
+  /**
+   * Gets the patient's Cockroft-Gault creatinine clearance using actual body weight.
+   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @function
+   * @returns {number} Patient's CrCl (C-G ABW) in mL/min, or 0 if insufficient input
+   */
   get cgActual(){
     if ( this.wt > 0 && this.age > 0 && this.scr > 0 && this._sex ) {
       return this.cg(this.wt);
     }
     return 0;
   },
+  /**
+   * Gets the patient's Cockroft-Gault creatinine clearance using adjusted body weight.
+   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @function
+   * @returns {number} Patient's CrCl (C-G AdjBW) in mL/min, or 0 if insufficient input
+   */
   get cgAdjusted(){
     if ( this.adjBW > 0 && this.age > 0 && this.scr > 0 ) {
       return this.cg(this.adjBW);
     }
     return 0;
   },
+  /**
+   * Gets the patient's Cockroft-Gault creatinine clearance using ideal body weight.
+   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @function
+   * @returns {number} Patient's CrCl (C-G IBW) in mL/min, or 0 if insufficient input
+   */
   get cgIdeal(){
     if ( this.ibw > 0 && this.age > 0 && this.scr > 0 ) {
       return this.cg(this.ibw);
     }
     return 0;
   },
+  /**
+   * Gets the patient's Protocol CrCl (equation and weight depend on age and percent over/under IBW.
+   * @see [equations.md](/docs/equations.md#protocol-crcl)
+   * @function
+   * @returns {number} Patient's Protocol CrCl in mL/min, or 0 if insufficient input
+   */
   get crcl(){
     if ( this.age < 18 ) return this.schwartz;
     if ( this.ibw === 0 || this.age === 0 || this.scr === 0 ) return 0;
@@ -376,9 +451,22 @@ let pt = {
     if ( this.overUnder > 30 ) return this.cgAdjusted;
     return this.cgIdeal;
   },
+  /**
+   * Calculates the patient's Cockroft-Gault creatinine clearance
+   * @function
+   * @param {number} weight   weight in kg to use for calculation
+   * @returns {number} Calculated CrCl in mL/min, or 0 if insufficient input
+   */
   cg(weight){
     return (140 - this.age) * weight / (this.scr * 72) * (pt.sex === "F" ? 0.85 : 1);
   },
+  /**
+   * Gets/sets the k value for the Schwartz CrCl equation.
+   * @function
+   * @see [equations.md](/docs/equations.md#schwartz)
+   * @param {number}  [x] selectedIndex of k value input element where 0 is "term infant" and 1 is "LBW infant"
+   * @returns {number} k value, or 0 if age > 18 or insufficient input
+   */
   set schwartzK(term){
     if ( this.age === 0 || this.age >= 18 || ( this.age >= 13 && this.sex === 0 ) ) {
       this._schwartzK = 0;
@@ -394,6 +482,12 @@ let pt = {
   get schwartzK(){
     return this._schwartzK || 0;
   },
+  /**
+   * Gets the patient's Schwartz CrCl
+   * @see [equations.md](/docs/equations.md#schwartz)
+   * @function
+   * @returns {number} Patient's CrCl in mL/min using the Schwartz equation, or 0 if insufficient input
+   */
   get schwartz(){
     const k = this.schwartzK;
     if ( k === 0 || this.ht === 0 || this.scr === 0 ) return 0;
