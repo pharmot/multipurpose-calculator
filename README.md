@@ -42,7 +42,7 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 # Documentation
 
 - [Changelog](changelog.md)
-- [Equations and Calculations](docs/equations.md)
+- [Equations and Calculations](equations.md)
 
 
 # Work In Progress
