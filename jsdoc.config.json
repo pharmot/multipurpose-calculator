@@ -2,13 +2,16 @@
   "source": {
     "includePattern": ".+\\.js(doc|x)?$",
     "include": ["."],
-    "exclude": ["node_modules", "dist", "docs", "webpack.config.js", "webpack.dev.config.js"]
+    "exclude": ["node_modules", "dist", "docs", "jsdoc-template", "webpack.config.js", "webpack.dev.config.js"]
   },
   "recurseDepth": 4,
   "opts": {
-    "destination": "./docs/jsdoc/",
+    "destination": "./docs/",
     "recurse": true,
     "template": "jsdoc-template"
+  },
+  "templates": {
+    "showExpandedNav": false
   },
   "plugins": ["plugins/markdown"],
   "markdown": {
