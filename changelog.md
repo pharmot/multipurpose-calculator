@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [Unreleased]
+## [1.0.0]
 
 ### Added
 
@@ -19,6 +19,7 @@
 - Age validation function didn't have access to min and max values from validation config
 - Allow any value for number inputs without defined step ([#41])
 - Trigger AUC calculation when inputs from modal are copied to calculator ([#42])
+- Clear data validation errors when form is reset ([#39])
 
 ## [0.4.0] - 2021-10-21
 
@@ -134,7 +135,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.1...v0.2.2
@@ -157,6 +159,8 @@ Initial POC Release
 [#33]: https://github.com/pharmot/multipurpose-calculator/issues/33
 [#35]: https://github.com/pharmot/multipurpose-calculator/issues/35
 [#37]: https://github.com/pharmot/multipurpose-calculator/issues/37
+[#38]: https://github.com/pharmot/multipurpose-calculator/issues/38
+[#39]: https://github.com/pharmot/multipurpose-calculator/issues/39
 [#40]: https://github.com/pharmot/multipurpose-calculator/issues/40
 [#41]: https://github.com/pharmot/multipurpose-calculator/issues/41
 [#42]: https://github.com/pharmot/multipurpose-calculator/issues/42

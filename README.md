@@ -24,9 +24,6 @@
 
 A dosing and kinetics calculator for pharmacists.  This calculator is intended to be used in conjunction with reasonable clinical judgement and current dosing protocols.
 
-
-
-
 # Features
 
 - Creatinine clearance calculation (Cockroft-Gault for adults, Schwartz for peds)
@@ -41,7 +38,6 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 # Documentation
 
-- [Changelog](changelog.md)
 - [Equations and Calculations](equations.md)
 
 
@@ -54,6 +50,24 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 [![GitHub issues by-label](https://img.shields.io/github/issues-raw/pharmot/multipurpose-calculator/question?color=%23D876E3&label=questions)](https://github.com/pharmot/multipurpose-calculator/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion)
 
 # Release Notes
+
+[View full changelog here](changelog.md)
+
+## [1.0.0] - 2021-11-03
+
+### Added
+
+- Documentation of PK equations and calculations
+- Output of date and time inputs to calculation details
+
+### Changed
+
+- Can now run independently if hosted on local server (will work if internet is down)
+
+### Fixed
+
+- Trigger AUC calculation when inputs from modal are copied to calculator
+- Clear data validation errors when form is reset
 
 ## [0.4.0] - 2021-10-21
 
@@ -141,13 +155,13 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...HEAD
-[0.4.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.2...v0.3.0
-[0.2.2]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.1...v0.2.0
-[0.1.1]: https://github.com/pharmot/multipurpose-calculator/compare/v0.1.0...v0.1.1
-[0.1.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.0.3...v0.1.0
-[0.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v0.0.2...v0.0.3
+[1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
+[0.4.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.4.0
+[0.3.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.3.0
+[0.2.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.2.2
+[0.2.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.2.1
+[0.2.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.2.0
+[0.1.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.1.1
+[0.1.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.1.0
+[0.0.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.0.3
 [0.0.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.0.2
