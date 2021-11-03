@@ -58,7 +58,7 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 ## [0.4.0] - 2021-10-21
 
 ### New Features
-- Output of inputs, outputs, and calculation steps ([#24])
+- Output of inputs, outputs, and calculation steps
 - Favicon
 
 ### Bug Fixes
