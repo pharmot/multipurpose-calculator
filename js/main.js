@@ -351,7 +351,7 @@ let pt = {
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
   get ibw(){
-    if ( age < 18 ) return 0;
+    if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       return ( this.sex === "M" ? 50 : 45.5 ) + 2.3 * ( this.ht / 2.54 - 60 );
     }
@@ -364,7 +364,7 @@ let pt = {
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
   get adjBW(){
-    if ( age < 18 ) return 0;
+    if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       if ( this.wt <= this.ibw ) return this.wt;
       return 0.4 * (this.wt - this.ibw) + this.ibw;
@@ -380,7 +380,7 @@ let pt = {
    * @returns {number} Percent over or under ideal body weight, or 0 if insufficient input
    */
   get overUnder(){
-    if ( age < 18 ) return 0;
+    if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex && this.adjBW > 0 ) {
       return (this.wt / this.ibw - 1) * 100
     }
@@ -393,7 +393,7 @@ let pt = {
    * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
    */
   get lbw(){
-    if ( age < 18 ) return 0;
+    if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       if ( this.sex === "F" ) {
         return 9270 * this.wt / ( 8780 + 244 * this.bmi )
