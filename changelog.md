@@ -1,5 +1,20 @@
 # Changelog
 
+## [Unreleased] - v1.1.0-beta.0
+
+### Added
+
+- Reverse Heparin Calculator
+- PCA Dosing Calculator
+
+### Changed
+
+- Optimized webpack configuration
+
+### Fixed
+
+- Added check for Infinity to displayDate function in utility module
+
 
 ## [1.0.0]
 

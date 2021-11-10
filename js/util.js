@@ -79,16 +79,19 @@ export function roundTo(x, n = 0) {
 export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false){
   let txt = '';
   let wasNeg = false;
-  if ( num < 0 && allowNegative ) {
-    num = 0 - num;
-    wasNeg = true;
-  }
-  if( num > 0 ) {
-    txt = roundTo(num, round);
-  }
+  if ( num !== Infinity && num !== -Infinity ) {
 
-  if ( wasNeg ) {
-    txt = 0 - txt;
+    if ( num < 0 && allowNegative ) {
+      num = 0 - num;
+      wasNeg = true;
+    }
+    if( num > 0 ) {
+      txt = roundTo(num, round);
+    }
+
+    if ( wasNeg ) {
+      txt = 0 - txt;
+    }
   }
 
   if ( txt !== '' ) {

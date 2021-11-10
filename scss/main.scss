@@ -1,11 +1,5 @@
 // compileOnSave: false
 
-/*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.0
-  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
-  * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
-  */
-
 @import '../node_modules/bootstrap/dist/css/bootstrap';
 @import './fontawesome';
 @import './variables';
@@ -43,6 +37,9 @@ body {
 #card--twolevel { @include fixed-width('twoLevel'); }
 #card--seconddose { @include fixed-width('secondDose'); }
 #card--ivig { @include fixed-width(600px); }
+#card--heparin { @include fixed-width(650px); }
+#card--pca { @include fixed-width(650px); }
+// #col--pca-params { @include fixed-width(500px); }
 
 #card--auc,
 #card--aucLinear {
@@ -91,7 +88,7 @@ h1 {
   flex-wrap: nowrap;
 }
 
-.input-group + .input-group {
+.input-group:not(.hidden) + .input-group:not([class*=offset-]) {
   margin-left: 0;
   padding-left: 0;
 }
@@ -150,6 +147,21 @@ h1 {
   &:last-child {
     margin-left: -1px;
     justify-content: flex-start;
+  }
+}
+
+.form-help-text {
+  color: $clr-gray;
+  text-align: left;
+  display: block;
+  margin-top: $len-1;
+  font-size: 80%;
+  font-weight: 400;
+  padding-left: $len-2;
+
+  &.form-help-text-inline {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -461,4 +473,34 @@ ul {
 
 .card-footer {
   padding: $len-2 $len-4;
+}
+
+#nav-more {
+  margin-top: -7px;
+}
+
+.table-sm.pump-limits {
+  margin-top: 0;
+  margin-bottom: $len-2;
+
+  caption {
+    padding-top: $len-1;
+    padding-bottom: 0;
+  }
+}
+
+.pca-bg-warning {
+  background-color: lighten($orange, 35%);
+}
+
+.pca-bg-danger {
+  background-color: lighten($red, 35%);
+}
+
+.pca-bg-error {
+  background-color: lighten($red, 22%);
+}
+
+.beta-notice {
+  background: $red;
 }

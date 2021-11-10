@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmultipurpose_calculator=self.webpackChunkmultipurpose_calculator||[]).push([["vanco"],{},function(u){u.O(0,["js_vanco_js"],(function(){return c="./js/vanco.js",u(u.s=c);var c}));u.O()}]);

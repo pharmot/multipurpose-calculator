@@ -3,13 +3,24 @@ const thisYear = (new Date()).getFullYear();
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require ('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const isBeta = /beta/.test(pjs.version);
+const betaBanner = isBeta ? `<div class="container-fluid beta-notice"><div class="h6 text-white">TEST RELEASED VERSION ${pjs.version}</div></div>` : '';
+const bodyStyle =  isBeta ? `style="border: 4px solid #dc3545;margin:0 auto 70px;"` : '';
 
 module.exports = {
-  entry: './js/main.js',
+  entry: {
+    main: './js/main.js',
+    heparin: './js/heparin.js',
+    pca: './js/pca.js',
+    vanco: './js/vanco.js',
+    seconddose: './js/seconddose.js'
+  },
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'bundle.min.js',
+    filename: '[name].[contenthash:8].js',
+    clean: true,
   },
   resolve: {
     alias: {
@@ -26,16 +37,7 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              postcssOptions: {
-                plugins: [
-                  [
-                    "autoprefixer",
-                    {
-
-                    },
-                  ],
-                ],
-              },
+              postcssOptions: { plugins: [ [ "autoprefixer", { }, ], ], },
             },
           },
           { loader: 'sass-loader' }
@@ -46,7 +48,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       linkType: 'text/css',
-      filename: 'main.min.css'
+      filename: 'main.[contenthash:8].min.css'
     }),
     new HtmlWebpackPlugin({
       template: './template.html',
@@ -54,9 +56,19 @@ module.exports = {
         buildversion: pjs.version,
         homepage: pjs.homepage,
         issues: pjs.bugs.url,
-        thisYear: thisYear
+        thisYear: thisYear,
+        betaBanner: betaBanner,
+        bodyStyle: bodyStyle
       },
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "**/*",
+          context: `${__dirname}/src`,
+        },
+      ]
+    })
   ],
   optimization: {
     minimize: true,
@@ -68,5 +80,19 @@ module.exports = {
          },
       },
     })],
+    runtimeChunk: 'single',
+    moduleIds: 'named',
+    chunkIds: 'named',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'initial',
+        }
+      }
+    },
   },
 };

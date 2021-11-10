@@ -1,5 +1,5 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.0
+  * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.0
   * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
@@ -14,7 +14,9 @@ import { getSecondDose } from './seconddose.js';
 import * as arial from './arial.js';
 import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
-import * as LOG from './logger.js'
+import * as LOG from './logger.js';
+require('./heparin.js');
+require('./pca.js');
 
 let debug = false;
 let debugDefaultTab = "auc";
@@ -23,7 +25,7 @@ let validatedFields;
 $(()=>{
   $('[data-toggle="popover"]').popover({html: true});
   $('[data-toggle="tooltip"]').tooltip()
-
+  $('.hidden').hide();
   if ( /debug/.test(location.search) ) {
     debug = true;
   } else if ( /log/.test(location.search) ) {
@@ -174,7 +176,17 @@ $("#btnReset").on('click', () => {
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
   $(validatedFields).removeClass('invalid');
+  $('.hidden').hide();
+  $('.output').html('');
   $('#ptage').get(0).focus();
+
+  // PCA module
+  ($("#pca-drug")[0]).selectedIndex = 0;
+  ($("#pca-orderset")[0]).selectedIndex = 0;
+  ($("#pca-continuous")[0]).selectedIndex = 0;
+  $('.pca-bg-warning').removeClass('pca-bg-warning');
+  $('.pca-bg-danger').removeClass('pca-bg-danger');
+  $('.pca-bg-error').removeClass('pca-bg-error');
 
 });
 
