@@ -275,7 +275,7 @@
           <button type="button" class="btn btn-outline-secondary" id="btnReset" tabindex="999">Reset All</button>
         </div>
         <div class="card">
-          <div class="card-header h6">Calculated Weights</div>
+          <div class="card-header h5">Calculated Weights</div>
           <div class="card-body">
             <div class="form-row hide-age-infant hide-age-child">
               <label for="ibw" class="col-5">IBW</label>
@@ -310,7 +310,7 @@
           </div>
         </div>
         <div class="card" id="card--crcl">
-          <div class="card-header h6">Creatinine Clearance</div>
+          <div class="card-header h5">Creatinine Clearance</div>
           <div class="card-body">
             <div class="form-row hide-age-infant hide-age-child">
               <label for="cgActual" class="col-5">C-G (Actual)</label>
@@ -390,7 +390,7 @@
             </div>
             <div class="row hide-peds-hd">
               <div class="card" id="card--initial-dosing">
-                <div class="card-header h6">
+                <div class="card-header h5">
                   Initial Vancomycin Dosing
                 </div>
                 <div class="card-body">
@@ -446,7 +446,7 @@
             </div>
             <div class="row fade fade-opacity" id="row--initialPkCalc">
               <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
-                <div class="card-header h6">Initial Vancomycin PK Dosing</div>
+                <div class="card-header h5">Initial Vancomycin PK Dosing</div>
                 <div class="card-body pt-1">
                   <div class="row mb-2">
                   </div>
@@ -534,7 +534,7 @@
             <div class="row hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
               <div class="col-auto" id="col--current-dose">
                 <div class="card" id="card--current-dose">
-                  <div class="card-header h6">Current Dose</div>
+                  <div class="card-header h5">Current Dose</div>
                   <div class="card-body">
                     <div class="form-row mb-3">
                       <label for="revision-goalTrough" class="col-4">Goal Trough</label>
@@ -587,7 +587,7 @@
               </div>
               <div class="col-auto">
                 <div class="card hide-hd-1" id="card--steady-state">
-                  <div class="card-header h6">Steady State Check</div>
+                  <div class="card-header h5">Steady State Check</div>
                   <div class="card-body">
                     <div class="form-row">
                       <label for="steadystate-dateFirst" class="col-3">First Dose</label>
@@ -627,7 +627,7 @@
             <div class="row hide-hd-0 hide-hd-2 hide-hd-3 hide-hd-4 hide-age-infant hide-age-child">
               <div class="col-12">
                 <div class="card" id="card--vancoHdAdj">
-                  <div class="card-header h6">Dose Adjustment for HD Patient</div>
+                  <div class="card-header h5">Dose Adjustment for HD Patient</div>
                   <div class="card-body">
                     <div class="form-row">
                       <div class="input-group col-12">
@@ -641,7 +641,7 @@
             <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
               <div class="col-auto" id="col--protocol-adjustment">
                 <div class="card" id="card--protocol-adjustment">
-                  <div class="card-header h6">Single Level (Trough) Adjustment</div>
+                  <div class="card-header h5">Single Level (Trough) Adjustment</div>
                   <div class="card-body">
                     <div class="form-row">
                       <div class="col-2 like-card-header">Linear</div>
@@ -746,7 +746,7 @@
               </div>
             </div>
             <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--auc">
-              <div class="card-header h6">Vancomycin AUC Calculator</div>
+              <div class="card-header h5">Vancomycin AUC Calculator</div>
               <div class="card-body" id="vancoAUC-cardBody">
                 <div class="form-row mb-3" id="vancoAUC-row--currentDose">
                   <label for="auc-curDose" class="col-2 col-form-label">Current Dose</label>
@@ -849,7 +849,7 @@
               <div class="alert alert-warning ml-3 mt-2 mb-0">Note: This tab does not apply to AUC dosing.  Use the previous tab for AUC calculations.</div>
             </div>
             <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--twolevel">
-              <div class="card-header h6">Two-Level PK</div>
+              <div class="card-header h5">Two-Level PK</div>
               <div class="card-body">
                 <div class="form-row">
                   <label for="twolevelDate1" class="col-2 col-form-label">First Level</label>
@@ -923,7 +923,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="card" id="card--seconddose">
-                  <div class="card-header h6">Vancomycin Second Dose Timing</div>
+                  <div class="card-header h5">Vancomycin Second Dose Timing</div>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-12">
@@ -1032,7 +1032,7 @@
           </div>
           <div class="tab-pane fade" id="nav-ivig">
             <div class="card" id="card--ivig">
-              <div class="card-header h6">IVIG Rate Calculator</div>
+              <div class="card-header h5">IVIG Rate Calculator</div>
               <div class="card-body">
                 <div class="form-row">
                   <label for="ivig-product" class="col-2">Select Drug</label>
@@ -1082,13 +1082,16 @@
                 <li class="nav-item">
                   <a class="nav-link" id="nav-more-pca-tab" data-toggle="tab" href="#nav-more-pca" role="tab">PCA</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-more-nextdose-tab" data-toggle="tab" href="#nav-more-nextdose" role="tab">Std. Admin Times</a>
+                </li>
               </ul>
             </div>
             <div class="col">
               <div class="tab-content" id="nav-moreContent">
                 <div class="tab-pane fade show active" id="nav-more-heparin">
                   <div class="card" id="card--heparin">
-                    <div class="card-header h6">Reverse Heparin Calculator</div>
+                    <div class="card-header h5">Reverse Heparin Calculator</div>
                     <div class="card-body">
                       <div class="form-row mb-0">
                         <label for="heparin-wt" class="col-3">Dosing Weight</label>
@@ -1159,7 +1162,7 @@
                 </div>
                 <div class="tab-pane fade" id="nav-more-pca">
                   <div class="card" id="card--pca">
-                    <div class="card-header h6">PCA Calculator</div>
+                    <div class="card-header h5">PCA Calculator</div>
                     <div class="card-body">
 
                       <div class="form-row mb-2">
@@ -1329,6 +1332,178 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-more-nextdose">
+                  <div class="card" id="card--nextdose">
+                    <div class="card-header h5">
+                      Standard Administration Times
+                    </div>
+                    <div class="card-body pt-2">
+                      <div class="card-text small">
+                        Select a frequency and the current time
+                        to see when the next dose should be given.  When a frequency
+                        is chosen, standard times will be highlighted.  Note: does
+                        not apply to vancomycin or medications with non-standard
+                        dosing times.
+                      </div>
+                      <div class="card-title h6 mt-4">Choose frequency:</div>
+                      <div class="form-row mt-2">
+                        <div class="col">
+                          <div class="btn-group-vertical btn-group-toggle btn-group--nextdose-freq" data-toggle="buttons">
+                            <label class="btn btn-outline-secondary is-top">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="daily" autocomplete="off">
+                              daily or nightly
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="bid" autocomplete="off">
+                              BID / every 12 hours
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="q8h" autocomplete="off">
+                              every 8 hours
+                            </label>
+                            <label class="btn  btn-outline-secondary is-bottom">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="q6h" autocomplete="off">
+                              every 6 hours
+                            </label>
+                            <label class="btn btn-outline-secondary is-top">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="bidac" autocomplete="off">
+                              BID before meals
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="bidcc" autocomplete="off">
+                              BID with meals
+                            </label>
+                            <label class="btn btn-outline-secondary is-bottom">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="bidpc" autocomplete="off">
+                              BID after meals
+                            </label>
+                            <div class="btn-group-vertical__spacer">&nbsp;</div>
+                            <label class="btn btn-outline-secondary is-top">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="tidac" autocomplete="off">
+                              TID before meals
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="tidcc" autocomplete="off">
+                              TID with meals
+                            </label>
+                            <label class="btn btn-outline-secondary is-bottom">
+                              <input type="radio" class="radio--nextdose" name="nextdose-freq" value="tidpc" autocomplete="off">
+                              TID after meals
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-title h6 mt-4">Choose time:</div>
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="btn-group btn-group-toggle btn-group--nextdose-time" data-toggle="buttons">
+                            <label class="btn btn-outline-secondary st-q6h is-top-left">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="0" autocomplete="off">
+                              0000
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="1" autocomplete="off">
+                              0100
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="2" autocomplete="off">
+                              0200
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="3" autocomplete="off">
+                              0300
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="4" autocomplete="off">
+                              0400
+                            </label>
+                            <label class="btn btn-outline-secondary st-q8h">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="5" autocomplete="off">
+                              0500
+                            </label>
+                            <label class="btn btn-outline-secondary st-q6h">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="6" autocomplete="off">
+                              0600
+                            </label>
+                            <label class="btn btn-outline-secondary st-bidac st-tidac">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="7" autocomplete="off">
+                              0700
+                            </label>
+                            <label class="btn btn-outline-secondary st-tidcc st-bidcc">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="8" autocomplete="off">
+                              0800
+                            </label>
+                            <label class="btn btn-outline-secondary st-daily st-bid st-bidpc st-tidpc">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="9" autocomplete="off">
+                              0900
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="10" autocomplete="off">
+                              1000
+                            </label>
+                            <label class="btn btn-outline-secondary st-tidac is-top-right">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="11" autocomplete="off">
+                              1100
+                            </label>
+                            <label class="btn btn-outline-secondary st-tidcc st-q6h is-bottom-left">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="12" autocomplete="off">
+                              1200
+                            </label>
+                            <label class="btn btn-outline-secondary st-tidpc st-q8h">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="13" autocomplete="off">
+                              1300
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="14" autocomplete="off">
+                              1400
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="15" autocomplete="off">
+                              1500
+                            </label>
+                            <label class="btn btn-outline-secondary st-bidac st-tidac">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="16" autocomplete="off">
+                              1600
+                            </label>
+                            <label class="btn btn-outline-secondary st-bidcc st-tidcc">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="17" autocomplete="off">
+                              1700
+                            </label>
+                            <label class="btn btn-outline-secondary st-bidpc st-tidpc st-q6h">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="18" autocomplete="off">
+                              1800
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="19" autocomplete="off">
+                              1900
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="20" autocomplete="off">
+                              2000
+                            </label>
+                            <label class="btn btn-outline-secondary st-daily st-bid st-q8h">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="21" autocomplete="off">
+                              2100
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="22" autocomplete="off">
+                              2200
+                            </label>
+                            <label class="btn btn-outline-secondary is-bottom-right">
+                              <input type="radio" class="radio--nextdose" name="nextdose-time" value="23" autocomplete="off">
+                              2300
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row mt-4">
+                        <div class="input-group col-10 offset-1">
+                          <div id="nextdose-result" class="output multi-line multi-line-2 hidden">
+                          </div>
+                        </div>
                     </div>
                   </div>
                 </div>

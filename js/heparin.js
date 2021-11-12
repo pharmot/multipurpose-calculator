@@ -2,7 +2,7 @@
  * Reverse Heparin Calculator Module
  * @module heparin
  * @requires module:util
- * @since v1.x
+ * @since v1.1.0
  */
 // TODO: display data validation errors
 import { checkValue, roundTo, displayValue } from './util.js';

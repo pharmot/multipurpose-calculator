@@ -676,7 +676,6 @@ exports.publish = function (taffyData, opts, tutorials) {
     }
 });
 
-  // TODO: move the tutorial functions to templateHelper.js
   function generateTutorial(title, tutorial, filename) {
     const tutorialData = {
       title: title,

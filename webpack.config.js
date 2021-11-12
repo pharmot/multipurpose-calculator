@@ -14,6 +14,7 @@ module.exports = {
     heparin: './js/heparin.js',
     pca: './js/pca.js',
     vanco: './js/vanco.js',
+    nextdose: './js/nextdose.js',
     seconddose: './js/seconddose.js'
   },
   mode: 'production',

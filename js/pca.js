@@ -2,7 +2,7 @@
  * PCA Calculatior Module
  * @module pca
  * @requires module:util
- * @since v1.x
+ * @since v1.1.0
  */
 
 import { checkValue, roundTo, displayValue } from './util.js';

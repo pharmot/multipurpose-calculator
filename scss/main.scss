@@ -39,6 +39,7 @@ body {
 #card--ivig { @include fixed-width(600px); }
 #card--heparin { @include fixed-width(650px); }
 #card--pca { @include fixed-width(650px); }
+#card--nextdose { @include fixed-width(700px); }
 // #col--pca-params { @include fixed-width(500px); }
 
 #card--auc,
@@ -110,7 +111,7 @@ h1 {
   padding: $len-1 $len-2;
 }
 
-.form-row label:not(.form-check-label) {
+.form-row label:not(.form-check-label):not(.btn) {
   @extend %form-element-base;
 
   justify-content: flex-start;
@@ -503,4 +504,66 @@ ul {
 
 .beta-notice {
   background: $red;
+}
+
+.btn-group--nextdose-freq {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: $len-3;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  margin-left: $len-4;
+  margin-right: $len-4;
+  padding-left: $len-5;
+  padding-right: $len-5;
+
+  &.btn-group-vertical > .btn {
+    border-radius: 0;
+    margin-top: -1px;
+    padding: $len-1;
+  }
+
+  &.btn-group-vertical > .btn.is-top {
+    border-top-left-radius: $len-1;
+    border-top-right-radius: $len-1;
+  }
+
+  &.btn-group-vertical > .btn.is-bottom {
+    border-bottom-left-radius: $len-1;
+    border-bottom-right-radius: $len-1;
+  }
+}
+
+.btn:not(:disabled):not(.disabled).btn-group-vertical__spacer {
+  cursor: initial;
+}
+
+.btn-group--nextdose-time {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(12, 1fr);
+  margin-top: $len-2;
+
+  &.btn-group > .btn {
+    border-radius: 0;
+    margin-top: -1px;
+    padding: $len-1;
+  }
+
+  &.btn-group > .btn.is-top-left {
+    border-top-left-radius: $len-1;
+  }
+
+  &.btn-group > .btn.is-top-right {
+    border-top-right-radius: $len-1;
+  }
+
+  &.btn-group > .btn.is-bottom-left {
+    border-bottom-left-radius: $len-1;
+    margin-left: 0;
+  }
+
+  &.btn-group > .btn.is-bottom-right {
+    border-bottom-right-radius: $len-1;
+  }
 }

@@ -17,6 +17,7 @@ import * as vanco from './vanco.js';
 import * as LOG from './logger.js';
 require('./heparin.js');
 require('./pca.js');
+require('./nextdose.js');
 
 let debug = false;
 let debugDefaultTab = "auc";
