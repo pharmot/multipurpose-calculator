@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Source: growthCharts.js - Documentation
+      Source: nextdose.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -79,7 +79,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        Source: growthCharts.js
+        Source: nextdose.js
       </h1>
     
 
@@ -89,46 +89,137 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>/**
- * Module for growth chart calculations
- * @module growthCharts
- * @since v0.2.0
+ * Standard Administration Times (Next Dose) module
+ * @module nextdose
+ * @since v1.1.0
  */
 
 /**
- * @typedef BmiForAgeDataItem
- * @type {object}
- * @property {string} sex - M or F
- * @property {number} age - age in months
- * @property {number} p95 - 95th percentile of BMI
+ * Standard Dosing Frequency Parameters
+ *
+ * @typedef  {Object} StandardDosingFrequency
+ * @property {string}   name       - The name of the frequency
+ * @property {number[]} resultMap  - An array of 24 numbers mapping each hour to a string in the resultText property
+ * @property {string[]} resultText - Possibilities of when next dose should be given
  */
 
- /**
-  * BMI for Age Data from
-  * {@link https://www.cdc.gov/growthcharts/percentile_data_files.htm}
-  * age is in months, starting at that and up to but not including
-  * the next age.
-  * @constant
-  * @type {BmiForAgeDataItem[]}
-  */
- const bmiagerev = require('../lib/bmiagerev.json');
-
- /**
- * Determines if child is obese based on the 95th percentile of BMI-for-age
- * @param   {string}   sex          M or F
- * @param   {number}   age          age in years
- * @param   {number}   bmi          body mass index
- * @returns {boolean}               Is child obese?
+/**
+ * Standard Dosing Frequencies
+ * @type {StandardDosingFrequency[]}
  */
-export function childIsObese({sex, age, bmi}={}){
-  if ( age > 20 || age &lt; 2 ) return undefined;
-  const ageMos = Math.floor(age*12);
-  const ref = bmiagerev.filter( el => {
-    if ( el.sex === sex &amp;&amp; el.age === ageMos ) return true;
-    return false;
-  })[0];
-  if ( bmi >= ref.p95 ) return true;
-  return false;
-}
+const freqs = [
+  {
+    name: 'daily',
+    resultMap: [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+    resultText: [
+      "Give first dose now and repeat at 2100 daily.",
+      "Give first dose now and repeat at 0900 daily."
+    ]
+  },
+  {
+    name: 'bid',
+    resultMap: [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
+    resultText: [
+      "Give first dose now and repeat at 0900.",
+      "Give first dose now and repeat at 2100."
+    ]
+  },
+  {
+    name: 'bidac',
+    resultMap: [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2],
+    resultText: [
+      "Give first dose at 0700.",
+      "Give first dose at 1600.",
+      "Give first dose at 0700 tomorrow."
+    ],
+  },
+  {
+    name: 'bidcc',
+    resultMap: [0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2],
+    resultText: [
+      "Give first dose at 0800.",
+      "Give first dose at 1700.",
+      "Give first dose at 0800."
+    ],
+  },
+  {
+    name: 'bidpc',
+    resultMap: [0,0,0,0,0,0,0,0,0,1,2,2,2,2,3,3,3,3,3,4,4,4,4,4],
+    resultText: [
+      "Hold until 0900 if able, or give first dose now with snack and repeat at 1800.",
+      "Give first dose at 0900",
+      "Give first dose after lunch, repeat at 1800.",
+      "Give first dose at 1800",
+      "Hold until 0900 if able, or give first dose now with snack and repeat at 0900."
+    ],
+  },
+  {
+    name: 'tidac',
+    resultMap: [0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,2,3,3,3,3,3,3,3],
+    resultText: [
+      "Give first dose at 0700.",
+      "Give first dose at 1100.",
+      "Give first dose at 1600.",
+      "Not specified"
+    ]
+  },
+  {
+    name: 'tidcc',
+    resultMap: [0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,3,3,3,3],
+    resultText: [
+      "Give first dose with a snack now and repeat at 0800.",
+      "Give first dose now and repeat at 1200.",
+      "Give first dose now and repeat at 1700.",
+      "Give first dose with dinner or a snack now and repeat at 0800."
+    ]
+  },
+  {
+    name: 'tidpc',
+    resultMap: [0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,3,3,3],
+    resultText: [
+      "Give first dose now and repeat at 0900.",
+      "Give first dose now and repeat at 1300.",
+      "Give first dose now and repeat at 1800.",
+      "Give first dose with dinner or a snack now and repeat at 0900."
+    ]
+  },
+  {
+    name: 'q8h',
+    resultMap: [2,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2],
+    resultText: [
+      "Give first dose now and repeat at 1300.",
+      "Give first dose now and repeat at 2100.",
+      "Give first dose now and repeat at 0500."
+    ]
+  },
+  {
+    name: 'q6h',
+    resultMap: [0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,0,0,0],
+    resultText: [
+      "Give first dose now and repeat at 0600.",
+      "Give first dose now and repeat at 1200.",
+      "Give first dose now and repeat at 1800.",
+      "Give first dose now and repeat at 0000."
+    ]
+  }
+];
+
+
+$('input.radio--nextdose').on('change', () => {
+
+  const freq = $('input[name="nextdose-freq"]:checked').val();
+  const startTime = +$('input[name="nextdose-time"]:checked').val();
+
+  $('.btn-group--nextdose-time > label').removeClass('highlighted');
+  if ( freq !== undefined ) {
+    $(`.st-${freq}`).addClass('highlighted');
+  }
+  if ( !isNaN(startTime) &amp;&amp; freq !== undefined ) {
+    $('#nextdose-result').show();
+    const stdFreq = freqs.filter( obj => obj.name === freq )[0];
+    $('#nextdose-result').html(stdFreq.resultText[stdFreq.resultMap[startTime]]);
+  }
+});
 </code></pre>
   </article>
 </section>

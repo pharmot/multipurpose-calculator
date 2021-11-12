@@ -73,7 +73,7 @@
 
     
 
-    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul>
+    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul>
   </nav>
 
   <div id="main">
@@ -89,7 +89,7 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>/*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.0-beta.0
+  * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.0
   * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
@@ -104,7 +104,10 @@ import { getSecondDose } from './seconddose.js';
 import * as arial from './arial.js';
 import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
-import * as LOG from './logger.js'
+import * as LOG from './logger.js';
+require('./heparin.js');
+require('./pca.js');
+require('./nextdose.js');
 
 let debug = false;
 let debugDefaultTab = "auc";
@@ -113,7 +116,7 @@ let validatedFields;
 $(()=>{
   $('[data-toggle="popover"]').popover({html: true});
   $('[data-toggle="tooltip"]').tooltip()
-
+  $('.hidden').hide();
   if ( /debug/.test(location.search) ) {
     debug = true;
   } else if ( /log/.test(location.search) ) {
@@ -264,7 +267,17 @@ $("#btnReset").on('click', () => {
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
   $(validatedFields).removeClass('invalid');
+  $('.hidden').hide();
+  $('.output').html('');
   $('#ptage').get(0).focus();
+
+  // PCA module
+  ($("#pca-drug")[0]).selectedIndex = 0;
+  ($("#pca-orderset")[0]).selectedIndex = 0;
+  ($("#pca-continuous")[0]).selectedIndex = 0;
+  $('.pca-bg-warning').removeClass('pca-bg-warning');
+  $('.pca-bg-danger').removeClass('pca-bg-danger');
+  $('.pca-bg-error').removeClass('pca-bg-error');
 
 });
 
@@ -441,7 +454,7 @@ let pt = {
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
   get ibw(){
-    if ( age &lt; 18 ) return 0;
+    if ( this.age &lt; 18 ) return 0;
     if ( this.ht > 0 &amp;&amp; this.wt > 0 &amp;&amp; this._sex ) {
       return ( this.sex === "M" ? 50 : 45.5 ) + 2.3 * ( this.ht / 2.54 - 60 );
     }
@@ -454,7 +467,7 @@ let pt = {
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
   get adjBW(){
-    if ( age &lt; 18 ) return 0;
+    if ( this.age &lt; 18 ) return 0;
     if ( this.ht > 0 &amp;&amp; this.wt > 0 &amp;&amp; this._sex ) {
       if ( this.wt &lt;= this.ibw ) return this.wt;
       return 0.4 * (this.wt - this.ibw) + this.ibw;
@@ -470,7 +483,7 @@ let pt = {
    * @returns {number} Percent over or under ideal body weight, or 0 if insufficient input
    */
   get overUnder(){
-    if ( age &lt; 18 ) return 0;
+    if ( this.age &lt; 18 ) return 0;
     if ( this.ht > 0 &amp;&amp; this.wt > 0 &amp;&amp; this._sex &amp;&amp; this.adjBW > 0 ) {
       return (this.wt / this.ibw - 1) * 100
     }
@@ -483,7 +496,7 @@ let pt = {
    * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
    */
   get lbw(){
-    if ( age &lt; 18 ) return 0;
+    if ( this.age &lt; 18 ) return 0;
     if ( this.ht > 0 &amp;&amp; this.wt > 0 &amp;&amp; this._sex ) {
       if ( this.sex === "F" ) {
         return 9270 * this.wt / ( 8780 + 244 * this.bmi )

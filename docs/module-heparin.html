@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Source: growthCharts.js - Documentation
+      Module: heparin - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -79,61 +77,157 @@
   <div id="main">
     
       <h1 class="page-title">
-        Source: growthCharts.js
+        Module: heparin
       </h1>
     
 
     
-      
 
 <section>
+  <header>
+    
+      
+        
+  </header>
+
   <article>
-    <pre class="prettyprint source linenums"><code>/**
- * Module for growth chart calculations
- * @module growthCharts
- * @since v0.2.0
- */
+    <div class="container-overview">
+      
+        
+          <div class="description">
+            <p>Reverse Heparin Calculator Module</p>
+          </div>
+        
 
-/**
- * @typedef BmiForAgeDataItem
- * @type {object}
- * @property {string} sex - M or F
- * @property {number} age - age in months
- * @property {number} p95 - 95th percentile of BMI
- */
+        
+          
 
- /**
-  * BMI for Age Data from
-  * {@link https://www.cdc.gov/growthcharts/percentile_data_files.htm}
-  * age is in months, starting at that and up to but not including
-  * the next age.
-  * @constant
-  * @type {BmiForAgeDataItem[]}
-  */
- const bmiagerev = require('../lib/bmiagerev.json');
 
- /**
- * Determines if child is obese based on the 95th percentile of BMI-for-age
- * @param   {string}   sex          M or F
- * @param   {number}   age          age in years
- * @param   {number}   bmi          body mass index
- * @returns {boolean}               Is child obese?
- */
-export function childIsObese({sex, age, bmi}={}){
-  if ( age > 20 || age &lt; 2 ) return undefined;
-  const ageMos = Math.floor(age*12);
-  const ref = bmiagerev.filter( el => {
-    if ( el.sex === sex &amp;&amp; el.age === ageMos ) return true;
-    return false;
-  })[0];
-  if ( bmi >= ref.p95 ) return true;
-  return false;
-}
-</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since">
+      <ul class="dummy">
+        <li>
+          v1.1.0
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="heparin.js.html">heparin.js</a>, <a href="heparin.js.html#line1">line 1</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      
+    </div>
+
+    
+
+    
+      <h3 class="subsection-title">Requires</h3>
+
+      <ul>
+        
+          <li>
+            <a href="module-util.html">module:util</a>
+          </li>
+        
+      </ul>
+    
+
+    
+
+     
+
+    
+      <h3 class="subsection-title">Namespaces</h3>
+
+      <dl>
+        
+          <dt>
+            <a href="module-heparin-heparin.html">heparin</a>
+          </dt>
+          <dd>
+            
+          </dd>
+        
+      </dl>
+    
+
+    
+
+    
+
+    
+
+    
   </article>
 </section>
 
-    
+
 
 
   </div>

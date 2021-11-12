@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Source: growthCharts.js - Documentation
+      Source: heparin.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -79,7 +79,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        Source: growthCharts.js
+        Source: heparin.js
       </h1>
     
 
@@ -89,46 +89,64 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>/**
- * Module for growth chart calculations
- * @module growthCharts
- * @since v0.2.0
+ * Reverse Heparin Calculator Module
+ * @module heparin
+ * @requires module:util
+ * @since v1.1.0
  */
+// TODO: display data validation errors
+import { checkValue, roundTo, displayValue } from './util.js';
+
+$('.input-heparin').on('keyup', () => { heparin.calc() });
+$('.input-heparin').on('keyup', () => {
+    setTimeout( () => {
+      heparin.check()
+    }, 500);
+});
 
 /**
- * @typedef BmiForAgeDataItem
- * @type {object}
- * @property {string} sex - M or F
- * @property {number} age - age in months
- * @property {number} p95 - 95th percentile of BMI
+ * Heparin calculator module namespace
+ * @namespace
  */
-
- /**
-  * BMI for Age Data from
-  * {@link https://www.cdc.gov/growthcharts/percentile_data_files.htm}
-  * age is in months, starting at that and up to but not including
-  * the next age.
-  * @constant
-  * @type {BmiForAgeDataItem[]}
-  */
- const bmiagerev = require('../lib/bmiagerev.json');
-
- /**
- * Determines if child is obese based on the 95th percentile of BMI-for-age
- * @param   {string}   sex          M or F
- * @param   {number}   age          age in years
- * @param   {number}   bmi          body mass index
- * @returns {boolean}               Is child obese?
- */
-export function childIsObese({sex, age, bmi}={}){
-  if ( age > 20 || age &lt; 2 ) return undefined;
-  const ageMos = Math.floor(age*12);
-  const ref = bmiagerev.filter( el => {
-    if ( el.sex === sex &amp;&amp; el.age === ageMos ) return true;
-    return false;
-  })[0];
-  if ( bmi >= ref.p95 ) return true;
-  return false;
-}
+ const heparin = {
+   startingRate: 0,
+   finalRate: 0,
+   /**
+    * Calculates rates and displays calculated values
+    */
+   calc() {
+     $('#heparin-icon-yes, #heparin-icon-no, #heparin-resultText').hide();
+     const dw = checkValue(+$('#heparin-wt').val(), 20, 300);
+     this.startingRate = checkValue(+$('#heparin-startingRate').val(), 0, 4000);
+     const tr = checkValue(+$('#heparin-roundedRate').val(), 0, 50);
+     let rate = 0;
+     if ( dw > 0 &amp;&amp; this.startingRate > 0 ) {
+       rate = roundTo(this.startingRate/dw, 0.01);
+     }
+     displayValue($('#heparin-startingWtRate'), rate, 0.01, ' units/kg/hr');
+     if ( tr > 0 &amp;&amp; dw > 0 ) {
+       this.finalRate = roundTo(dw * tr, 50);
+     } else {
+       this.finalRate = 0;
+     }
+     displayValue($('#heparin-finalRate'), this.finalRate, 50, ' units/hr');
+   },
+   /**
+    * Checks final rate against desired rate and displays whether they match
+    */
+   check(){
+     if ( this.finalRate > 0 &amp;&amp; this.startingRate > 0 ) {
+       $('#heparin-resultText').show();
+       if ( this.startingRate === this.finalRate ) {
+         $('#heparin-resultText').html('Initial rate = desired starting rate').addClass('text-success').removeClass('text-danger');
+         $('#heparin-icon-yes').show();
+       } else {
+         $('#heparin-resultText').html('Initial rate will not equal desired starting rate.').addClass('text-danger').removeClass('text-success');
+         $('#heparin-icon-no').show();
+       }
+     }
+   }
+ }
 </code></pre>
   </article>
 </section>
