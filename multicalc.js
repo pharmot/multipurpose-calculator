@@ -412,7 +412,7 @@ const vanco = {
       levelMin: 3,
       levelMax: 100,
       timeMin: 0,
-      timeMax: 36
+      timeMax: 60
     }
   },
   roundDose(dose, age = 18){
@@ -1509,8 +1509,8 @@ const calculate = {
     const trough = getDateTime($('#aucDates-troughDate').val(), $('#aucDates-troughTime').val());
     const peak = getDateTime($('#aucDates-peakDate').val(), $('#aucDates-peakTime').val());
 
-    const troughHrs = roundTo(checkValue(getHoursBetweenDates(dose1, trough), 0, 48), 0.1);
-    const peakHrs = roundTo(checkValue(getHoursBetweenDates(dose2, peak), 0, 48), 0.1);
+    const troughHrs = roundTo(checkValue(getHoursBetweenDates(dose1, trough), 0, 60), 0.1);
+    const peakHrs = roundTo(checkValue(getHoursBetweenDates(dose2, peak), 0, 60), 0.1);
 
     displayValue("#aucDates-troughResult", troughHrs, 0.1);
     displayValue("#aucDates-peakResult", peakHrs, 0.1);
