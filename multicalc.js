@@ -1158,12 +1158,12 @@ const vanco = {
         }
 
 
-    $("#revision-linearDose").html( linearDose === 0 ? "" : `${roundTo(linearDose, 1)} mg q ${linearFreq} h`);
-    displayChange("#revision-linearDoseChange", linearDose, linearFreq);
-    displayValue("#revision-linearTrough", linearTrough, 0.1, " mcg/mL");
+    // $("#revision-linearDose").html( linearDose === 0 ? "" : `${roundTo(linearDose, 1)} mg q ${linearFreq} h`);
+    // displayChange("#revision-linearDoseChange", linearDose, linearFreq);
+    // displayValue("#revision-linearTrough", linearTrough, 0.1, " mcg/mL");
 
-    displayChange("#revision-testLinearDoseChange", testLinearDose, testLinearFreq);
-    displayValue("#revision-testLinearTrough", testLinearTrough, 0.1, " mcg/mL");
+    // displayChange("#revision-testLinearDoseChange", testLinearDose, testLinearFreq);
+    // displayValue("#revision-testLinearTrough", testLinearTrough, 0.1, " mcg/mL");
 
     const { halflife, newDose, newFreq, newTrough, newViable, recDose, recTrough, recFreq, selTrough, selDose, selFreq } = vanco.getSingleLevelAdjustment({
       bmi: pt.bmi,
