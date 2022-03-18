@@ -3,6 +3,11 @@ var templates = env.conf.templates;
 var usesSearch = Boolean(templates.search);
 var collapseMenu = templates.collapse;
 var resources = templates.resources;
+
+var siteTitle = templates.projectTitle ? `${templates.projectTitle} Documentation` : "Documentation";
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +18,7 @@ var resources = templates.resources;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      <?js= title ?> - Documentation
+      <?js= title ?> - <?js= siteTitle ?>
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -25,6 +30,7 @@ var resources = templates.resources;
 
   <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
   <?js if (collapseMenu) { ?>
   <link type="text/css" rel="stylesheet" href="styles/collapse.css">
   <?js } ?>

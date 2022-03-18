@@ -7,11 +7,14 @@
   "recurseDepth": 4,
   "opts": {
     "destination": "./docs/",
+    "readme": "./README.md",
     "recurse": true,
     "template": "jsdoc-template"
   },
   "templates": {
-    "showExpandedNav": false
+    "showExpandedNav": false,
+    "repository": "https://github.com/pharmot/multipurpose-calculator",
+    "projectTitle": "Multipurpose Calculator"
   },
   "plugins": ["plugins/markdown"],
   "markdown": {
