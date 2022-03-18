@@ -1,24 +1,22 @@
-<p align="center"><img src="dist/icon.svg" width="150"></p>
+<p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/dist/icon.svg" width="150"></p>
 
 <div align="center">
 
 # VMFH Multipurpose Calculator
 
-[![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)
-![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)
-![GitHub Release Date](https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2327aae1)
-![Intranet version (pending)](https://img.shields.io/static/v1?label=intranet&message=pending&color=red&logo=windowsxp)
+[![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)&nbsp;&nbsp;&nbsp;
+![GitHub Release Date](https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2355a63a)&nbsp;&nbsp;&nbsp;
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)&nbsp;&nbsp;&nbsp;
+![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.0.0&color=%2355a63a&logo=windowsxp)&nbsp;&nbsp;&nbsp;
+![MIT Licensed](https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a)
 
+## Open the Calculator
 
-
-## Quick Links
-
-[![CURRENT VERSION](https://img.shields.io/badge/-CURRENT%20VERSION-%2355a63a?style=flat-square)](https://pharmot.github.io/multipurpose-calculator/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![TEST RELEASE](https://img.shields.io/badge/-TEST%20RELEASE%20VERSION-%2327aae1?style=flat-square)](https://pharmot.github.io/multipurpose-calculator-TST/)
+[![On-Network](https://img.shields.io/badge/-ON%20NETWORK-%2355a63a?style=flat-square)](http://nwtac1web11.tacoma-wa.catholichealth.net/CHIFH-Rx/MultiCalc/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Off-Network](https://img.shields.io/badge/-OFF%20NETWORK-%2327aae1?style=flat-square)](https://pharmot.github.io/multipurpose-calculator-TST/)
 
 ---
 </div>
 
-<img align="right" src="https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a" alt="MIT Licensed">
 
 # Overview
 
@@ -28,18 +26,23 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 - Creatinine clearance calculation (Cockroft-Gault for adults, Schwartz for peds)
 - Vancomycin dosing
- - Initial protocol dosing
- - Initial pharmacokinetic dosing
- - Single level (trough) revision
- - AUC calculation
- - Two-level pharmacokinetics
+  - Initial protocol dosing
+  - Initial pharmacokinetic dosing
+  - Single level (trough) revision
+  - AUC calculation
+  - Two-level pharmacokinetics
 - Second dose timing
 - IVIG rate calculation and admin instruction generation
 
 # Documentation
-
-- [Equations and Calculations](equations.md)
-
+<ul>
+  <li>
+    <a href="https://github.com/pharmot/multipurpose-calculator/blob/main/equations.md">Equations and Calculations</a>
+  </li>
+  <li class="jsdoc-hidden">
+    <a class="jsdoc-hidden" href="https://pharmot.github.io/multipurpose-calculator/">Code Documentation</a>
+  </li>
+</ul>
 
 # Work In Progress
 

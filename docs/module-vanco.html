@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Module: vanco - Documentation
+      Module: vanco - Multipurpose Calculator Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -18,9 +18,10 @@
 
   <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-  
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
 
-  
+
+
 
   <!-- start Mixpanel -->
   <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
@@ -51,17 +52,17 @@
     <ul>
       <li >
         <a href="index.html">
-          
+
             <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
-          
-          
+
+
         </a>
       </li>
 
-      
+
 
     </ul>
   </div>
@@ -69,38 +70,43 @@
   <nav>
     <h3 class="reference-title">Documentation</h3>
 
-    
 
-    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul>
+
+    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+    <a href="https://github.com/pharmot/multipurpose-calculator">Repository</a>
+    </div>
   </nav>
 
   <div id="main">
-    
+
       <h1 class="page-title">
         Module: vanco
       </h1>
-    
 
-    
+
+
 
 <section>
   <header>
-    
-      
-        
+
+
+
   </header>
 
   <article>
     <div class="container-overview">
-      
-        
+
+
           <div class="description">
             <p>Vancomycin dosing calculations</p>
           </div>
-        
 
-        
-          
+
+
+
 
 
 
@@ -116,31 +122,31 @@
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -149,13 +155,13 @@
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -171,39 +177,39 @@
 
 
 
-        
-      
+
+
     </div>
 
-    
 
-    
+
+
       <h3 class="subsection-title">Requires</h3>
 
       <ul>
-        
+
           <li>
             <a href="module-util.html">module:util</a>
           </li>
-        
+
           <li>
             <a href="module-growthCharts.html">module:growthCharts</a>
           </li>
-        
+
       </ul>
-    
 
-    
 
-     
 
-    
 
-    
+
+
+
+
+
         <h3 class="subsection-title">Members</h3>
 
-        
-            
+
+
 
 <h4 class="name" id=".config">
   <span class="type-signature">(static, constant) </span>config<span class="type-signature"> :Object</span>
@@ -217,717 +223,717 @@
 
   <h5 class="subsection-title">Properties:</h5>
 
-  
+
 
 <table class="props">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
 
     <tr>
-      
+
         <td class="name"><code>doses</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Array.&lt;Number>
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Standard maintenance doses to use for dose tables</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>load</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Loading dose parameters</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="props">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
 
     <tr>
-      
+
         <td class="name"><code>def</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       LoadConfig
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>LD parameters for most patients</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>sepsis</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       LoadConfig
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>LD parameters for severe sepsis</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>hd</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       LoadConfig
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>LD parameters for hemodialysis</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>pd</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       LoadConfig
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>LD parameters for peritoneal dialysis</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>crrt</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       LoadConfig
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>LD parameters for CRRT (CVVH, CVVHD, CVVHDF)</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>sled</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       LoadConfig
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>LD parameters for SLED</p>
           </td>
     </tr>
 
-  
+
   </tbody>
 </table>
 
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>maxHDDose</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Maximum initial maintenance dose for HD patients</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>maxPDDose</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Maximum initial maintenance dose for PD patients</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>maxDaily</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Maximum initial total daily dose</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>aucLowNormal</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Low normal AUC value</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>aucHighNormal</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>High normal AUC value</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>check</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>acceptable input values for input validation</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="props">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
 
     <tr>
-      
+
         <td class="name"><code>doseMin</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>minimum acceptable dose input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>doseMax</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>maximum acceptable dose input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>freqMin</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>minimum acceptable frequency input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>freqMax</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>maximum acceptable frequency input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>levelMin</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>minimum acceptable level input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>levelMax</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>maximum acceptable level input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>timeMin</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>minimum acceptable dose-to-level time input for AUC calculation</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>timeMax</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>maximum acceptable dose-to-level time input for AUC calculation</p>
           </td>
     </tr>
 
-  
+
   </tbody>
 </table>
 
           </td>
     </tr>
 
-  
+
   </tbody>
 </table>
 
@@ -936,31 +942,31 @@
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -969,13 +975,13 @@
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -983,18 +989,18 @@
 
 
 
-          
-        
-    
 
-    
+
+
+
+
       <h3 class="subsection-title">Methods</h3>
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.calculateAUC">
@@ -1007,7 +1013,7 @@
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1022,256 +1028,256 @@
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>dose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>interval</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current interval in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>trough</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current measured trough</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>peak</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current measured peak</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>troughTime</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Time from dose to trough in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>peakTime</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Time from dose to peak in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1281,31 +1287,31 @@
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -1314,13 +1320,13 @@
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1336,11 +1342,11 @@
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.calculateAUCNew">
@@ -1353,7 +1359,7 @@
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1368,85 +1374,85 @@
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>aucCurrent</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       AucCurrent
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>AUC calculation results</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>interval</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected interval in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1456,31 +1462,31 @@
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -1489,13 +1495,13 @@
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1511,11 +1517,11 @@
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.calculateTwoLevelPK">
@@ -1528,7 +1534,7 @@
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1544,198 +1550,198 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>wt</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Weight in kg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>bmi</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Body mass index in kg/m^2</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>ke</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Elimination rate constant</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>selectedInterval</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected interval in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1745,31 +1751,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -1778,13 +1784,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1800,11 +1806,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.getInitialDosing">
@@ -1817,7 +1823,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1832,198 +1838,198 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
-          
-          
+
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>method</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
-          
-          
+
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>crcl</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Creatinine clearance in mL/min</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>age</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Age in years</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>scr</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Serum creatinine in mg/dL</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>sex</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       String
     </span>
@@ -2034,234 +2040,234 @@ Target trough is fixed at 10-20 mcg/mL</p>
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Sex (expects &quot;M&quot;, &quot;F&quot;, or 0)</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>wt</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Weight in kg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>bmi</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Body mass index in kg/m^2</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>infTime</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>= 1 Infusion time  in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>goalMin</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Bottom of goal range</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>goalMax</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Top of goal range</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>selDose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>selFreq</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected frequency in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -2271,31 +2277,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -2304,13 +2310,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -2326,11 +2332,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.getLinearAdjustment">
@@ -2343,7 +2349,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -2358,256 +2364,256 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>curDose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>curFreq</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current frequency in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>curTrough</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current trough in mg/dL</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>testDose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>testFreq</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected frequency in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>goalTrough</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Middle of goal trough range in mg/dL</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -2617,31 +2623,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -2650,13 +2656,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -2672,11 +2678,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.getMonitoringRecommendation">
@@ -2689,7 +2695,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -2704,285 +2710,285 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
-          
-          
+
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>freq</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Frequency in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>hd</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Dialysis status as selectedIndex</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>crcl</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Creatinine clearance in mL/min</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>scr</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Serum creatinine in mg/dL</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>bmi</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Body mass index in kg/m^2</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>indication</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Indication as selectedIndex</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>age</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Age in years</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -2992,31 +2998,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -3025,13 +3031,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -3047,11 +3053,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.getSingleLevelAdjustment">
@@ -3064,7 +3070,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -3079,430 +3085,430 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>bmi</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Body mass index in kg/m^2</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>wt</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Weight in kg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>curDose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>curFreq</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current frequency in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>curTrough</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Measured trough in mg/dL</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>troughTime</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Time before next dose that trough was drawn</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>goalTrough</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Middle of goal trough range</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>goalMin</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Minimum of goal trough range</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>goalMax</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Maximum of goal trough range</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>goalPeak</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Goal peak level</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>selFreq</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected new frequency</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>selDose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Selected new dose</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -3512,31 +3518,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -3545,13 +3551,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -3567,11 +3573,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.hdRevision">
@@ -3584,7 +3590,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -3599,114 +3605,114 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>wt</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Patient's weight in kg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>trough</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Measured trough level</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -3716,31 +3722,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -3749,13 +3755,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -3771,11 +3777,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~aucTherapeutic">
@@ -3788,7 +3794,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -3803,56 +3809,56 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>auc</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>AUC to check</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -3862,31 +3868,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -3895,13 +3901,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -3917,11 +3923,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getHalflife">
@@ -3934,7 +3940,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -3949,56 +3955,56 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>ke</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>elimination rate constant</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -4008,31 +4014,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -4041,13 +4047,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -4063,11 +4069,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getInfusionTime">
@@ -4080,7 +4086,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -4095,56 +4101,56 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>dose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -4154,31 +4160,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -4187,13 +4193,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -4209,11 +4215,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getKe">
@@ -4226,7 +4232,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -4241,85 +4247,85 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>cl</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Clearance</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>vd</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Volume of distribution</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -4329,31 +4335,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -4362,13 +4368,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -4384,11 +4390,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getMaintenanceDoseRange">
@@ -4401,7 +4407,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -4416,198 +4422,198 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>age</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>patient age in years</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>indication</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>selectedIndex of indication list</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>crcl</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>CrCl to use for dosing</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>hd</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>selectedIndex of HD status</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -4617,31 +4623,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -4650,13 +4656,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -4672,11 +4678,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getPeakAndTrough">
@@ -4689,7 +4695,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -4704,227 +4710,227 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>dose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>ke</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Elimination rate constant</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>inf</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Infusion time in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>vd</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Volume of distribution in L</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>interval</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Interval in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -4934,31 +4940,31 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -4967,13 +4973,13 @@ Target trough is fixed at 10-20 mcg/mL</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -4989,11 +4995,11 @@ Target trough is fixed at 10-20 mcg/mL</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getRoundedFrequency">
@@ -5006,7 +5012,7 @@ Target trough is fixed at 10-20 mcg/mL</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -5022,56 +5028,56 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>freq</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Interval in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -5081,31 +5087,31 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -5114,13 +5120,13 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -5136,11 +5142,11 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getSuggestedInterval">
@@ -5153,7 +5159,7 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -5168,56 +5174,56 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>halflife</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>halflife in hours</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -5227,31 +5233,31 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -5260,13 +5266,13 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -5282,11 +5288,11 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getVCLCrass">
@@ -5299,7 +5305,7 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -5314,140 +5320,140 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
-          
-          
+
+
             <h6>Properties</h6>
-            
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>age</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Age in years</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>scr</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Serum creatinine in mg/dL</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>sex</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       String
     </span>
@@ -5458,60 +5464,60 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Sex (expects &quot;M&quot;, &quot;F&quot;, or 0)</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>wt</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Weight in kg</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -5521,31 +5527,31 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -5554,13 +5560,13 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -5576,11 +5582,11 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~getVd">
@@ -5593,7 +5599,7 @@ Possible return values are 0, 6, 8, 12, 18, 24, and 48</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -5609,114 +5615,114 @@ for BMI &gt;= 40 otherwise using 0.7 L/kg</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>obj</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Object
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Input parameters</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>bmi</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Body mass index in kg/m^2</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>wt</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Weight in kg</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -5726,31 +5732,31 @@ for BMI &gt;= 40 otherwise using 0.7 L/kg</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -5759,13 +5765,13 @@ for BMI &gt;= 40 otherwise using 0.7 L/kg</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -5781,11 +5787,11 @@ for BMI &gt;= 40 otherwise using 0.7 L/kg</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~roundDose">
@@ -5798,7 +5804,7 @@ for BMI &gt;= 40 otherwise using 0.7 L/kg</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -5814,97 +5820,97 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
         <th>Default</th>
-      
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>dose</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
           <td class="default">
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Dose in mg</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>age</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
           <td class="default">
-            
+
               18
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Age in years (default 18)</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -5914,31 +5920,31 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -5947,13 +5953,13 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -5969,17 +5975,17 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
 
 
-      
-    
 
-    
+
+
+
       <h3 class="subsection-title">Type Definitions</h3>
 
-      
-          
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~AucCurrent">
@@ -5992,7 +5998,7 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -6011,404 +6017,404 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
   <h5 class="subsection-title">Properties:</h5>
 
-  
+
 
 <table class="props">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
 
     <tr>
-      
+
         <td class="name"><code>vd</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Volume of distribution</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>ke</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Elimination rate constant</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>auc24</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>AUC 24</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>aucInf</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>AUC_infusion</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>aucElim</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>AUC_elimination</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>truePeak</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>True peak level</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>trueTrough</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>True trough level</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>tInf</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Infusion time</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>therapeutic</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       String
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>[subtherapeutic|supratherapeutic|therapeutic]</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>oldDose</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current dose in mg</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>oldInterval</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Current interval in hours</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>goalTroughLow</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Bottom of personalized goal trough range</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>goalTroughHigh</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>Top of personalized goal trough range</p>
           </td>
     </tr>
 
-  
+
   </tbody>
 </table>
 
@@ -6417,31 +6423,31 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -6450,13 +6456,13 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -6472,11 +6478,11 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
 
 
-        
-          
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#~LoadConfig">
@@ -6489,7 +6495,7 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -6508,114 +6514,114 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
   <h5 class="subsection-title">Properties:</h5>
 
-  
+
 
 <table class="props">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
 
     <tr>
-      
+
         <td class="name"><code>low</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>low end of loading dose range in mg/kg</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>high</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>high end of loading dose range in mg/kg</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>max</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>max loading dose in mg</p>
           </td>
     </tr>
 
-  
+
   </tbody>
 </table>
 
@@ -6624,31 +6630,31 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -6657,13 +6663,13 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -6679,9 +6685,9 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
 
 
 
-        
 
-    
+
+
   </article>
 </section>
 
@@ -6699,7 +6705,7 @@ greater than or equal to 250 mg, otherwise to nearest 25 mg.</p>
   <script src="scripts/linenumber.js"></script>
   <script src="scripts/pagelocation.js"></script>
 
-  
+
 
 </body>
 </html>

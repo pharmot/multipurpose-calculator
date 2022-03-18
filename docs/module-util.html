@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Module: util - Documentation
+      Module: util - Multipurpose Calculator Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -18,9 +18,10 @@
 
   <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-  
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
 
-  
+
+
 
   <!-- start Mixpanel -->
   <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
@@ -51,17 +52,17 @@
     <ul>
       <li >
         <a href="index.html">
-          
+
             <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
-          
-          
+
+
         </a>
       </li>
 
-      
+
 
     </ul>
   </div>
@@ -69,38 +70,43 @@
   <nav>
     <h3 class="reference-title">Documentation</h3>
 
-    
 
-    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul>
+
+    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+    <a href="https://github.com/pharmot/multipurpose-calculator">Repository</a>
+    </div>
   </nav>
 
   <div id="main">
-    
+
       <h1 class="page-title">
         Module: util
       </h1>
-    
 
-    
+
+
 
 <section>
   <header>
-    
-      
-        
+
+
+
   </header>
 
   <article>
     <div class="container-overview">
-      
-        
+
+
           <div class="description">
             <p>Common utility methods</p>
           </div>
-        
 
-        
-          
+
+
+
 
 
 
@@ -116,9 +122,9 @@
 
 <dl class="details">
 
-  
 
-  
+
+
     <dt class="tag-since">Since:</dt>
     <dd class="tag-since">
       <ul class="dummy">
@@ -127,29 +133,29 @@
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -158,13 +164,13 @@
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -180,30 +186,30 @@
 
 
 
-        
-      
+
+
     </div>
 
-    
 
-    
 
-    
 
-     
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
       <h3 class="subsection-title">Methods</h3>
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.checkValue">
@@ -216,7 +222,7 @@
     </h4>
   </span>
 
-  
+
 
 
 
@@ -232,39 +238,39 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
         <th>Default</th>
-      
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
@@ -275,170 +281,170 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
       String
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Value to check</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>min</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               -Infinity
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Minimum of acceptable range</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>max</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               Infinity
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Maximum of acceptable range</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>zeroAllowed</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Boolean
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               false
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Is zero acceptable?</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -448,31 +454,31 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -481,13 +487,13 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -503,11 +509,11 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.displayDate">
@@ -520,7 +526,7 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -535,56 +541,56 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>d</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Date
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>date object to convert</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -594,31 +600,31 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -627,13 +633,13 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -649,11 +655,11 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.displayValue">
@@ -666,7 +672,7 @@ and maximum, otherwise returns zero (or undefined if zero is allowed).</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -682,39 +688,39 @@ If number is zero, clears input element instead.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
         <th>Default</th>
-      
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>el</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       String
     </span>
@@ -725,260 +731,260 @@ If number is zero, clears input element instead.</p>
       HTMLElement
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Valid jQuery selector for target element</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>num</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               0
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>The number to go in the input field</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>round</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               -1
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>The desired rounding factor</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>unit</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       String
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               ""
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Units to append to rounded value</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>pre</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       String
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               ""
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Text to prepend to rounded value</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>allowNegative</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Boolean
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
           <td class="default">
-            
+
               false
-            
+
           </td>
-        
+
 
         <td class="description last">
           <p>Accept negative values as valid</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -988,31 +994,31 @@ If number is zero, clears input element instead.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -1021,13 +1027,13 @@ If number is zero, clears input element instead.</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1043,11 +1049,11 @@ If number is zero, clears input element instead.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.getDateTime">
@@ -1060,7 +1066,7 @@ If number is zero, clears input element instead.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1075,85 +1081,85 @@ If number is zero, clears input element instead.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>d</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       String
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>date string from input field</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>t</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       String
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>time string from input field</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1163,31 +1169,31 @@ If number is zero, clears input element instead.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -1196,13 +1202,13 @@ If number is zero, clears input element instead.</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1218,11 +1224,11 @@ If number is zero, clears input element instead.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.getHoursBetweenDates">
@@ -1235,7 +1241,7 @@ If number is zero, clears input element instead.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1250,85 +1256,85 @@ If number is zero, clears input element instead.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>first</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Date
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>first Date object</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>second</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Date
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>second Date object</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1338,31 +1344,31 @@ If number is zero, clears input element instead.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -1371,13 +1377,13 @@ If number is zero, clears input element instead.</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1393,11 +1399,11 @@ If number is zero, clears input element instead.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.roundTo">
@@ -1410,7 +1416,7 @@ If number is zero, clears input element instead.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1425,85 +1431,85 @@ If number is zero, clears input element instead.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>The number to round</p>
-          
+
         </td>
       </tr>
 
-    
+
       <tr>
-        
+
           <td class="name"><code>n</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       Number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>The rounding factor</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1513,31 +1519,31 @@ If number is zero, clears input element instead.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
@@ -1546,13 +1552,13 @@ If number is zero, clears input element instead.</p>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1568,12 +1574,12 @@ If number is zero, clears input element instead.</p>
 
 
 
-      
-    
 
-    
 
-    
+
+
+
+
   </article>
 </section>
 
@@ -1591,7 +1597,7 @@ If number is zero, clears input element instead.</p>
   <script src="scripts/linenumber.js"></script>
   <script src="scripts/pagelocation.js"></script>
 
-  
+
 
 </body>
 </html>

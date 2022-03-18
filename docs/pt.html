@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Namespace: pt - Documentation
+      Namespace: pt - Multipurpose Calculator Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -18,9 +18,10 @@
 
   <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-  
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
 
-  
+
+
 
   <!-- start Mixpanel -->
   <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
@@ -51,17 +52,17 @@
     <ul>
       <li >
         <a href="index.html">
-          
+
             <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
-          
-          
+
+
         </a>
       </li>
 
-      
+
 
     </ul>
   </div>
@@ -69,76 +70,81 @@
   <nav>
     <h3 class="reference-title">Documentation</h3>
 
-    
 
-    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul>
+
+    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+    <a href="https://github.com/pharmot/multipurpose-calculator">Repository</a>
+    </div>
   </nav>
 
   <div id="main">
-    
+
       <h1 class="page-title">
         Namespace: pt
       </h1>
-    
 
-    
+
+
 
 <section>
   <header>
-    
+
       <h2>
-        
+
         pt
-        
+
       </h2>
 
-      
-    
+
+
   </header>
 
   <article>
     <div class="container-overview">
-      
-        
+
+
             <div class="description">
               <p>Object representing the patient.</p>
             </div>
-        
 
-        
+
+
 
   <h5 class="subsection-title">Properties:</h5>
 
-  
+
 
 <table class="props">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
 
     <tr>
-      
+
         <td class="name"><code>_sex</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       string
     </span>
@@ -149,138 +155,138 @@
       number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>patient's sex, or 0 if invalid input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>_age</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>petiant's age in years, or 0 if invalid input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>_wt</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>patient's weight in kg, or 0 if invalid input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>_ht</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>petiant's height in cm, or 0 if invalid input</p>
           </td>
     </tr>
 
-  
+
 
     <tr>
-      
+
         <td class="name"><code>_scr</code></td>
-      
+
 
       <td class="type">
-        
-          
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-        
+
+
       </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>patient's serum creatinine, or 0 if invalid input</p>
           </td>
     </tr>
 
-  
+
   </tbody>
 </table>
 
@@ -289,68 +295,68 @@
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line246">line 246</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line233">line 233</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
-        
-      
+
+
     </div>
 
-    
 
-    
 
-    
 
-     
 
-    
 
-    
+
+
+
+
+
+
         <h3 class="subsection-title">Members</h3>
 
-        
-            
+
+
 
 <h4 class="name" id=".config">
   <span class="type-signature">(static, constant) </span>config<span class="type-signature"></span>
@@ -368,46 +374,46 @@
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line252">line 252</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line239">line 239</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -415,18 +421,18 @@
 
 
 
-          
-        
-    
 
-    
+
+
+
+
       <h3 class="subsection-title">Methods</h3>
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.adjBW">
@@ -439,7 +445,7 @@
     </h4>
   </span>
 
-  
+
 
 
 
@@ -458,57 +464,57 @@
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line379">line 379</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line366">line 366</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md/#adjusted-body-weight">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -524,11 +530,11 @@
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.age">
@@ -541,7 +547,7 @@
     </h4>
   </span>
 
-  
+
 
 
 
@@ -557,37 +563,37 @@ Accepts in years, months, days, or months/days.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       string
     </span>
@@ -598,33 +604,33 @@ Accepts in years, months, days, or months/days.</p>
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
 
         <td class="description last">
           <p>Patient's age in days, months, or years</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -634,57 +640,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line306">line 306</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line293">line 293</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
 
   <h5>Requires:</h5>
   <ul>
-    
+
       <li>
         <a href="module-util.html">module:util</a>
       </li>
-    
+
   </ul>
 
 
@@ -704,7 +710,7 @@ Accepts in years, months, days, or months/days.</p>
       </svg>
     </a>
     <h5 id="age-examples">Example</h5>
-    
+
 
   <pre class="prettyprint"><code>pt.age("50");    // sets patient's age to 50 yearspt.age("23m");   // sets patient's age to 23 months (getter returns in years)pt.age("16m3d"); // sets patient's age to 16 months, 3 days (getter returns in years)pt.age("300d");  // sets patient's age to 300 days (getter returns in years)</code></pre>
 
@@ -712,11 +718,11 @@ Accepts in years, months, days, or months/days.</p>
   </div>
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.ageContext">
@@ -729,7 +735,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -754,46 +760,46 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line332">line 332</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line319">line 319</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -809,11 +815,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.bmi">
@@ -826,7 +832,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -845,57 +851,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line354">line 354</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line341">line 341</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md/#body-mass-index">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -911,11 +917,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.cg">
@@ -928,7 +934,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -943,56 +949,56 @@ Accepts in years, months, days, or months/days.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
 
-      
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>weight</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
 
-        
+
+
 
         <td class="description last">
           <p>weight in kg to use for calculation</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1002,46 +1008,46 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line473">line 473</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line460">line 460</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -1057,11 +1063,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.cgActual">
@@ -1074,7 +1080,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1093,57 +1099,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line424">line 424</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line411">line 411</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#cockroft-gault">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -1159,11 +1165,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.cgAdjusted">
@@ -1176,7 +1182,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1195,57 +1201,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line436">line 436</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line423">line 423</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#cockroft-gault">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -1261,11 +1267,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.cgIdeal">
@@ -1278,7 +1284,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1297,57 +1303,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line448">line 448</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line435">line 435</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#cockroft-gault">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -1363,11 +1369,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.crcl">
@@ -1380,7 +1386,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1399,57 +1405,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line460">line 460</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line447">line 447</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#protocol-crcl">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -1465,11 +1471,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.ht">
@@ -1482,7 +1488,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1497,68 +1503,68 @@ Accepts in years, months, days, or months/days.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
 
         <td class="description last">
           <p>Patient's height</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -1568,57 +1574,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line291">line 291</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line278">line 278</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
 
   <h5>Requires:</h5>
   <ul>
-    
+
       <li>
         <a href="module-util.html">module:util</a>
       </li>
-    
+
   </ul>
 
 
@@ -1632,11 +1638,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.ibw">
@@ -1649,7 +1655,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1668,57 +1674,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line366">line 366</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line353">line 353</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md/#ideal-body-weight">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -1734,11 +1740,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.lbw">
@@ -1751,7 +1757,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1770,57 +1776,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line408">line 408</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line395">line 395</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#lean-body-weight">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -1836,11 +1842,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.overUnder">
@@ -1853,7 +1859,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1872,57 +1878,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line395">line 395</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line382">line 382</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#percent-over-or-under-ibw">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -1944,7 +1950,7 @@ Accepts in years, months, days, or months/days.</p>
       </svg>
     </a>
     <h5 id="overUnder-examples">Example</h5>
-    
+
 
   <pre class="prettyprint"><code>If patient is 30% above their IBW, returns `30`</code></pre>
 
@@ -1952,11 +1958,11 @@ Accepts in years, months, days, or months/days.</p>
   </div>
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.schwartz">
@@ -1969,7 +1975,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -1988,57 +1994,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line504">line 504</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line491">line 491</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#schwartz">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -2054,11 +2060,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.schwartzK">
@@ -2071,7 +2077,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -2086,68 +2092,68 @@ Accepts in years, months, days, or months/days.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
 
         <td class="description last">
           <p>selectedIndex of k value input element where 0 is &quot;term infant&quot; and 1 is &quot;LBW infant&quot;</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -2157,57 +2163,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line483">line 483</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line470">line 470</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
+
+
+
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
       <ul>
-        
+
           <li>
             <p><a href="/docs/equations.md#schwartz">equations.md</a></p>
           </li>
-        
+
       </ul>
     </dd>
-  
 
-  
+
+
 </dl>
 
 
@@ -2223,11 +2229,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.scr">
@@ -2240,7 +2246,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -2255,68 +2261,68 @@ Accepts in years, months, days, or months/days.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
 
         <td class="description last">
           <p>Patient's SCr</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -2326,57 +2332,57 @@ Accepts in years, months, days, or months/days.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line344">line 344</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line331">line 331</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
 
   <h5>Requires:</h5>
   <ul>
-    
+
       <li>
         <a href="module-util.html">module:util</a>
       </li>
-    
+
   </ul>
 
 
@@ -2390,11 +2396,11 @@ Accepts in years, months, days, or months/days.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.sex">
@@ -2407,7 +2413,7 @@ Accepts in years, months, days, or months/days.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -2423,68 +2429,68 @@ stores as uppercase.  If invalid, stores 0.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       any
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
 
         <td class="description last">
           <p>Patient's sex</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -2494,46 +2500,46 @@ stores as uppercase.  If invalid, stores 0.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line271">line 271</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line258">line 258</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
@@ -2549,11 +2555,11 @@ stores as uppercase.  If invalid, stores 0.</p>
 
 
 
-      
-        
 
 
-  
+
+
+
 
   <span class='name-container'>
     <a class="link-icon" href="#.wt">
@@ -2566,7 +2572,7 @@ stores as uppercase.  If invalid, stores 0.</p>
     </h4>
   </span>
 
-  
+
 
 
 
@@ -2581,68 +2587,68 @@ stores as uppercase.  If invalid, stores 0.</p>
 
 
   <h5>Parameters:</h5>
-  
+
 
 <table class="params">
   <thead>
     <tr>
-      
+
         <th>Name</th>
-      
+
 
       <th>Type</th>
 
-      
-        <th>Attributes</th>
-      
 
-      
+        <th>Attributes</th>
+
+
+
 
       <th class="last">Description</th>
     </tr>
   </thead>
 
   <tbody>
-    
+
       <tr>
-        
+
           <td class="name"><code>x</code></td>
-        
+
 
         <td class="type">
-          
-            
+
+
     <span class="param-type">
       number
     </span>
 
-    
 
 
-          
+
+
         </td>
 
-        
+
           <td class="attributes">
-            
+
               &lt;optional><br>
-            
 
-            
 
-            
+
+
+
           </td>
-        
 
-        
+
+
 
         <td class="description last">
           <p>Patient's weight</p>
-          
+
         </td>
       </tr>
 
-    
+
   </tbody>
 </table>
 
@@ -2652,57 +2658,57 @@ stores as uppercase.  If invalid, stores 0.</p>
 
 <dl class="details">
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="main.js.html">main.js</a>, <a href="main.js.html#line282">line 282</a>
+          <a href="main.js.html">main.js</a>, <a href="main.js.html#line269">line 269</a>
         </li>
       </ul>
     </dd>
-  
 
-  
 
-  
 
-  
+
+
+
+
 </dl>
 
 
 
   <h5>Requires:</h5>
   <ul>
-    
+
       <li>
         <a href="module-util.html">module:util</a>
       </li>
-    
+
   </ul>
 
 
@@ -2716,12 +2722,12 @@ stores as uppercase.  If invalid, stores 0.</p>
 
 
 
-      
-    
 
-    
 
-    
+
+
+
+
   </article>
 </section>
 
@@ -2739,7 +2745,7 @@ stores as uppercase.  If invalid, stores 0.</p>
   <script src="scripts/linenumber.js"></script>
   <script src="scripts/pagelocation.js"></script>
 
-  
+
 
 </body>
 </html>
