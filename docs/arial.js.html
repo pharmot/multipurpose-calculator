@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Source: arial.js - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  
+
+  
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+  mixpanel.init("1919205b2da72e4da3b9b6639b444d59");</script>
+  <!-- end Mixpanel -->
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">Documentation</h3>
+
+    
+
+    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        Source: arial.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>/**
+ * Module for spacing text output (in Arial font) to optimize formatting of
+ * admin instructions to copy and paste to Epic.
+ * @module arial
+ * @since v0.2.0
+ */
+
+function test(target){
+  const chars = ["I","R","T",".","a","e","f","o","s","t","u"];
+  let txt = "";
+  for ( let char of chars ) {
+    txt += `&lt;span style="white-space:nowrap">${char.repeat(100)}&lt;/span>&lt;br>`
+  }
+  document.getElementById(target).innerHTML = txt;
+}
+/**
+ * Width in px of characters in Arial font at 14.66667px (11pt)
+ * @constant
+ * @type {{Object.&lt;string, number>}}
+ */
+const charWidths = {
+  // widths of character at 14.66667px (11pt)
+    "/": 4.0731,
+    " ": 4.0731,
+    " ": 4.0731,
+    "∙": 4.0731,
+    "⋅": 4.1375,
+    "-": 4.882,
+    "–": 8.1533,
+    "—": 14.66,
+    ".": 4.0731,
+    "+": 8.5613,
+    ":": 4.0731,
+    "'": 2.7989,
+    "|": 3.8083,
+    ",": 4.0731,
+    ";": 4.0731,
+    "[": 4.0731,
+    "]": 4.0731,
+    "`": 4.882,
+    "(": 4.882,
+    ")": 4.882,
+    "{": 4.8963,
+    "}": 4.8963,
+    "*": 5.7052,
+    "^": 6.8791,
+    "?": 8.1533,
+    "#": 8.1533,
+    "$": 8.1533,
+    "_": 8.1533,
+    "~": 8.5613,
+    "&lt;": 8.5613,
+    ">": 8.5613,
+    "=": 8.5613,
+    "&amp;": 9.7781,
+    "%": 13.0352,
+    "@": 14.882,
+    "A": 9.7781,
+    "B": 9.7781,
+    "C": 10.587,
+    "D": 10.587,
+    "E": 9.7781,
+    "F": 8.955,
+    "G": 11.4031,
+    "H": 10.587,
+    "I": 4.0731,
+    "J": 7.33,
+    "K": 9.7781,
+    "L": 8.1478,
+    "M": 12.212,
+    "N": 10.587,
+    "O": 11.4031,
+    "P": 9.7781,
+    "Q": 11.4031,
+    "R": 10.587,
+    "S": 9.7781,
+    "T": 8.955,
+    "U": 10.587,
+    "V": 9.7781,
+    "W": 13.8369,
+    "X": 9.7781,
+    "Y": 9.7781,
+    "Z": 8.955,
+    "1": 7.0761,
+    "2": 8.1533,
+    "3": 8.1533,
+    "4": 8.1533,
+    "5": 8.1533,
+    "6": 8.1533,
+    "7": 8.1533,
+    "8": 8.1533,
+    "9": 8.1533,
+    "0": 8.1533,
+    "a": 8.1533,
+    "e": 8.1533,
+    "f": 3.8109,
+    "g": 8.1533,
+    "h": 8.1533,
+    "i": 3.257,
+    "k": 7.33,
+    "m": 12.212,
+    "n": 8.1533,
+    "o": 8.1533,
+    "r": 4.882,
+    "s": 7.33,
+    "t": 4.0731,
+    "u": 8.1533,
+    "b": 8.1533,
+    "c": 7.33,
+    "d": 8.1533,
+    "j": 3.257,
+    "l": 3.257,
+    "p": 8.1533,
+    "q": 8.1533,
+    "v": 7.33,
+    "w": 10.587,
+    "x": 7.33,
+    "y": 7.33,
+    "z": 7.33,
+    "₀": 4.3952,
+    "₁": 4.3952,
+    "₂": 4.3952,
+    "₃": 4.3952,
+    "₄": 4.3952,
+    "₅": 4.3952,
+    "₆": 4.3952,
+    "₇": 4.3952,
+    "₈": 4.3952,
+    "₉": 4.3952,
+    "₊": 4.9608,
+    "₋": 4.9608,
+    "₌": 4.9608,
+    "₍": 2.9278,
+    "₎": 2.9278,
+    "ₐ": 5.4547,
+    "ₑ": 5.4475,
+    "ₒ": 5.5333,
+    "ₓ": 4.8103,
+    "ₔ": 5.4475,
+    "ₕ": 4.3952,
+    "ₖ": 4.3952,
+    "ₗ": 2.4409,
+    "ₘ": 6.8433,
+    "ₙ": 4.3952,
+    "ₚ": 4.3952,
+    "ₛ": 3.4217,
+    "ₜ": 2.4409,
+    "⁰": 4.882,
+    "¹": 4.882,
+    "²": 4.882,
+    "³": 4.882,
+    "⁴": 4.882,
+    "⁵": 4.882,
+    "⁶": 4.882,
+    "⁷": 4.882,
+    "⁸": 4.882,
+    "⁹": 4.882,
+    "⁺": 4.9608,
+    "⁻": 4.9608,
+    "⁼": 4.9608,
+    "⁽": 2.9278,
+    "⁾": 2.9278,
+    "ⁿ": 5.3472,
+    "ⁱ": 2.4409
+};
+/**
+ * Get the width of a character or string in pixels (11pt Arial font)
+ *
+ * @param   {string} str string you want the width of
+ * @returns {number}  width of input string in pixels
+ * @throws Will log an error to the console if no width is defined for a character
+ */
+function getWidth(str){
+    str += "";
+    const arr = str.split("");
+    let w = 0;
+    for ( let i=0;i&lt;arr.length;i++ ){
+      if( charWidths[arr[i]] === undefined ) {
+        console.error(`No width defined for ${arr[i]}`);
+      }
+      w += parseFloat(charWidths[arr[i]]);
+    }
+    return w;
+}
+/**
+ * Pads each member of an array with sufficient nonbreaking spaces
+ * to make them all the same width in 11 pt Arial font.
+ * @param   {string[]} rows       Strings to be padded to the same width
+ * @param   {number}  [extra=4]   Number of extra spaces to pad longest string with
+ * @returns {string[]}            Same strings as 'rows' with spaces appended to each
+ */
+export function padArray(rows, extra=4){
+  const spaceWidth = charWidths[" "];
+  const widths = rows.map( str => getWidth(str) );
+  const max = Math.max(...widths);
+  const pads = widths.map( width => {
+    const padWidth = Math.round( (max - width)/spaceWidth) + extra;
+    return ("&amp;nbsp;").repeat(padWidth);
+  });
+  let result = [];
+  for(let i=0;i&lt;rows.length;i++){
+    result.push(rows[i]+pads[i]);
+  }
+  return result;z
+}
+/**
+ * Returns a divider the length of a given string.
+ * @since v0.2.3
+ *
+ * @param   {String}  str           The string to be underlined
+ * @param   {String} [char = "-"]   The character to use as the divider
+ * @param   {Number} [extra = 0]    Number of extra characters to add beyond the length of the string
+ * @returns {String}                The 'char' repeated to be the same length as 'str' plus 'extra' extra times
+ */
+export function underline(str, char="-", extra=0){
+  const dividerWidth = getWidth(char);
+  const titleWidth = getWidth(str);
+  const dividers = Math.round(titleWidth/dividerWidth)+extra;
+  return char.repeat(dividers);
+}
+</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>

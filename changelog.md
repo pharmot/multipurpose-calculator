@@ -1,38 +1,25 @@
 # Changelog
 
 
-<!-- ## [Unreleased] -->
-
-## [0.4.0] - 2021-10-21
+## [1.0.0]
 
 ### Added
 
-- Output of inputs, outputs, and calculation steps ([#24])
-- Favicon and manifest ([#21])
-
-### Fixed
-
-- Autofocus on "Reset All" ([#37])
-- Initial PK Dosing no longer changes when modifying frequency ([#32])
-
-## [0.3.0] - 2021-10-09
-
-### Added
-- Color change of Bayesian calculator alert when BMI > 30 ([#35])
-- Hour calculator for AUC dosing (modal) ([#22])
-- Confirmation before showing initial PK recommendations ([#35])
-- Focus on age input when page loads ([#25])
-- Highlight BMI when above 30
+- Documentation of PK Equations and Calculations ([#40])
+- Webpack bundling of all previously external scripts/stylesheets so calculator can be function independently
+- Expanded code documentation (jsdoc)
+- Output of date and time inputs to calculation details modal when date/time modal is used ([#43])
 
 ### Changed
-- Added year to displayDate Util function
-- Reposition Bayesian calculator alert higher on page ([#35])
-- VMFH Logo as svg instead of png
-- Modified monitoring recommendations to clarify when to draw trough ([#31], [#35])
+
+- Return zero for IBW, AdjBW, OverUnder, LBW if age < 18
 
 ### Fixed
-- IVIG calculator weight note aligned correctly ([#20])
 
+- Age validation function didn't have access to min and max values from validation config
+- Allow any value for number inputs without defined step ([#41])
+- Trigger AUC calculation when inputs from modal are copied to calculator ([#42])
+- Clear data validation errors when form is reset ([#39])
 
 ## [0.4.0] - 2021-10-21
 
@@ -148,7 +135,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.1...v0.2.2
@@ -171,3 +159,9 @@ Initial POC Release
 [#33]: https://github.com/pharmot/multipurpose-calculator/issues/33
 [#35]: https://github.com/pharmot/multipurpose-calculator/issues/35
 [#37]: https://github.com/pharmot/multipurpose-calculator/issues/37
+[#38]: https://github.com/pharmot/multipurpose-calculator/issues/38
+[#39]: https://github.com/pharmot/multipurpose-calculator/issues/39
+[#40]: https://github.com/pharmot/multipurpose-calculator/issues/40
+[#41]: https://github.com/pharmot/multipurpose-calculator/issues/41
+[#42]: https://github.com/pharmot/multipurpose-calculator/issues/42
+[#43]: https://github.com/pharmot/multipurpose-calculator/issues/43
