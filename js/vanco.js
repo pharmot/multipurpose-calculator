@@ -66,7 +66,7 @@ export const config = {
     levelMin: 3,
     levelMax: 100,
     timeMin: 0,
-    timeMax: 36
+    timeMax: 50
   }
 };
 /**
