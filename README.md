@@ -164,7 +164,7 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
+[1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.4.0
 [0.3.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.3.0
