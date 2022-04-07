@@ -25,7 +25,8 @@
     "dev": "webpack --config webpack.dev.config.js",
     "jsdoc": "jsdoc  -c ./jsdoc.config.json",
     "devstats": "webpack --config webpack.dev.config.js --profile --json > stats.json",
-    "stats": "webpack --config webpack.config.js --profile --json > stats.json"
+    "stats": "webpack --config webpack.config.js --profile --json > stats.json",
+    "dist": "tar -cvzf %npm_package_name%-dist-v%npm_package_version%.tar.gz -C ./dist ."
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
