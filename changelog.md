@@ -7,6 +7,7 @@
 
 - Reverse Heparin Calculator
 - PCA Dosing Calculator
+- Standard Administration Times tool
 
 ### Changed
 
@@ -15,6 +16,7 @@
 ### Fixed
 
 - Added check for Infinity to displayDate function in utility module
+- Switched from popover to tooltip (age help text wasn't working) ([#56])
 
 
 ## [1.0.1]
@@ -190,3 +192,4 @@ Initial POC Release
 [#42]: https://github.com/pharmot/multipurpose-calculator/issues/42
 [#43]: https://github.com/pharmot/multipurpose-calculator/issues/43
 [#51]: https://github.com/pharmot/multipurpose-calculator/issues/51
+[#56]: https://github.com/pharmot/multipurpose-calculator/issues/56
