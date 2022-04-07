@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1]
+
+### Changed
+
+- For vanco AUC calculation, increase max allowed timespan between peak and trough from 36 to 60 hours so calculations can be done for longer dosing intervals (e.g. q48h) ([#51])
+
 
 ## [1.0.0]
 
@@ -135,7 +141,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.2.2...v0.3.0
@@ -165,3 +172,4 @@ Initial POC Release
 [#41]: https://github.com/pharmot/multipurpose-calculator/issues/41
 [#42]: https://github.com/pharmot/multipurpose-calculator/issues/42
 [#43]: https://github.com/pharmot/multipurpose-calculator/issues/43
+[#51]: https://github.com/pharmot/multipurpose-calculator/issues/51
