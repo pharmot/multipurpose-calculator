@@ -15,6 +15,7 @@
 
 - Switched from popover to tooltip (age help text wasn't working) ([#56])
 - Allow non-numbers for age input
+- Correct aucNew peak calculation documentation in equations.md ([#58])
 
 ## [1.0.1]
 
@@ -191,3 +192,4 @@ Initial POC Release
 [#51]: https://github.com/pharmot/multipurpose-calculator/issues/51
 [#56]: https://github.com/pharmot/multipurpose-calculator/issues/56
 [#57]: https://github.com/pharmot/multipurpose-calculator/issues/57
+[#58]: https://github.com/pharmot/multipurpose-calculator/issues/58
