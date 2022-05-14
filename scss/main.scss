@@ -313,6 +313,10 @@ input {
   }
 }
 
+.row--vanco-md-bayesian {
+  display: none;
+}
+
 %arial-text {
   font-family: "Arial", sans-serif;
   font-size: 11pt;
@@ -385,6 +389,18 @@ a[data-toggle="modal"] {
 
 #nav-initial .has-alert-only .alert {
   font-size: $len-275;
+}
+
+.card-body-alert {
+  font-size: $len-275;
+  padding: $len-25 $len-4;
+  border: 1px solid transparent;
+}
+
+.card-body-alert-secondary {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
 }
 
 .alert-secondary button.btn-outline-secondary {

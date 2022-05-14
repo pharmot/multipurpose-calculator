@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.2]
+
+### Changed
+
+- Keep initial PK dosing disclaimer visible after button is clicked to show section.
+- Show link to Bayesian calculator instead of weight-based initial maintenance dose if BMI > 30.
+
+
+
 ## [1.0.1]
 
 ### Changed

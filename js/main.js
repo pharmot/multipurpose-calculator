@@ -16,7 +16,7 @@ import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
 import * as LOG from './logger.js'
 
-let debug = false;
+let debug = true;
 let debugDefaultTab = "auc";
 let tape = {};
 let validatedFields;
@@ -34,7 +34,7 @@ $(()=>{
     $("#ptage").val(60);
     $("#sex").val('M');
     $("#height").val(170.2);
-    $("#weight").val(83.1);
+    $("#weight").val(123.1);
     $("#scr").val(0.9);
     $("#vancoAUCPeakTime").val(5);
     $("#vancoAUCTroughTime").val(11.5);
@@ -523,12 +523,17 @@ const calculate = {
     displayValue("#adjBW", pt.adjBW, 0.1, " kg");
     displayValue("#lbw", pt.lbw, 0.1, " kg");
     displayValue("#bmi", pt.bmi, 0.1, " kg/m²");
+    // Use Bayesian calculator instead of weight-based dosing if BMI > 30
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
-      $("#bmi").addClass("text-danger font-weight-bold")
+      $("#bmi").addClass("text-danger font-weight-bold");
+      $("#row--vanco-md-default").hide();
+      $("#row--vanco-md-bayesian").show();
     } else {
       $("#alert--bayesian").removeClass("alert-warning").addClass("alert-secondary");
-      $("#bmi").removeClass("text-danger font-weight-bold")
+      $("#bmi").removeClass("text-danger font-weight-bold");
+      $("#row--vanco-md-default").show();
+      $("#row--vanco-md-bayesian").hide();
     }
     displayValue("#cgIdeal", pt.cgIdeal, 0.1, " mL/min");
     displayValue("#cgActual", pt.cgActual, 0.1, " mL/min");

@@ -56,6 +56,12 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
+## [1.0.2] - 2022-05-14
+
+### Changed
+
+-
+
 ## [1.0.1] - 2022-04-06
 
 ### Changed
