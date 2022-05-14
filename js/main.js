@@ -7,7 +7,7 @@
 $ = require('jquery');
 import 'bootstrap';
 import "../scss/main.scss";
-import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './util.js'
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge } from './util.js'
 import { default as ivig } from './ivig.js';
 import { childIsObese } from './growthCharts.js';
 import { getSecondDose } from './seconddose.js';
@@ -81,7 +81,6 @@ $(()=>{
   ]);
   $('#ptage').get(0).focus();
 });
-
 $(".input-patient").on('keyup', () => {
   calculate.patientData();
   calculate.vancoInitial();
@@ -291,19 +290,13 @@ let pt = {
    * @returns {number} Patient's height in cm, or 0 if invalid
    */
   set age(x){
-    if ( /^\d+ *[Dd]$/.test(x) ) {
-      const days = +x.replace(/ *d */gi, '');
-      this._age = days/365.25;
-    } else if ( /^\d+ *[Mm]$/.test(x) ) {
-      const months = +x.replace(/ *m */gi, '');
-      this._age = months/12;
-    } else if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
-      let arrAge = x.split('m');
-      arrAge[1] = arrAge[1].replace('d', '');
-      this._age = arrAge[0]/12 + arrAge[1]/365.25;
+    const ageInYears = parseAge(x);
+    if ( ageInYears ) {
+      this._age = checkValue(ageInYears, this.config.check.ageMin, this.config.check.ageMax);
     } else {
-      this._age = checkValue(x, this.config.check.ageMin, this.config.check.ageMax);
+      this._age = undefined;
     }
+
   },
   get age(){ return this._age || 0; },
   /**
@@ -509,7 +502,7 @@ const calculate = {
     $(".outCrCl").removeClass("use-this");
 
     // Set pt properties from inputs
-    pt.age = +$("#ptage").val();
+    pt.age = $("#ptage").val();
     pt.sex = $("#sex").val();
     pt.ht = +$("#height").val();
     pt.wt = +$("#weight").val();
