@@ -527,14 +527,11 @@ const calculate = {
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
       $("#bmi").addClass("text-danger font-weight-bold");
-      $("#row--vanco-md-default").hide();
-      $("#row--vanco-md-bayesian").show();
     } else {
       $("#alert--bayesian").removeClass("alert-warning").addClass("alert-secondary");
       $("#bmi").removeClass("text-danger font-weight-bold");
-      $("#row--vanco-md-default").show();
-      $("#row--vanco-md-bayesian").hide();
     }
+
     displayValue("#cgIdeal", pt.cgIdeal, 0.1, " mL/min");
     displayValue("#cgActual", pt.cgActual, 0.1, " mL/min");
     displayValue("#cgAdjusted", pt.cgAdjusted, 0.1, " mL/min");
@@ -624,6 +621,23 @@ const calculate = {
       crcl: pt.crcl
     });
     $("#vancoInitialMaintenance").html(maintText);
+    let maintTextTooltip = "";
+
+    if ( maintText.length > 0 ) {
+      if ( /^Must order/.test(maintText) ) {
+        maintTextTooltip = maintText;
+      } else {
+        maintTextTooltip = `<b>Calculated weight-based dose is</b> <br>${maintText}<br><b>but Bayesian calculator should be used instead for obese patients.</b>`
+      }
+    }
+    $("#tooltip--vanco-md-bayesian").attr('data-original-title', maintTextTooltip);
+    if ( maintText.length > 0 && pt.bmi > 30 ) {
+      $("#row--vanco-md-default").hide();
+      $("#row--vanco-md-bayesian").show();
+    } else {
+      $("#row--vanco-md-default").show();
+      $("#row--vanco-md-bayesian").hide();
+    }
     const { monitoring, targetLevelText, pkParam, targetMin, targetMax, goalTroughIndex } = vanco.getMonitoringRecommendation({
       freq: freq,
       hd: pt.hd,

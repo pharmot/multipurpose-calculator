@@ -216,7 +216,7 @@
               <div class="form-row">
                 <label for="ptage" class="col-4">Age</label>
                 <div class="col-1 icon-container">
-                  <a role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Enter age in years.  To enter in months or days, enter in the format: #m, #d, or #m#d." title="Age"><i class="fa fa-question-circle"></i></a>
+                  <a role="button" data-toggle="tooltip" data-placement="bottom" data-html= "true" title="Enter age in years.<br>To enter in months or days,<br>enter in the format:<br>#m, #d, or #m#d."><i class="fa fa-question-circle"></i></a>
                 </div>
                 <div class="input-group col-7" data-toggle="popover" data-placement="right" data-content="">
                   <input type="text" id="ptage" class="form-control input-patient">
@@ -415,7 +415,10 @@
                       </div>
                     </div>
                     <div class="form-row" id="row--vanco-md-bayesian">
-                      <label for="vancoInitialMaintenance-bayesian" class="col-3">Maintenance</label>
+                      <label for="vancoInitialMaintenance-bayesian" class="col-2">Maintenance</label>
+                      <div class="col-1 icon-container justify-content-end">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true" title="default title" id="tooltip--vanco-md-bayesian"><i class="fa fa-info-circle"></i></a>
+                      </div>
                       <div class="input-group col-9">
                         <div class="output multi-line multi-line-2" id="vancoInitialMaintenance-bayesian">Use <a href="https://clincalc.com/Vancomycin/" rel="noopener noreferrer" target="_blank">Bayesian modeling</a> to determine initial maintenance dose<br> <i>(BMI > 30)</i></div>
                       </div>

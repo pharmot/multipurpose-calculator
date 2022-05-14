@@ -7,7 +7,9 @@
 - Keep initial PK dosing disclaimer visible after button is clicked to show section.
 - Show link to Bayesian calculator instead of weight-based initial maintenance dose if BMI > 30.
 
+### Fixed
 
+- Switched from popover to tooltip (age help text wasn't working) ([#56])
 
 ## [1.0.1]
 
@@ -150,7 +152,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...v0.4.0
@@ -182,3 +185,4 @@ Initial POC Release
 [#42]: https://github.com/pharmot/multipurpose-calculator/issues/42
 [#43]: https://github.com/pharmot/multipurpose-calculator/issues/43
 [#51]: https://github.com/pharmot/multipurpose-calculator/issues/51
+[#56]: https://github.com/pharmot/multipurpose-calculator/issues/56
