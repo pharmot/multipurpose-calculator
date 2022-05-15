@@ -202,7 +202,8 @@
               <a class="nav-item nav-link" id="nav-adjustment-tab" data-toggle="tab" href="#nav-adjustment" role="tab">Single Level</a>
               <a class="nav-item nav-link" id="nav-auc-tab" data-toggle="tab" href="#nav-auc" role="tab">AUC Dosing</a>
               <a class="nav-item nav-link" id="nav-twolevel-tab" data-toggle="tab" href="#nav-twolevel" role="tab">Two-Level PK</a>
-              <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose Timing</a>
+              <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose</a>
+              <a class="nav-item nav-link" id="nav-amg-tab" data-toggle="tab" href="#nav-amg" role="tab">AMG</a>
               <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
             </div>
           </nav>
@@ -305,6 +306,12 @@
                   <div class="output" id="bmi"></div>
                 </div>
               </div>
+              <div class="form-row">
+                <label for="bsa" class="col-5">BSA</label>
+                <div class="input-group col-7">
+                  <div class="output" id="bsa"></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="card" id="card--crcl">
@@ -363,6 +370,41 @@
         </div>
         <div class="col" id="col--main-right">
           <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade" id="nav-amg">
+              <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
+                <div class="col-auto">
+                  <div class="card" id="card--amgDW">
+                    <div class="card-header h6">Aminoglycoside Dosing Weight</div>
+                    <div class="card-body">
+                      <div class="form-row">
+                        <div class="input-group col-12 mb-3">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="amgAlt">
+                            <label class="form-check-label" for="amgAlt">
+                              Cystic Fibrosis, Prepartum, or Postpartum?
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="input-group col-12">
+                          <div class="output" id="amgDosingWeight"></div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div><!-- #nav-amg -->
+
+
+
+
+
             <div class="tab-pane fade show active" id="nav-initial">
               <div class="row has-alert-only">
                 <div class="alert alert-primary alert-dismissible fade show mt-2 mb-0" role="alert" id="alert--see-protocol">

@@ -58,6 +58,15 @@ Use ABW if ABW ≤ IBW, otherwise...
 
 ![\mathrm{LBW_{female}}=9270\times \left(\frac{\mathrm{ABW}}{8780+\left(244\times \mathrm{BMI} \right )} \right )](images/eq_lbw_female.svg)
 
+
+## Body Surface Area
+
+![\mathrm{BSA}=\sqrt{\frac{\mathrm{ht}\times\mathrm{wt}}{3600}}](images/eq_bsa.svg)
+> **wt** : weight in kg
+>
+> **ht** : height in cm
+
+
 ## CrCl
 
 ### Cockroft-Gault
@@ -87,6 +96,133 @@ Use ABW if ABW ≤ IBW, otherwise...
 | Else if actual weight < IBW | use C-G(actual) |
 | Else if overUnder > 30 | use C-G(adjusted) |
 | Else | use C-G(ideal) |
+
+# TPN Calculations
+
+## Daily fluid requirements
+
+| Age | Daily fluid requirement |
+| --- | --- |
+| Adult < 56 yrs | 35 mL/kg |
+| Adult 56-75 yrs | 30 mL/kg |
+| Elderly > 75 yrs | 25 mL/kg |
+
+## TPN Dosing Weight
+
+Calculated for age &ge; 18 years.
+
+Use ABW if < 125% of IBW, otherwise...
+
+![\mathrm{DW}_{\mathrm{TPN}}=\left [ 0.25\times\left ( \mathrm{ABW}-\mathrm{IBW} \right ) \right ]+\mathrm{IBW}](images/eq_tpn_wt_obese.svg)
+
+## Basal Energy Expenditure
+
+![\mathrm{BEE}_{\mathrm{male}}=66.5+\left ( 13.75\times\mathrm{wt} \right )+\left ( 5.003\times\mathrm{ht} \right )-\left ( 6.775\times\mathrm{age} \right )](images/eq_bee_male.svg)
+
+![\mathrm{BEE}_{\mathrm{female}}=655.1+\left ( 9.563\times\mathrm{wt} \right )+\left ( 1.85\times\mathrm{ht} \right )-\left ( 4.676\times\mathrm{age} \right )](images/eq_bee_female.svg)
+
+> **wt** : actual body weight in kg
+>
+> **ht** : height in cm
+
+Total Caloric Requirements equals the B.E.E. multiplied by the sum of
+the stress and activity factors.
+Stress plus activity factors range from 1.2 to over 2.
+
+## Metabolic Rate
+
+### Method 1 (Mifflin-St. Jeor equation)
+
+#### Calculate Resting Metabolic Rate
+
+![\mathrm{RMR}_{\mathrm{male}}=\left(9.99\times\mathrm{wt}\right)+\left(6.25\times\mathrm{ht}\right)-\left(4.92\times\mathrm{age}\right)+5](images/eq_rmr_male.svg)
+
+![\mathrm{RMR}_{\mathrm{female}}=\left(9.99\times\mathrm{wt}\right)+\left(6.25\times\mathrm{ht}\right)-\left(4.92\times\mathrm{age}\right)-161](images/eq_rmr_female.svg)
+
+> **wt** : actual body weight in kg
+>
+> **ht** : height in cm
+
+#### Multiply metabolic rate by stress factor to determine goal kcal
+
+Goal kcal = Stress Factor &times; RMR
+
+| Stress Factor | Multiplier |
+| --- | --- |
+| Maintenance | 1.2 |
+| Mild-moderate stress | 1.3 &ndash; 1.5 |
+
+```
+const rmr = (9.99 * wt) + (6.25 * ht) - (4.92 x age) + ( sex === "M" ? 5 : -161 )
+
+return {
+  rmr: rmr,
+  maint: 1.2 * rmr,
+  mildMod: [
+    1.3 * rmr,
+    1.5 * rmr
+  ]
+}
+```
+
+### Method 2 (for critically ill patients)
+
+| Clinical Scenario            | BMI   | Requirements        | Weight to use |
+| ---------------------------- | ----- | ------------------- | ------------- |
+| Maintenance                  | < 30  | 25-30 kcal/kg/day   | TPN DW        |
+| Malnourished, hypermetabolic | < 30  | 30-35 kcal/kg/day*  | TPN DW        |
+| CKD/HD/PD                    |       | 30-35 kcal/kg/day   | TPN DW        |
+| Critically ill (BMI < 30)    | < 30  | 25 kcal/kg/day      | TPN DW        |
+| Critically ill (BMI 30-50)   | 30-50 | 11-14 kcal/kg/day   | ABW           |
+| Critically ill (BMI > 50)    | > 50  | 22-25 kcal/kg/day   | IBW           |
+
+\*If refeeding risk, start lower at 25 kcal/kg/day
+
+## Protein Requirements
+
+| Clinical Scenario                   | Requirements     | Weight to use |
+| ----------------------------------- | ---------------- | ------------- |
+| Maintenance                         | 0.8-1 g/kg/day   | TPN DW        |
+| Mild stress                         | 1-1.2 g/kg/day   | TPN DW        |
+| Moderate stress/rebuilding          | 1.2-1.5 g/kg/day | TPN DW        |
+| Severe stress (wound healing)       | 1.5-2.2 g/kg/day | TPN DW        |
+| Obesity                             | 1.5 g/kg/day     | IBW           |
+| Obesity - critical care (BMI 30-40) | 2 g/kg/day       | IBW           |
+| Obesity - critical care (BMI >40)   | 2.5 g/kg/day     | IBW           |
+
+### Special disease states and associated protein requirements:
+
+| Disease State                         | Requirements                                                               |
+| ------------------------------------- | -------------------------------------------------------------------------- |
+| Acute renal failure                   | 1.2-1.6 g/kg/day                                                           |
+| Chronic renal failure not on dialysis | 0.6-0.8 g/kg/day, restriction may slow progression of renal disease        |
+| End stage renal disease on HD or PD   | 1.2-1.4 g/kg/day, no restriction                                           |
+| Hepatic disease and liver failure     | protein restriction necessary only with acute management of encephalopathy |
+
+# Aminoglycoside Protocol Dosing
+
+Adjusted weight is the standard AdjBW, using factor of 0.4)
+
+## Aminoglycoside Dosing Weight
+
+| Condition | Weight to Use |
+| --- | --- |
+| if age < 15 | n/a - guideline does not apply |
+| else if overUnder > 20 | use adjusted wt |
+| else if actual wt < ideal wt | use actual wt |
+| else | use ideal weight |
+
+## Alternate Aminoglycoside Dosing Weight
+
+Used for patients with cystic fibrosis or who are pre- or postpartum.
+// Patients with Cystic Fibrosis / Any Pregnant/Postpartum Patient
+// Use actual body weight pre and postpartum (or adjusted body weight if ABW > 120% IBW)
+
+| Condition | Weight to Use |
+| --- | --- |
+| if age < 15 | n/a - guideline does not apply |
+| else if overUnder > 20 | use adjusted wt |
+| else | use actual wt |
 
 # Vancomycin Protocol Dosing
 

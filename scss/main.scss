@@ -1,10 +1,10 @@
 // compileOnSave: false
 
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.0
-  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
-  * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
-  */
+ * VMFH Pharmacy Multipurpose Calculator v1.0.0
+ * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
+ * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
+ */
 
 @import '../node_modules/bootstrap/dist/css/bootstrap';
 @import './fontawesome';
@@ -43,6 +43,7 @@ body {
 #card--twolevel { @include fixed-width('twoLevel'); }
 #card--seconddose { @include fixed-width('secondDose'); }
 #card--ivig { @include fixed-width(600px); }
+#card--amgDW { @include fixed-width('amgDW'); }
 
 #card--auc,
 #card--aucLinear {
@@ -481,4 +482,14 @@ ul {
 
 .tooltip-inner {
   max-width: 600px;
+}
+
+#btnReset {
+  padding-top: $len-1;
+  padding-bottom: $len-1;
+}
+
+#col--main-left .card-header {
+  padding-top: $len-1;
+  padding-bottom: $len-1;
 }

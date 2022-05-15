@@ -14,6 +14,7 @@ import { getSecondDose } from './seconddose.js';
 import * as arial from './arial.js';
 import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
+import * as amg from './amg.js';
 import * as LOG from './logger.js'
 
 let debug = true;
@@ -64,6 +65,7 @@ $(()=>{
     calculate.vancoInitial();
     calculate.vancoRevision();
     calculate.vancoAUC();
+    calculate.amg();
   } else {
     resetDates();
   }
@@ -86,6 +88,7 @@ $(".input-patient").on('keyup', () => {
   calculate.vancoInitial();
   calculate.vancoRevision();
   calculate.vancoAUC();
+  calculate.amg();
 });
 $('#ptage').on('keyup', () => {
   setTimeout(()=> {
@@ -170,13 +173,14 @@ $("#btnReset").on('click', () => {
   calculate.vancoTwolevel();
   calculate.secondDose();
   calculate.ivig();
+  calculate.amg();
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
   $(validatedFields).removeClass('invalid');
   $('#ptage').get(0).focus();
-
+  $('#amgAlt').prop( "checked", false );
 });
-
+$("#amgAlt").on("change", () => calculate.amg() );
 $("#ivig-product").on("change", () => calculate.ivig() );
 $("#weight").on("keyup", () => calculate.ivig() );
 $("#ivig-dose").on("keyup", () => calculate.ivig() );
@@ -327,7 +331,7 @@ let pt = {
   get scr(){ return this._scr || 0; },
   /**
    * Gets the patient's body mass index
-   * @see [equations.md](/docs/equations.md/#body-mass-index)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-mass-index)
    * @function
    * @returns {number} Patient's BMI in kg/m^2, or 0 if insufficient input
    */
@@ -339,7 +343,7 @@ let pt = {
   },
   /**
    * Gets the patient's ideal body weight.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md/#ideal-body-weight)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#ideal-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
@@ -352,7 +356,7 @@ let pt = {
   },
   /**
    * Gets the patient's adjusted body weight, using a factor of 0.4.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md/#adjusted-body-weight)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#adjusted-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
@@ -366,7 +370,7 @@ let pt = {
   },
   /**
    * Gets the percent the patient is over or under ideal body weight.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md#percent-over-or-under-ibw)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#percent-over-or-under-ibw)
    * @example
    * If patient is 30% above their IBW, returns `30`
    * @function
@@ -381,7 +385,7 @@ let pt = {
   },
   /**
    * Gets the patient's lean body weight.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md#lean-body-weight)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#lean-body-weight)
    * @function
    * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
    */
@@ -397,7 +401,7 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using actual body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G ABW) in mL/min, or 0 if insufficient input
    */
@@ -409,7 +413,7 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using adjusted body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G AdjBW) in mL/min, or 0 if insufficient input
    */
@@ -421,7 +425,7 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using ideal body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G IBW) in mL/min, or 0 if insufficient input
    */
@@ -433,7 +437,7 @@ let pt = {
   },
   /**
    * Gets the patient's Protocol CrCl (equation and weight depend on age and percent over/under IBW.
-   * @see [equations.md](/docs/equations.md#protocol-crcl)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#protocol-crcl)
    * @function
    * @returns {number} Patient's Protocol CrCl in mL/min, or 0 if insufficient input
    */
@@ -456,7 +460,7 @@ let pt = {
   /**
    * Gets/sets the k value for the Schwartz CrCl equation.
    * @function
-   * @see [equations.md](/docs/equations.md#schwartz)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#schwartz)
    * @param {number}  [x] selectedIndex of k value input element where 0 is "term infant" and 1 is "LBW infant"
    * @returns {number} k value, or 0 if age > 18 or insufficient input
    */
@@ -477,7 +481,7 @@ let pt = {
   },
   /**
    * Gets the patient's Schwartz CrCl
-   * @see [equations.md](/docs/equations.md#schwartz)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#schwartz)
    * @function
    * @returns {number} Patient's CrCl in mL/min using the Schwartz equation, or 0 if insufficient input
    */
@@ -485,8 +489,47 @@ let pt = {
     const k = this.schwartzK;
     if ( k === 0 || this.ht === 0 || this.scr === 0 ) return 0;
     return ( k * this.ht ) / this.scr;
-  }
-};
+  },
+  /**
+   * Gets the patient's body surface area using the Mosteller formula if patient
+   * is 14 years of age or older.
+   *
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-surface-area)
+   * @function
+   * @returns {number} Patient's BSA in m^2, or 0 if insufficient input
+   */
+   get bsa(){
+     if ( this.age < 14 ) return 0;
+     if ( this.ht > 0 && this.wt > 0 ) {
+       return Math.sqrt( ( this.wt * this.ht ) / 3600 );
+     }
+     return 0;
+   },
+   /**
+   * Gets the TPN dosing weight - an adjusted weight using a factor of 0.25.
+   * Returns 0 if age < 18 (consistent with adjBW)
+   *
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#tpn-dosing-weight)
+   * @function
+   * @returns {number}  Patient's TPN dosing weight in kg, or 0 if insufficient input or age < 18 years
+   */
+   get tpnWt(){
+     if ( this.age < 18 ) return 0;
+     if ( this.ibw === 0 ) return 0;
+     if ( this.overUnder < 25 ) return this.wt;
+     return 0.25 * (this.wt - this.ibw) + this.ibw;
+   }
+ };
+
+ // TODO: add TPN dosing weight to js
+ // TODO: add TPN dosing weight to html
+ // TODO: add AMG dosing weight to js
+ // TODO: add AMG dosing weight to html
+
+
+
+
+
 /**
  * Functions called by event listeners to calculate and display results
  * @namespace
@@ -516,6 +559,7 @@ const calculate = {
     displayValue("#adjBW", pt.adjBW, 0.1, " kg");
     displayValue("#lbw", pt.lbw, 0.1, " kg");
     displayValue("#bmi", pt.bmi, 0.1, " kg/m²");
+    displayValue("#bsa", pt.bsa, 0.01, " m²")
     // Use Bayesian calculator instead of weight-based dosing if BMI > 30
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
@@ -587,6 +631,23 @@ const calculate = {
     $(".current-freq").filter($(`:not(.input-${src})`)).val(pt.curFreq > 0 ? pt.curFreq : "");
     $(".current-trough").filter($(`:not(.input-${src})`)).val(pt.curTrough > 0 ? pt.curTrough : "");
   },
+  /**
+   * Input and output for aminoglycoside dosing
+   * @requires module:amg
+   * @requires module:util
+   * @returns {undefined}
+   */
+   amg(){
+     const amgWtString = amg.dosingWeightString({
+       age: pt.age,
+       wt: pt.wt,
+       ibw: pt.ibw,
+       adjBW: pt.adjBW,
+       overUnder: pt.overUnder,
+       alt: $('#amgAlt').is(':checked'),
+     })
+     $("#amgDosingWeight").html(amgWtString);
+   },
   /**
    * Input and output for initial protocol dosing and initial PK dosing
    * @requires module:util
