@@ -1,17 +1,15 @@
 # Changelog
 
+## [Unreleased] - v1.1.0-beta.0
+
 ### Added
 
 - AMG Dosing Weight
-  - BeeCalc on intranet uses just Actual or AdjBW (using 0.4, if >125% ibw) - this doesn't match protocol. Changed to match 2018 protocol update.
 - Body surface area calculation
+- TPN calculations (fluid, energy, and protein requirements)
+- Support for ranges to displayValue function in util module
 
-### Changed
-
-- Add support for ranges to displayValue function in util module
-
-
-## [Unreleased] - v1.0.2-beta.1
+## [1.0.2]
 
 ### Added
 - Age parsing function to util.js module

@@ -56,11 +56,15 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
-## [1.0.2] - 2022-05-14
+## [1.0.2] - 2022-05-18
 
 ### Changed
+- Keep initial PK dosing disclaimer visible after button is clicked to show section
+- Show link to Bayesian calculator instead of weight-based initial maintenance dose if BMI > 30
+  - ID Core Group Request (May 2022)
 
--
+### Fixed
+- Input of ages using months and days
 
 ## [1.0.1] - 2022-04-06
 
@@ -170,7 +174,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
+[1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.4.0
 [0.3.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.3.0

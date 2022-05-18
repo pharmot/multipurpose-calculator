@@ -129,7 +129,7 @@ Total Caloric Requirements equals the B.E.E. multiplied by the sum of
 the stress and activity factors.
 Stress plus activity factors range from 1.2 to over 2.
 
-## Metabolic Rate
+## Energy Requirements
 
 ### Method 1 (Mifflin-St. Jeor equation)
 
@@ -152,18 +152,6 @@ Goal kcal = Stress Factor &times; RMR
 | Maintenance | 1.2 |
 | Mild-moderate stress | 1.3 &ndash; 1.5 |
 
-```
-const rmr = (9.99 * wt) + (6.25 * ht) - (4.92 x age) + ( sex === "M" ? 5 : -161 )
-
-return {
-  rmr: rmr,
-  maint: 1.2 * rmr,
-  mildMod: [
-    1.3 * rmr,
-    1.5 * rmr
-  ]
-}
-```
 
 ### Method 2 (for critically ill patients)
 
@@ -215,8 +203,6 @@ Adjusted weight is the standard AdjBW, using factor of 0.4)
 ## Alternate Aminoglycoside Dosing Weight
 
 Used for patients with cystic fibrosis or who are pre- or postpartum.
-// Patients with Cystic Fibrosis / Any Pregnant/Postpartum Patient
-// Use actual body weight pre and postpartum (or adjusted body weight if ABW > 120% IBW)
 
 | Condition | Weight to Use |
 | --- | --- |

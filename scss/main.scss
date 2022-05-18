@@ -44,6 +44,9 @@ body {
 #card--seconddose { @include fixed-width('secondDose'); }
 #card--ivig { @include fixed-width(600px); }
 #card--amgDW { @include fixed-width('amgDW'); }
+#card--tpn-1 { @include fixed-width('tpn'); }
+#card--tpn-2 { @include fixed-width('tpn'); }
+#card--tpn-kcal { @include fixed-width('tpnEnergy'); }
 
 #card--auc,
 #card--aucLinear {
@@ -133,6 +136,10 @@ h1 {
     align-self: end;
     justify-content: flex-end;
   }
+
+  &.offset-2 {
+    margin-left: 16.66667%;
+  }
 }
 
 .input-group-text {
@@ -151,6 +158,11 @@ h1 {
   &:last-child {
     margin-left: -1px;
     justify-content: flex-start;
+  }
+
+  &.input-group-note {
+    border: 0;
+    background: transparent;
   }
 }
 
