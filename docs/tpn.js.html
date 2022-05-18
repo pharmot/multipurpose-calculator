@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Source: tpn.js - Multipurpose Calculator Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
+  
+
+  
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+  mixpanel.init("1919205b2da72e4da3b9b6639b444d59");</script>
+  <!-- end Mixpanel -->
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">Documentation</h3>
+
+    
+
+    <h3>Modules</h3><ul><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+    <a href="https://github.com/pharmot/multipurpose-calculator">Repository</a>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        Source: tpn.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>/**
+ * TPN Dosing Module
+ * @module amg
+ * @since v0.1.0
+ * @requires module:util
+ */
+// import {  } from './util.js';
+
+
+/**
+ * Parameters for TPN calculations
+ *
+ * @typedef  {Object}  PtBiometrics
+ *
+ * @property {Number}  age  Patient's age in years
+ * @property {Number}  wt   Patient's weight in kg
+ * @property {Number}  ht   Patient's height in cm
+ * @property {Number}  ibw  Patient's ideal weight in kg
+ * @property {Number}  bmi  Patient's body mass index in kg/m^2
+ * @property {String}  sex  Patient's sex as 'M' or 'F'
+ */
+
+
+/**
+ * Gets daily fluid requirements.
+ *
+ * @param   {PtBiometrics}
+ * @returns {Number}          Daily fluid requirements (or zero if invalid input)
+ */
+export function getFluidReq({age, wt} = {}) {
+  if ( age === 0 || wt === 0 ) return 0;
+  if ( age &lt; 56 ) return 35*wt;
+  if ( age > 75 ) return 25*wt;
+  return 30*wt;
+}
+/**
+ * Gets TPN dosing weight.
+ *
+ * @param   {PtBiometrics}
+ * @returns {Number}          Dosing weight (or zero if invalid input)
+ */
+export function getDosingWt({age, wt, ibw} = {}){
+  if ( age &lt; 18 || ibw === 0 ) return 0;
+  if ( wt &lt; ( 1.25 * ibw) ) return wt;
+  return ( 0.25 * ( wt - ibw ) ) + ibw;
+}
+/**
+ * Gets Basal energy expenditure.
+ *
+ * @param   {PtBiometrics}
+ * @returns {Number}          BEE in kcal/day (or zero if invalid input)
+ */
+export function getBee({age, wt, ht, sex} = {}){
+  if ( age &lt; 18 || wt === 0 || ht === 0 ) return 0;
+
+  if ( sex === 'M' ) {
+    return 66.5 + ( 13.75 * wt ) + ( 5.003 * ht ) - ( 6.775 * age );
+  }
+  if ( sex === 'F' ) {
+    return 655.1 + ( 9.563 * wt ) + ( 1.85 * ht ) - ( 4.676 * age );
+  }
+  return 0;
+}
+/**
+ * Gets resting metabolic rate using the Mifflin-St. Jeor equation.
+ *
+ * @param   {PtBiometrics}
+ * @returns {Number}          RMR in kcal/day (or zero if invalid input)
+ */
+export function getRmr({age, wt, ht, sex} = {}){
+  if ( age &lt; 18 || wt === 0 || ht === 0 || sex === 0 ) return 0;
+  const s = ( sex === 'M' ? 5 : -161 );
+  return ( 9.99 * wt ) + ( 6.25 * ht ) - ( 4.92 * age ) + s;
+}
+
+/**
+ * Energy Requirements for TPN for different patient characteristics.
+ * Properties are either a number or an array of two numbers representing a range.
+ *
+ * @typedef  {Object}   EnergyRequirements
+ * @property {Number}   maint            RMR method: Maintenance
+ * @property {Number[]} stress           RMR method: Mild-moderate stress
+ * @property {Number[]} icuMaint         Method 2: maintenance
+ * @property {Number[]} icuMalnourished  Method 2: malnourished, hypermetabolic
+ * @property {Number}   icuRefeeding     Method 2: refeeding risk
+ * @property {Number[]} icuRenal         Method 2: CKD/HD/PD
+ * @property {Number}   icuBmi30         Method 2: obesity (BMI &lt; 30)
+ * @property {Number[]} icuBmi3050       Method 2: obesity (30-50)
+ * @property {Number[]} icuBmi50         Method 2: obesity (BMI > 50)
+ */
+
+/**
+ * Gets daily energy requirements.
+ *
+ * @param   {PtBiometrics}
+ * @returns {EnergyRequirements}
+ */
+export function getKcalReqs(params){
+  const { age, wt, ibw } = params;
+  let res = {
+    maint: 0,
+    stress: 0,
+    icuMaint: 0,
+    icuMalnourished: 0,
+    icuRefeeding: 0,
+    icuRenal: 0,
+    icuBmi30: 0,
+    icuBmi3050: 0,
+    icuBmi50: 0,
+  };
+  const dw = getDosingWt(params);
+  const rmr = getRmr(params);
+  if ( age === 0 || ibw === 0 ) return res;
+  res.maint = rmr * 1.2;
+  res.stress = [
+    rmr * 1.3,
+    rmr * 1.5
+  ];
+  res.icuMaint = [
+    25 * dw,
+    30 * dw
+  ];
+  res.icuMalnourished = [
+    30 * dw,
+    35 * dw
+  ];
+  res.icuRefeeding = 25 * dw;
+  res.icuRenal = [
+    30 * dw,
+    35 * dw
+  ];
+  res.icuBmi30 = 25 * dw;
+  res.icuBmi3050 = [
+    11 * wt,
+    14 * wt
+  ];
+  res.icuBmi50 = [
+    22 * ibw,
+    25 * ibw
+  ];
+  return res;
+}
+/**
+ * Protein Requirements for TPN for different patient characteristics.
+ * Properties are either a number or an array of two numbers representing a range.
+ *
+ * @typedef  {Object}   ProteinRequirements
+ * @property {Number[]} maint         Maintenance
+ * @property {Number[]} mildStress    Mild stress
+ * @property {Number[]} modStress     Moderate stress
+ * @property {Number[]} severeStress  Severe stress
+ * @property {Number}   obesity       Obesity
+ * @property {Number}   icuBmi3040    Obesity - ICU, BMI 30-40
+ * @property {Number}   icuBmi40      Obesity - ICU, BMI 30-40
+ * @property {Number[]} aki           Acute renal failure
+ * @property {Number[]} ckd           Chronic renal not on dialysis
+ * @property {Number[]} hd            ESRD on HD or PD
+ */
+
+ /**
+  * Gets daily protein requirements.
+  *
+  * @param   {PtBiometrics}
+  * @returns {ProteinRequirements}
+  */
+ export function getProteinReqs(params){
+     const { age, wt, ht, ibw } = params;
+     let res = {
+       maint: 0,
+       mildStress: 0,
+       modStress: 0,
+       severeStress: 0,
+       obesity: 0,
+       icuBmi3040: 0,
+       icuBmi40: 0,
+       aki: 0,
+       ckd: 0,
+       hd: 0
+     };
+     if ( age === 0 || ibw === 0 ) return res;
+     const dw = getDosingWt(params);
+     res.maint = [
+       0.8 * dw,
+       1 * dw,
+     ];
+     res.mildStress = [
+       1 * dw,
+       1.2 * dw,
+     ];
+     res.modStress = [
+       1.2 * dw,
+       1.5 * dw,
+     ];
+     res.severeStress = [
+       1.5 * dw,
+       2.2 * dw,
+     ];
+     res.obesity = 1.5 * ibw;
+     res.icuBmi3040 = 2 * ibw;
+     res.icuBmi40 = 2.5 * ibw;
+     res.aki = [
+       1.2 * dw,
+       1.6 * dw
+     ];
+     res.ckd = [
+       0.6 * dw,
+       0.8 * dw
+     ]
+     res.hd = [
+       1.2 * dw,
+       1.4 * dw
+     ]
+     return res;
+
+ }
+</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>

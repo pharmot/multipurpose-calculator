@@ -74,7 +74,7 @@
 
     
 
-    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <h3>Modules</h3><ul><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
     <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
 </svg>
@@ -103,16 +103,18 @@
 $ = require('jquery');
 import 'bootstrap';
 import "../scss/main.scss";
-import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './util.js'
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge } from './util.js'
 import { default as ivig } from './ivig.js';
 import { childIsObese } from './growthCharts.js';
 import { getSecondDose } from './seconddose.js';
 import * as arial from './arial.js';
 import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
+import * as amg from './amg.js';
+import * as tpn from './tpn.js';
 import * as LOG from './logger.js'
 
-let debug = false;
+let debug = true;
 let debugDefaultTab = "auc";
 let tape = {};
 let validatedFields;
@@ -130,7 +132,7 @@ $(()=>{
     $("#ptage").val(60);
     $("#sex").val('M');
     $("#height").val(170.2);
-    $("#weight").val(83.1);
+    $("#weight").val(123.1);
     $("#scr").val(0.9);
     $("#vancoAUCPeakTime").val(5);
     $("#vancoAUCTroughTime").val(11.5);
@@ -160,6 +162,8 @@ $(()=>{
     calculate.vancoInitial();
     calculate.vancoRevision();
     calculate.vancoAUC();
+    calculate.amg();
+    calculate.tpn();
   } else {
     resetDates();
   }
@@ -177,12 +181,13 @@ $(()=>{
   ]);
   $('#ptage').get(0).focus();
 });
-
 $(".input-patient").on('keyup', () => {
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
   calculate.vancoAUC();
+  calculate.amg();
+  calculate.tpn();
 });
 $('#ptage').on('keyup', () => {
   setTimeout(()=> {
@@ -267,13 +272,15 @@ $("#btnReset").on('click', () => {
   calculate.vancoTwolevel();
   calculate.secondDose();
   calculate.ivig();
+  calculate.amg();
+  calculate.tpn();
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
   $(validatedFields).removeClass('invalid');
   $('#ptage').get(0).focus();
-
+  $('#amgAlt').prop( "checked", false );
 });
-
+$("#amgAlt").on("change", () => calculate.amg() );
 $("#ivig-product").on("change", () => calculate.ivig() );
 $("#weight").on("keyup", () => calculate.ivig() );
 $("#ivig-dose").on("keyup", () => calculate.ivig() );
@@ -387,19 +394,13 @@ let pt = {
    * @returns {number} Patient's height in cm, or 0 if invalid
    */
   set age(x){
-    if ( /^\d+ *[Dd]$/.test(x) ) {
-      const days = +x.replace(/ *d */gi, '');
-      this._age = days/365.25;
-    } else if ( /^\d+ *[Mm]$/.test(x) ) {
-      const months = +x.replace(/ *m */gi, '');
-      this._age = months/12;
-    } else if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
-      let arrAge = x.split('m');
-      arrAge[1] = arrAge[1].replace('d', '');
-      this._age = arrAge[0]/12 + arrAge[1]/365.25;
+    const ageInYears = parseAge(x);
+    if ( ageInYears ) {
+      this._age = checkValue(ageInYears, this.config.check.ageMin, this.config.check.ageMax);
     } else {
-      this._age = checkValue(x, this.config.check.ageMin, this.config.check.ageMax);
+      this._age = undefined;
     }
+
   },
   get age(){ return this._age || 0; },
   /**
@@ -430,7 +431,7 @@ let pt = {
   get scr(){ return this._scr || 0; },
   /**
    * Gets the patient's body mass index
-   * @see [equations.md](/docs/equations.md/#body-mass-index)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-mass-index)
    * @function
    * @returns {number} Patient's BMI in kg/m^2, or 0 if insufficient input
    */
@@ -442,7 +443,7 @@ let pt = {
   },
   /**
    * Gets the patient's ideal body weight.  Returns 0 if age &lt; 18.
-   * @see [equations.md](/docs/equations.md/#ideal-body-weight)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#ideal-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
@@ -455,7 +456,7 @@ let pt = {
   },
   /**
    * Gets the patient's adjusted body weight, using a factor of 0.4.  Returns 0 if age &lt; 18.
-   * @see [equations.md](/docs/equations.md/#adjusted-body-weight)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#adjusted-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    */
@@ -469,7 +470,7 @@ let pt = {
   },
   /**
    * Gets the percent the patient is over or under ideal body weight.  Returns 0 if age &lt; 18.
-   * @see [equations.md](/docs/equations.md#percent-over-or-under-ibw)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#percent-over-or-under-ibw)
    * @example
    * If patient is 30% above their IBW, returns `30`
    * @function
@@ -484,7 +485,7 @@ let pt = {
   },
   /**
    * Gets the patient's lean body weight.  Returns 0 if age &lt; 18.
-   * @see [equations.md](/docs/equations.md#lean-body-weight)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#lean-body-weight)
    * @function
    * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
    */
@@ -500,7 +501,7 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using actual body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G ABW) in mL/min, or 0 if insufficient input
    */
@@ -512,7 +513,7 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using adjusted body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G AdjBW) in mL/min, or 0 if insufficient input
    */
@@ -524,7 +525,7 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using ideal body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G IBW) in mL/min, or 0 if insufficient input
    */
@@ -536,7 +537,7 @@ let pt = {
   },
   /**
    * Gets the patient's Protocol CrCl (equation and weight depend on age and percent over/under IBW.
-   * @see [equations.md](/docs/equations.md#protocol-crcl)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#protocol-crcl)
    * @function
    * @returns {number} Patient's Protocol CrCl in mL/min, or 0 if insufficient input
    */
@@ -559,7 +560,7 @@ let pt = {
   /**
    * Gets/sets the k value for the Schwartz CrCl equation.
    * @function
-   * @see [equations.md](/docs/equations.md#schwartz)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#schwartz)
    * @param {number}  [x] selectedIndex of k value input element where 0 is "term infant" and 1 is "LBW infant"
    * @returns {number} k value, or 0 if age > 18 or insufficient input
    */
@@ -580,7 +581,7 @@ let pt = {
   },
   /**
    * Gets the patient's Schwartz CrCl
-   * @see [equations.md](/docs/equations.md#schwartz)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#schwartz)
    * @function
    * @returns {number} Patient's CrCl in mL/min using the Schwartz equation, or 0 if insufficient input
    */
@@ -588,8 +589,47 @@ let pt = {
     const k = this.schwartzK;
     if ( k === 0 || this.ht === 0 || this.scr === 0 ) return 0;
     return ( k * this.ht ) / this.scr;
-  }
-};
+  },
+  /**
+   * Gets the patient's body surface area using the Mosteller formula if patient
+   * is 14 years of age or older.
+   *
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-surface-area)
+   * @function
+   * @returns {number} Patient's BSA in m^2, or 0 if insufficient input
+   */
+   get bsa(){
+     if ( this.age &lt; 14 ) return 0;
+     if ( this.ht > 0 &amp;&amp; this.wt > 0 ) {
+       return Math.sqrt( ( this.wt * this.ht ) / 3600 );
+     }
+     return 0;
+   },
+   /**
+   * Gets the TPN dosing weight - an adjusted weight using a factor of 0.25.
+   * Returns 0 if age &lt; 18 (consistent with adjBW)
+   *
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#tpn-dosing-weight)
+   * @function
+   * @returns {number}  Patient's TPN dosing weight in kg, or 0 if insufficient input or age &lt; 18 years
+   */
+   get tpnWt(){
+     if ( this.age &lt; 18 ) return 0;
+     if ( this.ibw === 0 ) return 0;
+     if ( this.overUnder &lt; 25 ) return this.wt;
+     return 0.25 * (this.wt - this.ibw) + this.ibw;
+   }
+ };
+
+ // TODO: add TPN dosing weight to js
+ // TODO: add TPN dosing weight to html
+ // TODO: add AMG dosing weight to js
+ // TODO: add AMG dosing weight to html
+
+
+
+
+
 /**
  * Functions called by event listeners to calculate and display results
  * @namespace
@@ -605,7 +645,7 @@ const calculate = {
     $(".outCrCl").removeClass("use-this");
 
     // Set pt properties from inputs
-    pt.age = +$("#ptage").val();
+    pt.age = $("#ptage").val();
     pt.sex = $("#sex").val();
     pt.ht = +$("#height").val();
     pt.wt = +$("#weight").val();
@@ -619,13 +659,16 @@ const calculate = {
     displayValue("#adjBW", pt.adjBW, 0.1, " kg");
     displayValue("#lbw", pt.lbw, 0.1, " kg");
     displayValue("#bmi", pt.bmi, 0.1, " kg/m²");
+    displayValue("#bsa", pt.bsa, 0.01, " m²")
+    // Use Bayesian calculator instead of weight-based dosing if BMI > 30
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
-      $("#bmi").addClass("text-danger font-weight-bold")
+      $("#bmi").addClass("text-danger font-weight-bold");
     } else {
       $("#alert--bayesian").removeClass("alert-warning").addClass("alert-secondary");
-      $("#bmi").removeClass("text-danger font-weight-bold")
+      $("#bmi").removeClass("text-danger font-weight-bold");
     }
+
     displayValue("#cgIdeal", pt.cgIdeal, 0.1, " mL/min");
     displayValue("#cgActual", pt.cgActual, 0.1, " mL/min");
     displayValue("#cgAdjusted", pt.cgAdjusted, 0.1, " mL/min");
@@ -689,6 +732,69 @@ const calculate = {
     $(".current-trough").filter($(`:not(.input-${src})`)).val(pt.curTrough > 0 ? pt.curTrough : "");
   },
   /**
+   * Input and output for aminoglycoside dosing
+   * @requires module:amg
+   * @returns {undefined}
+   */
+   amg(){
+     const amgWtString = amg.dosingWeightString({
+       age: pt.age,
+       wt: pt.wt,
+       ibw: pt.ibw,
+       adjBW: pt.adjBW,
+       overUnder: pt.overUnder,
+       alt: $('#amgAlt').is(':checked'),
+     })
+     $("#amgDosingWeight").html(amgWtString);
+   },
+   /**
+    * Input and output for TPN dosing
+    * @requires module:tpn
+    * @returns {undefined}
+    */
+    tpn(){
+      const params = {
+        sex: pt.sex,
+        age: pt.age,
+        ht: pt.ht,
+        wt: pt.wt,
+        ibw: pt.ibw,
+        bmi: pt.bmi
+      }
+      const fluidReqs = tpn.getFluidReq(params);
+      const dw = tpn.getDosingWt(params);
+      const bee = tpn.getBee(params);
+      const rmr = tpn.getRmr(params);
+      displayValue("#tpn-fluidReqs", fluidReqs, 1, " mL");
+      displayValue("#tpn-dosingWeight", dw, 0.1, " kg");
+      displayValue("#tpn-bee", bee, 1, " kcal/day");
+      displayValue("#tpn-rmr", rmr, 1, " kcal/day");
+
+      const kcalReqs = tpn.getKcalReqs(params);
+      displayValue("#tpn-kcal-maint", kcalReqs.maint, 1, " kcal/day");
+      displayValue("#tpn-kcal-stress", kcalReqs.stress, 1, " kcal/day");
+      displayValue("#tpn-kcal-icu-maint", kcalReqs.icuMaint, 1, " kcal/day");
+      displayValue("#tpn-kcal-icu-malnourished", kcalReqs.icuMalnourished, 1, " kcal/day");
+      displayValue("#tpn-kcal-icu-refeeding", kcalReqs.icuRefeeding, 1, " kcal/day");
+      displayValue("#tpn-kcal-icu-renal", kcalReqs.icuRenal, 1, " kcal/day");
+      displayValue("#tpn-kcal-icu-bmi30", kcalReqs.icuBmi30, 1, " kcal/day");
+      displayValue("#tpn-kcal-icu-bmi3050", kcalReqs.icuBmi3050, 1, " kcal/day");
+      displayValue("#tpn-kcal-icu-bmi50", kcalReqs.icuBmi50, 1, " kcal/day");
+
+      const protReqs = tpn.getProteinReqs(params);
+
+      displayValue("#tpn-prot-maint", protReqs.maint, 1, " g/day");
+      displayValue("#tpn-prot-mildStress", protReqs.mildStress, 1, " g/day");
+      displayValue("#tpn-prot-modStress", protReqs.modStress, 1, " g/day");
+      displayValue("#tpn-prot-severeStress", protReqs.severeStress, 1, " g/day");
+      displayValue("#tpn-prot-obesity", protReqs.obesity, 1, " g/day");
+      displayValue("#tpn-prot-obesity30", protReqs.icuBmi3040, 1, " g/day");
+      displayValue("#tpn-prot-obesity40", protReqs.icuBmi40, 1, " g/day");
+      displayValue("#tpn-prot-aki", protReqs.aki, 1, " g/day");
+      displayValue("#tpn-prot-ckd", protReqs.ckd, 1, " g/day");
+      displayValue("#tpn-prot-hd", protReqs.hd, 1, " g/day");
+    },
+  /**
    * Input and output for initial protocol dosing and initial PK dosing
    * @requires module:util
    * @requires module:vanco
@@ -715,6 +821,23 @@ const calculate = {
       crcl: pt.crcl
     });
     $("#vancoInitialMaintenance").html(maintText);
+    let maintTextTooltip = "";
+
+    if ( maintText.length > 0 ) {
+      if ( /^Must order/.test(maintText) ) {
+        maintTextTooltip = maintText;
+      } else {
+        maintTextTooltip = `&lt;b>Calculated weight-based dose is&lt;/b> &lt;br>${maintText}&lt;br>&lt;b>but Bayesian calculator should be used instead for obese patients.&lt;/b>`
+      }
+    }
+    $("#tooltip--vanco-md-bayesian").attr('data-original-title', maintTextTooltip);
+    if ( maintText.length > 0 &amp;&amp; pt.bmi > 30 ) {
+      $("#row--vanco-md-default").hide();
+      $("#row--vanco-md-bayesian").show();
+    } else {
+      $("#row--vanco-md-default").show();
+      $("#row--vanco-md-bayesian").hide();
+    }
     const { monitoring, targetLevelText, pkParam, targetMin, targetMax, goalTroughIndex } = vanco.getMonitoringRecommendation({
       freq: freq,
       hd: pt.hd,
