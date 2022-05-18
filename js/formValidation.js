@@ -3,7 +3,7 @@
  * @module formValidation
  * @requires module:util
  */
- import { checkValue, checkTimeInput } from './util.js'
+ import { checkValue, checkTimeInput, parseAge } from './util.js'
 
 /**
  * Set up event listeners for form validation
@@ -74,21 +74,8 @@ export default function setup(config){
  * @returns {HTMLElement}                 The original DOM element, for chaining
  */
 function validateAge(el, item){
-  let x = $(el).val();
-  let yearsOld = 0;
-  if ( /^\d+ *[Dd]$/.test(x) ) {
-    const days = +x.replace(/ *d */gi, '');
-    yearsOld = days/365.25;
-  } else if ( /^\d+ *[Mm]$/.test(x) ) {
-    const months = +x.replace(/ *m */gi, '');
-    yearsOld = months/12;
-  } else if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
-    let arrAge = x.split('m');
-    arrAge[1] = arrAge[1].replace('d', '');
-    yearsOld = arrAge[0]/12 + arrAge[1]/365.25;
-  } else {
-    yearsOld = x
-  }
+  let yearsOld = parseAge( $(el).val() );
+
   const validatedAge = checkValue(yearsOld, item.min, item.max);
   if ( validatedAge === 0 ) {
     $(el).addClass("invalid");

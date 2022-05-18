@@ -159,7 +159,6 @@ export function roundTo(x, n = 0) {
   return t;
 }
 
-
 /**
  * Displays a number, rounded, with units in the specified input element.
  * If number is zero, clears input element instead.
@@ -195,6 +194,31 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
   $(el).html(txt);
   return el;
 };
+
+/**
+ * Parses age input in years, months, days, or months+days and returns in years.
+ *
+ * @param   {String} x     Age input
+ * @returns {Number}       Age in years (or undefined if invalid input)
+ */
+export function parseAge(x){
+  let yearsOld = 0;
+  if ( /^\d+ *[Dd]$/.test(x) ) {
+    const days = +x.replace(/ *d */gi, '');
+    return days/365.25;
+  }
+  if ( /^\d+ *[Mm]$/.test(x) ) {
+    const months = +x.replace(/ *m */gi, '');
+    return months/12;
+  }
+  if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
+    let arrAge = x.split('m');
+    arrAge[1] = arrAge[1].replace('d', '');
+    return arrAge[0]/12 + arrAge[1]/365.25;
+  }
+  if ( isNaN(+x) ) return undefined;
+  return +x;
+}
 
 /**
  * Evaluates a number, returns if is valid, between optional minimum

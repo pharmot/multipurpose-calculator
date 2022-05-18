@@ -68,7 +68,7 @@ Use ABW if ABW ≤ IBW, otherwise...
 
 ### Schwartz
 
-![\mathrm{OverUnder}=\left(\frac{\mathrm{ABW}}{\mathrm{IBW}}-1 \right )\times 100%](images/eq_crcl_schwartz.svg)
+![\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{SCr}}](images/eq_crcl_schwartz.svg)
 
 > **ht** : height in cm
 
@@ -344,7 +344,7 @@ Use calculated ke in same equations/process as [initial PK dosing](#peak-and-tro
 
 ![\mathrm{AUC}=\mathrm{AUC_{24}}\times\frac{\mathrm{TDD_{new}}}{\mathrm{TDD_{old}}}](images/eq_auc_aucnew.svg)
 
-![\mathrm{C_{max}}=\frac{\mathrm{D}}{\mathrm{T}}\times \frac{1-e^{-ke\;\times\,\tau}}{\mathrm{V_d}\times ke\times\left(1-e^{-ke\;\times\,\tau} \right )}](images/eq_auc_cmax.svg)
+![\mathrm{C_{max}}=\frac{\mathrm{D}}{\mathrm{T}}\times \frac{1-e^{-ke\times\,\mathrm{T}}}{\mathrm{V_d}\times ke\times\left(1-e^{-ke\;\times\,\tau} \right )}](images/eq_auc_cmax.svg)
 
 > D : new dose
 
