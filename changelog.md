@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased] - v1.0.2-beta.1
+## [1.0.2]
 
 ### Added
 - Age parsing function to util.js module
@@ -158,7 +158,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...v0.4.0

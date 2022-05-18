@@ -1,6 +1,6 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.0
-  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
+  * VMFH Pharmacy Multipurpose Calculator v1.0.2
+  * Copyright 2020-2022 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
 
@@ -16,7 +16,7 @@ import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
 import * as LOG from './logger.js'
 
-let debug = true;
+let debug = false;
 let debugDefaultTab = "auc";
 let tape = {};
 let validatedFields;
