@@ -6,6 +6,10 @@
   - BeeCalc on intranet uses just Actual or AdjBW (using 0.4, if >125% ibw) - this doesn't match protocol. Changed to match 2018 protocol update.
 - Body surface area calculation
 
+### Changed
+
+- Add support for ranges to displayValue function in util module
+
 
 ## [Unreleased] - v1.0.2-beta.1
 
