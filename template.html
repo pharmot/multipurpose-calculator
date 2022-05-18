@@ -218,10 +218,9 @@
             <div class="form-row">
               <label for="ptage" class="col-4">Age</label>
               <div class="col-1 icon-container">
-                <a role="button" data-toggle="tooltip" data-placement="bottom" title="Enter age in years.  To enter in months or days, enter in the format: #m, #d, or #m#d."><i class="fa fa-question-circle"></i></a>
-                <!-- <a role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Enter age in years.  To enter in months or days, enter in the format: #m, #d, or #m#d." title="Age"><i class="fa fa-question-circle"></i></a> -->
+                <a role="button" data-toggle="tooltip" data-placement="bottom" data-html= "true" title="Enter age in years.<br>To enter in months or days,<br>enter in the format:<br>#m, #d, or #m#d."><i class="fa fa-question-circle"></i></a>
               </div>
-              <div class="input-group col-7" data-toggle="popover" data-placement="right" data-content="">
+              <div class="input-group col-7">
                 <input type="text" id="ptage" class="form-control input-patient">
               </div>
             </div>
@@ -372,8 +371,7 @@
                 This protocol is to be used as a guideline, not a rule, and must be combined with clinical judgment.<br>
                 For outliers or exceptions, consult with another pharmacist.<br>
                 See <a class="alert-link" href="https://drive.google.com/file/d/1jFfC4BofGKeMhmedE32WWvNNVxwKZQM8/view?usp=sharing" target="_blank" rel="noopener noreferrer">VMFH Vancomycin Dosing Guidelines</a>
-                for full recommendations.
-              </div>
+                for full recommendations.              </div>
             </div>
             <div class="row has-alert-only hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
               <div id="alert--bayesian" class="alert alert-secondary mt-2 mb-0">
@@ -417,7 +415,19 @@
                       <div class="output multi-line multi-line-2" id="vancoInitialLoad"></div>
                     </div>
                   </div>
-                  <div class="form-row">
+
+
+
+                  <div class="form-row" id="row--vanco-md-bayesian">
+                    <label for="vancoInitialMaintenance-bayesian" class="col-2">Maintenance</label>
+                    <div class="col-1 icon-container justify-content-end">
+                      <a role="button" data-toggle="tooltip" data-placement="right" data-html="true" title="default title" id="tooltip--vanco-md-bayesian"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <div class="input-group col-9">
+                      <div class="output multi-line multi-line-2" id="vancoInitialMaintenance-bayesian">Use <a href="https://clincalc.com/Vancomycin/" rel="noopener noreferrer" target="_blank">Bayesian modeling</a> to determine initial maintenance dose<br> <i>(BMI > 30)</i></div>
+                    </div>
+                  </div>
+                  <div class="form-row" id="row--vanco-md-default">
                     <label for="vancoInitialMaintenance" class="col-3">Maintenance</label>
                     <div class="input-group col-9">
                       <div class="output multi-line multi-line-2" id="vancoInitialMaintenance"></div>
@@ -448,6 +458,11 @@
             <div class="row fade fade-opacity" id="row--initialPkCalc">
               <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
                 <div class="card-header h5">Initial Vancomycin PK Dosing</div>
+                <div class="card-body-alert card-body-alert-secondary">
+                  Initial PK dosing is available for comparison purposes, though the above
+                  recommendations should be used for most patients and the Bayesian calculator
+                  should be used for pharmacokinetic outliers.
+                </div>
                 <div class="card-body pt-1">
                   <div class="row mb-2">
                   </div>
@@ -1502,9 +1517,9 @@
                       </div>
                       <div class="form-row mt-4">
                         <div class="input-group col-10 offset-1">
-                          <div id="nextdose-result" class="output multi-line multi-line-2 hidden">
-                          </div>
+                          <div id="nextdose-result" class="output multi-line multi-line-2 hidden"> </div>
                         </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,13 +1,13 @@
 /*!
   * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.0
-  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
+  * Copyright 2020-2022 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
 
 $ = require('jquery');
 import 'bootstrap';
 import "../scss/main.scss";
-import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput } from './util.js'
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge } from './util.js'
 import { default as ivig } from './ivig.js';
 import { childIsObese } from './growthCharts.js';
 import { getSecondDose } from './seconddose.js';
@@ -37,7 +37,7 @@ $(()=>{
     $("#ptage").val(60);
     $("#sex").val('M');
     $("#height").val(170.2);
-    $("#weight").val(83.1);
+    $("#weight").val(123.1);
     $("#scr").val(0.9);
     $("#vancoAUCPeakTime").val(5);
     $("#vancoAUCTroughTime").val(11.5);
@@ -84,7 +84,6 @@ $(()=>{
   ]);
   $('#ptage').get(0).focus();
 });
-
 $(".input-patient").on('keyup', () => {
   calculate.patientData();
   calculate.vancoInitial();
@@ -304,19 +303,13 @@ let pt = {
    * @returns {number} Patient's height in cm, or 0 if invalid
    */
   set age(x){
-    if ( /^\d+ *[Dd]$/.test(x) ) {
-      const days = +x.replace(/ *d */gi, '');
-      this._age = days/365.25;
-    } else if ( /^\d+ *[Mm]$/.test(x) ) {
-      const months = +x.replace(/ *m */gi, '');
-      this._age = months/12;
-    } else if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
-      let arrAge = x.split('m');
-      arrAge[1] = arrAge[1].replace('d', '');
-      this._age = arrAge[0]/12 + arrAge[1]/365.25;
+    const ageInYears = parseAge(x);
+    if ( ageInYears ) {
+      this._age = checkValue(ageInYears, this.config.check.ageMin, this.config.check.ageMax);
     } else {
-      this._age = checkValue(x, this.config.check.ageMin, this.config.check.ageMax);
+      this._age = undefined;
     }
+
   },
   get age(){ return this._age || 0; },
   /**
@@ -522,7 +515,7 @@ const calculate = {
     $(".outCrCl").removeClass("use-this");
 
     // Set pt properties from inputs
-    pt.age = +$("#ptage").val();
+    pt.age = $("#ptage").val();
     pt.sex = $("#sex").val();
     pt.ht = +$("#height").val();
     pt.wt = +$("#weight").val();
@@ -536,13 +529,15 @@ const calculate = {
     displayValue("#adjBW", pt.adjBW, 0.1, " kg");
     displayValue("#lbw", pt.lbw, 0.1, " kg");
     displayValue("#bmi", pt.bmi, 0.1, " kg/m²");
+    // Use Bayesian calculator instead of weight-based dosing if BMI > 30
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
-      $("#bmi").addClass("text-danger font-weight-bold")
+      $("#bmi").addClass("text-danger font-weight-bold");
     } else {
       $("#alert--bayesian").removeClass("alert-warning").addClass("alert-secondary");
-      $("#bmi").removeClass("text-danger font-weight-bold")
+      $("#bmi").removeClass("text-danger font-weight-bold");
     }
+
     displayValue("#cgIdeal", pt.cgIdeal, 0.1, " mL/min");
     displayValue("#cgActual", pt.cgActual, 0.1, " mL/min");
     displayValue("#cgAdjusted", pt.cgAdjusted, 0.1, " mL/min");
@@ -632,6 +627,23 @@ const calculate = {
       crcl: pt.crcl
     });
     $("#vancoInitialMaintenance").html(maintText);
+    let maintTextTooltip = "";
+
+    if ( maintText.length > 0 ) {
+      if ( /^Must order/.test(maintText) ) {
+        maintTextTooltip = maintText;
+      } else {
+        maintTextTooltip = `<b>Calculated weight-based dose is</b> <br>${maintText}<br><b>but Bayesian calculator should be used instead for obese patients.</b>`
+      }
+    }
+    $("#tooltip--vanco-md-bayesian").attr('data-original-title', maintTextTooltip);
+    if ( maintText.length > 0 && pt.bmi > 30 ) {
+      $("#row--vanco-md-default").hide();
+      $("#row--vanco-md-bayesian").show();
+    } else {
+      $("#row--vanco-md-default").show();
+      $("#row--vanco-md-bayesian").hide();
+    }
     const { monitoring, targetLevelText, pkParam, targetMin, targetMax, goalTroughIndex } = vanco.getMonitoringRecommendation({
       freq: freq,
       hd: pt.hd,
