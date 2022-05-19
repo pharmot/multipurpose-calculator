@@ -625,11 +625,11 @@ const calculate = {
     }
     $("#tooltip--vanco-md-bayesian").attr('data-original-title', maintTextTooltip);
     if ( maintText.length > 0 && pt.bmi > 30 ) {
-      $("#row--vanco-md-default").hide();
-      $("#row--vanco-md-bayesian").show();
+      $("#row--vanco-md-default").css('display', 'none');
+      $("#row--vanco-md-bayesian").css('display', 'flex');
     } else {
-      $("#row--vanco-md-default").show();
-      $("#row--vanco-md-bayesian").hide();
+      $("#row--vanco-md-default").css('display', 'flex');
+      $("#row--vanco-md-bayesian").css('display', 'none');
     }
     const { monitoring, targetLevelText, pkParam, targetMin, targetMax, goalTroughIndex } = vanco.getMonitoringRecommendation({
       freq: freq,
