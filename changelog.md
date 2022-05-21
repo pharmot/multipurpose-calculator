@@ -1,5 +1,7 @@
 # Changelog
 
+# [Unreleased] - v1.1.0-beta.2
+
 ### Added
 
 - Reverse Heparin Calculator
