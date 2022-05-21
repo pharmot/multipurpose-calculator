@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/dist/icon.svg" width="150"></p>
+<p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/src/icon.svg" width="150"></p>
 
 <div align="center">
 
