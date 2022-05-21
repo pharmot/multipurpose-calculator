@@ -5,6 +5,7 @@
 ### Changed
 
 - Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing ([#60])
+- Split webpack entry points and added copy-webpack-plugin for build optimization
 
 ## [1.0.2]
 
