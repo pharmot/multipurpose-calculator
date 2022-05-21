@@ -1,3 +1,4 @@
-node_modules/*
+node_modules/
 package-lock.json
 ignore_index.html
+dist/
