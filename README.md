@@ -61,7 +61,7 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 ### Changed
 
 - Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing
-
+- Split webpack entry points and added copy-webpack-plugin for build optimization
 
 ## [1.0.2] - 2022-05-18
 
