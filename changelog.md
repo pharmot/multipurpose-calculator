@@ -1,8 +1,5 @@
 # Changelog
 
-
-## [Unreleased] - v1.1.0-beta.0
-
 ### Added
 
 - Reverse Heparin Calculator
@@ -11,13 +8,34 @@
 
 ### Changed
 
-- Optimized webpack configuration
 
 ### Fixed
 
 - Added check for Infinity to displayDate function in utility module
-- Switched from popover to tooltip (age help text wasn't working) ([#56])
 
+## [1.0.3]
+
+### Changed
+
+- Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing ([#60])
+- Split webpack entry points and added copy-webpack-plugin for build optimization
+
+## [1.0.2]
+
+### Added
+- Age parsing function to util.js module
+
+### Changed
+
+- Keep initial PK dosing disclaimer visible after button is clicked to show section
+- Show link to Bayesian calculator instead of weight-based initial maintenance dose if BMI > 30 ([#57])
+- Use new parseAge function in form validation for age input
+
+### Fixed
+
+- Switched from popover to tooltip (age help text wasn't working) ([#56])
+- Allow non-numbers for age input
+- Correct aucNew peak calculation documentation in equations.md ([#58])
 
 ## [1.0.1]
 
@@ -160,7 +178,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
@@ -196,3 +215,4 @@ Initial POC Release
 [#56]: https://github.com/pharmot/multipurpose-calculator/issues/56
 [#57]: https://github.com/pharmot/multipurpose-calculator/issues/57
 [#58]: https://github.com/pharmot/multipurpose-calculator/issues/58
+[#60]: https://github.com/pharmot/multipurpose-calculator/issues/60

@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/dist/icon.svg" width="150"></p>
+<p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/src/icon.svg" width="150"></p>
 
 <div align="center">
 
@@ -55,6 +55,13 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 # Release Notes
 
 [View full changelog here](changelog.md)
+
+## [1.0.3] - 2022-05-20
+
+### Changed
+
+- Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing
+- Split webpack entry points and added copy-webpack-plugin for build optimization
 
 ## [1.0.2] - 2022-05-18
 
@@ -175,6 +182,7 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
+[1.0.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.2
 [1.0.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.0
