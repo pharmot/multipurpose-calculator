@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3]
+
+### Changed
+
+- Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing ([#60])
+
 ## [1.0.2]
 
 ### Added
@@ -158,7 +164,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
@@ -194,3 +201,4 @@ Initial POC Release
 [#56]: https://github.com/pharmot/multipurpose-calculator/issues/56
 [#57]: https://github.com/pharmot/multipurpose-calculator/issues/57
 [#58]: https://github.com/pharmot/multipurpose-calculator/issues/58
+[#60]: https://github.com/pharmot/multipurpose-calculator/issues/60
