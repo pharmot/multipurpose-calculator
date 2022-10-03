@@ -6,17 +6,22 @@
 
 /**
  * Convert date object to string formatted as 'M/d/yyyy HH:mm'
+ * Returns empty string if input is not a valid date
  *
  * @param   {Date}   d   date object to convert
  * @returns {String}
  */
 export function displayDate(d) {
-  const mm = ("0" + d.getMinutes()).slice(-2),
+  try {
+    const mm = ("0" + d.getMinutes()).slice(-2),
       hh = ("0" + d.getHours()).slice(-2),
       mo = d.getMonth() + 1,
       dd = d.getDate(),
       yyyy = d.getFullYear();
-  return `${mo}/${dd}/${yyyy} ${hh}:${mm}`;
+      return `${mo}/${dd}/${yyyy} ${hh}:${mm}`;
+  } catch {
+    return '';
+  }  
 }
 
 /**

@@ -203,7 +203,6 @@ $("#aucDates-sameInterval").on("change", e => {
 
 $("#aucDates-apply").on('click', e => {
   $(e.target).addClass('datesApplied');
-  console.log(e);
   $('#vancoAUCPeakTime').val($('#aucDates-peakResult').html());
   $('#vancoAUCTroughTime').val($('#aucDates-troughResult').html());
   $('#aucDatesModal').modal('hide');
