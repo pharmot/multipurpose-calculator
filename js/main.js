@@ -624,7 +624,7 @@ const calculate = {
       }
     }
     $("#tooltip--vanco-md-bayesian").attr('data-original-title', maintTextTooltip);
-    if ( maintText.length > 0 && pt.bmi > 30 ) {
+    if ( maintText.length > 0 && pt.bmi > 30 && pt.hd === 0 ) {
       $("#row--vanco-md-default").css('display', 'none');
       $("#row--vanco-md-bayesian").css('display', 'flex');
     } else {
