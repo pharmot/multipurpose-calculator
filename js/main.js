@@ -226,7 +226,6 @@ function resetDates(){
   $(".dt-date").val(`${today.getFullYear()}-${('0' + (today.getMonth()+1)).slice(-2)}-${('0' + today.getDate()).slice(-2)}`);
 }
 
-// TODO: doc: pt requires module:util
 /**
  * Object representing the patient.
  *
@@ -268,9 +267,9 @@ let pt = {
   get sex(){ return this._sex || 0; },
   /**
    * Gets/sets the weight of the patient.
+   * @function
    * @requires module:util
    * @param {number} [x] Patient's weight
-   * @function
    * @returns {number} Patient's weight in kg, or 0 if invalid
    */
   set wt(x){ this._wt = checkValue(x, this.config.check.wtMin, this.config.check.wtMax); },
@@ -278,24 +277,24 @@ let pt = {
   /**
    * Gets/sets the height of the patient.
    * @function
-   * @requires module:util
-   * @param {number} [x] Patient's height
-   * @returns {number} Patient's height in cm, or 0 if invalid
+   * @requires  module:util
+   * @param    {number}     [x] Patient's height
+   * @returns  {number}         Patient's height in cm, or 0 if invalid
    */
   set ht(x){ this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
   get ht(){ return this._ht || 0; },
   /**
    * Gets/sets the age of the patient.
    * Accepts in years, months, days, or months/days.
+   * @function
+   * @requires   module:util
+   * @param     {string|number} [x] Patient's age in days, months, or years
+   * @returns   {number}            Patient's height in cm, or 0 if invalid
    * @example
    * pt.age("50");    // sets patient's age to 50 years
    * pt.age("23m");   // sets patient's age to 23 months (getter returns in years)
    * pt.age("16m3d"); // sets patient's age to 16 months, 3 days (getter returns in years)
    * pt.age("300d");  // sets patient's age to 300 days (getter returns in years)
-   * @function
-   * @requires module:util
-   * @param {string|number} [x] Patient's age in days, months, or years
-   * @returns {number} Patient's height in cm, or 0 if invalid
    */
   set age(x){
     const ageInYears = parseAge(x);
@@ -308,12 +307,8 @@ let pt = {
   },
   get age(){ return this._age || 0; },
   /**
-   * Gets the age context of the patient
-   *
-   * Possible values:
-   * - `adult` (default)
-   * - `child`
-   * - `infant`
+   * Gets the age context of the patient. 
+   * Possible values are `adult` (default), `child`, and `infant`
    * @function
    * @returns {string} Patient's age context (adult, child, or infant)
    */
@@ -325,9 +320,9 @@ let pt = {
   /**
    * Gets/sets the patient's serum creatinine.
    * @function
-   * @requires module:util
-   * @param {number} [x] Patient's SCr
-   * @returns {number} Patient's SCr in mg/dL, or 0 if invalid
+   * @requires   module:util
+   * @param     {number}    [x]   Patient's SCr
+   * @returns   {number}          Patient's SCr in mg/dL, or 0 if invalid
    */
   set scr(x){
     this._scr = checkValue(x, this.config.check.scrMin, this.config.check.scrMax);
@@ -335,9 +330,9 @@ let pt = {
   get scr(){ return this._scr || 0; },
   /**
    * Gets the patient's body mass index
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-mass-index)
    * @function
    * @returns {number} Patient's BMI in kg/m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-mass-index)
    */
   get bmi() {
     if ( this.wt > 0 && this.ht > 0 ) {
@@ -347,9 +342,9 @@ let pt = {
   },
   /**
    * Gets the patient's ideal body weight.  Returns 0 if age < 18.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#ideal-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#ideal-body-weight)
    */
   get ibw(){
     if ( this.age < 18 ) return 0;
@@ -360,9 +355,9 @@ let pt = {
   },
   /**
    * Gets the patient's adjusted body weight, using a factor of 0.4.  Returns 0 if age < 18.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#adjusted-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#adjusted-body-weight)
    */
   get adjBW(){
     if ( this.age < 18 ) return 0;
@@ -374,11 +369,11 @@ let pt = {
   },
   /**
    * Gets the percent the patient is over or under ideal body weight.  Returns 0 if age < 18.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#percent-over-or-under-ibw)
-   * @example
-   * If patient is 30% above their IBW, returns `30`
    * @function
    * @returns {number} Percent over or under ideal body weight, or 0 if insufficient input
+   * @example
+   * If patient is 30% above their IBW, returns `30`
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#percent-over-or-under-ibw)
    */
   get overUnder(){
     if ( this.age < 18 ) return 0;
@@ -389,9 +384,9 @@ let pt = {
   },
   /**
    * Gets the patient's lean body weight.  Returns 0 if age < 18.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#lean-body-weight)
    * @function
    * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#lean-body-weight)
    */
   get lbw(){
     if ( this.age < 18 ) return 0;
@@ -405,9 +400,9 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using actual body weight.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G ABW) in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
   get cgActual(){
     if ( this.wt > 0 && this.age > 0 && this.scr > 0 && this._sex ) {
@@ -417,9 +412,9 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using adjusted body weight.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G AdjBW) in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
   get cgAdjusted(){
     if ( this.adjBW > 0 && this.age > 0 && this.scr > 0 ) {
@@ -429,9 +424,9 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using ideal body weight.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G IBW) in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
   get cgIdeal(){
     if ( this.ibw > 0 && this.age > 0 && this.scr > 0 ) {
@@ -441,9 +436,9 @@ let pt = {
   },
   /**
    * Gets the patient's Protocol CrCl (equation and weight depend on age and percent over/under IBW.
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#protocol-crcl)
    * @function
    * @returns {number} Patient's Protocol CrCl in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#protocol-crcl)
    */
   get crcl(){
     if ( this.age < 18 ) return this.schwartz;
@@ -498,9 +493,9 @@ let pt = {
    * Gets the patient's body surface area using the Mosteller formula if patient
    * is 14 years of age or older.
    *
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-surface-area)
    * @function
    * @returns {number} Patient's BSA in m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-surface-area)
    */
    get bsa(){
      if ( this.age < 14 ) return 0;
@@ -513,9 +508,9 @@ let pt = {
    * Gets the TPN dosing weight - an adjusted weight using a factor of 0.25.
    * Returns 0 if age < 18 (consistent with adjBW)
    *
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#tpn-dosing-weight)
    * @function
    * @returns {number}  Patient's TPN dosing weight in kg, or 0 if insufficient input or age < 18 years
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#tpn-dosing-weight)
    */
    get tpnWt(){
      if ( this.age < 18 ) return 0;
@@ -524,15 +519,6 @@ let pt = {
      return 0.25 * (this.wt - this.ibw) + this.ibw;
    }
  };
-
- // TODO: add TPN dosing weight to js
- // TODO: add TPN dosing weight to html
- // TODO: add AMG dosing weight to js
- // TODO: add AMG dosing weight to html
-
-
-
-
 
 /**
  * Functions called by event listeners to calculate and display results
