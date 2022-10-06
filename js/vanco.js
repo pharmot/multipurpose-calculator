@@ -734,6 +734,7 @@ export function getInitialDosing({method, crcl, age, scr, sex, wt, bmi, infTime 
  *
  * @property {Number} vd              Volume of distribution
  * @property {Number} ke              Elimination rate constant
+ * @property {Number} halflife        Halflife
  * @property {Number} auc24           AUC 24
  * @property {Number} aucInf          AUC_infusion
  * @property {Number} aucElim         AUC_elimination
@@ -780,6 +781,7 @@ export function calculateAUC({dose = 0, interval = 0, trough = 0, peak = 0, trou
   return {
     vd: vd,
     ke: ke,
+    halflife: getHalflife(ke),
     auc24: auc24,
     aucInf: aucInf,
     aucElim: aucElim,
