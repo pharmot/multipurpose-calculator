@@ -379,7 +379,7 @@ function getSuggestedInterval(halflife) {
   return 48;
 };
 /**
- * Calculate vancomycin clearance using Crass method
+ * Calculates vancomycin clearance using Crass method
  *
  * @param   {Object}         obj
  * @param   {Number}         obj.age   Age in years
@@ -394,7 +394,19 @@ function getVCLCrass({age, scr, sex, wt} = {}){
   const cl = (9.656 - 0.078 * age) - (2.009 * scr) + (1.09 * _sex) + (0.04 * (wt**0.75));
   return cl;
 };
-// TODO: document loadingDose
+/**
+ * Generates loading dose recommendation based on patient info and indication/HD status
+ * 
+ * @param   {Object}         obj
+ * @param   {Number}         obj.ht               Height in cm
+ * @param   {Number}         obj.wt               Weight in kg
+ * @param   {Number}         obj.age              Age in years
+ * @param   {String|Number}  obj.sex              Sex (expects "M", "F", or 0)
+ * @param   {Number}         obj.bmi              Body mass index in kg/m^2
+ * @param   {Number}         obj.hd               Selected index of HD combo box (0=No, 1=HD, 2=PD, 3=CRRT, 4=SLED)
+ * @param   {Number}         obj.vancoIndication  Selected index of indication combo box (0=default, 1=SSTI/UTI, 2=severe sepsis)
+ * @returns {String}                              Loading dose recommendation (may include HTML tags)
+ */
 export function loadingDose({ht = 0, wt = 0, age = 0, sex = 0, bmi = 0, hd, vancoIndication} = {}){
   if ( ht === 0 || wt === 0 || age === 0 ) return '';
   // Pediatric loading dose
@@ -437,7 +449,19 @@ export function loadingDose({ht = 0, wt = 0, age = 0, sex = 0, bmi = 0, hd, vanc
   }
   return (d1 === d2 ? `${d1} mg` : `${d1} - ${d2} mg`) + result + "&lt;/i>";
 };
-// TODO: document getmaintenanceDose
+/**
+ * Generates maintenance dose recommendation based on patient info and indication/HD status
+ * 
+ * @param   {Object}         obj
+ * @param   {Number}         obj.age         Age in years
+ * @param   {Number}         obj.wt          Weight in kg
+ * @param   {Number}         obj.ibw         Ideal body weight in kg
+ * @param   {Number}         obj.scr         Serum creatinine in mg/dL
+ * @param   {Number}         obj.crcl        Creatinine clearance in mL/min
+ * @param   {Number}         obj.hd          Selected index of HD combo box (0=No, 1=HD, 2=PD, 3=CRRT, 4=SLED)
+ * @param   {Number}         obj.indication  Selected index of indication combo box (0=default, 1=SSTI/UTI, 2=severe sepsis)
+ * @returns {String}                         Maintenance dose recommendation (may include HTML tags)
+ */
 export function getMaintenanceDose({age, wt, ibw, scr, hd, indication, crcl} = {}){
   if ( ibw === 0 || age === 0 ) return { maintText: '', freq: 0 };
   if ( scr === 0 &amp;&amp; hd === 0 ) return { maintText: 'Must order SCr before maintenance dose can be calculated', freq: 0 };
@@ -889,17 +913,22 @@ export function calculateAUC({dose = 0, interval = 0, trough = 0, peak = 0, trou
   };
 };
 /**
+ * Calculated AUC results for various possible doses with the selected interval, for output to a table
+ *
+ * @typedef  {Object}   AucNew
+ * @property {Number[]}   dose         New dose in mg
+ * @property {Number[]}   auc          Predicted AUC from new dose
+ * @property {Number[]}   infTime      Infusion time in hours
+ * @property {Number[]}   trough       Calculated trough level
+ * @property {Number[]}   peak         Calculated peak level
+ * @property {Boolean[]}  therapeutic  If resulting AUC is therapeutic
+ */
+/**
  * Calculate data for table of doses based on selected interval
  *
  * @param   {AucCurrent} aucCurrent  AUC calculation results
  * @param   {Number}     interval    Selected interval in hours
- * @returns {Object}     res
- * @returns {Number[]}   res.dose         New dose in mg
- * @returns {Number[]}   res.auc          Predicted AUC from new dose
- * @returns {Number[]}   res.infTime      Infusion time in hours
- * @returns {Number[]}   res.trough       Calculated trough level
- * @returns {Number[]}   res.peak         Calculated peak level
- * @returns {Boolean[]}  res.therapeutic  If resulting AUC is therapeutic
+ * @returns {AucNew}                 Calculation results for new dose table
  */
 export function calculateAUCNew(aucCurrent, interval){
   let res = {
@@ -931,22 +960,31 @@ export function calculateAUCNew(aucCurrent, interval){
   return res;
 };
 /**
- * Calculate dosing for single-level adjustment
+ * Single level linear adjustment calculation parameters
  *
- * @param   {Object} obj                   Input parameters
- * @param   {Number} obj.curDose           Current dose in mg
- * @param   {Number} obj.curFreq           Current frequency in hours
- * @param   {Number} obj.curTrough         Current trough in mg/dL
- * @param   {Number} obj.testDose          Selected dose in mg
- * @param   {Number} obj.testFreq          Selected frequency in hours
- * @param   {Number} obj.goalTrough        Middle of goal trough range in mg/dL
- * @returns {Object} res
- * @returns {Number} res.linearDose        Calculated dose for linear adjustment in mg
- * @returns {Number} res.linearFreq        Calculated frequency for linear adjustment in hours
- * @returns {Number} res.linearTrough      Estimated trough from calculated dose/frequency
- * @returns {Number} res.testLinearDose    Test dose from input parameters if all inputs are valid
- * @returns {Number} res.testLinearFreq    Test frequency from input parameters if all inputs are valid
- * @returns {Number} res.testLinearTrough  Est trough from test dose and test frequency
+ * @typedef  {Object} LinearParams
+ * @property {Number} curDose           Current dose in mg
+ * @property {Number} curFreq           Current frequency in hours
+ * @property {Number} curTrough         Current trough in mg/dL
+ * @property {Number} testDose          Selected dose in mg
+ * @property {Number} testFreq          Selected frequency in hours
+ * @property {Number} goalTrough        Middle of goal trough range in mg/dL
+ */
+/**
+ * Single level linear adjustment calculation results
+ *
+ * @typedef  {Object} LinearResults
+ * @property {Number} linearDose        Calculated dose for linear adjustment in mg
+ * @property {Number} linearFreq        Calculated frequency for linear adjustment in hours
+ * @property {Number} linearTrough      Estimated trough from calculated dose/frequency
+ * @property {Number} testLinearDose    Test dose from input parameters if all inputs are valid
+ * @property {Number} testLinearFreq    Test frequency from input parameters if all inputs are valid
+ * @property {Number} testLinearTrough  Est trough from test dose and test frequency
+ */
+/**
+ * Calculate dosing for single-level adjustment
+ * @param   {LinearParams}
+ * @returns {LinearResults}
  */
 export function getLinearAdjustment({curDose, curFreq, curTrough, testDose, testFreq, goalTrough} = {}){
 
@@ -1129,10 +1167,10 @@ export function calculateTwoLevelPK({ wt = 0, bmi = 0, ke= 0, selectedInterval= 
 /**
  * Get dose revision recommendation for dialysis patients
  *
- * @param   {Object} obj      Input parameters
- * @param   {Number} wt       Patient's weight in kg
- * @param   {Number} trough   Measured trough level
- * @returns {String}          Recommendation as HTML string
+ * @param   {Object} obj          Input parameters
+ * @param   {Number} obj.wt       Patient's weight in kg
+ * @param   {Number} obj.trough   Measured trough level
+ * @returns {String}              Recommendation as HTML string
  */
 export function hdRevision({wt, trough} = {}){
   if ( trough === 0 ) return '';
@@ -1158,7 +1196,7 @@ export function hdRevision({wt, trough} = {}){
   <br class="clear">
 
   <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a>
   </footer>
 
   <script src="scripts/linenumber.js"></script>
