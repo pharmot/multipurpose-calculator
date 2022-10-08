@@ -21,9 +21,9 @@
   <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
-  
 
-  
+
+
 
   <!-- start Mixpanel -->
   <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
@@ -54,17 +54,17 @@
     <ul>
       <li >
         <a href="index.html">
-          
+
             <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
-          
-          
+
+
         </a>
       </li>
 
-      
+
 
     </ul>
   </div>
@@ -72,7 +72,7 @@
   <nav>
     <h3 class="reference-title">Documentation</h3>
 
-    
+
 
     <h3>Modules</h3><ul><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
     <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
@@ -83,14 +83,14 @@
   </nav>
 
   <div id="main">
-    
+
       <h1 class="page-title">
         Source: util.js
       </h1>
-    
 
-    
-      
+
+
+
 
 <section>
   <article>
@@ -179,57 +179,12 @@ export function roundTo(x, n = 0) {
 export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false){
   let txt = '';
   let wasNeg = false;
-  let wasNeg2 = false;
+  if ( num !== Infinity &amp;&amp; num !== -Infinity ) {
 
-  if ( Array.isArray(num) ) {
-
-    if ( num.length === 2 ) {
-
-      let num1 = num[0];
-      let num2 = num[1];
-      let num1Rounded;
-      let num2Rounded;
-
-      if ( num1 &lt; 0 &amp;&amp; allowNegative ) {
-        num1 = 0-num1;
-        wasNeg = true;
-      }
-
-      if ( num2 &lt; 0 &amp;&amp; allowNegative ) {
-        num2 = 0-num2;
-        wasNeg2 = true;
-      }
-
-      if ( num1 > 0 ) {
-        num1Rounded = roundTo(num1, round);
-      }
-
-      if ( num2 > 0 ) {
-        num2Rounded = roundTo(num2, round);
-      }
-
-      if ( wasNeg ) {
-        num1Rounded = 0 - num1Rounded;
-      }
-
-      if ( wasNeg2 ) {
-        num2Rounded = 0 - num2Rounded;
-      }
-
-      if ( num1 == num2 ) {
-        txt = num1;
-      } else {
-        txt = `${num1Rounded} - ${num2Rounded}`;
-      }
-
-    }
-
-  } else {
     if ( num &lt; 0 &amp;&amp; allowNegative ) {
       num = 0 - num;
       wasNeg = true;
     }
-
     if( num > 0 ) {
       txt = roundTo(num, round);
     }
@@ -237,7 +192,6 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
     if ( wasNeg ) {
       txt = 0 - txt;
     }
-
   }
 
   if ( txt !== '' ) {
@@ -309,7 +263,7 @@ export function checkTimeInput(x){
   </article>
 </section>
 
-    
+
 
 
   </div>
@@ -323,7 +277,7 @@ export function checkTimeInput(x){
   <script src="scripts/linenumber.js"></script>
   <script src="scripts/pagelocation.js"></script>
 
-  
+
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased] - v1.1.0-beta.0
+## [Unreleased] - v1.1.0-beta.2
 
 ### Added
 
@@ -8,6 +8,14 @@
 - Body surface area calculation
 - TPN calculations (fluid, energy, and protein requirements)
 - Support for ranges to displayValue function in util module
+- Reverse Heparin Calculator
+- PCA Dosing Calculator
+- Standard Administration Times tool
+
+### Fixed
+
+- Added check for Infinity to displayDate function in utility module
+
 ## [1.0.4]
 
 ### Changed

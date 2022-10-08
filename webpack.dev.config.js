@@ -9,7 +9,10 @@ const bodyStyle =  isBeta ? `style="border: 4px solid #dc3545;margin:0 auto 70px
 module.exports = {
   entry: {
     main: './js/main.js',
+    heparin: './js/heparin.js',
+    pca: './js/pca.js',
     vanco: './js/vanco.js',
+    nextdose: './js/nextdose.js',
     seconddose: './js/seconddose.js'
   },
   mode: 'development',

@@ -104,46 +104,34 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
         wasNeg2 = true;
       }
 
-      if ( num1 > 0 ) {
-        num1Rounded = roundTo(num1, round);
-      }
+      if ( num1 > 0 ) num1Rounded = roundTo(num1, round);
 
-      if ( num2 > 0 ) {
-        num2Rounded = roundTo(num2, round);
-      }
+      if ( num2 > 0 ) num2Rounded = roundTo(num2, round);
 
-      if ( wasNeg ) {
-        num1Rounded = 0 - num1Rounded;
-      }
+      if ( wasNeg ) num1Rounded = 0 - num1Rounded;
 
-      if ( wasNeg2 ) {
-        num2Rounded = 0 - num2Rounded;
-      }
+      if ( wasNeg2 ) num2Rounded = 0 - num2Rounded;
 
       if ( num1 == num2 ) {
         txt = num1;
       } else {
         txt = `${num1Rounded} - ${num2Rounded}`;
       }
-
     }
-
   } else {
-    if ( num < 0 && allowNegative ) {
-      num = 0 - num;
-      wasNeg = true;
-    }
+    if ( num !== Infinity && num !== -Infinity ) {
 
-    if( num > 0 ) {
-      txt = roundTo(num, round);
-    }
+      if ( num < 0 && allowNegative ) {
+        num = 0 - num;
+        wasNeg = true;
+      }
 
-    if ( wasNeg ) {
-      txt = 0 - txt;
-    }
+      if( num > 0 ) txt = roundTo(num, round);
 
+      if ( wasNeg ) txt = 0 - txt;
+
+    }
   }
-
   if ( txt !== '' ) {
     txt = pre + txt + unit;
   }

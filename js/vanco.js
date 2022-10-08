@@ -17,6 +17,7 @@ import { childIsObese } from './growthCharts.js';
  * @property {Number} max         max loading dose in mg
  */
 /**
+ * Configuration for vancomycin calculations and related input validation.
  * @constant
  * @type     {Object}
  * @default

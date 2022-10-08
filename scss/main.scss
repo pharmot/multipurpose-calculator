@@ -1,11 +1,5 @@
 // compileOnSave: false
 
-/*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.3
-  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
-  * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
-  */
-
 @import '../node_modules/bootstrap/dist/css/bootstrap';
 @import './fontawesome';
 @import './variables';
@@ -47,6 +41,10 @@ body {
 #card--tpn-1 { @include fixed-width('tpn'); }
 #card--tpn-2 { @include fixed-width('tpn'); }
 #card--tpn-kcal { @include fixed-width('tpnEnergy'); }
+#card--heparin { @include fixed-width(650px); }
+#card--pca { @include fixed-width(650px); }
+#card--nextdose { @include fixed-width(700px); }
+// #col--pca-params { @include fixed-width(500px); }
 
 #card--auc,
 #card--aucLinear {
@@ -95,7 +93,7 @@ h1 {
   flex-wrap: nowrap;
 }
 
-.input-group + .input-group {
+.input-group:not(.hidden) + .input-group:not([class*=offset-]) {
   margin-left: 0;
   padding-left: 0;
 }
@@ -117,7 +115,7 @@ h1 {
   padding: $len-1 $len-2;
 }
 
-.form-row label:not(.form-check-label) {
+.form-row label:not(.form-check-label):not(.btn) {
   @extend %form-element-base;
 
   justify-content: flex-start;
@@ -163,6 +161,21 @@ h1 {
   &.input-group-note {
     border: 0;
     background: transparent;
+  }
+}
+
+.form-help-text {
+  color: $clr-gray;
+  text-align: left;
+  display: block;
+  margin-top: $len-1;
+  font-size: 80%;
+  font-weight: 400;
+  padding-left: $len-2;
+
+  &.form-help-text-inline {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -490,6 +503,98 @@ ul {
 
 .card-footer {
   padding: $len-2 $len-4;
+}
+
+#nav-more {
+  margin-top: -7px;
+}
+
+.table-sm.pump-limits {
+  margin-top: 0;
+  margin-bottom: $len-2;
+
+  caption {
+    padding-top: $len-1;
+    padding-bottom: 0;
+  }
+}
+
+.pca-bg-warning {
+  background-color: lighten($orange, 35%);
+}
+
+.pca-bg-danger {
+  background-color: lighten($red, 35%);
+}
+
+.pca-bg-error {
+  background-color: lighten($red, 22%);
+}
+
+.beta-notice {
+  background: $red;
+}
+
+.btn-group--nextdose-freq {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: $len-3;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  margin-left: $len-4;
+  margin-right: $len-4;
+  padding-left: $len-5;
+  padding-right: $len-5;
+
+  &.btn-group-vertical > .btn {
+    border-radius: 0;
+    margin-top: -1px;
+    padding: $len-1;
+  }
+
+  &.btn-group-vertical > .btn.is-top {
+    border-top-left-radius: $len-1;
+    border-top-right-radius: $len-1;
+  }
+
+  &.btn-group-vertical > .btn.is-bottom {
+    border-bottom-left-radius: $len-1;
+    border-bottom-right-radius: $len-1;
+  }
+}
+
+.btn:not(:disabled):not(.disabled).btn-group-vertical__spacer {
+  cursor: initial;
+}
+
+.btn-group--nextdose-time {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(12, 1fr);
+  margin-top: $len-2;
+
+  &.btn-group > .btn {
+    border-radius: 0;
+    margin-top: -1px;
+    padding: $len-1;
+  }
+
+  &.btn-group > .btn.is-top-left {
+    border-top-left-radius: $len-1;
+  }
+
+  &.btn-group > .btn.is-top-right {
+    border-top-right-radius: $len-1;
+  }
+
+  &.btn-group > .btn.is-bottom-left {
+    border-bottom-left-radius: $len-1;
+    margin-left: 0;
+  }
+
+  &.btn-group > .btn.is-bottom-right {
+    border-bottom-right-radius: $len-1;
+  }
 }
 
 .tooltip-inner {
