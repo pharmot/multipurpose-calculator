@@ -1,13 +1,21 @@
 const pjs = require('./package.json');
 const thisYear = (new Date()).getFullYear();
 const HtmlWebpackPlugin = require ('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const isBeta = /beta/.test(pjs.version);
+const betaBanner = isBeta ? `<div class="container-fluid beta-notice"><div class="h6 text-white">TEST RELEASED VERSION ${pjs.version}</div></div>` : '';
+const bodyStyle =  isBeta ? `style="border: 4px solid #dc3545;margin:0 auto 70px;"` : '';
 
 module.exports = {
-  entry: './js/main.js',
+  entry: {
+    main: './js/main.js',
+    vanco: './js/vanco.js',
+    seconddose: './js/seconddose.js'
+  },
   mode: 'development',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'bundle.js',
+    filename: '[name].dev.js',
   },
   devtool: "eval-source-map",
   resolve: {
@@ -25,16 +33,7 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              postcssOptions: {
-                plugins: [
-                  [
-                    "autoprefixer",
-                    {
-
-                    },
-                  ],
-                ],
-              },
+              postcssOptions: { plugins: [ [ "autoprefixer", { }, ], ], },
             },
           },
           { loader: 'sass-loader' }
@@ -49,8 +48,22 @@ module.exports = {
         buildversion: pjs.version,
         homepage: pjs.homepage,
         issues: pjs.bugs.url,
-        thisYear: thisYear
+        thisYear: thisYear,
+        betaBanner: betaBanner,
+        bodyStyle: bodyStyle
       },
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "**/*",
+          context: `${__dirname}/src`,
+        },
+      ]
+    })
   ],
+  performance: {
+    maxAssetSize: 250000,
+    maxEntrypointSize: 400000,
+  }
 };

@@ -8,6 +8,23 @@
 - Body surface area calculation
 - TPN calculations (fluid, energy, and protein requirements)
 - Support for ranges to displayValue function in util module
+## [1.0.4]
+
+### Changed
+
+- Add halflife to AUC Calculation Details Output
+
+### Fixed
+
+- Disable suggestion to use Bayesian calculator for initial maintenance dose altogether in HD patients ([#62])
+- Fix error in AUC Calculation Details when levels are drawn within the same interval ([#63])
+
+## [1.0.3]
+
+### Changed
+
+- Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing ([#60])
+- Split webpack entry points and added copy-webpack-plugin for build optimization
 
 ## [1.0.2]
 
@@ -167,7 +184,10 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.4...HEAD
+[1.0.4]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...v1.0.4
+[1.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/compare/v0.3.0...v0.4.0
@@ -202,3 +222,6 @@ Initial POC Release
 [#56]: https://github.com/pharmot/multipurpose-calculator/issues/56
 [#57]: https://github.com/pharmot/multipurpose-calculator/issues/57
 [#58]: https://github.com/pharmot/multipurpose-calculator/issues/58
+[#60]: https://github.com/pharmot/multipurpose-calculator/issues/60
+[#62]: https://github.com/pharmot/multipurpose-calculator/issues/62
+[#63]: https://github.com/pharmot/multipurpose-calculator/issues/63

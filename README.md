@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/dist/icon.svg" width="150"></p>
+<p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/src/icon.svg" width="150"></p>
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 [![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)&nbsp;&nbsp;&nbsp;
 ![GitHub Release Date](https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2355a63a)&nbsp;&nbsp;&nbsp;
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)&nbsp;&nbsp;&nbsp;
-![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.0.0&color=orange&logo=windowsxp)&nbsp;&nbsp;&nbsp;
+![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.0.3&color=orange&logo=windowsxp)&nbsp;&nbsp;&nbsp;
 ![MIT Licensed](https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a)
 
 ## Open the Calculator
@@ -56,15 +56,34 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
+## [1.0.4] - 2022-10-02
+
+### Changed
+
+- Added halflife to AUC calculation details
+
+### Fixed
+
+- Disabled Bayesian recommendation if HD is selected
+- Fixed error displaying details when levels are drawn in the same interval
+
+## [1.0.3] - 2022-05-20
+
+### Changed
+
+- Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing
+- Split webpack entry points and added copy-webpack-plugin for build optimization
+
 ## [1.0.2] - 2022-05-18
 
 ### Changed
+
 - Keep initial PK dosing disclaimer visible after button is clicked to show section
 - Show link to Bayesian calculator instead of weight-based initial maintenance dose if BMI > 30
-  - ID Core Group Request (May 2022)
+  - IDCG Request, May 2022
 
 ### Fixed
-- Input of ages using months and days
+- Age input in months and/or days
 
 ## [1.0.1] - 2022-04-06
 
@@ -174,7 +193,9 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
+[1.0.4]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.4
+[1.0.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.3
+[1.0.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.2
 [1.0.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.1
 [1.0.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.0
 [0.4.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v0.4.0

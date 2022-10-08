@@ -1,10 +1,10 @@
 // compileOnSave: false
 
 /*!
- * VMFH Pharmacy Multipurpose Calculator v1.0.0
- * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
- * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
- */
+  * VMFH Pharmacy Multipurpose Calculator v1.0.3
+  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
+  * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
+  */
 
 @import '../node_modules/bootstrap/dist/css/bootstrap';
 @import './fontawesome';
@@ -326,7 +326,7 @@ input {
   }
 }
 
-.row--vanco-md-bayesian {
+#row--vanco-md-bayesian {
   display: none;
 }
 

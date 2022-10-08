@@ -95,13 +95,13 @@
 
   <section class="readme">
     <article>
-      <p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/dist/icon.svg" width="150"></p>
+      <p align="center"><img src="https://github.com/pharmot/multipurpose-calculator/blob/main/src/icon.svg" width="150"></p>
 <div align="center">
 <h1>VMFH Multipurpose Calculator</h1>
 <p><a href="https://github.com/pharmot/multipurpose-calculator/releases/latest"><img src="https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&amp;color=%2355a63a&amp;logo=github" alt="Latest Github release"></a>   
 <img src="https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2355a63a" alt="GitHub Release Date">   
 <img src="https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&amp;color=%2327aae1" alt="GitHub commits since latest release">   
-<img src="https://img.shields.io/static/v1?label=intranet&amp;message=v1.0.0&amp;color=orange&amp;logo=windowsxp" alt="Intranet version">   
+<img src="https://img.shields.io/static/v1?label=intranet&amp;message=v1.0.3&amp;color=orange&amp;logo=windowsxp" alt="Intranet version">   
 <img src="https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a" alt="MIT Licensed"></p>
 <h2>Open the Calculator</h2>
 <p><a href="http://nwtac1web11.tacoma-wa.catholichealth.net/CHIFH-Rx/MultiCalc/"><img src="https://img.shields.io/badge/-ON%20NETWORK-%2355a63a?style=flat-square" alt="On-Network"></a>      <a href="https://rxcalc.net/multicalc"><img src="https://img.shields.io/badge/-OFF%20NETWORK-%2327aae1?style=flat-square" alt="Off-Network"></a></p>
@@ -141,19 +141,35 @@
 <a href="https://github.com/pharmot/multipurpose-calculator/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion"><img src="https://img.shields.io/github/issues-raw/pharmot/multipurpose-calculator/question?color=%23D876E3&amp;label=questions" alt="GitHub issues by-label"></a></p>
 <h1>Release Notes</h1>
 <p><a href="changelog.md">View full changelog here</a></p>
-<h2><a href="https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2">1.0.2</a> - 2022-05-18</h2>
+<h2><a href="https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.4">1.0.4</a> - 2022-10-02</h2>
+<h3>Changed</h3>
+<ul>
+<li>Added halflife to AUC calculation details</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Disabled Bayesian recommendation if HD is selected</li>
+<li>Fixed error displaying details when levels are drawn in the same interval</li>
+</ul>
+<h2><a href="https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.3">1.0.3</a> - 2022-05-20</h2>
+<h3>Changed</h3>
+<ul>
+<li>Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing</li>
+<li>Split webpack entry points and added copy-webpack-plugin for build optimization</li>
+</ul>
+<h2><a href="https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.2">1.0.2</a> - 2022-05-18</h2>
 <h3>Changed</h3>
 <ul>
 <li>Keep initial PK dosing disclaimer visible after button is clicked to show section</li>
 <li>Show link to Bayesian calculator instead of weight-based initial maintenance dose if BMI &gt; 30
 <ul>
-<li>ID Core Group Request (May 2022)</li>
+<li>IDCG Request, May 2022</li>
 </ul>
 </li>
 </ul>
 <h3>Fixed</h3>
 <ul>
-<li>Input of ages using months and days</li>
+<li>Age input in months and/or days</li>
 </ul>
 <h2><a href="https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.1">1.0.1</a> - 2022-04-06</h2>
 <h3>Changed</h3>

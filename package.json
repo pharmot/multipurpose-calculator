@@ -23,12 +23,17 @@
     "watch": "webpack --config webpack.dev.config.js --watch",
     "build": "webpack",
     "dev": "webpack --config webpack.dev.config.js",
-    "jsdoc": "jsdoc  -c ./jsdoc.config.json"
+    "jsdoc": "jsdoc  -c ./jsdoc.config.json",
+    "devstats": "webpack --config webpack.dev.config.js --profile --json > stats.json",
+    "stats": "webpack --config webpack.config.js --profile --json > stats.json",
+    "dist": "tar -cvzf %npm_package_name%-dist-v%npm_package_version%.tar.gz -C ./dist .",
+    "zip": "7z a %npm_package_name%-dist-v%npm_package_version%.zip ./dist/* -r"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "autoprefixer": "^10.3.7",
     "bootstrap": "^4.6.0",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",
     "html-loader": "^3.0.0",
     "html-webpack-plugin": "^5.5.0",

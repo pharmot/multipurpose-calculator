@@ -1,6 +1,6 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.0
-  * Copyright 2020-2021 Andy Briggs (https://github.com/pharmot)
+  * VMFH Pharmacy Multipurpose Calculator v1.0.3
+  * Copyright 2020-2022 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
 
@@ -211,7 +211,6 @@ $("#aucDates-sameInterval").on("change", e => {
 
 $("#aucDates-apply").on('click', e => {
   $(e.target).addClass('datesApplied');
-  console.log(e);
   $('#vancoAUCPeakTime').val($('#aucDates-peakResult').html());
   $('#vancoAUCTroughTime').val($('#aucDates-troughResult').html());
   $('#aucDatesModal').modal('hide');
@@ -721,12 +720,12 @@ const calculate = {
       }
     }
     $("#tooltip--vanco-md-bayesian").attr('data-original-title', maintTextTooltip);
-    if ( maintText.length > 0 && pt.bmi > 30 ) {
-      $("#row--vanco-md-default").hide();
-      $("#row--vanco-md-bayesian").show();
+    if ( maintText.length > 0 && pt.bmi > 30 && pt.hd === 0 ) {
+      $("#row--vanco-md-default").css('display', 'none');
+      $("#row--vanco-md-bayesian").css('display', 'flex');
     } else {
-      $("#row--vanco-md-default").show();
-      $("#row--vanco-md-bayesian").hide();
+      $("#row--vanco-md-default").css('display', 'flex');
+      $("#row--vanco-md-bayesian").css('display', 'none');
     }
     const { monitoring, targetLevelText, pkParam, targetMin, targetMax, goalTroughIndex } = vanco.getMonitoringRecommendation({
       freq: freq,
@@ -962,6 +961,7 @@ const calculate = {
           ["Vd", displayValue('', aucCurrent.vd, 0.01, " L")],
           ["Infusion time", displayValue('', 60 * aucCurrent.tInf, 1, ' min')],
           ["ke", displayValue('', aucCurrent.ke, 0.0001, ` hr^-1`)],
+          ["Halflife", displayValue('', aucCurrent.halflife, 0.1, ' hr')],
           ["True peak", displayValue('', aucCurrent.truePeak, 0.1, ' mcg/mL')],
           ["True trough", displayValue('', aucCurrent.trueTrough, 0.1, ' mcg/mL')],
           ["AUC (inf)", displayValue('', aucCurrent.aucInf, 0.1)],
@@ -976,30 +976,31 @@ const calculate = {
         ]
         if ( usedDateTimeCalculator ) {
           const sameInterval = $('#aucDates-sameInterval').is(':checked');
-          tape.auc.unshift([
-            [
-              "Drawn in same interval?",
-              sameInterval ? "Yes" : "No"
-            ],
-            [
-              "Dose before trough",
-              displayDate( getDateTime( $('#aucDates-doseDate-1').val(), $('#aucDates-doseTime-1').val() ) )
-            ],
-            [
-              "Trough time",
-              displayDate( getDateTime($('#aucDates-troughDate').val(), $('#aucDates-troughTime').val() ) )
-            ],
-            [
+          const addToTape = [];
+          addToTape.push([
+            "Drawn in same interval?",
+            sameInterval ? "Yes" : "No"
+          ]);
+          addToTape.push([
+            sameInterval ? "Dose before levels" : "Dose before trough",
+            displayDate( getDateTime( $('#aucDates-doseDate-1').val(), $('#aucDates-doseTime-1').val() ) )
+          ]);
+          addToTape.push([
+            "Trough time",
+            displayDate( getDateTime($('#aucDates-troughDate').val(), $('#aucDates-troughTime').val() ) )
+          ]);
+          if ( !sameInterval ) {
+            addToTape.push([
               "Dose before peak",
               displayDate( sameInterval ? dateTimeInputs.troughDose : getDateTime($('#aucDates-doseDate-2').val(), $('#aucDates-doseTime-2').val() ) )
-            ],
-            [
-              "Peak time",
-              displayDate( getDateTime($('#aucDates-peakDate').val(), $('#aucDates-peakTime').val() ) )
-            ]
+            ])
+          }
+          addToTape.push([
+            "Peak time",
+            displayDate( getDateTime($('#aucDates-peakDate').val(), $('#aucDates-peakTime').val() ) )
           ]);
+          tape.auc.unshift(addToTape)
         }
-
         $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing Calculation"));
         $("#tape--auc").append(LOG.outputTape(tableText));
       } else {
