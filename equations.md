@@ -274,7 +274,7 @@ Used for patients with cystic fibrosis or who are pre- or postpartum.
 | Dialysis | CrCl | Age | Recommendation |
 | --- | --- | --- | --- |
 | non-HD | (any) | age < 12 | `60-80 mg/kg/day divided q6h` |
-| non-HD | (any) | age < 18 | `60-70 mg/kg/day divided q6h` or `60-70 mg/kg/day divided q8h` |
+| non-HD | (any) | age < 18 | `60-70 mg/kg/day divided q6h` or<br> `60-70 mg/kg/day divided q8h` |
 
 
 :pushpin: To Do

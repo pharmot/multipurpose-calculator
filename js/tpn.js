@@ -1,7 +1,7 @@
 /**
  * TPN Dosing Module
- * @module amg
- * @since v0.1.0
+ * @module tpn
+ * @since v0.1.0 //TODO: update when live
  * @requires module:util
  */
 // import {  } from './util.js';

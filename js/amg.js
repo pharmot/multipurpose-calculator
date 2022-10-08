@@ -1,10 +1,23 @@
 /**
  * Aminoglycoside Dosing Module
  * @module amg
- * @since v0.1.0
+ * @since v0.1.0 //TODO: update when live
  * @requires module:util
  */
 import { roundTo } from './util.js';
+
+/**
+ * Parameters for calculating AMG dosing weight
+ *
+ * @typedef  {Object}  DosingWeightParams
+ * @property {Boolean} alt       Use alternate dosing weight
+ * @property {Number}  age       Patient age in years
+ * @property {Number}  wt        Patient weight in kg
+ * @property {Number}  ibw       Ideal body weight in kg
+ * @property {Number}  adjBW     Adjusted body weight in kg
+ * @property {Number}  overUnder Percent over or under ideal body weight
+ */
+
 /**
  * Gets the dosing weight for aminoglycoside dosing, per AMG dosing guidelines (2018 version).
  *
@@ -13,14 +26,8 @@ import { roundTo } from './util.js';
  *
  * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/equations.md/#aminoglycoside-dosing-weight)
  *
- * @param   {Object}  obj           Input parameters
- * @param   {Boolean} obj.alt       Use alternate dosing weight
- * @param   {Number}  obj.age       Patient age in years
- * @param   {Number}  obj.wt        Patient weight in kg
- * @param   {Number}  obj.ibw       Ideal body weight in kg
- * @param   {Number}  obj.adjBW     Adjusted body weight in kg
- * @param   {Number}  obj.overUnder Percent over or under ideal body weight
- * @returns {String}                Text description of weight to use
+ * @param   {DosingWeightParams}  - Dosing weight calculation parameters
+ * @returns {String}              - Text description of weight to use
  */
 export function dosingWeightString({ alt, age, wt, ibw, adjBW, overUnder } = {} ){
   if ( age <= 15 && age > 0 ) return 'Does not apply for age &le; 15';

@@ -5,11 +5,22 @@
  */
 
 import * as arial from './arial.js';
-/** Status of logger */
-export let enabled = false;
-/** Enable logging */
-export function enable(){ enabled = true;}
 
+/**
+ * Status of logger, determines if console wrapper functions are executed
+ */
+export let enabled = false;
+
+/**
+ * Enables logging
+ */
+export function enable(){ enabled = true;}
+/**
+ * Wrapper for console.log, dependent on whether logging has been enabled.
+ * @param   {String|Object|Array}  msg     Message to log to console
+ * @param   {String}               title   Title for message
+ * @returns {undefined}
+ */
 export function log(msg = '', title = ''){
   if (!enabled) return;
   if( (typeof msg === 'object' || typeof msg === 'array') && title !== '' ) {
@@ -19,22 +30,44 @@ export function log(msg = '', title = ''){
     console.log(title === '' ? msg : `==${title}== ${msg}`);
   }
 };
+/**
+ * Wrapper for console.error, dependent on whether logging has been enabled
+ * @param   {String}    msg     Error message to log to console
+ * @param   {String}    title   Title for error message
+ * @returns {undefined}
+ */
 export function error(msg = '', title = ''){
   if (!enabled) return;
   console.error(title === '' ? msg : `[${title}]   ${msg}`);
 };
+/**
+ * Wrapper for console.warn, dependent on whether logging has been enabled
+ * @param   {String}    msg     Warning message to log to console
+ * @param   {String}    title   Title for warning message
+ * @returns {undefined}
+ */
 export function warn(msg = '', title = ''){
   if (!enabled) return;
   console.warn(title === '' ? msg : `[${title}]   ${msg}`);
 };
+/**
+ * Wrapper for console.group, dependent on whether logging has been enabled
+ * @param   {String}    msg     Message to log to console
+ * @returns {undefined}
+ */
 export function group(msg=""){
   if (!enabled) return;
   console.group(msg);
 };
+/**
+ * Wrapper for console.groupEnd, dependent on whether logging has been enabled
+ * @returns {undefined}
+ */
 export function groupEnd(){
   if (!enabled) return;
   console.groupEnd();
 };
+//TODO: document outputTape function
 export function outputTape(parent, title=""){
   let titleHtml = "";
   title = title.toUpperCase();
@@ -59,6 +92,7 @@ export function outputTape(parent, title=""){
   });
   return `${titleHtml}${printArray(items)}${txt}`
 };
+//TODO: document printArray function
 function printArray(arr){
   let labels = [];
   let values = [];
