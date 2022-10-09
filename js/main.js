@@ -1,5 +1,5 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.2
+  * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.3
   * Copyright 2020-2022 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
@@ -9,7 +9,6 @@ import 'bootstrap';
 import "../scss/main.scss";
 import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge } from './util.js'
 import { default as ivig } from './ivig.js';
-import { childIsObese } from './growthCharts.js';
 import { getSecondDose } from './seconddose.js';
 import * as arial from './arial.js';
 import { default as setupValidation } from './formValidation.js';
@@ -21,7 +20,7 @@ require('./heparin.js');
 require('./pca.js');
 require('./nextdose.js');
 
-let debug = true;
+let debug = false;
 let debugDefaultTab = "auc";
 let tape = {};
 let validatedFields;

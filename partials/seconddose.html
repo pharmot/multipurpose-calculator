@@ -1,0 +1,110 @@
+
+<div class="row">
+  <div class="col-12">
+    <div class="card" id="card--seconddose">
+      <div class="card-header h5">Vancomycin Second Dose Timing</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-row">
+              <label for="seconddose-time1" class="col-2 col-form-label">First Dose</label>
+              <div class="col-3 input-group">
+                <input type="text" class="form-control validate-time" size="4" id="seconddose-time1" placeholder="HHmm"  data-form-type="other">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="seconddose-freq" class="col-2 col-form-label">Frequency</label>
+              <div class="col-10 d-flex">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-light btn-seconddose-freq">
+                    <input type="radio" name="seconddose-freq" id="seconddose-q6vanco" class="seconddose-freq" autocomplete="off">
+                    <span class="font-weight-bold">q6h</span>
+                  </label>
+                  <label class="btn btn-light btn-seconddose-freq">
+                    <input type="radio" name="seconddose-freq" id="seconddose-q8"  class="seconddose-freq" autocomplete="off">
+                    <span class="font-weight-bold">q8h</span>
+                  </label>
+                  <label class="btn btn-light btn-seconddose-freq active">
+                    <input type="radio" name="seconddose-freq" id="seconddose-q12vanco" class="seconddose-freq" autocomplete="off" checked>
+                    <span class="font-weight-bold">q12h</span>
+                  </label>
+                  <label class="btn btn-light btn-seconddose-freq">
+                    <input type="radio" name="seconddose-freq" id="seconddose-q24vanco" class="seconddose-freq" autocomplete="off">
+                    <span class="font-weight-bold">q24h</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-row mt-3">
+              <div class="col-12 text-left">
+                Options to slide doses so third dose is on standard schedule:
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-row">
+              <div class="col-2 font-weight-bold">First</div>
+              <div class="col-2 font-weight-bold">Second</div>
+              <div class="col-2 font-weight-bold">Third</div>
+              <div class="col-6 col-xl-4"></div>
+            </div>
+            <div class="form-row">
+              <div class="col-2 small">(Load)</div>
+              <div class="col-2 small">(1st Maint.)</div>
+              <div class="col-2 small">(Standard)</div>
+              <div class="col-6 col-xl-4"></div>
+            </div>
+            
+            <div class="form-row" id="seconddose-row-0">
+              <div class="col-2 input-group">
+                <div class="output" id="seconddose-0-0"></div>
+              </div>
+              <div class="col-2 input-group">
+                <div class="output font-weight-bold" id="seconddose-0-1"></div>
+              </div>
+              <div class="col-2 input-group">
+                <div class="output" id="seconddose-0-2"></div>
+              </div>
+              <div class="col-6 col-xl-4 input-group">
+                <div class="output" id="seconddose-text-0"></div>
+              </div>
+            </div>
+            <div class="form-row" id="seconddose-row-1">
+              <div class="col-2 input-group">
+                <div class="output" id="seconddose-1-0"></div>
+              </div>
+              <div class="col-2 input-group">
+                <div class="output font-weight-bold" id="seconddose-1-1"></div>
+              </div>
+              <div class="col-2 input-group">
+                <div class="output" id="seconddose-1-2"></div>
+              </div>
+              <div class="col-6 col-xl-4 input-group">
+                <div class="output" id="seconddose-text-1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-8 offset-2 mt-3">
+            <div class="card">
+              <div class="card-header">Standard Times for Vancomycin</div>
+              <div class="card-body">
+                <div class="form-row">
+                  <h6 class="col-2 offset-1">q6h</h6>
+                  <div class="col-8 mb-3">0500-1100-1700-2300</div>
+                  <h6 class="col-2 offset-1">q8h</h6>
+                  <div class="col-8 mb-3">0500-1300-2100</div>
+                  <h6 class="col-2 offset-1">q12h</h6>
+                  <div class="col-8 mb-3">0500-1700 <em>or</em><br>0900-2100</div>
+                  <h6 class="col-2 offset-1">q24h</h6>
+                  <div class="col-8">0500, 0900, 1300,<br>1700, <em>or</em> 2100</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

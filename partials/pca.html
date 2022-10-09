@@ -1,0 +1,173 @@
+<div class="card" id="card--pca">
+  <div class="card-header h5">PCA Calculator</div>
+  <div class="card-body">
+
+    <div class="form-row mb-1">
+      <div class="col-4">
+        <div class="form-row">
+          <label for="pca-drug">Drug and Order Set</label>
+        </div>
+        <div class="form-row">
+          <div class="input-group offset-1">
+            <select id="pca-drug" class="form-control small">
+              <option value="morphine">morphine</option>
+              <option value="hydromorphone">hydroMORPHONE</option>
+              <option value="fentanyl">fentaNYL</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group offset-1">
+            <select id="pca-orderset" class="form-control small">
+              <option value="standard">Standard Dose</option>
+              <option value="high">High Dose</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 offset-1">
+        <div class="form-row">
+          <label>Pump Limits for&nbsp;<span class="semibold text-secondary" id="pca-syringe">morphine 30 mg/30 mL</span>:</label>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <table class="table table-sm table-bordered pump-limits">
+              <caption>Pump upper limits are shown as 'soft-<b>hard</b>'</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">Dose</th>
+                  <th scope="col" class="text-center">CI Rate</th>
+                  <th scope="col" class="text-center">Max</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="pca-pumplimit-dose">4-<b>5 mg/hr</b></td>
+                  <td id="pca-pumplimit-rate">2-<b>3 mg/hr</b></td>
+                  <td id="pca-pumplimit-max">30-<b>40 mg/4 hr</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-10" id="col--pca-params">
+      <div class="form-row">
+        <div class="col-3 offset-5 font-weight-bold">&nbsp;<span class="pca-ci-night hidden">Day</span>&nbsp;</div>
+        <div class="col-3 font-weight-bold">&nbsp;<span class="pca-ci-night hidden">Night</span>&nbsp;</div>
+      </div>
+      <div class="form-row">
+        <label for="pca-bolusDose" class="col-5">Patient Bolus Dose</label>
+        <div class="col-3 input-group">
+          <input type="number" class="form-control input-pca" id="pca-bolusDose" step="any">
+          <div class="input-group-append">
+            <div class="input-group-text pca-units">mg</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="pca-lockout" class="col-5">Lockout Interval</label>
+        <div class="col-3 input-group">
+          <input type="number" class="form-control input-pca" id="pca-lockout" step="any">
+          <div class="input-group-append">
+            <div class="input-group-text">min</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="card-subtitle mt-1 text-secondary font-italic">Before considering max dose...</div>
+      </div>
+      <div class="form-row pca-ci-only hidden">
+        <label for="pca-maxFromBolus" class="col-5">Max possible from bolus</label>
+        <div class="col-3 input-group pca-ci-night hidden">
+          <div class="output" id="pca-maxFromBolus2"></div>
+        </div>
+        <div class="col-3 input-group">
+          <div class="output" id="pca-maxFromBolus"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-5 input-group">
+          <select id="pca-continuous" class="form-control small">
+            <option value="none">No Continuous Infusion</option>
+            <option value="overnight">CI: 2200-0600</option>
+            <option value="continuous">CI: 24 hours</option>
+          </select>
+        </div>
+        <div class="input-group col-3 pca-ci-night hidden">
+          &nbsp;
+        </div>
+        <div class="col-3 input-group pca-ci-only hidden">
+          <input type="number" class="form-control input-pca" id="pca-ciRate" step="any">
+          <div class="input-group-append">
+            <div class="input-group-text pca-unitsPerOneHour">mg/hr</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row pca-ci-only hidden">
+        <label for="pca-amtFromCI" class="col-5">Amount from CI</label>
+        <div class="input-group col-3 pca-ci-night hidden">
+          &nbsp;
+        </div>
+        <div class="col-3 input-group">
+          <div class="output" id="pca-amtFromCI"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="col-5">Total Possible Dose</label>
+        <div class="col-3 input-group pca-ci-night hidden">
+          <div class="output" id="pca-totalAmtPossible-day"></div>
+        </div>
+        <div class="col-3 input-group">
+          <div class="output" id="pca-totalAmtPossible-night"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="col-5">At most, new syringe every...</label>
+        <div class="col-3 input-group pca-ci-night hidden">
+          <div class="output" id="pca-maxDispenseFreq-day"></div>
+        </div>
+        <div class="col-3 input-group">
+          <div class="output" id="pca-maxDispenseFreq-night"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="card-subtitle mt-1 text-secondary font-italic">With max dose...</div>
+      </div>
+      <div class="form-row">
+        <label for="pca-orderedMax" class="col-5">Ordered Maximum</label>
+        <div class="col-3 input-group">
+          <input type="number" class="form-control input-pca" id="pca-orderedMax" step="any">
+          <div class="input-group-append">
+            <div class="input-group-text pca-unitsPerHours">mg/4 hr</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="pca-maxDispenseFreq-final" class="col-5">At most, new syringe every...</label>
+        <div class="col-3 input-group">
+          <div class="output" id="pca-maxDispenseFreq-final"></div>
+        </div>
+      </div>
+      <div class="form-row pca-ci-only hidden">
+        <label class="col-5">Available for Bolus</label>
+        <div class="col-3 input-group pca-ci-night hidden">
+          <div class="output" id="pca-availableForBolus-day"></div>
+        </div>
+        <div class="col-3 input-group">
+          <div class="output" id="pca-availableForBolus-night"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="col-5">Average bolus allowed</label>
+        <div class="col-3 input-group pca-ci-night hidden">
+          <div class="output" id="pca-averageFreq-day"></div>
+        </div>
+        <div class="col-3 input-group">
+          <div class="output" id="pca-averageFreq-night"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+
+<div class="row hide-hd-0">
+  <div class="col-2"></div>
+  <div class="col-4">
+    <div class="alert alert-info mt-5">Not applicable to dialysis patients</div>
+  </div>
+</div>
+<div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--auc">
+  <div class="card-header h5">Vancomycin AUC Calculator</div>
+  <div class="card-body" id="vancoAUC-cardBody">
+    <div class="form-row mb-3" id="vancoAUC-row--currentDose">
+      <label for="auc-curDose" class="col-2 col-form-label">Current Dose</label>
+      <div class="input-group col-2">
+        <input type="number" id="auc-curDose" class="form-control input-auc current-dose validate-dose" step="250">
+        <div class="input-group-append">
+          <div class="input-group-text">mg</div>
+        </div>
+      </div>
+      <div class="input-group col-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">q</div>
+        </div>
+        <input type="number" id="auc-curFreq" class="form-control input-auc current-freq validate-freq" min="0" max="48" step="6">
+        <div class="input-group-append">
+          <div class="input-group-text">h</div>
+        </div>
+      </div>
+      <div class="icon-container ml-5">
+        <a class="mpc--generic" role="button" data-toggle="modal" data-target="#aucDatesModal"><i class="fa fa-calculator"></i>
+          <span class="icon-container-text">Open Date/Time Calculator</span>
+        </a>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="vancoAUCPeakTime" class="col-2 col-form-label">Peak</label>
+      <div class="col-4 input-group">
+        <input type="number" class="form-control input-auc" id="vancoAUCPeakTime" step="any">
+        <div class="input-group-append">
+          <div class="input-group-text">hours after dose started</div>
+        </div>
+      </div>
+      <div class="col-3 input-group">
+        <input type="text" class="form-control input-auc validate-level" id="auc-curPeak">
+        <div class="input-group-append">
+          <div class="input-group-text">mcg/mL</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row mb-3">
+      <label for="vancoAUCTroughTime" class="col-2 col-form-label">Trough</label>
+      <div class="col-4 input-group">
+        <input type="number" class="form-control input-auc" size="4" id="vancoAUCTroughTime" step="any">
+        <div class="input-group-append">
+          <div class="input-group-text">hours after dose started</div>
+        </div>
+      </div>
+      <div class="col-3 input-group">
+        <input type="text" class="form-control input-auc current-trough validate-level" id="auc-curTrough">
+        <div class="input-group-append">
+          <div class="input-group-text">mcg/mL</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row mt-3" id="vancoAUC-row--result1">
+      <label for="vancoAUC24" class="col-2">AUC 24</label>
+      <div class="col-5 input-group">
+        <div class="output" id="vancoAUC24"></div>
+      </div>
+    </div>
+    <div class="form-row" id="vancoAUC-row--result2">
+      <label for="vancoAUCTroughGoal" class="col-2">Trough Goal</label>
+      <div class="col-4 input-group">
+        <div class="output" id="vancoAUCTroughGoal"></div>
+      </div>
+      <div class="col-6 text-left d-flex align-items-center">(for AUC:MIC of 400-600 mcg&centerdot;hr/mL)</div>
+    </div>
+    <div class="form-row mb-3" id="vancoAUC-row--result3">
+      <label for="vancoAUCNewInterval" class="col-4">New Interval</label>
+      <div class="input-group col-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">q</div>
+        </div>
+        <input type="number" class="form-control input-auc-interval validate-freq" min="0" max="48" step="6" id="vancoAUCNewInterval">
+        <div class="input-group-append">
+          <div class="input-group-text">h</div>
+        </div>
+      </div>
+      <div class="col-1 input-group">
+        <button class="btn btn-light" id="auc-reset"><i class="fas fa-undo"></i></button>
+      </div>
+      <div class="col-3 input-group offset-1">
+        <button type="button" class="btn btn-light small" id="btnTape" data-toggle="modal" data-target="#tapeModal">Show Calculations</button>
+      </div>
+    </div>
+    <div class="form-row" id="vancoAUC-row--result4">
+      <table class="table table-sm table-bordered" id="aucTable"></table>
+    </div>
+  </div>
+</div>
