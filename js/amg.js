@@ -1,7 +1,7 @@
 /**
  * Aminoglycoside Dosing Module
  * @module amg
- * @since v0.1.0 //TODO: update when live
+ * @since v1.1.0
  * @requires module:util
  */
 import { roundTo } from './util.js';
@@ -27,12 +27,33 @@ import { roundTo } from './util.js';
  * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/equations.md/#aminoglycoside-dosing-weight)
  *
  * @param   {DosingWeightParams}  - Dosing weight calculation parameters
- * @returns {String}              - Text description of weight to use
+ * @returns {String}              - Text description of weight to use, as HTML
  */
 export function dosingWeightString({ alt, age, wt, ibw, adjBW, overUnder } = {} ){
   if ( age <= 15 && age > 0 ) return 'Does not apply for age &le; 15';
   if ( ibw === 0 ) return '';
-  if ( overUnder > 20 ) return `Use adjusted weight: ${roundTo(adjBW, 0.1)} kg`;
-  if ( alt || wt < ibw ) return `Use actual weight: ${roundTo(wt, 0.1)} kg`;
-  return `Use ideal weight: ${roundTo(ibw, 0.1)} kg`;
+  if ( overUnder > 20 ) return `Use adjusted weight: <b>${roundTo(adjBW, 0.1)} kg</b><br><i>(ABW &gt; 120% of IBW)</i>`;
+  if ( alt ) return `Use actual weight: <b>${roundTo(wt, 0.1)} kg</b><br><i>(non-obese and CF, pre-, or postpartum)</i>`;
+  if ( wt < ibw ) return `Use actual weight: <b>${roundTo(wt, 0.1)} kg</b><br><i>(ABW &lt; IBW)</i>`;
+  return `Use ideal weight: <b>${roundTo(ibw, 0.1)} kg</b><br><i>(ABW &lt; 120% of IBW)</i>`;
 }
+
+
+// ## Aminoglycoside Dosing Weight
+
+// | Condition                    | Weight to Use                  |
+// | ---------------------------- | ------------------------------ |
+// | if age < 15                  | n/a - guideline does not apply |
+// | else if overUnder > 20       | use adjusted wt                |
+// | else if actual wt < ideal wt | use actual wt                  |
+// | else                         | use ideal weight               |
+
+// ## Alternate Aminoglycoside Dosing Weight
+
+// Used for patients with cystic fibrosis or who are pre- or postpartum.
+
+// | Condition              | Weight to Use                  |
+// | ---------------------- | ------------------------------ |
+// | if age < 15            | n/a - guideline does not apply |
+// | else if overUnder > 20 | use adjusted wt                |
+// | else                   | use actual wt                  |

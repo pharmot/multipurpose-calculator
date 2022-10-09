@@ -204,9 +204,7 @@
             <a class="nav-item nav-link" id="nav-auc-tab" data-toggle="tab" href="#nav-auc" role="tab">AUC Dosing</a>
             <a class="nav-item nav-link" id="nav-twolevel-tab" data-toggle="tab" href="#nav-twolevel" role="tab">Two-Level PK</a>
             <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose</a>
-            <a class="nav-item nav-link" id="nav-amg-tab" data-toggle="tab" href="#nav-amg" role="tab">AMG</a>
             <a class="nav-item nav-link" id="nav-tpn-tab" data-toggle="tab" href="#nav-tpn" role="tab">TPN</a>
-            <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
             <a class="nav-item nav-link" id="nav-more-tab" data-toggle="tab" href="#nav-more" role="tab">More...</a>
           </div>
         </nav>
@@ -308,11 +306,11 @@
               <div class="input-group col-7">
                 <div class="output" id="bmi"></div>
               </div>
-              <div class="form-row">
-                <label for="bsa" class="col-5">BSA</label>
-                <div class="input-group col-7">
-                  <div class="output" id="bsa"></div>
-                </div>
+            </div>
+            <div class="form-row">
+              <label for="bsa" class="col-5">BSA</label>
+              <div class="input-group col-7">
+                <div class="output" id="bsa"></div>
               </div>
             </div>
           </div>
@@ -1049,45 +1047,265 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="nav-ivig">
-            <div class="card" id="card--ivig">
-              <div class="card-header h5">IVIG Rate Calculator</div>
-              <div class="card-body">
-                <div class="form-row">
-                  <label for="ivig-product" class="col-2">Select Drug</label>
-                  <div class="col-8 input-group">
-                    <select id="ivig-product" class="form-control small">
-                      <option>Octagam 10% (10 g/100 mL)</option>
-                      <option>Octagam 5% (10 g/200 mL)</option>
-                      <option>Gamunex-C (10 g/100 mL) for ITP/Primary Immunodeficiency</option>
-                      <option>Gamunex-C (10 g/100 mL) for CIDP</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <label for="ivig-dose" class="col-2">Dose</label>
-                  <div class="col-3 input-group">
-                    <input type="number" class="form-control" id="ivig-dose" step="any">
-                    <div class="input-group-append">
-                      <div class="input-group-text">g</div>
+          
+          <div class="tab-pane fade" id="nav-tpn">
+            <div class="row hide-age-infant hide-age-child">
+              <div class="alert alert-danger ml-3 mt-4 mb-4">
+                This is a draft version &ndash; TPN calculations have not been validated yet. 
+                Confirm all calculations with existing tools and guidelines.
+              </div>
+            </div>
+            <div class="row hide-age-infant hide-age-child">
+              <div class="col-auto">
+                <div class="card" id="card--tpn-1">
+                  <div class="card-body">
+                    <div class="form-row">
+                      <label for="tpn-fluidReqs" class="col-6">Daily Fluid Requirements</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-fluidReqs"></div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-dosingWeight" class="col-6">TPN Dosing Weight</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-dosingWeight"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="form-row" id="form-row--ivig-weight-note">
-                  <div class="col-6 input-group">
-                    <div class="text-left d-flex"><i class="fa fa-arrow-left mr-1"></i> Enter patient's actual weight</div>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <label for="ivig-text" class="col-2">Rate</label>
-                  <div class="input-group col-9">
-                    <textarea class="form-control" id="ivig-text" readonly></textarea>
+              </div>
+              <div class="col-auto">
+                <div class="card" id="card--tpn-2">
+                  <div class="card-body">
+                    <div class="form-row">
+                      <label for="tpn-bee" class="col-6">Basal Energy Expenditure</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-bee"></div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-rmr" class="col-6">Resting Metabolic Rate</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-rmr"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="card-footer">
-                <div class="card-text small text-left">
-                  Dose is not required for calculation.  If dose is specified, total infusion time will be calculated.
+            </div>
+            <div class="row hide-age-infant hide-age-child">
+              <div class="col-auto">
+                <div class="card" id="card--tpn-kcal">
+                  <div class="card-header h6">Daily Energy Requirements</div>
+                  <div class="card-body">
+                    <div class="form-row">
+                      <div class="col-3 like-card-header">
+                        Method 1
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-maint" class="col-6">Maintenance</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-maint"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1.2 &times; RMR"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-stress" class="col-6">Mild-moderate stress</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-stress"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1.3-1.5 &times; RMR"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-3 like-card-header">
+                        Method 2
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-icu-maint" class="col-6">Maintenance</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-icu-maint"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="25-30 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-icu-malnourished" class="col-6">Malnourished, hypermetabolic*</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-icu-malnourished"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="30-35 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-icu-refeeding" class="col-6 pl-4">*Start lower if refeeding risk</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-icu-refeeding"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="25 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-icu-renal" class="col-6">CKD/HD/PD</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-icu-renal"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="30-35 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-icu-bmi30" class="col-6">Critically Ill (BMI &lt; 30)</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-icu-bmi30"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="25 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-icu-bmi3050" class="col-6">Critically Ill (BMI 30-50)</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-icu-bmi3050"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="11-14 kcal/kg/day, based on ABW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-kcal-icu-bmi50" class="col-6">Critically Ill (BMI &gt; 50)</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-kcal-icu-bmi50"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="22-25 kcal/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="card" id="card--tpn-kcal">
+                  <div class="card-header h6">Daily Protein Requirements</div>
+                  <div class="card-body">
+                    <div class="form-row">
+                      <label for="tpn-prot-mait" class="col-6">Maintenance</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-maint"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="0.8-1 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-mildStress" class="col-6">Mild stress</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-mildStress"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1-1.2 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-modStress" class="col-6">Moderate stress/rebuilding</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-modStress"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1.2-1.5 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-severeStress" class="col-6">Severe stress (wound healing)</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-severeStress"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1.5-2.2 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-obesity" class="col-6">Obesity</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-obesity"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1.5 g/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-obesity30" class="col-6">Obesity (critical care, BMI 30-40)</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-obesity30"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="2 g/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row mb-3">
+                      <label for="tpn-prot-obesity40" class="col-6">Obesity (critical care, BMI &gt; 40)</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-obesity40"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="2.5 g/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-aki" class="col-6">Acute renal failure</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-aki"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1.2-1.6 g/kg/day"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-ckd" class="col-6">CKD not on dialysis</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-ckd"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="0.6-0.8 g/kg/day, restriction may slow progression of renal disease"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <label for="tpn-prot-hd" class="col-6">ESRD on HD or PD</label>
+                      <div class="input-group col-5">
+                        <div class="output" id="tpn-prot-hd"></div>
+                      </div>
+                      <div class="col-1 icon-container">
+                        <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
+                          title="1.2-1.4 g/kg/day, no restriction"><i class="fa fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1099,10 +1317,16 @@
                   <a class="nav-link active" id="nav-more-heparin-tab" data-toggle="tab" href="#nav-more-heparin" role="tab">Heparin</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" id="nav-more-amg-tab" data-toggle="tab" href="#nav-more-amg" role="tab">AMG</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" id="nav-more-pca-tab" data-toggle="tab" href="#nav-more-pca" role="tab">PCA</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="nav-more-nextdose-tab" data-toggle="tab" href="#nav-more-nextdose" role="tab">Std. Admin Times</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-more-ivig-tab" data-toggle="tab" href="#nav-more-ivig" role="tab">IVIG</a>
                 </li>
               </ul>
             </div>
@@ -1179,13 +1403,39 @@
                     </div>
                   </div>
                 </div>
+                <div class="tab-pane fade" id="nav-more-amg">
+                  <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
+                    <div class="col-auto">
+                      <div class="card" id="card--amgDW">
+                        <div class="card-header h6">Aminoglycoside Dosing Weight</div>
+                        <div class="card-body">
+                          <div class="form-row">
+                            <div class="input-group col-12 mb-3">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="amgAlt">
+                                <label class="form-check-label" for="amgAlt">
+                                  Cystic Fibrosis, Prepartum, or Postpartum?
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="input-group col-12">
+                              <div class="output multi-line multi-line-2" id="amgDosingWeight"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="tab-pane fade" id="nav-more-pca">
                   <div class="card" id="card--pca">
                     <div class="card-header h5">PCA Calculator</div>
                     <div class="card-body">
 
-                      <div class="form-row mb-2">
-                        <div class="col-3">
+                      <div class="form-row mb-1">
+                        <div class="col-4">
                           <div class="form-row">
                             <label for="pca-drug">Drug and Order Set</label>
                           </div>
@@ -1207,7 +1457,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-6 offset-2">
+                        <div class="col-6 offset-1">
                           <div class="form-row">
                             <label>Pump Limits for&nbsp;<span class="semibold text-secondary" id="pca-syringe">morphine 30 mg/30 mL</span>:</label>
                           </div>
@@ -1234,7 +1484,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-10 offset-1" id="col--pca-params">
+                      <div class="col-10" id="col--pca-params">
                         <div class="form-row">
                           <div class="col-3 offset-5 font-weight-bold">&nbsp;<span class="pca-ci-night hidden">Day</span>&nbsp;</div>
                           <div class="col-3 font-weight-bold">&nbsp;<span class="pca-ci-night hidden">Night</span>&nbsp;</div>
@@ -1526,290 +1776,52 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="nav-amg">
-              <div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
-                <div class="col-auto">
-                  <div class="card" id="card--amgDW">
-                    <div class="card-header h6">Aminoglycoside Dosing Weight</div>
+                <div class="tab-pane fade" id="nav-more-ivig">
+                  <div class="card" id="card--ivig">
+                    <div class="card-header h5">IVIG Rate Calculator</div>
                     <div class="card-body">
                       <div class="form-row">
-                        <div class="input-group col-12 mb-3">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="amgAlt">
-                            <label class="form-check-label" for="amgAlt">
-                              Cystic Fibrosis, Prepartum, or Postpartum?
-                            </label>
+                        <label for="ivig-product" class="col-2">Select Drug</label>
+                        <div class="col-8 input-group">
+                          <select id="ivig-product" class="form-control small">
+                            <option>Octagam 10% (10 g/100 mL)</option>
+                            <option>Octagam 5% (10 g/200 mL)</option>
+                            <option>Gamunex-C (10 g/100 mL) for ITP/Primary Immunodeficiency</option>
+                            <option>Gamunex-C (10 g/100 mL) for CIDP</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row" id="form-row--ivig-weight-note">
+                        <div class="col-6 input-group">
+                          <div class="text-left d-flex"><i class="fa fa-arrow-left mr-1"></i> Enter patient's actual weight</div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <label for="ivig-dose" class="col-2">Dose</label>
+                        <div class="col-3 input-group">
+                          <input type="number" class="form-control" id="ivig-dose" step="any">
+                          <div class="input-group-append">
+                            <div class="input-group-text">g</div>
                           </div>
                         </div>
-                      </div>
+                      </div>                      
                       <div class="form-row">
-                        <div class="input-group col-12">
-                          <div class="output" id="amgDosingWeight"></div>
+                        <label for="ivig-text" class="col-2">Rate</label>
+                        <div class="input-group col-9">
+                          <textarea class="form-control" id="ivig-text" readonly></textarea>
                         </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="card-text small text-left">
+                        Dose is not required for calculation.  If dose is specified, total infusion time will be calculated.
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="nav-tpn">
-              <div class="row hide-age-infant hide-age-child">
-                <div class="col-auto">
-                  <div class="card" id="card--tpn-1">
-                    <div class="card-body">
-                      <div class="form-row">
-                        <label for="tpn-fluidReqs" class="col-6">Daily Fluid Requirements</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-fluidReqs"></div>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-dosingWeight" class="col-6">TPN Dosing Weight</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-dosingWeight"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-auto">
-                  <div class="card" id="card--tpn-2">
-                    <div class="card-body">
-                      <div class="form-row">
-                        <label for="tpn-bee" class="col-6">Basal Energy Expenditure</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-bee"></div>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-rmr" class="col-6">Resting Metabolic Rate</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-rmr"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row hide-age-infant hide-age-child">
-                <div class="col-auto">
-                  <div class="card" id="card--tpn-kcal">
-                    <div class="card-header h6">Daily Energy Requirements</div>
-                    <div class="card-body">
-                      <div class="form-row">
-                        <div class="col-3 like-card-header">
-                          Method 1
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-maint" class="col-6">Maintenance</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-maint"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1.2 &times; RMR"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-stress" class="col-6">Mild-moderate stress</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-stress"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1.3-1.5 &times; RMR"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="col-3 like-card-header">
-                          Method 2
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-icu-maint" class="col-6">Maintenance</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-icu-maint"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="25-30 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-icu-malnourished" class="col-6">Malnourished, hypermetabolic*</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-icu-malnourished"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="30-35 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-icu-refeeding" class="col-6 pl-4">*Start lower if refeeding risk</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-icu-refeeding"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="25 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-icu-renal" class="col-6">CKD/HD/PD</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-icu-renal"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="30-35 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-icu-bmi30" class="col-6">Critically Ill (BMI &lt; 30)</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-icu-bmi30"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="25 kcal/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-icu-bmi3050" class="col-6">Critically Ill (BMI 30-50)</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-icu-bmi3050"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="11-14 kcal/kg/day, based on ABW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-kcal-icu-bmi50" class="col-6">Critically Ill (BMI &gt; 50)</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-kcal-icu-bmi50"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="22-25 kcal/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-auto">
-                  <div class="card" id="card--tpn-kcal">
-                    <div class="card-header h6">Daily Protein Requirements</div>
-                    <div class="card-body">
-                      <div class="form-row">
-                        <label for="tpn-prot-mait" class="col-6">Maintenance</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-maint"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="0.8-1 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-mildStress" class="col-6">Mild stress</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-mildStress"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1-1.2 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-modStress" class="col-6">Moderate stress/rebuilding</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-modStress"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1.2-1.5 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-severeStress" class="col-6">Severe stress (wound healing)</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-severeStress"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1.5-2.2 g/kg/day, based on TPN DW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-obesity" class="col-6">Obesity</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-obesity"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1.5 g/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-obesity30" class="col-6">Obesity (critical care, BMI 30-40)</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-obesity30"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="2 g/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row mb-3">
-                        <label for="tpn-prot-obesity40" class="col-6">Obesity (critical care, BMI &gt; 40)</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-obesity40"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="2.5 g/kg/day, based on IBW"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-aki" class="col-6">Acute renal failure</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-aki"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1.2-1.6 g/kg/day"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-ckd" class="col-6">CKD not on dialysis</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-ckd"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="0.6-0.8 g/kg/day, restriction may slow progression of renal disease"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <label for="tpn-prot-hd" class="col-6">ESRD on HD or PD</label>
-                        <div class="input-group col-5">
-                          <div class="output" id="tpn-prot-hd"></div>
-                        </div>
-                        <div class="col-1 icon-container">
-                          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true"
-                            title="1.2-1.4 g/kg/day, no restriction"><i class="fa fa-info-circle"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

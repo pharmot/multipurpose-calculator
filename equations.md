@@ -194,22 +194,22 @@ Adjusted weight is the standard AdjBW, using factor of 0.4)
 
 ## Aminoglycoside Dosing Weight
 
-| Condition | Weight to Use |
-| --- | --- |
-| if age < 15 | n/a - guideline does not apply |
-| else if overUnder > 20 | use adjusted wt |
-| else if actual wt < ideal wt | use actual wt |
-| else | use ideal weight |
+| Condition                    | Weight to Use                  |
+| ---------------------------- | ------------------------------ |
+| if age < 15                  | n/a - guideline does not apply |
+| else if overUnder > 20       | use adjusted wt                |
+| else if actual wt < ideal wt | use actual wt                  |
+| else                         | use ideal weight               |
 
 ## Alternate Aminoglycoside Dosing Weight
 
 Used for patients with cystic fibrosis or who are pre- or postpartum.
 
-| Condition | Weight to Use |
-| --- | --- |
-| if age < 15 | n/a - guideline does not apply |
-| else if overUnder > 20 | use adjusted wt |
-| else | use actual wt |
+| Condition              | Weight to Use                  |
+| ---------------------- | ------------------------------ |
+| if age < 15            | n/a - guideline does not apply |
+| else if overUnder > 20 | use adjusted wt                |
+| else                   | use actual wt                  |
 
 # Vancomycin Protocol Dosing
 
