@@ -1,32 +1,14 @@
-const pjs = require('./package.json');
-const thisYear = (new Date()).getFullYear();
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require ('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const isBeta = /beta/.test(pjs.version);
-const betaBanner = isBeta ? `<div class="container-fluid beta-notice"><div class="h6 text-white">TEST RELEASED VERSION ${pjs.version}</div></div>` : '';
-const bodyStyle =  isBeta ? `style="border: 4px solid #dc3545;margin:0 auto 70px;"` : '';
 
-module.exports = {
-  entry: {
-    main: './js/main.js',
-    heparin: './js/heparin.js',
-    pca: './js/pca.js',
-    vanco: './js/vanco.js',
-    nextdose: './js/nextdose.js',
-    seconddose: './js/seconddose.js'
-  },
+const prodConfig = {
   mode: 'production',
   output: {
     path: `${__dirname}/dist`,
     filename: '[name].[contenthash:8].js',
     clean: true,
-  },
-  resolve: {
-    alias: {
-      jquery: "jquery/src/jquery"
-    }
   },
   module: {
     rules: [
@@ -50,25 +32,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       linkType: 'text/css',
       filename: 'main.[contenthash:8].min.css'
-    }),
-    new HtmlWebpackPlugin({
-      template: './template.html',
-      templateParameters: {
-        buildversion: pjs.version,
-        homepage: pjs.homepage,
-        issues: pjs.bugs.url,
-        thisYear: thisYear,
-        betaBanner: betaBanner,
-        bodyStyle: bodyStyle
-      },
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: "**/*",
-          context: `${__dirname}/src`,
-        },
-      ]
     })
   ],
   optimization: {
@@ -94,10 +57,12 @@ module.exports = {
           chunks: 'initial',
         }
       }
-    },
-  },
-  performance: {
-    maxAssetSize: 250000,
-    maxEntrypointSize: 500000,
+    }
   }
 };
+
+
+module.exports = () => {
+	return merge(commonConfig, prodConfig);
+};
+
