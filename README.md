@@ -56,6 +56,12 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
+## [1.0.5] - 2022-11-24
+
+### Fixed
+
+- Pediatric maintnenace dose not being calculated
+
 ## [1.0.4] - 2022-10-02
 
 ### Changed
@@ -193,6 +199,7 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
+[1.0.5]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.5
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.4
 [1.0.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.2
