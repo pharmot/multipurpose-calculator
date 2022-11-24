@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.5]
+
+### Fixed
+
+- Only require weight (not IBW) for vancomycin maintenance dose range if age between 0 and 18 ([#72])
+
 ## [1.0.4]
 
 ### Changed
@@ -176,7 +182,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2
@@ -217,3 +224,4 @@ Initial POC Release
 [#60]: https://github.com/pharmot/multipurpose-calculator/issues/60
 [#62]: https://github.com/pharmot/multipurpose-calculator/issues/62
 [#63]: https://github.com/pharmot/multipurpose-calculator/issues/63
+[#72]: https://github.com/pharmot/multipurpose-calculator/issues/72
