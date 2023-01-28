@@ -1,5 +1,5 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.3
+  * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.4
   * Copyright 2020-2022 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
@@ -14,7 +14,6 @@ import * as arial from './arial.js';
 import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
 import * as amg from './amg.js';
-import * as tpn from './tpn.js';
 import * as LOG from './logger.js';
 require('./heparin.js');
 require('./pca.js');
@@ -69,7 +68,7 @@ $(()=>{
     calculate.vancoRevision();
     calculate.vancoAUC();
     calculate.amg();
-    calculate.tpn();
+    
   } else {
     resetDates();
   }
@@ -93,7 +92,6 @@ $(".input-patient").on('keyup', () => {
   calculate.vancoRevision();
   calculate.vancoAUC();
   calculate.amg();
-  calculate.tpn();
 });
 $('#ptage').on('keyup', () => {
   setTimeout(()=> {
@@ -179,7 +177,6 @@ $("#btnReset").on('click', () => {
   calculate.secondDose();
   calculate.ivig();
   calculate.amg();
-  calculate.tpn();
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
   $(validatedFields).removeClass('invalid');
@@ -515,20 +512,6 @@ let pt = {
        return Math.sqrt( ( this.wt * this.ht ) / 3600 );
      }
      return 0;
-   },
-   /**
-   * Gets the TPN dosing weight - an adjusted weight using a factor of 0.25.
-   * Returns 0 if age < 18 (consistent with adjBW)
-   *
-   * @function
-   * @returns {number}  Patient's TPN dosing weight in kg, or 0 if insufficient input or age < 18 years
-   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#tpn-dosing-weight)
-   */
-   get tpnWt(){
-     if ( this.age < 18 ) return 0;
-     if ( this.ibw === 0 ) return 0;
-     if ( this.overUnder < 25 ) return this.wt;
-     return 0.25 * (this.wt - this.ibw) + this.ibw;
    }
  };
 
@@ -649,53 +632,6 @@ const calculate = {
      })
      $("#amgDosingWeight").html(amgWtString);
    },
-   /**
-    * Input and output for TPN dosing
-    * @requires module:tpn
-    * @returns {undefined}
-    */
-    tpn(){
-      const params = {
-        sex: pt.sex,
-        age: pt.age,
-        ht: pt.ht,
-        wt: pt.wt,
-        ibw: pt.ibw,
-        bmi: pt.bmi
-      }
-      const fluidReqs = tpn.getFluidReq(params);
-      const dw = tpn.getDosingWt(params);
-      const bee = tpn.getBee(params);
-      const rmr = tpn.getRmr(params);
-      displayValue("#tpn-fluidReqs", fluidReqs, 1, " mL");
-      displayValue("#tpn-dosingWeight", dw, 0.1, " kg");
-      displayValue("#tpn-bee", bee, 1, " kcal/day");
-      displayValue("#tpn-rmr", rmr, 1, " kcal/day");
-
-      const kcalReqs = tpn.getKcalReqs(params);
-      displayValue("#tpn-kcal-maint", kcalReqs.maint, 1, " kcal/day");
-      displayValue("#tpn-kcal-stress", kcalReqs.stress, 1, " kcal/day");
-      displayValue("#tpn-kcal-icu-maint", kcalReqs.icuMaint, 1, " kcal/day");
-      displayValue("#tpn-kcal-icu-malnourished", kcalReqs.icuMalnourished, 1, " kcal/day");
-      displayValue("#tpn-kcal-icu-refeeding", kcalReqs.icuRefeeding, 1, " kcal/day");
-      displayValue("#tpn-kcal-icu-renal", kcalReqs.icuRenal, 1, " kcal/day");
-      displayValue("#tpn-kcal-icu-bmi30", kcalReqs.icuBmi30, 1, " kcal/day");
-      displayValue("#tpn-kcal-icu-bmi3050", kcalReqs.icuBmi3050, 1, " kcal/day");
-      displayValue("#tpn-kcal-icu-bmi50", kcalReqs.icuBmi50, 1, " kcal/day");
-
-      const protReqs = tpn.getProteinReqs(params);
-
-      displayValue("#tpn-prot-maint", protReqs.maint, 1, " g/day");
-      displayValue("#tpn-prot-mildStress", protReqs.mildStress, 1, " g/day");
-      displayValue("#tpn-prot-modStress", protReqs.modStress, 1, " g/day");
-      displayValue("#tpn-prot-severeStress", protReqs.severeStress, 1, " g/day");
-      displayValue("#tpn-prot-obesity", protReqs.obesity, 1, " g/day");
-      displayValue("#tpn-prot-obesity30", protReqs.icuBmi3040, 1, " g/day");
-      displayValue("#tpn-prot-obesity40", protReqs.icuBmi40, 1, " g/day");
-      displayValue("#tpn-prot-aki", protReqs.aki, 1, " g/day");
-      displayValue("#tpn-prot-ckd", protReqs.ckd, 1, " g/day");
-      displayValue("#tpn-prot-hd", protReqs.hd, 1, " g/day");
-    },
   /**
    * Input and output for initial protocol dosing and initial PK dosing
    * @requires module:util

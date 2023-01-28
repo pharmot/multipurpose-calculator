@@ -33,7 +33,8 @@
             <a class="nav-item nav-link" id="nav-auc-tab" data-toggle="tab" href="#nav-auc" role="tab">AUC Dosing</a>
             <a class="nav-item nav-link" id="nav-twolevel-tab" data-toggle="tab" href="#nav-twolevel" role="tab">Two-Level PK</a>
             <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose</a>
-            <a class="nav-item nav-link" id="nav-tpn-tab" data-toggle="tab" href="#nav-tpn" role="tab">TPN</a>
+            <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
+            <!-- <a class="nav-item nav-link" id="nav-tpn-tab" data-toggle="tab" href="#nav-tpn" role="tab">TPN</a> -->
             <a class="nav-item nav-link" id="nav-more-tab" data-toggle="tab" href="#nav-more" role="tab">More...</a>
           </div>
         </nav>
@@ -213,8 +214,8 @@
           <div class="tab-pane fade" id="nav-seconddose">
             <%= require('html-loader!./partials/seconddose.html').default %>
           </div>
-          <div class="tab-pane fade" id="nav-tpn">
-            <%= require('html-loader!./partials/tpn.html').default %>
+          <div class="tab-pane fade" id="nav-ivig">
+            <%= require('html-loader!./partials/ivig.html').default %>
           </div>
           <div class="tab-pane fade" id="nav-more">
             <div class="col-12">
@@ -231,9 +232,6 @@
                 <li class="nav-item">
                   <a class="nav-link" id="nav-more-nextdose-tab" data-toggle="tab" href="#nav-more-nextdose" role="tab">Std. Admin Times</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="nav-more-ivig-tab" data-toggle="tab" href="#nav-more-ivig" role="tab">IVIG</a>
-                </li>
               </ul>
             </div>
             <div class="col">
@@ -249,9 +247,6 @@
                 </div>
                 <div class="tab-pane fade" id="nav-more-nextdose">
                   <%= require('html-loader!./partials/nextdose.html').default %>
-                </div>
-                <div class="tab-pane fade" id="nav-more-ivig">
-                  <%= require('html-loader!./partials/ivig.html').default %>
                 </div>
               </div>
             </div>            

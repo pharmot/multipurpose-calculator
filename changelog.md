@@ -1,16 +1,19 @@
 # Changelog
 
-## [Unreleased] - v1.1.0-beta.2
+## [Unreleased] - v1.1.0-beta.4
 
 ### Added
 
 - AMG Dosing Weight
-- Body surface area calculation
-- TPN calculations (fluid, energy, and protein requirements)
+- Body surface area calculatiom
 - Support for ranges to displayValue function in util module
 - Reverse Heparin Calculator
 - PCA Dosing Calculator
 - Standard Administration Times tool
+
+### Changed
+
+- Add Privigen to IVIG options and make default
 
 ### Fixed
 
