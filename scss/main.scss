@@ -38,12 +38,13 @@ body {
 #card--seconddose { @include fixed-width('secondDose'); }
 #card--ivig { @include fixed-width(600px); }
 #card--amgDW { @include fixed-width('amgDW'); }
-#card--tpn-1 { @include fixed-width('tpn'); }
-#card--tpn-2 { @include fixed-width('tpn'); }
-#card--tpn-kcal { @include fixed-width('tpnEnergy'); }
-#card--heparin { @include fixed-width(650px); }
+// #card--tpn-1 { @include fixed-width('tpn'); }
+// #card--tpn-2 { @include fixed-width('tpn'); }
+// #card--tpn-kcal { @include fixed-width('tpnEnergy'); }
+#card--heparin, #alert--heparin { @include fixed-width(650px); }
 #card--pca { @include fixed-width(650px); }
 #card--nextdose { @include fixed-width(700px); }
+#card--kcentra { @include fixed-width(700px); }
 // #col--pca-params { @include fixed-width(500px); }
 
 #card--auc,
@@ -67,13 +68,13 @@ body {
   margin: $len-2;
 }
 
-#row--main {
-  // margin-top: -20px;
-}
+// #row--main {
+//   margin-top: -20px;
+// }
 
-#form-row--ivig-weight-note {
-  // margin-top: 35px;
-}
+// #form-row--ivig-weight-note {
+//   margin-top: 35px;
+// }
 
 .h1,
 h1 {
@@ -359,11 +360,19 @@ input {
   height: 10em;
 }
 
+#kcentra--output {
+  @extend %arial-text;
+
+  padding: 1em;
+  height: 12em;
+}
+
 textarea {
   resize: none;
 }
 
-#ivig-text[readonly] {
+#ivig-text[readonly],
+#kcentra--output[readonly] {
   background: fade-out($clr-bg-output, 0.7);
 }
 

@@ -230,6 +230,9 @@
                   <a class="nav-link" id="nav-more-pca-tab" data-toggle="tab" href="#nav-more-pca" role="tab">PCA</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" id="nav-more-kcentra-tab" data-toggle="tab" href="#nav-more-kcentra" role="tab">KCentra</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" id="nav-more-nextdose-tab" data-toggle="tab" href="#nav-more-nextdose" role="tab">Std. Admin Times</a>
                 </li>
               </ul>
@@ -244,6 +247,9 @@
                 </div>
                 <div class="tab-pane fade" id="nav-more-pca">
                   <%= require('html-loader!./partials/pca.html').default %>
+                </div>
+                <div class="tab-pane fade" id="nav-more-kcentra">
+                  <%= require('html-loader!./partials/kcentra.html').default %>
                 </div>
                 <div class="tab-pane fade" id="nav-more-nextdose">
                   <%= require('html-loader!./partials/nextdose.html').default %>

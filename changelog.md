@@ -10,10 +10,11 @@
 - Reverse Heparin Calculator
 - PCA Dosing Calculator
 - Standard Administration Times tool
+- KCentra Lot/Exp Calculator [#68]
 
 ### Changed
 
-- Add Privigen to IVIG options and make default
+- Add Privigen to IVIG options and make default ([#74])
 
 ### Fixed
 
@@ -236,3 +237,5 @@ Initial POC Release
 [#60]: https://github.com/pharmot/multipurpose-calculator/issues/60
 [#62]: https://github.com/pharmot/multipurpose-calculator/issues/62
 [#63]: https://github.com/pharmot/multipurpose-calculator/issues/63
+[#68]: https://github.com/pharmot/multipurpose-calculator/issues/68
+[#74]: https://github.com/pharmot/multipurpose-calculator/issues/74

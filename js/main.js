@@ -16,6 +16,7 @@ import * as vanco from './vanco.js';
 import * as amg from './amg.js';
 import * as LOG from './logger.js';
 require('./heparin.js');
+require('./kcentra.js');
 require('./pca.js');
 require('./nextdose.js');
 
