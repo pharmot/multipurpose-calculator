@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Module: heparin - Multipurpose Calculator Documentation
+      Source: kcentra.js - Multipurpose Calculator Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -83,157 +85,133 @@
   <div id="main">
     
       <h1 class="page-title">
-        Module: heparin
+        Source: kcentra.js
       </h1>
     
 
     
+      
 
 <section>
-  <header>
-    
-      
-        
-  </header>
-
   <article>
-    <div class="container-overview">
-      
-        
-          <div class="description">
-            <p>Reverse Heparin Calculator Module</p>
-          </div>
-        
+    <pre class="prettyprint source linenums"><code>/**
+ * Kcentra Lot/Exp Module
+ * @module kcentra
+ * @since v1.1.0
+ */
 
-        
-          
+// KCentra - Lot # and Expiration
+// *** Vials to make ~ *** unit dose
+// *** vials of *** units; Lot #: ***; Expiration date: ***
+// *** vials of *** units; Lot #: ***; Expiration date: ***
+// *** vials of *** units; Lot #: ***; Expiration date: ***
+// (**Units documented are Factor IX units**)
 
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
+$("#kcentra--start").on("click", () => { kcentra.processInput() });
+$("#kcentra--btnAdd").on("click", () => { kcentra.addRow("","") });
+$("#kcentra--btnSum").on("click", () => { kcentra.makeText() });
+$("#card--kcentra").on( "click", ".kcentra--remove", this,  ev => kcentra.removeRow(ev) );
+$("#card--kcentra").on( "change", "input", () => { kcentra.clearText() });
+$("#btnReset").on('click', () => {
+  kcentra.clearText();
+  $(".kcentra--inputRow").remove();
+});
+/**
+ * KCentra module namespace
+ * @namespace
+ */
+const kcentra = {
+  removeRow(ev){
+    const el = ev.target;
+    const btn = $(`#${el.id}`)[0];
+    const wrapper = btn.parentNode;
+    const row = wrapper.parentNode;
+    row.parentNode.removeChild(row);
+    this.clearText();
+  },
+  processInput(){
+    let self = this;
+    $("#kcentra--output").val("");
+    let scancode = $("#kcentra--scancode").val();
+    let allScans = "";
+    if ( scancode.length % 54 === 0 ) {
+      let trimmed = scancode.substring(1,scancode.length-1);
+      allScans = trimmed.split(/\\\\/);
+    } else if ( scancode.length % 52 === 0 ) {
+      allScans = scancode.match(/.{52}/g);
+    }
   
+    allScans.forEach( ( scan, i ) => {
+      const thisExp = `${scan.substring(36,38)}/${scan.substring(38,40)}/${scan.substring(34,36)}`;
+      const thisLot = scan.substring(42,52);
+      self.addRow(thisLot, thisExp);
+    });
+  },
+  makeText(){
+    $("#kcentra--output").empty();
+    let sumQty = 0;
+    let sumUnits = 0;
+    let ai = "";
+    $(".kcentra--inputRow").each( (i, a) => {
+      let myQty = parseFloat($(a).find(".qty")[0].value),
+          myUnits = parseFloat($(a).find(".units")[0].value),
+          myLot = $(a).find(".lotNumber")[0].value,
+          myExp = $(a).find(".expiration")[0].value;
+      if(!isNaN(myQty) &amp;&amp; !isNaN(myUnits) &amp;&amp; sumUnits != "***") {
+        sumQty += myQty;
+        sumUnits += (myQty * myUnits);
+      } else {
+        sumUnits = '***';
+        sumQty = '***';
+      }
+      ai += `${!isNaN(myQty) ? myQty : '***'} vials of ${!isNaN(myUnits) ? myUnits : '***'} units; Lot #: ${myLot !== "" ? myLot : '***'}; Exp. date: ${myExp !== "" ? myExp : '***'}\n`;
+    });
+    ai = `KCentra - Lot # and Expiration\n${sumQty} vials to make ~ ${sumUnits} unit dose\n${ai}`;
+    ai += "(**Units documented are Factor IX units**)";
+    if ( document.getElementsByClassName('kcentra--inputRow').length === 0 ) {
+      ai = `KCentra - Lot # and Expiration\n*** Vials to make ~ *** unit dose\n*** vials of *** units; Lot #: ***; Expiration date: ***\n*** vials of *** units; Lot #: ***; Expiration date: ***\n*** vials of *** units; Lot #: ***; Expiration date: ***\n(**Units documented are Factor IX units**)`
+    }
 
-  
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since">
-      <ul class="dummy">
-        <li>
-          v1.1.0
-        </li>
-      </ul>
-    </dd>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source">
-      <ul class="dummy">
-        <li>
-          <a href="heparin.js.html">heparin.js</a>, <a href="heparin.js.html#line1">line 1</a>
-        </li>
-      </ul>
-    </dd>
-  
-
-  
-
-  
-
-  
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-      
-    </div>
-
-    
-
-    
-      <h3 class="subsection-title">Requires</h3>
-
-      <ul>
-        
-          <li>
-            <a href="module-util.html">module:util</a>
-          </li>
-        
-      </ul>
-    
-
-    
-
-     
-
-    
-      <h3 class="subsection-title">Namespaces</h3>
-
-      <dl>
-        
-          <dt>
-            <a href="module-heparin-heparin.html">heparin</a>
-          </dt>
-          <dd>
-            
-          </dd>
-        
-      </dl>
-    
-
-    
-
-    
-
-    
-
-    
+    $("#kcentra--output").val(ai);
+    // const scrollheight = document.getElementById("kcentra--output").scrollHeight + 2;
+    // $("#kcentra--output").height(`${scrollheight}px`);
+  },
+  clearText(){
+    $("#kcentra--output").val("");
+  },
+  addRow(lot, exp){
+    let newDiv = document.createElement("div");
+    $(newDiv).addClass("form-row kcentra--inputRow");
+    $(newDiv).html(`&lt;div class="col-4 input-group">
+      &lt;input type="text" class="form-control kcentra qty">
+      &lt;div class="input-group-append">
+        &lt;div class="input-group-text">vials&lt;/div>
+      &lt;/div>
+      &lt;label>of&lt;/label>
+      &lt;input type="text" class="form-control input-kcentra kcentra units">
+      &lt;div class="input-group-append">
+        &lt;div class="input-group-text">units&lt;/div>
+      &lt;/div>
+    &lt;/div>
+    &lt;div class="col-3 input-group">
+      &lt;label>Lot #:&lt;/label>
+      &lt;input type="text" class="form-control input-kcentra kcentra lotNumber" value="${lot}">
+    &lt;/div>
+    &lt;div class="col-3 input-group">
+      &lt;label>Exp:&lt;/label>
+      &lt;input type="text" class="form-control input-kcentra kcentra expiration" value="${exp}">
+    &lt;/div>
+    &lt;div class="col-1 input-group">
+      &lt;button class="btn btn-light kcentra--remove" id="${Math.random().toString(36).substring(2, 9)}">Remove&lt;/button>
+    &lt;/div>`);
+    $("#kcentra--btnSum--wrapper").before(newDiv);
+    $("#kcentra--btnSum--wrapper").show();
+  }
+}</code></pre>
   </article>
 </section>
 
-
+    
 
 
   </div>
