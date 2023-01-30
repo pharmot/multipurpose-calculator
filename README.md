@@ -75,6 +75,11 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 ### Changed
 
 - Add Privigen to IVIG options and make default
+## [1.0.5] - 2022-11-24
+
+### Fixed
+
+- Pediatric maintnenace dose not being calculated
 
 ## [1.0.4] - 2022-10-02
 
@@ -214,6 +219,7 @@ Initial POC Release
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
 [1.1.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.1.0
+[1.0.5]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.5
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.4
 [1.0.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.2

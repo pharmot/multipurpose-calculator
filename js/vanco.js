@@ -368,7 +368,7 @@ export function loadingDose({ht = 0, wt = 0, age = 0, sex = 0, bmi = 0, hd, vanc
  * @returns {String}                         Maintenance dose recommendation (may include HTML tags)
  */
 export function getMaintenanceDose({age, wt, ibw, scr, hd, indication, crcl} = {}){
-  if ( ibw === 0 || age === 0 ) return { maintText: '', freq: 0 };
+  if ( (age >= 18 && ibw === 0) || age === 0 || wt === 0 ) return { maintText: '', freq: 0 };
   if ( scr === 0 && hd === 0 ) return { maintText: 'Must order SCr before maintenance dose can be calculated', freq: 0 };
   let {
     low = 0,

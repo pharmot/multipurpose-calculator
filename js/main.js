@@ -1,6 +1,6 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.1.0-beta.4
-  * Copyright 2020-2022 Andy Briggs (https://github.com/pharmot)
+  * VMFH Pharmacy Multipurpose Calculator v1.1.0
+  * Copyright 2020-2023 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
 
