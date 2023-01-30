@@ -1,6 +1,8 @@
 # Changelog
 
-## [Unreleased] - v1.1.0-beta.4
+<!-- ## [Unreleased] -->
+
+## [1.1.0] - 2023-01-30
 
 ### Added
 
@@ -20,7 +22,7 @@
 
 - Added check for Infinity to displayDate function in utility module
 
-## [1.0.4]
+## [1.0.4] - 2022-10-02
 
 ### Changed
 
@@ -31,14 +33,14 @@
 - Disable suggestion to use Bayesian calculator for initial maintenance dose altogether in HD patients ([#62])
 - Fix error in AUC Calculation Details when levels are drawn within the same interval ([#63])
 
-## [1.0.3]
+## [1.0.3] - 2022-05-20
 
 ### Changed
 
 - Reword PK dosing disclaimer to consider using if large discrepancy from weight-based dosing ([#60])
 - Split webpack entry points and added copy-webpack-plugin for build optimization
 
-## [1.0.2]
+## [1.0.2] - 2022-05-18
 
 ### Added
 - Age parsing function to util.js module
@@ -55,14 +57,14 @@
 - Allow non-numbers for age input
 - Correct aucNew peak calculation documentation in equations.md ([#58])
 
-## [1.0.1]
+## [1.0.1] - 2022-04-06
 
 ### Changed
 
 - For vanco AUC calculation, increase max allowed timespan between peak and trough from 36 to 60 hours so calculations can be done for longer dosing intervals (e.g. q48h) ([#51])
 
 
-## [1.0.0]
+## [1.0.0] - 2021-11-03
 
 ### Added
 
@@ -196,7 +198,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.1.0...HEAD
+[1.0.4]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.1...v1.0.2

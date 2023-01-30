@@ -7,7 +7,7 @@
 [![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)&nbsp;&nbsp;&nbsp;
 ![GitHub Release Date](https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2355a63a)&nbsp;&nbsp;&nbsp;
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)&nbsp;&nbsp;&nbsp;
-![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.0.5&color=%2355a63a&logo=windowsxp)&nbsp;&nbsp;&nbsp;
+![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.0.5&color=orange&logo=windowsxp)&nbsp;&nbsp;&nbsp;
 ![MIT Licensed](https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a)
 
 ## Open the Calculator
@@ -33,6 +33,11 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
   - Two-level pharmacokinetics
 - Second dose timing
 - IVIG rate calculation and admin instruction generation
+- Heparin calcualtor for transferred patients
+- Aminoglycoside Dosing Weight
+- PCA Calculator
+- KCentra calculation and admin instruction generation
+- Standard administration times tool
 
 # Documentation
 <ul>
@@ -55,6 +60,21 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 # Release Notes
 
 [View full changelog here](changelog.md)
+
+## [1.1.0] - 2023-01-30
+
+### Added
+
+- AMG Dosing Weight
+- Body surface area calculatiom
+- Reverse Heparin Calculator
+- PCA Dosing Calculator
+- Standard Administration Times tool
+- KCentra Lot/Exp Calculator
+
+### Changed
+
+- Add Privigen to IVIG options and make default
 
 ## [1.0.4] - 2022-10-02
 
@@ -193,6 +213,7 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
+[1.1.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.1.0
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.4
 [1.0.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.3
 [1.0.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.2
