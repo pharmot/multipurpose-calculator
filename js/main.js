@@ -1,6 +1,6 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.0.5
-  * Copyright 2020-2022 Andy Briggs (https://github.com/pharmot)
+  * VMFH Pharmacy Multipurpose Calculator v1.1.0
+  * Copyright 2020-2023 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
 
@@ -9,12 +9,16 @@ import 'bootstrap';
 import "../scss/main.scss";
 import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge } from './util.js'
 import { default as ivig } from './ivig.js';
-import { childIsObese } from './growthCharts.js';
 import { getSecondDose } from './seconddose.js';
 import * as arial from './arial.js';
 import { default as setupValidation } from './formValidation.js';
 import * as vanco from './vanco.js';
-import * as LOG from './logger.js'
+import * as amg from './amg.js';
+import * as LOG from './logger.js';
+require('./heparin.js');
+require('./kcentra.js');
+require('./pca.js');
+require('./nextdose.js');
 
 let debug = false;
 let debugDefaultTab = "auc";
@@ -23,7 +27,7 @@ let validatedFields;
 $(()=>{
   $('[data-toggle="popover"]').popover({html: true});
   $('[data-toggle="tooltip"]').tooltip()
-
+  $('.hidden').hide();
   if ( /debug/.test(location.search) ) {
     debug = true;
   } else if ( /log/.test(location.search) ) {
@@ -64,6 +68,8 @@ $(()=>{
     calculate.vancoInitial();
     calculate.vancoRevision();
     calculate.vancoAUC();
+    calculate.amg();
+    
   } else {
     resetDates();
   }
@@ -86,6 +92,7 @@ $(".input-patient").on('keyup', () => {
   calculate.vancoInitial();
   calculate.vancoRevision();
   calculate.vancoAUC();
+  calculate.amg();
 });
 $('#ptage').on('keyup', () => {
   setTimeout(()=> {
@@ -170,13 +177,25 @@ $("#btnReset").on('click', () => {
   calculate.vancoTwolevel();
   calculate.secondDose();
   calculate.ivig();
+  calculate.amg();
   $("#top-container").removeClass('age-adult age-child age-infant');
   $("#top-container").addClass('age-adult');
   $(validatedFields).removeClass('invalid');
+  $('.hidden').hide();
+  $('.output').html('');
   $('#ptage').get(0).focus();
+  $('#amgAlt').prop( "checked", false );
+
+  // PCA module
+  ($("#pca-drug")[0]).selectedIndex = 0;
+  ($("#pca-orderset")[0]).selectedIndex = 0;
+  ($("#pca-continuous")[0]).selectedIndex = 0;
+  $('.pca-bg-warning').removeClass('pca-bg-warning');
+  $('.pca-bg-danger').removeClass('pca-bg-danger');
+  $('.pca-bg-error').removeClass('pca-bg-error');
 
 });
-
+$("#amgAlt").on("change", () => calculate.amg() );
 $("#ivig-product").on("change", () => calculate.ivig() );
 $("#weight").on("keyup", () => calculate.ivig() );
 $("#ivig-dose").on("keyup", () => calculate.ivig() );
@@ -217,7 +236,6 @@ function resetDates(){
   $(".dt-date").val(`${today.getFullYear()}-${('0' + (today.getMonth()+1)).slice(-2)}-${('0' + today.getDate()).slice(-2)}`);
 }
 
-// TODO: doc: pt requires module:util
 /**
  * Object representing the patient.
  *
@@ -259,9 +277,9 @@ let pt = {
   get sex(){ return this._sex || 0; },
   /**
    * Gets/sets the weight of the patient.
+   * @function
    * @requires module:util
    * @param {number} [x] Patient's weight
-   * @function
    * @returns {number} Patient's weight in kg, or 0 if invalid
    */
   set wt(x){ this._wt = checkValue(x, this.config.check.wtMin, this.config.check.wtMax); },
@@ -269,24 +287,24 @@ let pt = {
   /**
    * Gets/sets the height of the patient.
    * @function
-   * @requires module:util
-   * @param {number} [x] Patient's height
-   * @returns {number} Patient's height in cm, or 0 if invalid
+   * @requires  module:util
+   * @param    {number}     [x] Patient's height
+   * @returns  {number}         Patient's height in cm, or 0 if invalid
    */
   set ht(x){ this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
   get ht(){ return this._ht || 0; },
   /**
    * Gets/sets the age of the patient.
    * Accepts in years, months, days, or months/days.
+   * @function
+   * @requires   module:util
+   * @param     {string|number} [x] Patient's age in days, months, or years
+   * @returns   {number}            Patient's height in cm, or 0 if invalid
    * @example
    * pt.age("50");    // sets patient's age to 50 years
    * pt.age("23m");   // sets patient's age to 23 months (getter returns in years)
    * pt.age("16m3d"); // sets patient's age to 16 months, 3 days (getter returns in years)
    * pt.age("300d");  // sets patient's age to 300 days (getter returns in years)
-   * @function
-   * @requires module:util
-   * @param {string|number} [x] Patient's age in days, months, or years
-   * @returns {number} Patient's height in cm, or 0 if invalid
    */
   set age(x){
     const ageInYears = parseAge(x);
@@ -299,12 +317,8 @@ let pt = {
   },
   get age(){ return this._age || 0; },
   /**
-   * Gets the age context of the patient
-   *
-   * Possible values:
-   * - `adult` (default)
-   * - `child`
-   * - `infant`
+   * Gets the age context of the patient. 
+   * Possible values are `adult` (default), `child`, and `infant`
    * @function
    * @returns {string} Patient's age context (adult, child, or infant)
    */
@@ -316,9 +330,9 @@ let pt = {
   /**
    * Gets/sets the patient's serum creatinine.
    * @function
-   * @requires module:util
-   * @param {number} [x] Patient's SCr
-   * @returns {number} Patient's SCr in mg/dL, or 0 if invalid
+   * @requires   module:util
+   * @param     {number}    [x]   Patient's SCr
+   * @returns   {number}          Patient's SCr in mg/dL, or 0 if invalid
    */
   set scr(x){
     this._scr = checkValue(x, this.config.check.scrMin, this.config.check.scrMax);
@@ -326,9 +340,9 @@ let pt = {
   get scr(){ return this._scr || 0; },
   /**
    * Gets the patient's body mass index
-   * @see [equations.md](/docs/equations.md/#body-mass-index)
    * @function
    * @returns {number} Patient's BMI in kg/m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-mass-index)
    */
   get bmi() {
     if ( this.wt > 0 && this.ht > 0 ) {
@@ -338,9 +352,9 @@ let pt = {
   },
   /**
    * Gets the patient's ideal body weight.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md/#ideal-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#ideal-body-weight)
    */
   get ibw(){
     if ( this.age < 18 ) return 0;
@@ -351,9 +365,9 @@ let pt = {
   },
   /**
    * Gets the patient's adjusted body weight, using a factor of 0.4.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md/#adjusted-body-weight)
    * @function
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#adjusted-body-weight)
    */
   get adjBW(){
     if ( this.age < 18 ) return 0;
@@ -365,11 +379,11 @@ let pt = {
   },
   /**
    * Gets the percent the patient is over or under ideal body weight.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md#percent-over-or-under-ibw)
-   * @example
-   * If patient is 30% above their IBW, returns `30`
    * @function
    * @returns {number} Percent over or under ideal body weight, or 0 if insufficient input
+   * @example
+   * If patient is 30% above their IBW, returns `30`
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#percent-over-or-under-ibw)
    */
   get overUnder(){
     if ( this.age < 18 ) return 0;
@@ -380,9 +394,9 @@ let pt = {
   },
   /**
    * Gets the patient's lean body weight.  Returns 0 if age < 18.
-   * @see [equations.md](/docs/equations.md#lean-body-weight)
    * @function
    * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#lean-body-weight)
    */
   get lbw(){
     if ( this.age < 18 ) return 0;
@@ -396,9 +410,9 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using actual body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G ABW) in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
   get cgActual(){
     if ( this.wt > 0 && this.age > 0 && this.scr > 0 && this._sex ) {
@@ -408,9 +422,9 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using adjusted body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G AdjBW) in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
   get cgAdjusted(){
     if ( this.adjBW > 0 && this.age > 0 && this.scr > 0 ) {
@@ -420,9 +434,9 @@ let pt = {
   },
   /**
    * Gets the patient's Cockroft-Gault creatinine clearance using ideal body weight.
-   * @see [equations.md](/docs/equations.md#cockroft-gault)
    * @function
    * @returns {number} Patient's CrCl (C-G IBW) in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
   get cgIdeal(){
     if ( this.ibw > 0 && this.age > 0 && this.scr > 0 ) {
@@ -432,9 +446,9 @@ let pt = {
   },
   /**
    * Gets the patient's Protocol CrCl (equation and weight depend on age and percent over/under IBW.
-   * @see [equations.md](/docs/equations.md#protocol-crcl)
    * @function
    * @returns {number} Patient's Protocol CrCl in mL/min, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#protocol-crcl)
    */
   get crcl(){
     if ( this.age < 18 ) return this.schwartz;
@@ -455,7 +469,7 @@ let pt = {
   /**
    * Gets/sets the k value for the Schwartz CrCl equation.
    * @function
-   * @see [equations.md](/docs/equations.md#schwartz)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#schwartz)
    * @param {number}  [x] selectedIndex of k value input element where 0 is "term infant" and 1 is "LBW infant"
    * @returns {number} k value, or 0 if age > 18 or insufficient input
    */
@@ -476,7 +490,7 @@ let pt = {
   },
   /**
    * Gets the patient's Schwartz CrCl
-   * @see [equations.md](/docs/equations.md#schwartz)
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#schwartz)
    * @function
    * @returns {number} Patient's CrCl in mL/min using the Schwartz equation, or 0 if insufficient input
    */
@@ -484,8 +498,24 @@ let pt = {
     const k = this.schwartzK;
     if ( k === 0 || this.ht === 0 || this.scr === 0 ) return 0;
     return ( k * this.ht ) / this.scr;
-  }
-};
+  },
+  /**
+   * Gets the patient's body surface area using the Mosteller formula if patient
+   * is 14 years of age or older.
+   *
+   * @function
+   * @returns {number} Patient's BSA in m^2, or 0 if insufficient input
+   * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-surface-area)
+   */
+   get bsa(){
+     if ( this.age < 14 ) return 0;
+     if ( this.ht > 0 && this.wt > 0 ) {
+       return Math.sqrt( ( this.wt * this.ht ) / 3600 );
+     }
+     return 0;
+   }
+ };
+
 /**
  * Functions called by event listeners to calculate and display results
  * @namespace
@@ -515,6 +545,7 @@ const calculate = {
     displayValue("#adjBW", pt.adjBW, 0.1, " kg");
     displayValue("#lbw", pt.lbw, 0.1, " kg");
     displayValue("#bmi", pt.bmi, 0.1, " kg/m²");
+    displayValue("#bsa", pt.bsa, 0.01, " m²")
     // Use Bayesian calculator instead of weight-based dosing if BMI > 30
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
@@ -586,6 +617,22 @@ const calculate = {
     $(".current-freq").filter($(`:not(.input-${src})`)).val(pt.curFreq > 0 ? pt.curFreq : "");
     $(".current-trough").filter($(`:not(.input-${src})`)).val(pt.curTrough > 0 ? pt.curTrough : "");
   },
+  /**
+   * Input and output for aminoglycoside dosing
+   * @requires module:amg
+   * @returns {undefined}
+   */
+   amg(){
+     const amgWtString = amg.dosingWeightString({
+       age: pt.age,
+       wt: pt.wt,
+       ibw: pt.ibw,
+       adjBW: pt.adjBW,
+       overUnder: pt.overUnder,
+       alt: $('#amgAlt').is(':checked'),
+     })
+     $("#amgDosingWeight").html(amgWtString);
+   },
   /**
    * Input and output for initial protocol dosing and initial PK dosing
    * @requires module:util

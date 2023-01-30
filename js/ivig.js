@@ -10,27 +10,33 @@ import * as arial from './arial.js';
 import { roundTo } from './util.js';
 const drugs = [
   {
+    rates: [0.3, 0.6, 1.2, 2.4, 4.8],
+    durations: [30, 30, 30, 30, 9999],
+    conc: 0.1
+  },
+  {
+    rates: [0.3, 0.6, 1.2, 2.4],
+    durations: [30, 30, 30, 9999],
+    conc: 0.1
+  },
+  {
     rates: [0.6, 1.2, 2.4, 4.8, 7.2],
     durations: [30, 30, 30, 30, 9999],
-    padding: [8,6,6,4,7],
     conc: 0.1
   },
   {
     rates: [0.6, 1.2, 2.4, 4.2],
     durations: [30,30,30,9999],
-    padding: [6,4,4,8],
     conc: 0.05
   },
   {
     rates: [0.6, 1.2, 2.4, 4.8],
     durations: [30, 30, 30, 9999],
-    padding: [6,4,4,8],
     conc: 0.1
   },
   {
     rates: [1.2, 2.4, 4.8],
     durations: [30, 30, 9999],
-    padding: [6,4,7],
     conc: 0.1
   }
 ];
@@ -40,7 +46,7 @@ function getText(selected, wt, totalDose){
     rates1: ["Rate"],
     rates2: ["Infusion Rate"]
   };
-  const { rates, steps, padding, conc, durations } = drugs[selected];
+  const { rates, conc, durations } = drugs[selected];
   const totalVolume = totalDose/conc;
   let remainingVolume = totalVolume;
   let timeElapsed = 0;

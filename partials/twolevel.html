@@ -1,0 +1,80 @@
+
+<div class="row hide-hd-0">
+  <div class="col-2"></div>
+  <div class="col-4">
+    <div class="alert alert-info mt-5">Not applicable to dialysis patients</div>
+  </div>
+</div>
+<div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
+  <div class="alert alert-warning ml-3 mt-2 mb-0">Note: This tab does not apply to AUC dosing.  Use the previous tab for AUC calculations.</div>
+</div>
+<div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--twolevel">
+  <div class="card-header h5">Two-Level PK</div>
+  <div class="card-body">
+    <div class="form-row">
+      <label for="twolevelDate1" class="col-2 col-form-label">First Level</label>
+      <div class="col-6 input-group">
+        <input type="date" id="twolevelDate1" class="form-control input-twolevel dt-date" data-form-type="other">
+        <div class="input-group-prepend">
+          <div class="input-group-text">@</div>
+        </div>
+        <input type="text" class="form-control input-twolevel dt-time validate-time" size="4" id="twolevelTime1" placeholder="HHmm" data-form-type="other">
+      </div>
+      <div class="col-4 input-group">
+        <input type="text" class="form-control input-twolevel validate-level" id="twolevelLevel1" data-form-type="other">
+        <div class="input-group-append">
+          <div class="input-group-text">mcg/mL</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="twolevelDate2" class="col-2 col-form-label">Second Level</label>
+      <div class="col-6 input-group">
+        <input type="date" id="twolevelDate2" class="form-control input-twolevel dt-date" data-form-type="other">
+        <div class="input-group-prepend">
+          <div class="input-group-text">@</div>
+        </div>
+        <input type="text" class="form-control input-twolevel dt-time validate-time" size="4" id="twolevelTime2" placeholder="HHmm" data-form-type="other">
+      </div>
+      <div class="col-4 input-group">
+        <input type="text" class="form-control input-twolevel validate-level" id="twolevelLevel2" data-form-type="other">
+        <div class="input-group-append">
+          <div class="input-group-text">mcg/mL</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="twolevelHalflife" class="col-3">Est. Halflife</label>
+      <div class="col-4 input-group">
+        <div class="output" id="twolevelHalflife"></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="twolevelNewDose" class="col-3">New Dose</label>
+      <div class="col-3 input-group">
+        <div class="output" id="twolevelNewDose"></div>
+      </div>
+      <div class="input-group col-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">q</div>
+        </div>
+        <input type="number" class="form-control input-twolevel-interval validate-freq" min="0" max="48" step="6" id="twolevelInterval">
+        <div class="input-group-append">
+          <div class="input-group-text">h</div>
+        </div>
+      </div>
+      <div class="input-group col-1">
+        <button class="btn btn-light" id="twolevel-reset"><i class="fas fa-undo"></i></button>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="twolevelNewTrough" class="col-3">Est. Trough</label>
+      <div class="col-4 input-group">
+        <div class="output" id="twolevelNewTrough"></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <table class="table table-sm table-bordered" id="twolevelTable"></table>
+    </div>
+  </div>
+</div>

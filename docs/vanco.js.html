@@ -21,9 +21,9 @@
   <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
-  
 
-  
+
+
 
   <!-- start Mixpanel -->
   <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
@@ -54,17 +54,17 @@
     <ul>
       <li >
         <a href="index.html">
-          
+
             <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
-          
-          
+
+
         </a>
       </li>
 
-      
+
 
     </ul>
   </div>
@@ -72,9 +72,9 @@
   <nav>
     <h3 class="reference-title">Documentation</h3>
 
-    
 
-    <h3>Modules</h3><ul><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+
+    <h3>Modules</h3><ul><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
     <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
 </svg>
@@ -83,14 +83,14 @@
   </nav>
 
   <div id="main">
-    
+
       <h1 class="page-title">
         Source: vanco.js
       </h1>
-    
 
-    
-      
+
+
+
 
 <section>
   <article>
@@ -379,7 +379,7 @@ function getSuggestedInterval(halflife) {
   return 48;
 };
 /**
- * Calculate vancomycin clearance using Crass method
+ * Calculates vancomycin clearance using Crass method
  *
  * @param   {Object}         obj
  * @param   {Number}         obj.age   Age in years
@@ -394,7 +394,19 @@ function getVCLCrass({age, scr, sex, wt} = {}){
   const cl = (9.656 - 0.078 * age) - (2.009 * scr) + (1.09 * _sex) + (0.04 * (wt**0.75));
   return cl;
 };
-// TODO: document loadingDose
+/**
+ * Generates loading dose recommendation based on patient info and indication/HD status
+ * 
+ * @param   {Object}         obj
+ * @param   {Number}         obj.ht               Height in cm
+ * @param   {Number}         obj.wt               Weight in kg
+ * @param   {Number}         obj.age              Age in years
+ * @param   {String|Number}  obj.sex              Sex (expects "M", "F", or 0)
+ * @param   {Number}         obj.bmi              Body mass index in kg/m^2
+ * @param   {Number}         obj.hd               Selected index of HD combo box (0=No, 1=HD, 2=PD, 3=CRRT, 4=SLED)
+ * @param   {Number}         obj.vancoIndication  Selected index of indication combo box (0=default, 1=SSTI/UTI, 2=severe sepsis)
+ * @returns {String}                              Loading dose recommendation (may include HTML tags)
+ */
 export function loadingDose({ht = 0, wt = 0, age = 0, sex = 0, bmi = 0, hd, vancoIndication} = {}){
   if ( ht === 0 || wt === 0 || age === 0 ) return '';
   // Pediatric loading dose
@@ -437,7 +449,19 @@ export function loadingDose({ht = 0, wt = 0, age = 0, sex = 0, bmi = 0, hd, vanc
   }
   return (d1 === d2 ? `${d1} mg` : `${d1} - ${d2} mg`) + result + "&lt;/i>";
 };
-// TODO: document getmaintenanceDose
+/**
+ * Generates maintenance dose recommendation based on patient info and indication/HD status
+ * 
+ * @param   {Object}         obj
+ * @param   {Number}         obj.age         Age in years
+ * @param   {Number}         obj.wt          Weight in kg
+ * @param   {Number}         obj.ibw         Ideal body weight in kg
+ * @param   {Number}         obj.scr         Serum creatinine in mg/dL
+ * @param   {Number}         obj.crcl        Creatinine clearance in mL/min
+ * @param   {Number}         obj.hd          Selected index of HD combo box (0=No, 1=HD, 2=PD, 3=CRRT, 4=SLED)
+ * @param   {Number}         obj.indication  Selected index of indication combo box (0=default, 1=SSTI/UTI, 2=severe sepsis)
+ * @returns {String}                         Maintenance dose recommendation (may include HTML tags)
+ */
 export function getMaintenanceDose({age, wt, ibw, scr, hd, indication, crcl} = {}){
   if ( (age >= 18 &amp;&amp; ibw === 0) || age === 0 || wt === 0 ) return { maintText: '', freq: 0 };
   if ( scr === 0 &amp;&amp; hd === 0 ) return { maintText: 'Must order SCr before maintenance dose can be calculated', freq: 0 };
@@ -891,17 +915,22 @@ export function calculateAUC({dose = 0, interval = 0, trough = 0, peak = 0, trou
   };
 };
 /**
+ * Calculated AUC results for various possible doses with the selected interval, for output to a table
+ *
+ * @typedef  {Object}   AucNew
+ * @property {Number[]}   dose         New dose in mg
+ * @property {Number[]}   auc          Predicted AUC from new dose
+ * @property {Number[]}   infTime      Infusion time in hours
+ * @property {Number[]}   trough       Calculated trough level
+ * @property {Number[]}   peak         Calculated peak level
+ * @property {Boolean[]}  therapeutic  If resulting AUC is therapeutic
+ */
+/**
  * Calculate data for table of doses based on selected interval
  *
  * @param   {AucCurrent} aucCurrent  AUC calculation results
  * @param   {Number}     interval    Selected interval in hours
- * @returns {Object}     res
- * @returns {Number[]}   res.dose         New dose in mg
- * @returns {Number[]}   res.auc          Predicted AUC from new dose
- * @returns {Number[]}   res.infTime      Infusion time in hours
- * @returns {Number[]}   res.trough       Calculated trough level
- * @returns {Number[]}   res.peak         Calculated peak level
- * @returns {Boolean[]}  res.therapeutic  If resulting AUC is therapeutic
+ * @returns {AucNew}                 Calculation results for new dose table
  */
 export function calculateAUCNew(aucCurrent, interval){
   let res = {
@@ -933,22 +962,31 @@ export function calculateAUCNew(aucCurrent, interval){
   return res;
 };
 /**
- * Calculate dosing for single-level adjustment
+ * Single level linear adjustment calculation parameters
  *
- * @param   {Object} obj                   Input parameters
- * @param   {Number} obj.curDose           Current dose in mg
- * @param   {Number} obj.curFreq           Current frequency in hours
- * @param   {Number} obj.curTrough         Current trough in mg/dL
- * @param   {Number} obj.testDose          Selected dose in mg
- * @param   {Number} obj.testFreq          Selected frequency in hours
- * @param   {Number} obj.goalTrough        Middle of goal trough range in mg/dL
- * @returns {Object} res
- * @returns {Number} res.linearDose        Calculated dose for linear adjustment in mg
- * @returns {Number} res.linearFreq        Calculated frequency for linear adjustment in hours
- * @returns {Number} res.linearTrough      Estimated trough from calculated dose/frequency
- * @returns {Number} res.testLinearDose    Test dose from input parameters if all inputs are valid
- * @returns {Number} res.testLinearFreq    Test frequency from input parameters if all inputs are valid
- * @returns {Number} res.testLinearTrough  Est trough from test dose and test frequency
+ * @typedef  {Object} LinearParams
+ * @property {Number} curDose           Current dose in mg
+ * @property {Number} curFreq           Current frequency in hours
+ * @property {Number} curTrough         Current trough in mg/dL
+ * @property {Number} testDose          Selected dose in mg
+ * @property {Number} testFreq          Selected frequency in hours
+ * @property {Number} goalTrough        Middle of goal trough range in mg/dL
+ */
+/**
+ * Single level linear adjustment calculation results
+ *
+ * @typedef  {Object} LinearResults
+ * @property {Number} linearDose        Calculated dose for linear adjustment in mg
+ * @property {Number} linearFreq        Calculated frequency for linear adjustment in hours
+ * @property {Number} linearTrough      Estimated trough from calculated dose/frequency
+ * @property {Number} testLinearDose    Test dose from input parameters if all inputs are valid
+ * @property {Number} testLinearFreq    Test frequency from input parameters if all inputs are valid
+ * @property {Number} testLinearTrough  Est trough from test dose and test frequency
+ */
+/**
+ * Calculate dosing for single-level adjustment
+ * @param   {LinearParams}
+ * @returns {LinearResults}
  */
 export function getLinearAdjustment({curDose, curFreq, curTrough, testDose, testFreq, goalTrough} = {}){
 
@@ -1131,10 +1169,10 @@ export function calculateTwoLevelPK({ wt = 0, bmi = 0, ke= 0, selectedInterval= 
 /**
  * Get dose revision recommendation for dialysis patients
  *
- * @param   {Object} obj      Input parameters
- * @param   {Number} wt       Patient's weight in kg
- * @param   {Number} trough   Measured trough level
- * @returns {String}          Recommendation as HTML string
+ * @param   {Object} obj          Input parameters
+ * @param   {Number} obj.wt       Patient's weight in kg
+ * @param   {Number} obj.trough   Measured trough level
+ * @returns {String}              Recommendation as HTML string
  */
 export function hdRevision({wt, trough} = {}){
   if ( trough === 0 ) return '';
@@ -1152,7 +1190,7 @@ export function hdRevision({wt, trough} = {}){
   </article>
 </section>
 
-    
+
 
 
   </div>
@@ -1166,7 +1204,7 @@ export function hdRevision({wt, trough} = {}){
   <script src="scripts/linenumber.js"></script>
   <script src="scripts/pagelocation.js"></script>
 
-  
+
 
 </body>
 </html>

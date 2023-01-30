@@ -1,0 +1,220 @@
+
+<div class="row hide-age-adult hide-hd-0">
+  <div class="col-2"></div>
+  <div class="col-4">
+    <div class="alert alert-info mt-5">Not applicable to pediatric dialysis patients</div>
+  </div>
+</div>
+<div class="row hide-hd-0 hide-hd-1 hide-age-infant hide-age-child">
+  <div class="col-2"></div>
+  <div class="col-4">
+    <div class="alert alert-info mt-5 hide-hd-3 hide-hd-4">Not applicable to PD patients</div>
+    <div class="alert alert-info mt-5 hide-hd-2 hide-hd-4">Not applicable to CRRT patients</div>
+    <div class="alert alert-info mt-5 hide-hd-2 hide-hd-3">Not applicable to SLED patients</div>
+  </div>
+</div>
+<div class="row hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
+  <div class="col-auto" id="col--current-dose">
+    <div class="card" id="card--current-dose">
+      <div class="card-header h5">Current Dose</div>
+      <div class="card-body">
+        <div class="form-row mb-3">
+          <label for="revision-goalTrough" class="col-4">Goal Trough</label>
+          <div class="input-group col-7">
+            <select id="revision-goalTrough" class="form-control small">
+              <option data-goalMin="10" data-goalMax="20" data-goalTrough="15">10-20 mcg/mL</option>
+              <option data-goalMin="10" data-goalMax="15" data-goalTrough="12.5">10-15 mcg/mL</option>
+              <option data-goalMin="15" data-goalMax="20" data-goalTrough="17.5">15-20 mcg/mL</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row hide-hd-1 mb-3">
+          <label for="revision-curDose" class="col-4">Current Dose</label>
+          <div class="col-4 input-group">
+            <input type="number" class="form-control input-revision current-dose validate-dose" step="250" id="revision-curDose">
+            <div class="input-group-append">
+              <div class="input-group-text">mg</div>
+            </div>
+          </div>
+          <div class="input-group col-4">
+            <div class="input-group-prepend">
+              <div class="input-group-text">q</div>
+            </div>
+            <input type="number" class="form-control input-revision current-freq validate-freq" id="revision-curFreq" min="0" max="48" step="6">
+            <div class="input-group-text">h</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="col-4" for="revision-curTrough">Trough</label>
+          <div class="col-5 input-group">
+            <input type="text" class="form-control input-revision current-trough validate-level" id="revision-curTrough">
+            <div class="input-group-text">mcg/mL</div>
+          </div>
+        </div>
+        <div class="form-row hide-hd-1 mb-3">
+          <label class="col-4" for="revision-curTroughTime">Time Drawn</label>
+          <div class="col-7 input-group">
+            <input type="number" class="form-control input-revision" id="revision-curTroughTime" min="-24" max="24" step="any">
+            <div class="input-group-text">hrs before dose</div>
+          </div>
+        </div>
+        <div class="form-row hide-hd-1">
+          <label class="col-4" for="revision-halflife">Est. Half Life</label>
+          <div class="col-5 input-group">
+            <div class="output" id="revision-halflife"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="card hide-hd-1" id="card--steady-state">
+      <div class="card-header h5">Steady State Check</div>
+      <div class="card-body">
+        <div class="form-row">
+          <label for="steadystate-dateFirst" class="col-3">First Dose</label>
+          <div class="col-8 input-group">
+            <input type="date" class="form-control dt-date input-steadystate" data-form-type="other" id="steadystate-dateFirst">
+            <div class="input-group-prepend">
+              <div class="input-group-text border-left-0">@</div>
+            </div>
+            <input type="text" class="form-control dt-time validate-time input-steadystate" data-form-type="other" id="steadystate-timeFirst" placeholder="0000">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="steadystate-dateTrough" class="col-3">Trough</label>
+          <div class="col-8 input-group">
+            <input type="date" class="form-control dt-date input-steadystate" id="steadystate-dateTrough" data-form-type="other">
+            <div class="input-group-prepend">
+              <div class="input-group-text border-left-0">@</div>
+            </div>
+            <input type="text" class="form-control dt-time validate-time input-steadystate" id="steadystate-timeTrough" placeholder="0000">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="steadystate-timeDiff" class="col-3">Difference</label>
+          <div class="col-8 input-group">
+            <div class="output" id="steadystate-timeDiff"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-8 offset-3 input-group">
+            <div class="output" id="steadystate-atSS"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row hide-hd-0 hide-hd-2 hide-hd-3 hide-hd-4 hide-age-infant hide-age-child">
+  <div class="col-12">
+    <div class="card" id="card--vancoHdAdj">
+      <div class="card-header h5">Dose Adjustment for HD Patient</div>
+      <div class="card-body">
+        <div class="form-row">
+          <div class="input-group col-12">
+            <div class="output multi-line" id="vancoHdAdj"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
+  <div class="col-auto" id="col--protocol-adjustment">
+    <div class="card" id="card--protocol-adjustment">
+      <div class="card-header h5">Single Level (Trough) Adjustment</div>
+      <div class="card-body">
+        <div class="form-row">
+          <div class="col-2 like-card-header">Linear</div>
+          <div class="col-4 small">New Dose</div>
+          <div class="col-2 small">Change</div>
+          <div class="col-3 small">Est. Trough</div>
+        </div>
+        <div class="form-row">
+          <label for="revision-linearDose" class="col-2">Suggested</label>
+          <div class="col-4 input-group">
+            <div class="output" id="revision-linearDose"></div>
+          </div>
+          <div class="col-2 input-group">
+            <div class="output" id="revision-linearDoseChange"></div>
+          </div>
+          <div class="col-3 input-group">
+            <div class="output" id="revision-linearTrough"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="revision-linearTestDose" class="col-2">Try Other Dose</label>
+          <div class="input-group col-2">
+            <input type="number" id="revision-linearTestDose" class="form-control input-revision validate-dose" min="0" max="3000" step="250">
+            <div class="input-group-append">
+              <div class="input-group-text">mg</div>
+            </div>
+          </div>
+          <div class="input-group col-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">q</div>
+            </div>
+            <input type="number" id="revision-linearTestFreq" class="form-control input-revision validate-freq" min="0" max="48" step="6">
+            <div class="input-group-append">
+              <div class="input-group-text">h</div>
+            </div>
+          </div>
+          <div class="col-2 input-group">
+            <div class="output" id="revision-testLinearDoseChange"></div>
+          </div>
+          <div class="col-3 input-group">
+            <div class="output" id="revision-testLinearTrough"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="form-row">
+          <div class="col-2 like-card-header">PK</div>
+          <div class="col-4 small">New Dose</div>
+          <div class="col-2 small">Change</div>
+          <div class="col-3 small">Est. Trough</div>
+        </div>
+        <div class="form-row">
+          <label for="revision-pkDose" class="col-2">Suggested</label>
+          <div class="col-4 input-group">
+            <div class="output" id="revision-pkDose"></div>
+          </div>
+          <div class="col-2 input-group">
+            <div class="output" id="revision-pkDoseChange"></div>
+          </div>
+          <div class="col-3 input-group">
+            <div class="output" id="revision-pkTrough"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="revision-pkTestDose" class="col-2">Try Other Dose</label>
+          <div class="input-group col-2">
+            <input type="number" id="revision-pkTestDose" class="form-control input-revision validate-dose" min="0" max="3000" step="250">
+            <div class="input-group-append">
+              <div class="input-group-text">mg</div>
+            </div>
+          </div>
+          <div class="input-group col-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">q</div>
+            </div>
+            <input type="number" id="revision-pkTestFreq" class="form-control input-revision validate-freq" min="0" max="48" step="6">
+            <div class="input-group-append">
+              <div class="input-group-text">h</div>
+            </div>
+          </div>
+          <div class="col-2 input-group">
+            <div class="output" id="revision-pkTestDoseChange"></div>
+          </div>
+          <div class="col-3 input-group">
+            <div class="output" id="revision-pkTestTrough"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <table class="table table-sm table-bordered" id="revision-pkTable"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

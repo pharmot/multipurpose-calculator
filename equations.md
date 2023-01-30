@@ -28,17 +28,18 @@
 
 ## Body Mass Index
 
-![\mathrm{BMI}=\frac{\mathrm{wt}}{\left(\frac{\mathrm{ht}}{100} \right )^2}](images/eq_bmi.svg)
+$$\mathrm{BMI}=\frac{\mathrm{wt}}{\left(\frac{\mathrm{ht}}{100}\right)^2}$$
+
+
 
 > **wt** : weight in kg
 >
 > **ht** : height in cm
 
 ## Ideal Body Weight
+$$\mathrm{IBW_{male}}=50+\left[ 2.3\times\left(\mathrm{ht}-60 \right )\right]$$
 
-![\mathrm{IBW_{male}}=50+\left[ 2.3\times\left(\mathrm{ht}-60 \right )\right ]](images/eq_ibw_male.svg)
-
-![\mathrm{IBW_{female}}=45.5+\left[ 2.3\times\left(\mathrm{ht}-60 \right )\right ]](images/eq_ibw_female.svg)
+$$\mathrm{IBW_{female}}=45.5+\left[ 2.3\times\left(\mathrm{ht}-60 \right )\right]$$
 
 > **ht** : height in inches
 
@@ -46,29 +47,38 @@
 
 Use ABW if ABW ≤ IBW, otherwise...
 
-![\mathrm{AdjBW}=\left[ 0.4\times \left(\mathrm{ABW}-\mathrm{IBW} \right ) \right ]+\mathrm{IBW}](images/eq_adjbw.svg)
+$$\mathrm{AdjBW}=\left[ 0.4\times \left(\mathrm{ABW}-\mathrm{IBW} \right ) \right ]+\mathrm{IBW}$$
 
 ## Percent Over or Under IBW
 
-![\mathrm{OverUnder}=\left(\frac{\mathrm{ABW}}{\mathrm{IBW}}-1 \right )\times 100%](images/eq_overunder.svg)
+$$\mathrm{OverUnder}=\left(\frac{\mathrm{ABW}}{\mathrm{IBW}}-1 \right )\times 100%$$
 
 ## Lean Body Weight
 
-![\mathrm{LBW_{male}}=9270\times \left(\frac{\mathrm{ABW}}{6680+\left(216\times \mathrm{BMI} \right )} \right )](images/eq_lbw_male.svg)
+$$\mathrm{LBW_{male}}=9270\times \left(\frac{\mathrm{ABW}}{6680+\left(216\times \mathrm{BMI} \right )} \right )$$
 
-![\mathrm{LBW_{female}}=9270\times \left(\frac{\mathrm{ABW}}{8780+\left(244\times \mathrm{BMI} \right )} \right )](images/eq_lbw_female.svg)
+$$\mathrm{LBW_{female}}=9270\times \left(\frac{\mathrm{ABW}}{8780+\left(244\times \mathrm{BMI} \right )} \right )$$
+
+## Body Surface Area
+
+$$\mathrm{BSA}=\sqrt{\frac{\mathrm{ht}\times\mathrm{wt}}{3600}}$$
+
+> **wt** : weight in kg
+>
+> **ht** : height in cm
+
 
 ## CrCl
 
 ### Cockroft-Gault
 
-![\mathrm{CrCl}=\frac{\left(140-\mathrm{age} \right )\times\mathrm{wt}}{\mathrm{SCr}\times 72}](images/eq_crcl_cg.svg) &nbsp;&nbsp;&nbsp;multiply by 0.85 if female
+$$\mathrm{CrCl}=\frac{\left(140-\mathrm{age} \right )\times\mathrm{wt}}{\mathrm{SCr}\times 72}\ \ \ \mathrm{\ }\times0.85\mathrm{\ if\ female\ }$$
 
 > **wt** : weight in kg
 
 ### Schwartz
 
-![\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{SCr}}](images/eq_crcl_schwartz.svg)
+$$\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{SCr}}$$
 
 > **ht** : height in cm
 
@@ -87,6 +97,39 @@ Use ABW if ABW ≤ IBW, otherwise...
 | Else if actual weight < IBW | use C-G(actual) |
 | Else if overUnder > 30 | use C-G(adjusted) |
 | Else | use C-G(ideal) |
+
+# TPN Calculations
+
+## Daily fluid requirements
+
+| Age | Daily fluid requirement |
+| --- | --- |
+| Adult < 56 yrs | 35 mL/kg |
+| Adult 56-75 yrs | 30 mL/kg |
+| Elderly > 75 yrs | 25 mL/kg |
+
+# Aminoglycoside Protocol Dosing
+
+Adjusted weight is the standard AdjBW, using factor of 0.4)
+
+## Aminoglycoside Dosing Weight
+
+| Condition                    | Weight to Use                  |
+| ---------------------------- | ------------------------------ |
+| if age < 15                  | n/a - guideline does not apply |
+| else if overUnder > 20       | use adjusted wt                |
+| else if actual wt < ideal wt | use actual wt                  |
+| else                         | use ideal weight               |
+
+## Alternate Aminoglycoside Dosing Weight
+
+Used for patients with cystic fibrosis or who are pre- or postpartum.
+
+| Condition              | Weight to Use                  |
+| ---------------------- | ------------------------------ |
+| if age < 15            | n/a - guideline does not apply |
+| else if overUnder > 20 | use adjusted wt                |
+| else                   | use actual wt                  |
 
 # Vancomycin Protocol Dosing
 
@@ -138,7 +181,7 @@ Use ABW if ABW ≤ IBW, otherwise...
 
 ## Infusion Time
 
-| Dose | Infusion Time (T) |
+| Dose | Infusion Time ($\mathrm{T}$) |
 | --- | --- |
 | if dose > 2500 | 3 hours |
 | else if dose > 2000 | 2.5 hours |
@@ -151,30 +194,7 @@ Use ABW if ABW ≤ IBW, otherwise...
 | Dialysis | CrCl | Age | Recommendation |
 | --- | --- | --- | --- |
 | non-HD | (any) | age < 12 | `60-80 mg/kg/day divided q6h` |
-| non-HD | (any) | age < 18 | `60-70 mg/kg/day divided q6h` or `60-70 mg/kg/day divided q8h` |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| non-HD | (any) | age < 18 | `60-70 mg/kg/day divided q6h` or<br> `60-70 mg/kg/day divided q8h` |
 
 
 :pushpin: To Do
@@ -193,16 +213,16 @@ Use ABW if ABW ≤ IBW, otherwise...
 
 *using protocol CrCl*
 
-![\mathrm{CL}=\left [ \left (0.695 \times \mathrm{CrCl} \right ) + 0.05\right ]\times 0.06](images/eq_vcl.svg)
+$$\mathrm{CL}=\left [ \left (0.695 \times \mathrm{CrCl} \right ) + 0.05\right ]\times 0.06$$
 
-### Elimination Rate Constant (ke)
-![ke=\frac{\mathrm{CL}}{\mathrm{V_{d}}}](images/eq_ke.svg)
+### Elimination Rate Constant ($ke$)
+$$ke=\frac{\mathrm{CL}}{\mathrm{V_{d}}}$$
 
-### Halflife (t½)
+### Halflife ($t_\frac{1}{2}$)
 
-![\mathrm{t}_{\frac{1}{2}}=\frac{\ln(2)}{ke}](images/eq_halflife.svg)
+$$\mathrm{t}_{\frac{1}{2}}=\frac{\ln(2)}{ke}$$
 
-### Suggested Interval (τ)
+### Suggested Interval ($τ$)
 
 | Condition | Value |
 | --- | --- |
@@ -217,9 +237,9 @@ Use ABW if ABW ≤ IBW, otherwise...
 
 Calculate for each possible dose (500-2000 mg):
 
-![\mathrm{C_{max}}=\frac{\mathrm{D}}{\mathrm{T}}\times\frac{1-e^{-ke\times \mathrm{T}}}{\mathrm{V_{d}}\times ke \times \left ( 1-e^{-ke\times \tau } \right )}](images/eq_cmax.svg)
+$$\mathrm{C_{max}}=\frac{\mathrm{D}}{\mathrm{T}}\times\frac{1-e^{-ke\times \mathrm{T}}}{\mathrm{V_{d}}\times ke \times \left ( 1-e^{-ke\times \tau } \right )}$$
 
-![\mathrm{C_{min}}=\mathrm{C_{max}}\times e^{-ke\: \times\, (\tau - T)}](images/eq_cmin.svg)
+$$\mathrm{C_{min}}=\mathrm{C_{max}}\times e^{-ke\: \times\, (\tau - T)}$$
 
 Suggested dose is the lowest dose where the predicted trough is greater than or
 equal to the low end of goal range and less than or equal to the high end of the
@@ -230,37 +250,37 @@ an AUC range, uses trough 10-20 for this determination (10-15 for peds).
 
 ### Elimination Rate Constant - Matzke Method (ke)
 
-![ke=(0.00083\times \mathrm{CrCl})+0.0044](images/eq_aucinitial_ke.svg)
+$$ke=(0.00083\times \mathrm{CrCl})+0.0044$$
 
-### Halflife (t½)
+### Halflife ($t_\frac{1}{2}$)
 
-![\mathrm{t}_{\frac{1}{2}}=\frac{\ln(2)}{ke}](images/eq_halflife.svg)
+$$\mathrm{t}_{\frac{1}{2}}=\frac{\ln(2)}{ke}$$
 
 ### Vancomycin Clearance (CL)
 
 **Use Matzke method if BMI > 30**
 
-![\mathrm{CL}=\mathrm{V_d}\times\mathrm{ke}](images/eq_aucinitial_vcl_matzke.svg)
+$$\mathrm{CL}=\mathrm{V_d}\times\mathrm{ke}$$
 
 **Use Crass method if BMI ≤ 30**
 
-![\mathrm{CL}=\left (9.656-0.078\times \mathrm{age} \right ) - \left(2.009 \times \mathrm{SCr} \right ) + \left ( 1.09 \times \mathrm{sex} \right ) + \left ( 0.04 \times \mathrm{wt}^{0.75} \right )](images/eq_aucinitial_vcl_crass.svg)
+$$\mathrm{CL}=\left (9.656-0.078\times \mathrm{age} \right ) - \left(2.009 \times \mathrm{SCr} \right ) + \left ( 1.09 \times \mathrm{sex} \right ) + \left ( 0.04 \times \mathrm{wt}^{0.75} \right )$$
 
-*sex = 1 for male, sex = 0 for female*
+> **sex** : 1 for male, 0 for female
 
-### Recommended Interval (τ)
+### Recommended Interval ($\tau$)
 
-![\tau = \mathrm{t}_{\frac{1}{2}}+\mathrm{T}](images/eq_aucinitial_tau.svg)
+$$\tau = \mathrm{t}_{\frac{1}{2}}+\mathrm{T}$$
 
 > **T** : *infusion time*
 
 ### Recommended Total Daily Dose (TDD)
 
-![\mathrm{TDD}=\mathrm{CL}\times \mathrm{AUC_{goal}}](images/eq_aucinitial_tdd.svg)
+$$\mathrm{TDD}=\mathrm{CL}\times \mathrm{AUC_{goal}}$$
 
 ### Recommended Dose (D)
 
-![\mathrm{D}=\mathrm{TDD}\times\frac{\tau}{24}](images/eq_aucinitial_d.svg)
+$$\mathrm{D}=\mathrm{TDD}\times\frac{\tau}{24}$$
 
 ## Dose Revision
 
@@ -268,40 +288,40 @@ an AUC range, uses trough 10-20 for this determination (10-15 for peds).
 
 #### New Dose
 
-![\mathrm{D}_{2}=\left ( \frac{\mathrm{D}_{1}}{\mathrm{C}_{1}}\times\mathrm{C}_{2} \right )+125](images/eq_linear_d2.svg)
+$$\mathrm{D}_{2}=\left ( \frac{\mathrm{D}_{1}}{\mathrm{C}_{1}}\times\mathrm{C}_{2} \right )+125$$
 
-> ![\mathrm{C_2}](images/var_c2.svg) : Desired trough = middle of selection range
+> $C_2$ : Desired trough = middle of selection range
 
 #### Expected Trough
 
-![\mathrm{C}_{2}=\frac{\mathrm{D}_{2}}{\mathrm{D}_{1}}\times\mathrm{C}_{1}](images/eq_linear_c2.svg)
+$$\mathrm{C}_{2}=\frac{\mathrm{D}_{2}}{\mathrm{D}_{1}}\times\mathrm{C}_{1}$$
 
 ### Single Level (Trough) Revision
 
 #### Calculated Elimination Rate Constant (ke)
-![ke=\frac{\ln\left(\frac{\left[\left(\frac{\mathrm{dose}}{\mathrm{V_{d}}} \right ) + \mathrm{C}_{\mathrm{result}}\right ]}{\mathrm{C_{result}}} \right )}{\left(\tau -\mathrm{T_{trough}} \right )}](images/eq_single_ke.svg)
+$$ke=\frac{\ln\left(\frac{\left[\left(\frac{\mathrm{dose}}{\mathrm{V_{d}}} \right ) + \mathrm{C}_{\mathrm{result}}\right ]}{\mathrm{C_{result}}} \right )}{\left(\tau -\mathrm{T_{trough}} \right )}$$
 
-> ![\mathrm{T_{trough}}](images/var_ttrough.svg) : hours drawn before next infusion
+> $\mathrm{T}_\mathrm{trough}$ : hours drawn before next infusion
 
 #### Estimated Trough
 
-![\mathrm{C_{est.trough}}=\mathrm{C_{result}}\times e^{-ke\;\times\,\mathrm{T_{trough}}}](images/eq_single_cminest.svg)
+$$\mathrm{C_{est.trough}}=\mathrm{C_{result}}\times e^{-ke\;\times\,\mathrm{T_{trough}}}$$
 
 #### Estimated Peak
 
-![\mathrm{C_{est.peak}}=\frac{\mathrm{C_{est.trough}}}{e^{-ke\;\times\,\left(\tau -\mathrm{T_{inf}}-\mathrm{T_{trough}} \right )}}](images/eq_single_cmaxest.svg)
+$$\mathrm{C_{est.peak}}=\frac{\mathrm{C_{est.trough}}}{e^{-ke\;\times\,\left(\tau -\mathrm{T_{inf}}-\mathrm{T_{trough}} \right )}}$$
 
-#### Halflife (t½)
+#### Halflife ($t_\frac{1}{2}$)
 
-![\mathrm{t}_{\frac{1}{2}}=\frac{\ln(2)}{ke}](images/eq_halflife.svg)
+$$\mathrm{t}_{\frac{1}{2}}=\frac{\ln(2)}{ke}$$
 
 #### Recommended New Frequency
 
-![\tau_{\mathrm{new}}=\mathrm{T_{inf}}+ \left ( \frac{\ln\frac{\mathrm{C_{trough.goal}}}{\mathrm{C_{peak.goal}}}}{-ke} \right )](images/eq_single_taunew.svg)
+$$\tau_{\mathrm{new}}=\mathrm{T_{inf}}+ \left ( \frac{\ln\frac{\mathrm{C_{trough.goal}}}{\mathrm{C_{peak.goal}}}}{-ke} \right )$$
 
 *Uses fixed goal peak of 35 mcg/mL*
 
-| ![\tau_{\mathrm{new}}](images/var_taunew.svg) | Round to |
+| $\tau_\mathrm{new}$ | Round to |
 | ------------- | ----------------- |
 | < 7 | q6h |
 | < 10 | q8h |
@@ -318,7 +338,7 @@ Use calculated ke in same equations/process as [initial PK dosing](#peak-and-tro
 
 #### Elimination Rate Constant (ke)
 
-![ke=\frac{e^{\frac{\mathrm{C}_1}{\mathrm{C}_2}}}{\mathrm{T}_1-\mathrm{T_2}}](images/eq_twolevel_ke.svg)
+$$ke=\frac{e^{\frac{\mathrm{C}_1}{\mathrm{C}_2}}}{\mathrm{T}_1-\mathrm{T_2}}$$
 
 #### Remainder of calculations
 
@@ -326,30 +346,27 @@ Use calculated ke in same equations/process as [initial PK dosing](#peak-and-tro
 
 ### AUC Calculation - Current Dose
 
-![ke=\frac{-e^{\frac{\mathrm{C_{max}}}{\mathrm{C_{min}}}}}{\mathrm{T_{min}}-\mathrm{T_{max}}}](images/eq_auc_ke.svg)
+$$ke=\frac{-e^{\frac{\mathrm{C_{max}}}{\mathrm{C_{min}}}}}{\mathrm{T_{min}}-\mathrm{T_{max}}}$$
 
-![\mathrm{C_{true\,max}}=\frac{\mathrm{C_{max}}}{e^{-ke\;\times\,\left(\mathrm{T_{max}}-\tau \right )}}](images/eq_auc_truemax.svg)
+$$\mathrm{C_{true\,max}}=\frac{\mathrm{C_{max}}}{e^{-ke\;\times\,\left(\mathrm{T_{max}}-\tau \right )}}$$
 
-![\mathrm{C_{true\,min}}=\mathrm{C_{min}\times e^{-ke\;\times\,\left(\tau -\mathrm{T_{min}} \right )}}](images/eq_auc_truemin.svg)
+$$\mathrm{C_{true\,min}}=\mathrm{C_{min}\times e^{-ke\;\times\,\left(\tau -\mathrm{T_{min}} \right )}}$$
 
-![\mathrm{AUC_{inf}}=\left(\mathrm{C_{true\,max}+\mathrm{C_{true\,min}}} \right )\times\frac{\mathrm{T}}{2}](images/eq_auc_aucinf.svg)
+$$\mathrm{AUC_{inf}}=\left(\mathrm{C_{true\,max}+\mathrm{C_{true\,min}}} \right )\times\frac{\mathrm{T}}{2}$$
 
-![\mathrm{AUC_{elim}}=\frac{\mathrm{C_{true\,max}-\mathrm{C_{true\,min}}}}{ke}](images/eq_auc_aucelim.svg)
+$$\mathrm{AUC_{elim}}=\frac{\mathrm{C_{true\,max}-\mathrm{C_{true\,min}}}}{ke}$$
 
-![\mathrm{AUC}_{24}=\left(\mathrm{AUC_{inf}} + \mathrm{AUC_{elim}} \right )\times \frac{24}{\tau}](images/eq_auc_auc24.svg)
+$$\mathrm{AUC}_{24}=\left(\mathrm{AUC_{inf}} + \mathrm{AUC_{elim}} \right )\times \frac{24}{\tau}$$
 
-![\mathrm{V_d}=\frac{\mathrm{dose}}{\mathrm{T}}\times\frac{1-e^{-ke\;\times\,\tau}}{ke\times \left[\mathrm{C_{true\,max}} -\left(\mathrm{C_{true\,min}\times e^{-ke\;\times\,\tau}} \right )\right ]}](images/eq_auc_vd.svg)
+$$\mathrm{V_d}=\frac{\mathrm{dose}}{\mathrm{T}}\times\frac{1-e^{-ke\;\times\,\tau}}{ke\times \left[\mathrm{C_{true\,max}} -\left(\mathrm{C_{true\,min}\times e^{-ke\;\times\,\tau}} \right )\right ]}$$
+
 
 ### AUC Calculation - New Dose
 
-![\mathrm{AUC}=\mathrm{AUC_{24}}\times\frac{\mathrm{TDD_{new}}}{\mathrm{TDD_{old}}}](images/eq_auc_aucnew.svg)
+$$\mathrm{AUC}=\mathrm{AUC_{24}}\times\frac{\mathrm{TDD_{new}}}{\mathrm{TDD_{old}}}$$
 
-![\mathrm{C_{max}}=\frac{\mathrm{D}}{\mathrm{T}}\times \frac{1-e^{-ke\times\,\mathrm{T}}}{\mathrm{V_d}\times ke\times\left(1-e^{-ke\;\times\,\tau} \right )}](images/eq_auc_cmax.svg)
+$$\mathrm{C_{max}}=\frac{\mathrm{D}}{\mathrm{T}}\times \frac{1-e^{-ke\times\,\mathrm{T}}}{\mathrm{V_d}\times ke\times\left(1-e^{-ke\;\times\,\tau} \right )}$$
 
 > D : new dose
 
-![\mathrm{C_{min}}=\mathrm{C_{max}}\times e^{-ke\;\times\,\left(\tau -\mathrm{T} \right )}](images/eq_auc_cmin.svg)
-
----
-
-Equation images were created using the [Online LaTeX Equation Editor](https://www.codecogs.com/latex/eqneditor.php)  [![powered by CodeCogs - An Open Source Scientific Library](http://www.codecogs.com/images/poweredbycc.gif)](http://www.codecogs.com)
+$$\mathrm{C_{min}}=\mathrm{C_{max}}\times e^{-ke\;\times\,\left(\tau -\mathrm{T} \right )}$$

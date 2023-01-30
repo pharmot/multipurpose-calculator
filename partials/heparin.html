@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="alert alert-secondary ml-3 mt-2 mb-0" id="alert--heparin">Use this to determine the "starting dose" when continuing a heparin drip for a Discharge-Readmit patient.</div>
+</div>
+<div class="card" id="card--heparin">
+  <div class="card-header h5">Reverse Heparin Calculator</div>
+  <div class="card-body">
+    <div class="form-row mb-0">
+      <label for="heparin-wt" class="col-3">Dosing Weight</label>
+      <div class="input-group col-3">
+        <input type="number" class="form-control input-heparin" area-describedby="heparin-wt--helptext" id="heparin-wt" step="any">
+        <div class="input-group-append">
+          <div class="input-group-text">kg</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-help-text col-10" id="heparin-wt--helptext">
+        Open the heparin order set and select the drip only.  Enter the patient's current dosing weight from the admin instructions of that order (not the original dosing weight).
+      </div>
+    </div>
+    <div class="form-row mt-4 mb-0">
+      <label for="heparin-startingRate" class="col-3">Starting Rate</label>
+      <div class="input-group col-3">
+        <input type="number" class="form-control input-heparin" area-describedby="heparin-startingRate--helptext" id="heparin-startingRate" step="any">
+        <div class="input-group-append">
+          <div class="input-group-text">units/hr</div>
+        </div>
+      </div>
+      <label for="heparin-startingWtRate">=</label>
+      <div class="input-group col-3">
+        <div class="output" id="heparin-startingWtRate"></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-help-text col-10" id="heparin-startingRate--helptext">
+        Enter the rate that it's currently running at (the final rate before transfer from the previous location).
+      </div>
+    </div>
+    
+    <div class="form-row mt-4 mb-0">
+      <label for="heparin-roundedRate" class="col-3">Test Rate</label>
+      <div class="input-group col-3">
+        <input type="number" class="form-control input-heparin" area-describedby="heparin-roundedRate--helptext" id="heparin-roundedRate" step="any">
+        <div class="input-group-append">
+          <div class="input-group-text">units/kg/hr</div>
+        </div>
+      </div>
+      <label for="heparin-finalRate">=</label>
+      <div class="input-group col-3">
+        <div class="output" id="heparin-finalRate"></div>
+      </div>
+      <div class="input-group col-1 hidden" id="heparin-icon-yes">
+        <div class="icon-container text-success pl-3">
+          <i class="fa fa-check text-green"></i>
+        </div>
+      </div>
+      <div class="input-group col-1 hidden" id="heparin-icon-no">
+        <div class="icon-container text-danger pl-3">
+          <i class="fa fa-not-equal"></i>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-help-text col-10" id="heparin-roundedRate--helptext">
+        Round the above rate to confirm calculation/rounding.
+        Enter this as the initial rate in the drip you got from the order set and discontinue the Discharge-Readmit order.<br>
+        When documenting on the MAR, the nurse should answer "Yes" they are initiating the protocol.
+      </div>
+      <div class="input-group col ml-4">
+        <div class="form-text hidden" id="heparin-resultText"></div>
+      </div>
+    </div>
+  </div>
+</div>

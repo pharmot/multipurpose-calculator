@@ -73,7 +73,7 @@ export function roundTo(x, n = 0) {
  * If number is zero, clears input element instead.
  *
  * @param   {String|HTMLElement} el                        Valid jQuery selector for target element
- * @param   {Number}            [num = 0]                  The number to go in the input field
+ * @param   {Number|Number[]}   [num = 0]                  The number or range to go in the input field. Range must be array with length of 2.
  * @param   {Number}            [round = -1]               The desired rounding factor
  * @param   {String}            [unit = ""]                Units to append to rounded value
  * @param   {String}            [pre = ""]                 Text to prepend to rounded value
@@ -83,18 +83,55 @@ export function roundTo(x, n = 0) {
 export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false){
   let txt = '';
   let wasNeg = false;
-  if ( num < 0 && allowNegative ) {
-    num = 0 - num;
-    wasNeg = true;
-  }
-  if( num > 0 ) {
-    txt = roundTo(num, round);
-  }
+  let wasNeg2 = false;
 
-  if ( wasNeg ) {
-    txt = 0 - txt;
-  }
+  if ( Array.isArray(num) ) {
 
+    if ( num.length === 2 ) {
+
+      let num1 = num[0];
+      let num2 = num[1];
+      let num1Rounded;
+      let num2Rounded;
+
+      if ( num1 < 0 && allowNegative ) {
+        num1 = 0-num1;
+        wasNeg = true;
+      }
+
+      if ( num2 < 0 && allowNegative ) {
+        num2 = 0-num2;
+        wasNeg2 = true;
+      }
+
+      if ( num1 > 0 ) num1Rounded = roundTo(num1, round);
+
+      if ( num2 > 0 ) num2Rounded = roundTo(num2, round);
+
+      if ( wasNeg ) num1Rounded = 0 - num1Rounded;
+
+      if ( wasNeg2 ) num2Rounded = 0 - num2Rounded;
+
+      if ( num1 == num2 ) {
+        txt = num1;
+      } else {
+        txt = `${num1Rounded} - ${num2Rounded}`;
+      }
+    }
+  } else {
+    if ( num !== Infinity && num !== -Infinity ) {
+
+      if ( num < 0 && allowNegative ) {
+        num = 0 - num;
+        wasNeg = true;
+      }
+
+      if( num > 0 ) txt = roundTo(num, round);
+
+      if ( wasNeg ) txt = 0 - txt;
+
+    }
+  }
   if ( txt !== '' ) {
     txt = pre + txt + unit;
   }

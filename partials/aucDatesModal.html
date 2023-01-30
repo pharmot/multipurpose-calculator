@@ -1,0 +1,96 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="aucDates-modalTitle">Time Between Doses and Levels</h5>
+    </div>
+    <div class="modal-body" id="aucDates-modalBody">
+      <div class="form-row" id="aucDates-row--first">
+        <div class="input-group col-8 offset-1 mb-3">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="aucDates-sameInterval">
+            <label class="form-check-label" for="aucDates-sameInterval">
+              Levels drawn within same interval
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-row" id="aucDates-row--dose1">
+        <label for="aucDates-doseDate-1" class="col-3" id="aucDates-label--dose1">Dose before trough</label>
+        <div class="col-4 input-group">
+          <input type="date" class="form-control dt-date input-aucDates" data-form-type="other" id="aucDates-doseDate-1">
+          <div class="input-group-prepend">
+            <div class="input-group-text border-left-0">@</div>
+          </div>
+          <input type="text" class="form-control dt-time validate-time input-aucDates" data-form-type="other" id="aucDates-doseTime-1" placeholder="0000">
+        </div>
+        <div class="col-3 input-group">
+          <div class="input-group-text small bg-white border-0">
+            (time the dose was started)
+          </div>
+        </div>
+      </div>
+      <div class="form-row" id="aucDates-row--trough">
+        <label for="aucDates-troughDate" class="col-3">Trough drawn</label>
+        <div class="col-4 input-group">
+          <input type="date" class="form-control dt-date input-aucDates" data-form-type="other" id="aucDates-troughDate">
+          <div class="input-group-prepend">
+            <div class="input-group-text border-left-0">@</div>
+          </div>
+          <input type="text" class="form-control dt-time validate-time input-aucDates" data-form-type="other" id="aucDates-troughTime" placeholder="0000">
+        </div>
+      </div>
+      <div class="form-row" id="aucDates-row--dose2">
+        <label for="aucDates-doseDate-2" class="col-3">Dose before peak</label>
+        <div class="col-4 input-group">
+          <input type="date" class="form-control dt-date input-aucDates" data-form-type="other" id="aucDates-doseDate-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text border-left-0">@</div>
+          </div>
+          <input type="text" class="form-control dt-time validate-time input-aucDates" data-form-type="other" id="aucDates-doseTime-2" placeholder="0000">
+        </div>
+        <div class="col-3 input-group">
+          <div class="input-group-text small bg-white border-0">
+            (time the dose was started)
+          </div>
+        </div>
+      </div>
+      <div class="form-row" id="aucDates-row--peak">
+        <label for="aucDates-peakDate" class="col-3">Peak drawn</label>
+        <div class="col-4 input-group">
+          <input type="date" class="form-control dt-date input-aucDates" data-form-type="other" id="aucDates-peakDate">
+          <div class="input-group-prepend">
+            <div class="input-group-text border-left-0">@</div>
+            
+          </div>
+          <input type="text" class="form-control dt-time validate-time input-aucDates" data-form-type="other" id="aucDates-peakTime" placeholder="0000">
+        </div>
+      </div>
+      
+      <div class="form-row" id="aucDates-row--spacer">
+        <div class="col-1">&nbsp;</div>
+      </div>
+      <div class="form-row" id="aucDates-row--peakResult">
+        <label for="aucDates-peakResult" class="col-3">Time to Peak</label>
+        <div class="col-5 input-group">
+          <div class="output" id="aucDates-peakResult"></div>
+          <div class="input-group-append">
+            <div class="input-group-text">hours after dose started</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row aucDates-row--troughResult">
+        <label for="aucDates-troughResult" class="col-3">Time to Trough</label>
+        <div class="col-5 input-group">
+          <div class="output" id="aucDates-troughResult"></div>
+          <div class="input-group-append">
+            <div class="input-group-text">hours after dose started</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" id="aucDates-apply">Copy Values to AUC Calculator and Close</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+</div>
