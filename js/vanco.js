@@ -90,7 +90,7 @@ function roundDose(dose, age = 18){
  * @param   {Number} dose   Dose in mg
  * @returns {Number}        Infusion time in hours
  */
-function getInfusionTime(dose) {
+export function getInfusionTime(dose) {
   if ( dose > 2500 ) return 3;
   if ( dose > 2000 ) return 2.5;
   if ( dose > 1500 ) return 2;
