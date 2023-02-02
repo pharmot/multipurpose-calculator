@@ -104,6 +104,10 @@ const fHigh = new Pca('fentanyl', 'high', 'mcg', 50, [50, 100, 50, 400, 300, 750
 let pca = mStd;
 let ci = 'none'
 
+/**
+ * Called when drug selection is changed. Changes units, hour max interval, and pump limits displayed on form.
+ * @returns {Null}
+ */
 function changedDrug(){
   const drug = $('#pca-drug')[0].value;
   const range = $('#pca-orderset')[0].value;
@@ -137,7 +141,10 @@ function changedDrug(){
   $('.pca-unitsPerHours').html(pca.unitMax);
   calcDose();
 }
-
+/**
+ * Called when continuous infusion selection is changed. Shows or hides relevant inputs and rows on form.
+ * @returns {Null}
+ */
 function changedCi(){
   ci = $('#pca-continuous')[0].value;
   if ( ci !== 'overnight') {
@@ -150,11 +157,13 @@ function changedCi(){
   } else {
     $('.pca-ci-only').show();
   }
-// TODO: reset all - change dropdowns to default
 calcDose();
 
 }
-
+/**
+ * Calculates all outputs based on inputs and adds/removes shading in output/limit fields.
+ * @returns {Null}
+ */
 function calcDose(){
 
   $('.pca-bg-warning').removeClass('pca-bg-warning');
@@ -258,7 +267,7 @@ function calcDose(){
   );
 }
 /**
- * Check settings against pump limits and adds classes (background colors)
+ * Checks settings against pump limits and adds classes (background colors)
  * to limit table if settings exceed parameters.
  *
  * @param   {number[]} settings - Current pump settings [bolus, rate, max]

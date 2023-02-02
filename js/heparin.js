@@ -23,6 +23,7 @@ $('.input-heparin').on('keyup', () => {
    finalRate: 0,
    /**
     * Calculates rates and displays calculated values
+    * @returns {Null}
     */
    calc() {
      $('#heparin-icon-yes, #heparin-icon-no, #heparin-resultText').hide();
@@ -43,6 +44,7 @@ $('.input-heparin').on('keyup', () => {
    },
    /**
     * Checks final rate against desired rate and displays whether they match
+    * @returns {Null}
     */
    check(){
      if ( this.finalRate > 0 && this.startingRate > 0 ) {

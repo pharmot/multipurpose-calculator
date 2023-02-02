@@ -14,9 +14,9 @@
 
  /**
   * BMI for Age Data from
-  * {@link https://www.cdc.gov/growthcharts/percentile_data_files.htm}
-  * age is in months, starting at that and up to but not including
-  * the next age.
+  * {@link https://www.cdc.gov/growthcharts/percentile_data_files.htm}.
+  * Age is in months, starting at that and up to but not including
+  * the next age ({@link https://github.com/pharmot/multipurpose-calculator/blob/main/lib/bmiagerev.json|Raw Data})
   * @constant
   * @type {BmiForAgeDataItem[]}
   */
