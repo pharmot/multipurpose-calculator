@@ -23,6 +23,22 @@ export function displayDate(d) {
     return '';
   }  
 }
+/**
+ * Convert a date object to string formatted as 'HH:mm'
+ * Returns empty string if input is not a valid date
+ * @since v1.1.1
+ * @param {Date} d   date object to convert
+ * @returns {String}
+ */
+export function displayTime(d){
+  try {
+    const mm = ("0" + d.getMinutes()).slice(-2);
+    const hh = ("0" + d.getHours()).slice(-2);
+    return `${hh}:${mm}`;
+  } catch {
+    return '';
+  }
+}
 
 /**
  * Convert date and time raw input to a date object.
