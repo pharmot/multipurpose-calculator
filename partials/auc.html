@@ -97,3 +97,41 @@
     </div>
   </div>
 </div>
+<div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--peakTiming">
+  <div class="card-header h5">Peak Level Timing</div>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="col-12">Calculate 1-2 hours after infusion is completed, based on start time and duration.</div>
+    </div>
+    <div class="form-help-text text-center mb-2">Dose not required - if entered, will be used to calculate infusion time</div>
+    <div class="form-row">
+      <label for="peakTiming-dose" class="col-2 col-form-label">Current Dose</label>
+      <div class="input-group col-2">
+        <input type="number" id="peakTiming-dose" class="form-control current-dose validate-dose" step="250" min="500" max="3000">
+        <div class="input-group-append">
+          <div class="input-group-text">mg</div>
+        </div>
+      </div>
+      <div class="input-group col-4">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Infused over</div>
+        </div>
+        <input type="number" id="peakTiming-infTime" class="form-control input-peakTiming" step="30" min="30" max="480">
+        <div class="input-group-append">
+          <div class="input-group-text">minutes</div>
+        </div>
+      </div>
+      <div class="input-group col-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Starting at</div>
+        </div>
+        <input type="text" class="form-control dt-time validate-time input-peakTiming" data-form-type="other" id="peakTiming-startTime" placeholder="0000">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group col-9 offset-2">
+        <div class="output" id="peakTiming-peak"></div>
+      </div>
+    </div>
+  </div>
+</div>

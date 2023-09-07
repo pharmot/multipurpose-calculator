@@ -43,6 +43,8 @@ import { childIsObese } from './growthCharts.js';
  * @property {Number}     check.levelMax  maximum acceptable level input
  * @property {Number}     check.timeMin   minimum acceptable dose-to-level time input for AUC calculation
  * @property {Number}     check.timeMax   maximum acceptable dose-to-level time input for AUC calculation
+ * @property {Number}     check.infTimeMin   minimum acceptable infusion time
+ * @property {Number}     check.infTimeMax   maximum acceptable infusion time
  */
 export const config = {
   doses: [500, 750, 1000, 1250, 1500, 1750, 2000],
@@ -67,7 +69,9 @@ export const config = {
     levelMin: 3,
     levelMax: 100,
     timeMin: 0,
-    timeMax: 60
+    timeMax: 60,
+    infTimeMin: 30,
+    infTimeMax: 480
   }
 };
 /**

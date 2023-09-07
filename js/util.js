@@ -202,7 +202,7 @@ export function checkValue(x, min = -Infinity, max = Infinity, zeroAllowed = fal
   if ( typeof x === 'string' || isNaN(x) || x < min || x > max ) return 0;
   return x;
 }
-
+//TODO: document checkTimeInput
 export function checkTimeInput(x){
   x += "";
   if (/(^[0-1]{0,1}[0-9]{1}$)|(^2[0-3]{1}$)/.test(x)) {

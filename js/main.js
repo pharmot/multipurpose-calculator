@@ -7,7 +7,7 @@
 $ = require('jquery');
 import 'bootstrap';
 import "../scss/main.scss";
-import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge } from './util.js'
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge, displayTime } from './util.js'
 import { default as ivig } from './ivig.js';
 import { getSecondDose } from './seconddose.js';
 import * as arial from './arial.js';
@@ -119,6 +119,10 @@ $("#hd").on("change", (e) => {
 $(".input-initialPK").on('keyup', () => {
   calculate.vancoInitial();
 });
+
+$('#peakTiming-dose').on('keyup', () => calculate.peakTimingDuration() );
+
+$('.input-peakTiming').on('keyup',() => calculate.peakTiming() );
 
 $(".input-auc").on('keyup', () => {
   calculate.syncCurrentDFT("auc");
@@ -825,6 +829,46 @@ const calculate = {
       $("#steadystate-timeDiff").html("");
     }
   },
+
+
+
+  /**
+   * For peak level timing, calculate and output infusion time for the selected dose
+   * @requires module:vanco
+   * 
+   * @since v1.1.1
+   */
+  peakTimingDuration(){
+    const dose = checkValue(+$('#peakTiming-dose').val(), vanco.config.check.doseMin, vanco.config.check.doseMax);
+    const infTime = dose > 0 ? vanco.getInfusionTime(dose)*60 : '';
+    $('#peakTiming-infTime').val(infTime);
+    this.peakTiming();
+
+  },
+
+  /**
+   * For peak level timing, calculate and output time to draw peak
+   * @requires module:vanco
+   * @requires module:util
+   * 
+   * @since v1.1.1
+   */
+  peakTiming(){
+    const infTime = checkValue(+$('#peakTiming-infTime').val(), vanco.config.check.infTimeMin, vanco.config.check.infTimeMax)
+    let startTime = getDateTime('1900-01-01', $("#peakTiming-startTime").val());
+    if ( startTime instanceof Date ) {
+      startTime.setMinutes(startTime.getMinutes() + 60 + infTime );
+      const time1 = displayTime(startTime);
+      startTime.setMinutes(startTime.getMinutes() + 60 );
+      const time2 = displayTime(startTime);
+      if ( infTime > 0 && startTime instanceof Date) {
+        $("#peakTiming-peak").html(`Draw peak between ${time1} and ${time2}.`)
+      } else {
+        $("#peakTiming-peak").html("")
+      }
+    }
+  },
+
   /**
    * Input and output for AUC date/time calculation modal
    * @requires module:vanco

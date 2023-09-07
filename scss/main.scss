@@ -48,7 +48,8 @@ body {
 // #col--pca-params { @include fixed-width(500px); }
 
 #card--auc,
-#card--aucLinear {
+#card--aucLinear,
+#card--peakTiming {
   @include fixed-width('auc');
 }
 
