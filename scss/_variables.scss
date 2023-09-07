@@ -130,24 +130,31 @@ $clr-csh-purple-compliant: #6f457d;
 
 $clr-vmfh-gray-dark: #565656;
 $clr-vmfh-gray-light: #75777b;
-$clr-vmfh-green-tint4: #dcf0d5;
-$clr-vmfh-green-tint3: #b8e1aa;
-$clr-vmfh-green-tint2: #95d380;
-$clr-vmfh-green-tint1: #71c455;
+$clr-vmfh-green-tint3: #a9e695;
+$clr-vmfh-green-tint2: #8bd173;
+$clr-vmfh-green-tint-1: #70bf56;
 $clr-vmfh-green: #55a63a;
-$clr-vmfh-green-shade1: #44852e;
-$clr-vmfh-green-shade2: #336423;
-$clr-vmfh-green-shade3: #224217;
-$clr-vmfh-green-shade4: #11210c;
-$clr-vmfh-green-light-tint4: #ecf6d6;
-$clr-vmfh-green-light-tint3: #daecae;
-$clr-vmfh-green-light-tint2: #c7e385;
-$clr-vmfh-green-light-tint1: #b5d95d;
+$clr-vmfh-green-shade1: #4a9133;
+$clr-vmfh-green-shade2: #377d1f;
+$clr-vmfh-green-shade3: #2e691a;
+$clr-vmfh-green-light-tint3: #d5f291;
+$clr-vmfh-green-light-tint2: #c3e673;
+$clr-vmfh-green-light-tint1: #b3de4e;
 $clr-vmfh-green-light: #a2d034;
-$clr-vmfh-green-light-shade1: #83a927;
-$clr-vmfh-green-light-shade2: #627f1d;
-$clr-vmfh-green-light-shade3: #415414;
-$clr-vmfh-green-light-shade4: #212a0a;
+$clr-vmfh-green-light-shade1: #8eb82e;
+$clr-vmfh-green-light-shade2: #729c10;
+$clr-vmfh-green-light-shade3: #63870e;
+
+
+$clr-vmfh-blue-tint3: #95dcfa;
+$clr-vmfh-blue-tint2: #78d3fa;
+$clr-vmfh-blue-tint1: #57c7f7;
+$clr-vmfh-blue: #27aae1;
+$clr-vmfh-blue-shade1: #2295c7;
+$clr-vmfh-blue-shade2: #1d80ab;
+$clr-vmfh-blue-shade3: #1d7ea8;
+
+// Unofficial tints and shades for utility color
 $clr-vmfh-green-dark-tint4: #d7ead3;
 $clr-vmfh-green-dark-tint3: #afd6a7;
 $clr-vmfh-green-dark-tint2: #87c17a;
@@ -157,15 +164,8 @@ $clr-vmfh-green-dark-shade1: #39662f;
 $clr-vmfh-green-dark-shade2: #2b4c23;
 $clr-vmfh-green-dark-shade3: #1c3318;
 $clr-vmfh-green-dark-shade4: #0e190c;
-$clr-vmfh-blue-tint4: #d4eef9;
-$clr-vmfh-blue-tint3: #a9ddf3;
-$clr-vmfh-blue-tint2: #7dcced;
-$clr-vmfh-blue-tint1: #52bbe7;
-$clr-vmfh-blue: #27aae1;
-$clr-vmfh-blue-shade1: #1a8ab9;
-$clr-vmfh-blue-shade2: #13688b;
-$clr-vmfh-blue-shade3: #0d455d;
-$clr-vmfh-blue-shade4: #06232e;
+
+// Unofficial tints and shades for utility color
 $clr-vmfh-yellow-tint4: #ffefc9;
 $clr-vmfh-yellow-tint3: #ffdf94;
 $clr-vmfh-yellow-tint2: #ffce5e;
@@ -175,6 +175,8 @@ $clr-vmfh-yellow-shade1: #c28700;
 $clr-vmfh-yellow-shade2: #916500;
 $clr-vmfh-yellow-shade3: #614400;
 $clr-vmfh-yellow-shade4: #302200;
+
+// Unofficial tints and shades for utility color
 $clr-vmfh-red-tint4: #edd3d8;
 $clr-vmfh-red-tint3: #dba7b0;
 $clr-vmfh-red-tint2: #ca7b89;
@@ -197,7 +199,7 @@ $fixedWidths: (
   "twoLevel": 580px,
   "secondDose": 650px,
   "auc": 650px,
-  "amgDW": 400px,
+  "amg": 700px,
   "tpn": 400px,
   "tpnEnergy": 500px,
 );
