@@ -86,7 +86,7 @@ export function roundTo(x, n = 0) {
 
 /**
  * Displays a number, rounded, with units in the specified input element.
- * If number is zero, clears input element instead.
+ * If number is zero, clears input element instead, unless allowZero is true (then undefined will clear input)
  *
  * @param   {String|HTMLElement} el                        Valid jQuery selector for target element
  * @param   {Number|Number[]}   [num = 0]                  The number or range to go in the input field. Range must be array with length of 2.
@@ -94,9 +94,10 @@ export function roundTo(x, n = 0) {
  * @param   {String}            [unit = ""]                Units to append to rounded value
  * @param   {String}            [pre = ""]                 Text to prepend to rounded value
  * @param   {Boolean}           [allowNegative = false]    Accept negative values as valid
- * @returns {HTMLElement}                                  The original DOM element, for chaining
+ * @param   {Boolean}           [allowZero = false]        Accept 0 as valid
+ * @returns {HTMLElement|String}                           The original DOM element, for chaining (or empty string if no HTMLElement specified)
  */
-export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false){
+export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false, allowZero = false){
   let txt = '';
   let wasNeg = false;
   let wasNeg2 = false;
@@ -104,12 +105,10 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
   if ( Array.isArray(num) ) {
 
     if ( num.length === 2 ) {
+      let [num1, num2] = num;
+      let num1Rounded, num2Rounded;
 
-      let num1 = num[0];
-      let num2 = num[1];
-      let num1Rounded;
-      let num2Rounded;
-
+      // Make numbers positive if they're negative and negative is allowed
       if ( num1 < 0 && allowNegative ) {
         num1 = 0-num1;
         wasNeg = true;
@@ -120,14 +119,29 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
         wasNeg2 = true;
       }
 
-      if ( num1 > 0 ) num1Rounded = roundTo(num1, round);
+      // Round numbers if not zero, otherwise set rounded number to zero if zero is allowed
+      if ( num1 > 0 ) {
+        num1Rounded = roundTo(num1, round);
+      } else if ( num1 === 0 && allowZero ) {
+        num1Rounded = 0;
+      } 
 
-      if ( num2 > 0 ) num2Rounded = roundTo(num2, round);
+      if ( num2 > 0 ) {
+        num2Rounded = roundTo(num2, round);
+      } else if ( num2 === 0 && allowZero ) {
+        num2Rounded = 0
+      }
 
-      if ( wasNeg ) num1Rounded = 0 - num1Rounded;
+      // Change back to negative if originally negative
+      if ( wasNeg ) {
+        num1Rounded = 0 - num1Rounded;
+      } 
 
-      if ( wasNeg2 ) num2Rounded = 0 - num2Rounded;
+      if ( wasNeg2 ) {
+        num2Rounded = 0 - num2Rounded
+      };
 
+      // Express rounded numbers as a range, or a single number if they're equal
       if ( num1 == num2 ) {
         txt = num1;
       } else {
@@ -137,22 +151,33 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
   } else {
     if ( num !== Infinity && num !== -Infinity ) {
 
+      // Make number positive if it's negative and negative is allowed
       if ( num < 0 && allowNegative ) {
         num = 0 - num;
         wasNeg = true;
       }
 
-      if( num > 0 ) txt = roundTo(num, round);
-
-      if ( wasNeg ) txt = 0 - txt;
-
+      // Round number if not zero, otherwise set rounded number to zero if zero is allowed
+      if( num > 0 ) {
+        txt = roundTo(num, round);
+      } else if ( num === 0 && allowZero ) {
+        txt = 0;
+      }
+      // Change back to negative if originally negative
+      if ( wasNeg ) {
+        txt = 0 - txt;
+      }
     }
   }
+  // Add pre and unit if input was valid
   if ( txt !== '' ) {
     txt = pre + txt + unit;
   }
 
+  // return text if no target element was specified
   if ( el === '' ) return txt;
+  
+  // Set text of specified element to result
   $(el).html(txt);
   return el;
 };
