@@ -3,12 +3,17 @@
 
 ### Added
 - Extended interval aminoglycoside calculator [#79](https://github.com/pharmot/multipurpose-calculator/issues/79)
-- addHoursToDate function in Utility Module
+- addHoursToDate function in Utility module
+- displayTime function in Utility module
 - Vancomycin peak timing calculator [#66](https://github.com/pharmot/multipurpose-calculator/issues/66)
 
 ### Changed
 - Updated tints and shades of VMFH colors [#77](https://github.com/pharmot/multipurpose-calculator/issues/77)
 - Split left column (patient info) into its own partial html file
+- Updated documentation
+
+### Fixed
+- Added hash to manifest in head of template.html for cache busting [#78](https://github.com/pharmot/multipurpose-calculator/issues/78)
 
 ## [1.1.0] - 2023-01-30
 
