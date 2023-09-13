@@ -19,6 +19,7 @@ require('./heparin.js');
 require('./kcentra.js');
 require('./pca.js');
 require('./nextdose.js');
+require('./qtc.js');
 
 let debug = false;
 // let debugDefaultTab = "more";
@@ -147,12 +148,13 @@ $("#btnReset").on('click', () => {
   $('#amg-Cf').prop( "checked", false );
   $('#amg-PrePostpartum').prop( "checked", false );
   changedAmgMethod();
+  ($("#amg-postAbxEffect")[0]).selectedIndex = 4;
 
   $('.hidden').hide();
   $('.output').html('');
   $('#ptage').get(0).focus();
-  
-  
+
+
   // PCA
   ($("#pca-drug")[0]).selectedIndex = 0;
   ($("#pca-orderset")[0]).selectedIndex = 0;
@@ -741,8 +743,7 @@ const calculate = {
     
     /* Selected post-antibiotic effect time */
     const pae = +($('#amg-postAbxEffect option:selected').text());
-    //TODO: change pae to 4 on resetAll()
-
+    
     /* Get input values */
     const params = {
       cf: cf,

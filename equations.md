@@ -459,3 +459,29 @@ $\mathrm{level_2}\times e^{-ke\times\left(\tau-\mathrm{time_2}\right)}$
 
 **Calculated AUC**:&nbsp;&nbsp;&nbsp;&nbsp;
 $\frac{\mathrm{predicted\ peak}-\mathrm{predicted\ trough}}{ke}$
+
+# Corrected QT Interval
+
+## Atrial Fibrillation
+
+QTc = average of longest and shortest QT intervals from EKG
+
+
+
+## Not Atrial Fibrillation
+
+$RR=\frac{60}{HR}$
+
+If QRS > 120, adjust QT first using the Modified Bogossian formula, then use that value in the Bazett, Fridericia, or Framingham formula.
+
+
+**Modified Bogossian formula**:&nbsp;&nbsp;&nbsp;&nbsp;
+$QT^\prime=QT-0.5(\mathrm{QRS})$
+
+Corrected QT is calculated using:
+
+| Heart Rate | Formula    | Equation                              |
+| ---------- | ---------- | ------------------------------------- |
+| < 50       | Fridericia | $QT_c=\frac{QT^\prime}{\sqrt[3]{RR}}$ |
+| 50-70      | Bazett     | $QT_c=\frac{QT^\prime}{\sqrt{RR}}$    |
+| > 70       | Framingham | $QT_c=QT^\prime+154(1-RR)$            |

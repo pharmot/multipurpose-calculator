@@ -38,6 +38,7 @@
             <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose</a>
             <a class="nav-item nav-link" id="nav-amg-tab" data-toggle="tab" href="#nav-amg" role="tab">AMG</a>
             <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
+            <a class="nav-item nav-link" id="nav-qtc-tab" data-toggle="tab" href="#nav-qtc" role="tab">QTc</a>
             <!-- <a class="nav-item nav-link" id="nav-tpn-tab" data-toggle="tab" href="#nav-tpn" role="tab">TPN</a> -->
             <a class="nav-item nav-link" id="nav-more-tab" data-toggle="tab" href="#nav-more" role="tab">More...</a>
           </div>
@@ -71,6 +72,9 @@
           </div>
           <div class="tab-pane fade" id="nav-ivig">
             <%= require('html-loader!./partials/ivig.html').default %>
+          </div>
+          <div class="tab-pane fade" id="nav-qtc">
+            <%= require('html-loader!./partials/qtc.html').default %>
           </div>
           <div class="tab-pane fade" id="nav-more">
             <div class="col-12">
