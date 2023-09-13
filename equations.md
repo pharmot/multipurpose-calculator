@@ -98,7 +98,7 @@ $$\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{S
 | Else if overUnder > 30 | use C-G(adjusted) |
 | Else | use C-G(ideal) |
 
-# TPN Calculations
+<!-- # TPN Calculations
 
 ## Daily fluid requirements
 
@@ -106,30 +106,7 @@ $$\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{S
 | --- | --- |
 | Adult < 56 yrs | 35 mL/kg |
 | Adult 56-75 yrs | 30 mL/kg |
-| Elderly > 75 yrs | 25 mL/kg |
-
-# Aminoglycoside Protocol Dosing
-
-Adjusted weight is the standard AdjBW, using factor of 0.4)
-
-## Aminoglycoside Dosing Weight
-
-| Condition                    | Weight to Use                  |
-| ---------------------------- | ------------------------------ |
-| if age < 15                  | n/a - guideline does not apply |
-| else if overUnder > 20       | use adjusted wt                |
-| else if actual wt < ideal wt | use actual wt                  |
-| else                         | use ideal weight               |
-
-## Alternate Aminoglycoside Dosing Weight
-
-Used for patients with cystic fibrosis or who are pre- or postpartum.
-
-| Condition              | Weight to Use                  |
-| ---------------------- | ------------------------------ |
-| if age < 15            | n/a - guideline does not apply |
-| else if overUnder > 20 | use adjusted wt                |
-| else                   | use actual wt                  |
+| Elderly > 75 yrs | 25 mL/kg | -->
 
 # Vancomycin Protocol Dosing
 
@@ -370,3 +347,115 @@ $$\mathrm{C_{max}}=\frac{\mathrm{D}}{\mathrm{T}}\times \frac{1-e^{-ke\times\,\ma
 > D : new dose
 
 $$\mathrm{C_{min}}=\mathrm{C_{max}}\times e^{-ke\;\times\,\left(\tau -\mathrm{T} \right )}$$
+
+# Aminoglycoside Dosing
+
+## Dosing Weight
+Adjusted weight is the standard AdjBW, using factor of 0.4)
+
+| Condition                    | Weight to Use                  |
+| ---------------------------- | ------------------------------ |
+| if age < 15                  | n/a - guideline does not apply |
+| else if overUnder > 20       | use adjusted wt                |
+| else if actual wt < ideal wt | use actual wt                  |
+| else                         | use ideal weight               |
+
+### Alternate Aminoglycoside Dosing Weight
+
+Used for patients with cystic fibrosis or who are pre- or postpartum.
+
+| Condition              | Weight to Use                  |
+| ---------------------- | ------------------------------ |
+| if age < 15            | n/a - guideline does not apply |
+| else if overUnder > 20 | use adjusted wt                |
+| else                   | use actual wt                  |
+
+
+## Extended Interval Dosing
+
+
+### Standard (non-Cystic Fibrosis) Calculations
+
+- Infusion time $T$ assumed to be `1 hour`
+- Time to complete distribution assumed to be `1.7 hours`
+- Goal trough is:
+  - **2 mcg/mL** for gentamicin and tobramycin
+  - **4 mcg/mL** for amikacin
+
+```mermaid
+flowchart LR
+  D[[Dose]]:::dose <-->|True peak offset| TP((Peak)):::conc
+  TP <-->|2.7 hours| L1[[Level 1]]:::level
+  D <-.->|Show warning if < 2.7| L1
+  L1 <-->|Calculate ke| L2[[Level 2]]:::level
+  L2 <-->|Time to trough| T((Trough)):::conc
+  L2 <-->|Time to redose| RD 
+  T <-->|Post antibiotic effect| RD[/Redose/]:::dose
+
+  classDef dose fill:#55a63a,stroke:black,color:white
+  classDef conc fill:#27aae1,stroke:black,color:white
+  classDef level fill:#a2d035,stroke:black,color:white
+```
+
+**Calculated ke**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\ln{\left(\frac{\mathrm{level}_1}{\mathrm{level}_2}\right)}}{\mathrm{time\ between\ levels}}$
+
+**Estimated Vd**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\mathrm{dose}}{\mathrm{true\ peak}}$
+
+**Calculated (true) peak**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\mathrm{level}_1}{e^{-(\mathrm{time}_1-2.7)\ \times \ ke}}$
+
+**Time to goal trough (MIC)**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\ln{\left(\frac{\mathrm{level}_1}{\mathrm{level}_2}\right)}}{-ke}$
+
+
+**Level at redose point**:&nbsp;&nbsp;&nbsp;&nbsp;
+$e^{-ke \times \left( \mathrm{Time\ to\ goal\ trough}+\mathrm{Post\ antibiotic\ effect}\right)}\times\mathrm{level}_2$
+
+**Peak to trough time**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\ln{\left(\frac{\mathrm{goal\ trough}}{\mathrm{goal\ peak}}\right)}}{-ke}$
+
+**New dose to redose time**:&nbsp;&nbsp;&nbsp;&nbsp;
+Peak to trough time + Post antibiotic effect + 2.7
+
+**Recommended dose**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\mathrm{goal\ peak}}{\mathrm{true\ peak}}\times\mathrm{dose}$
+
+**Recommended frequency**:&nbsp;&nbsp;&nbsp;&nbsp;
+Round `New dose to redose time` to nearest 12 hours
+
+**Point level estimate**:&nbsp;&nbsp;&nbsp;&nbsp;
+$e^{-ke \times \left( \mathrm{Time\ from\ level_2\ to\ custom\ time}\right)}\times\mathrm{level}_2$
+
+### Cystic Fibrosis Calculations
+
+- Infusion time $T$ assumed to be `1 hour`
+- Goal trough is: **Undetectable**
+- Goal Peak is:
+  - **20-30 mcg/mL** for tobramycin
+  - **35-50 mcg/mL** for amikacin
+- Goal AUC is:
+  - **&lt; 101 mg&middot;hr/L** for q24h tobramycin 
+  - **n/a** for amikacin and other tobramycin frequencies
+
+
+**Calculated ke**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\ln{\left(\frac{\mathrm{level}_1}{\mathrm{level}_2}\right)}}{\mathrm{time\ between\ levels}}$
+
+**Halflife**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{0.693}{ke}$
+
+**Predicted peak**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\mathrm{level_1}\div e^{-ke\times\left(\mathrm{time_1}-T\right)}$
+
+> $\mathrm{time_1}$ : time from dose to first level
+
+**Predicted trough**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\mathrm{level_2}\times e^{-ke\times\left(\tau-\mathrm{time_2}\right)}$
+
+> $\mathrm{time_2}$ : time from dose to second level <br>
+> $\tau$ : frequency
+
+**Calculated AUC**:&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\mathrm{predicted\ peak}-\mathrm{predicted\ trough}}{ke}$

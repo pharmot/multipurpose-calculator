@@ -36,8 +36,8 @@ body {
 #card--vancoHdAdj { @include fixed-width('vancoHdAdj'); }
 #card--twolevel { @include fixed-width('twoLevel'); }
 #card--seconddose { @include fixed-width('secondDose'); }
-#card--ivig { @include fixed-width(600px); }
-#card--amgDW { @include fixed-width('amgDW'); }
+#card--ivig { @include fixed-width("amg"); }
+#card--amg { @include fixed-width("amg"); }
 // #card--tpn-1 { @include fixed-width('tpn'); }
 // #card--tpn-2 { @include fixed-width('tpn'); }
 // #card--tpn-kcal { @include fixed-width('tpnEnergy'); }
@@ -139,6 +139,13 @@ h1 {
 
   &.offset-2 {
     margin-left: 16.66667%;
+  }
+
+  &.small {
+    font-size: $len-275;
+  }
+  &.xsmall {
+    font-size: $len-25;
   }
 }
 
@@ -292,6 +299,26 @@ input {
   border-color: #c00;
 }
 
+.input-group.invalid > .input-group-prepend:first-child > .input-group-text,
+.input-group.invalid > .input-group-append:first-child > .input-group-text,
+.input-group.invalid > input:first-child {
+  border-left-color: #c00;
+}
+
+.input-group.invalid > .input-group-prepend:last-child > .input-group-text,
+.input-group.invalid > .input-group-append:last-child > .input-group-text,
+.input-group.invalid > input:last-child {
+  border-right-color: #c00;
+}
+
+.input-group.invalid > .input-group-prepend > .input-group-text,
+.input-group.invalid > .input-group-append > .input-group-text,
+.input-group.invalid > input {
+  border-top-color: #c00;
+  border-bottom-color: #c00;
+}
+
+
 .btn-seconddose-freq,
 .form-row label.btn-seconddose-freq {
   border: 1px solid $bdr-color;
@@ -338,6 +365,19 @@ input {
 .age-infant.hd-5 {
   .hide-peds-hd {
     display: none;
+  }
+}
+
+#row--amgTab {
+  &.amg-cf {
+    .amg-ext-only {
+      display:none;
+    }
+  }
+  &.amg-ext {
+    .amg-cf-only {
+      display: none;
+    }
   }
 }
 
@@ -477,9 +517,20 @@ a[data-toggle="modal"] {
   padding-left: 0;
 }
 
+.form-row label.small {
+  font-size: $len-25;
+}
+
 #aucDatesModal .modal-dialog {
   min-width: 600px !important;
 }
+
+// @media (min-width: 576px) {
+//   .modal-dialog {
+//     max-width: 600px;
+//   }
+// }
+
 
 // #tapeModal .modal-dialog {
 //   min-width: 800px !important;

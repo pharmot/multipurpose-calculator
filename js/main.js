@@ -1,5 +1,5 @@
 /*!
-  * VMFH Pharmacy Multipurpose Calculator v1.1.0
+  * VMFH Pharmacy Multipurpose Calculator v1.2.0
   * Copyright 2020-2023 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
@@ -21,13 +21,21 @@ require('./pca.js');
 require('./nextdose.js');
 
 let debug = false;
-let debugDefaultTab = "auc";
+// let debugDefaultTab = "more";
+// let debugDefaultMoreTab = "amg";
 let tape = {};
 let validatedFields;
+
+//---------------------------------------------------------------
+// ON PAGE LOAD
+ 
 $(()=>{
   $('[data-toggle="popover"]').popover({html: true});
   $('[data-toggle="tooltip"]').tooltip()
   $('.hidden').hide();
+  $('#amg-warning').hide()
+
+
   if ( /debug/.test(location.search) ) {
     debug = true;
   } else if ( /log/.test(location.search) ) {
@@ -59,15 +67,36 @@ $(()=>{
     $("#revision-curFreq").val(12);
     $("#revision-curTrough").val(11);
     $("#revision-curTroughTime").val(0.5);
+
+    $("#amg-goalPeak").val(20);
+    $("#amg-currentDose").val(500);
+    $("#amg-doseDate").val('2023-05-27');
+    $("#amg-doseTime").val('2100');
+    $('#amg-level1').val(17);
+    $('#amg-level1Date').val('2023-05-28');
+    $('#amg-level1Time').val('0000');
+    $('#amg-level2').val(7);
+    $('#amg-level2Date').val('2023-05-28');
+    $('#amg-level2Time').val('1200');
+    $('#amg-customDate').val('2023-05-29');
+    $('#amg-customTime').val('0200');
     LOG.enable();
-    const triggerElement = document.querySelector(`#nav-${debugDefaultTab}-tab`);
-    // const tab = new bootstrap.Tab(triggerElement)
-    // tab.show();
+
+
+    // $(".nav-item.nav-link.active").removeClass("active");
+    // $(".tab-pane.fade.show.active").removeClass("show active");
+    // $(`#nav-${debugDefaultTab}-tab`).addClass("active");
+    // $(`#nav-${debugDefaultTab}`).addClass("show active");
+    // $(`#nav-${debugDefaultMoreTab}-tab`).addClass("active");
+    // $(`#nav-${debugDefaultMoreTab}`).addClass("show active");
+    // $(`#nav-${debugDefaultMoreTab}`, `#nav-${debugDefaultTab}`).show();
+    $('#amg-warning').hide();
     calculate.syncCurrentDFT("revision");
     calculate.patientData();
     calculate.vancoInitial();
     calculate.vancoRevision();
     calculate.vancoAUC();
+    calculate.amgWeight();
     calculate.amg();
     
   } else {
@@ -87,11 +116,60 @@ $(()=>{
   ]);
   $('#ptage').get(0).focus();
 });
+//---------------------------------------------------------------
+// EVENT LISTENERS
+
+// Reset Button
+$("#btnReset").on('click', () => {
+  $("input").val("");
+  calculate.syncCurrentDFT('revision');
+  resetDates();
+  $("#aucDates-apply").removeClass('datesApplied');
+  ($("#hd")[0]).selectedIndex = 0;
+  ($("#vancoIndication")[0]).selectedIndex = 0;
+  calculate.patientData();
+  calculate.vancoInitial();
+  calculate.vancoRevision();
+  calculate.vancoAUC();
+  calculate.vancoTwolevel();
+  calculate.secondDose();
+  calculate.ivig();
+  calculate.amgWeight();
+  calculate.amg();
+  
+  $("#top-container").removeClass('age-adult age-child age-infant');
+  $("#top-container").addClass('age-adult');
+  $(validatedFields).removeClass('invalid');
+  
+  // Remove from manually marked invalid fields
+  $('.invalid').removeClass('invalid');
+  
+  $('#amg-Cf').prop( "checked", false );
+  $('#amg-PrePostpartum').prop( "checked", false );
+  changedAmgMethod();
+
+  $('.hidden').hide();
+  $('.output').html('');
+  $('#ptage').get(0).focus();
+  
+  
+  // PCA
+  ($("#pca-drug")[0]).selectedIndex = 0;
+  ($("#pca-orderset")[0]).selectedIndex = 0;
+  ($("#pca-continuous")[0]).selectedIndex = 0;
+  $('.pca-bg-warning').removeClass('pca-bg-warning');
+  $('.pca-bg-danger').removeClass('pca-bg-danger');
+  $('.pca-bg-error').removeClass('pca-bg-error');
+
+});
+
+// Patient
 $(".input-patient").on('keyup', () => {
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
   calculate.vancoAUC();
+  calculate.amgWeight();
   calculate.amg();
 });
 $('#ptage').on('keyup', () => {
@@ -99,11 +177,6 @@ $('#ptage').on('keyup', () => {
     $("#top-container").removeClass('age-adult age-child age-infant');
     $("#top-container").addClass(`age-${pt.ageContext}`);
   }, 1000);
-});
-
-$("#vancoIndication").on('change', () => {
-  calculate.patientData();
-  calculate.vancoInitial();
 });
 $("#hd").on("change", (e) => {
   const hd = e.target.selectedIndex;
@@ -115,6 +188,18 @@ $("#hd").on("change", (e) => {
   calculate.vancoRevision();
   calculate.vancoAUC();
 })
+$("#schwartz-k-infant").on('change', () => {
+  calculate.patientData();
+  calculate.vancoInitial();
+  calculate.vancoRevision();
+  calculate.vancoAUC();
+});
+
+// Vancomycin
+$("#vancoIndication").on('change', () => {
+  calculate.patientData();
+  calculate.vancoInitial();
+});
 
 $(".input-initialPK").on('keyup', () => {
   calculate.vancoInitial();
@@ -156,54 +241,48 @@ $("#twolevel-reset").on('click', () => calculate.vancoTwolevel() );
 
 $("#revision-goalTrough").on("change", () => calculate.vancoRevision() );
 
-$("#schwartz-k-infant").on('change', () => {
-  calculate.patientData();
-  calculate.vancoInitial();
-  calculate.vancoRevision();
-  calculate.vancoAUC();
-});
-
 $(".input-steadystate").on('keyup', () => calculate.vancoSteadyStateCheck() );
 $("#seconddose-time1").on("keyup", () => calculate.secondDose() );
 $("[name='seconddose-freq']").on("change", () => calculate.secondDose() );
 
-$("#btnReset").on('click', () => {
-  $("input").val("");
-  calculate.syncCurrentDFT('revision');
-  resetDates();
-  $("#aucDates-apply").removeClass('datesApplied');
-  ($("#hd")[0]).selectedIndex = 0;
-  ($("#vancoIndication")[0]).selectedIndex = 0;
-  calculate.patientData();
-  calculate.vancoInitial();
-  calculate.vancoRevision();
-  calculate.vancoAUC();
-  calculate.vancoTwolevel();
-  calculate.secondDose();
-  calculate.ivig();
+// Aminoglycosides
+$(".input-amg").on('keyup', () => calculate.amg() );
+$("#amg-medication").on('change', () => calculate.amg() );
+$("#amg-postAbxEffect").on('change', () => calculate.amg() );
+$("#amg-Cf").on("change", () => {
+  changedAmgMethod();
+  calculate.amgWeight();
   calculate.amg();
-  $("#top-container").removeClass('age-adult age-child age-infant');
-  $("#top-container").addClass('age-adult');
-  $(validatedFields).removeClass('invalid');
-  $('.hidden').hide();
-  $('.output').html('');
-  $('#ptage').get(0).focus();
-  $('#amgAlt').prop( "checked", false );
-
-  // PCA module
-  ($("#pca-drug")[0]).selectedIndex = 0;
-  ($("#pca-orderset")[0]).selectedIndex = 0;
-  ($("#pca-continuous")[0]).selectedIndex = 0;
-  $('.pca-bg-warning').removeClass('pca-bg-warning');
-  $('.pca-bg-danger').removeClass('pca-bg-danger');
-  $('.pca-bg-error').removeClass('pca-bg-error');
-
 });
-$("#amgAlt").on("change", () => calculate.amg() );
+
+/**
+ * Check CF box status and show/hide DOM elements based on dosing method
+ */
+function changedAmgMethod(){
+  if ( $('#amg-Cf').is(':checked') ) {
+    $('#row--amgTab').removeClass('amg-ext').addClass('amg-cf');
+    $("#label--amg-currentDose").html('Current Dose');
+    /* Change to tobramycin if gentamicin is selected */
+    if ( $("#amg-medication option:selected").val() === 'G' ) {
+      $("#amg-medication").val('T');
+    }
+  } else {
+    $('#row--amgTab').removeClass('amg-cf').addClass('amg-ext');
+    $("#label--amg-currentDose").html('Dose Administered');
+  }
+}
+
+$("#amg-PrePostpartum").on("change", () => {
+  calculate.amgWeight();
+  calculate.amg();
+});
+
+// IVIG module
 $("#ivig-product").on("change", () => calculate.ivig() );
 $("#weight").on("keyup", () => calculate.ivig() );
 $("#ivig-dose").on("keyup", () => calculate.ivig() );
 
+// Vancomycin AUC Dates Modal
 $("#aucDates-sameInterval").on("change", e => {
   const tr = document.getElementById('aucDates-row--trough');
   const pk = document.getElementById('aucDates-row--peak');
@@ -606,6 +685,7 @@ const calculate = {
       ]);
     }
     $("#tape--pt").html(LOG.outputTape(tape.pt, "Patient Info"));
+    $("#tapeAmg--pt").html(LOG.outputTape(tape.pt, "Patient Info"));
   },
   /**
    * Sync dose, frequency, and trough inputs between tabs
@@ -624,19 +704,208 @@ const calculate = {
   /**
    * Input and output for aminoglycoside dosing
    * @requires module:amg
-   * @returns {undefined}
    */
-   amg(){
-     const amgWtString = amg.dosingWeightString({
-       age: pt.age,
-       wt: pt.wt,
-       ibw: pt.ibw,
-       adjBW: pt.adjBW,
-       overUnder: pt.overUnder,
-       alt: $('#amgAlt').is(':checked'),
-     })
-     $("#amgDosingWeight").html(amgWtString);
-   },
+  amgWeight(){    
+    /* Get dosing weight */
+    const { dosingWeightString } = amg.getDosingWeight({
+      age: pt.age,
+      wt: pt.wt,
+      ibw: pt.ibw,
+      adjBW: pt.adjBW,
+      overUnder: pt.overUnder,
+      alt: ( $('#amg-Cf').is(':checked') || $('#amg-PrePostpartum').is(':checked') ),
+    })
+    $("#amg-dosingWeight").html(dosingWeightString);    
+
+  },
+  amg(){
+    
+    /* Get limits for input checking */
+    const { goalPeakMin, goalPeakMax, freqMin, freqMax, doseMin, doseMax } = amg.config.check;
+    
+    /* Determine whether CF calculation method should be used */
+    const cf = $('#amg-Cf').is(':checked')
+
+    /* Get dosing weight */
+    const { dosingWeight, dosingWeightType, dosingWeightReason } = amg.getDosingWeight({
+      age: pt.age,
+      wt: pt.wt,
+      ibw: pt.ibw,
+      adjBW: pt.adjBW,
+      overUnder: pt.overUnder,
+      alt: ( cf || $('#amg-PrePostpartum').is(':checked') ),
+    })   
+
+    /* First letter (uppercase) of selected drug */
+    const selectedDrug = $("#amg-medication option:selected").val();    
+    
+    /* Selected post-antibiotic effect time */
+    const pae = +($('#amg-postAbxEffect option:selected').text());
+    //TODO: change pae to 4 on resetAll()
+
+    /* Get input values */
+    const params = {
+      cf: cf,
+      prePostpartum: $('#amg-prePostpartum').is(':checked'),
+      drug: selectedDrug,
+      goalPeak: checkValue(+$("#amg-goalPeak").val(), goalPeakMin, goalPeakMax),
+      dose: checkValue(+$("#amg-currentDose").val(), doseMin, doseMax),
+      freq: checkValue(+$('#amg-currentFreq').val(), freqMin, freqMax),
+      doseTime: getDateTime($("#amg-doseDate").val(), $("#amg-doseTime").val()),
+      postAbxEffect: pae,
+      level1: checkValue(+$('#amg-level1').val(),0),
+      level1Time: getDateTime($('#amg-level1Date').val(), $('#amg-level1Time').val()),
+      level2: checkValue(+$('#amg-level2').val(),0),
+      level2Time: getDateTime($('#amg-level2Date').val(), $('#amg-level2Time').val()),
+      customTime: getDateTime($('#amg-customDate').val(), $('#amg-customTime').val())
+    };
+    //TODO: add input validation for amg-currentDose, amg-goalPeak, amg-currentFreq
+
+    const wtBasedDose = (dosingWeight > 0 && params.dose > 0 ) ? params.dose/dosingWeight : 0;
+
+    displayValue('#amg-currentWtBasedDose', wtBasedDose, 0.1, ' mg/kg');
+
+    /* Check to make sure timing of dose/levels are in the correct sequence and highlight if not */
+    params.valid = true;
+    if ( params.level1Time > 0 && params.doseTime > 0 && params.level1Time <= params.doseTime ) {
+      $('#amg-level1DateTime').addClass('invalid');
+      params.valid = false;
+    } else {
+      $('#amg-level1DateTime').removeClass('invalid');
+    }
+    if ( params.level2Time > 0 && ( ( params.level1Time > 0 && params.level2Time <= params.level1Time ) ||  ( params.doseTime > 0 && params.level2Time <= params.doseTime ) ) ) {
+      $('#amg-level2DateTime').addClass('invalid');
+      params.valid = false;
+    } else {
+      $('#amg-level2DateTime').removeClass('invalid');
+    }
+    if ( params.customTime > 0 && params.doseTime > 0 && params.customTime <= params.doseTime ) {
+      $('#amg-customLevelDateTime').addClass('invalid');
+    } else {
+      $('#amg-customLevelDateTime').removeClass('invalid');
+    }
+    const wtTape = dosingWeight > 0 ? `${displayValue('', dosingWeight, 0.1, ' kg')} (${dosingWeightType} weight)` : '';
+
+    /* Save common items to tape */
+    tape.amg = [
+      [
+        ['Dosing Weight', wtTape],
+        ['Used because', dosingWeightReason],
+      ],
+      [
+        ['Drug', $('#amg-medication option:selected').text()],
+        ['Cystic Fibrosis?', (params.cf ? 'Yes': 'No') ],
+        ['Pre-/Postpartum?', (params.prePostpartum ? 'Yes': 'No') ],
+        ['Dose administered', displayValue('', params.dose, 0.1, ' mg')],
+        ['Weight-based', displayValue('', wtBasedDose, 0.1, ' mg/kg')],
+        ['Time of dose', displayDate(params.doseTime)],
+        ['First level', displayValue('', params.level1, 0.01, ' mcg/mL')],
+        ['First level time', displayDate(params.level1Time)],
+        ['Second level', displayValue('', params.level2, 0.01, ' mcg/mL')],
+        ['Second level time', displayDate(params.level2Time)]
+      ]
+    ];
+
+
+    if ( cf ) {
+      /* Reset non-cf items */
+      $('#amg-recDose').html('');
+      $('#amg-recDoseStart').html('');
+      $('#amg-customLevel').html('');
+      $('#amg-goalTrough').html('');
+      $('#amg-warning').hide()
+
+      const {goalTrough, goalPeak, goalAuc, ke, predPeak, predTrough, auc, halflife} = amg.cf(params);
+     
+      displayValue('#amg-predTrough', predTrough, 0.1, ' mcg/mL');
+      displayValue('#amg-predPeak', predPeak, 0.1, ' mcg/mL');
+      displayValue('#amg-auc', auc, 1, ' mg&middot;hr/L');
+
+      $('#amg-goalTroughOutput').html(goalTrough);
+      $('#amg-goalPeakOutput').html(goalPeak);
+      $('#amg-goalAuc').html(goalAuc);
+      if ( ke > 0 ) {
+        tape.amg.push([
+          ['Goal trough', goalTrough],
+          ['Goal peak', goalPeak],
+          ['Goal AUC', goalAuc],
+          ['Calculated ke', displayValue('', ke, 0.001, '/hr')],
+          ['Halflife', displayValue('', halflife, 0.1, ' hr')],
+          ['Predicted trough', displayValue('', predTrough, 0.001, ' mcg/mL')],
+          ['Predicted peak', displayValue('', predPeak, 0.01, ' mcg/mL')],
+          ['Calculated AUC', displayValue('', auc, 0.1, ' mg&middot;hr/L')]
+        ])
+      }
+    } else {      
+      /* Reset cf-only items */
+      $('#amg-goalPeakOutput').html('');
+      $('#amg-goalAuc').html('');
+      $('#amg-predTrough').html('');
+      $('#amg-predPeak').html('');
+      $('#amg-auc').html('');
+
+
+      const {goalTrough, ke, truePeak, troughDT, redoseDT, redoseLevel, newDoseToRedoseTime, vd, recDose, recDoseRounded, recFreq, levelAtCustom, warn } = amg.extended(params);
+
+      /* Show warning if indicated */
+      if ( warn ) {
+        $('#amg-warning').show()
+      } else {
+        $('#amg-warning').hide()
+      }
+      displayValue('#amg-goalTrough', goalTrough, 1, ' mcg/mL');
+      const recDoseAndFreq = `${displayValue('', recDoseRounded, 0.1, ' mg' )} ${displayValue('', recFreq, 1, 'h', 'q')}`;
+      $('#amg-recDose').html(recDoseAndFreq);
+      $('#amg-recDoseStart').html(displayDate(redoseDT));
+      displayValue('#amg-customLevel', levelAtCustom, 0.1, ' mcg/mL');
+
+      if ( truePeak > 0 ) {
+        tape.amg.push([
+          ['Goal peak', displayValue('', params.goalPeak, 0.1, " mcg/mL")],
+          ['Goal trough', displayValue('', goalTrough, 1, " mcg/mL")],
+          ['Post-antibiotic effect', displayValue('', pae, 1, ' hours', '', false, true)],
+          ['Calculated ke', displayValue('', ke, 0.001, '/hr')],
+          ['Estimated Vd', displayValue('', vd, 0.01, ' L')],
+          ['Calculated (true) Peak', displayValue('', truePeak, 0.01, ' mcg/mL')],
+          ['Time to goal trough (MIC)', displayDate(troughDT)],
+          ['Redose point', displayDate(redoseDT)],
+          ['Level at redose point', displayValue('', redoseLevel, 0.01, ' mcg/mL', '', false, true)],
+          ['Time to redose point', displayValue('', newDoseToRedoseTime, 0.01, ' hrs', '', true)]
+        ],
+        [
+          ['Recommended dose', displayValue('', recDose, 0.1, ' mg')],
+          ['Recommended frequency', displayValue('', recFreq, 1, 'h', 'q')]
+        ])          
+        if ( levelAtCustom > 0 ) {
+          tape.amg.push([
+            ['Point level estimate at', displayDate(params.customTime)],
+            ['Estimated level', displayValue('', levelAtCustom, 0.01, ' mcg/mL', false, true)]
+          ])
+        }        
+      }
+    } // end non-CF
+
+    if ( tape.amg.length > 0 ) {
+      $("#tapeAmg--calc").html(LOG.outputTape(tape.amg, "Aminoglycoside Extended Interval Dosing"));
+    } else {
+      $('#tapeAmg--calc').html('')
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+ 
   /**
    * Input and output for initial protocol dosing and initial PK dosing
    * @requires module:util

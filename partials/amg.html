@@ -1,23 +1,220 @@
-<div class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd">
-  <div class="col-auto">
-    <div class="card" id="card--amgDW">
-      <div class="card-header h6">Aminoglycoside Dosing Weight</div>
+<div id="row--amgTab" class="row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4 hide-peds-hd amg-ext">
+  <div class="col-12">    
+    <div class="card" id="card--amg">
+      <div class="card-header h5">Aminoglycoside Extended Interval Dosing</div>
       <div class="card-body">
-        <div class="form-row">
-          <div class="input-group col-12 mb-3">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="amgAlt">
-              <label class="form-check-label" for="amgAlt">
-                Cystic Fibrosis, Prepartum, or Postpartum?
+        <div class="form-row mb-3">
+          <div class="input-group col-4">
+            <div class="form-check form-check-inline align-self-start ml-1">
+              <input class="form-check-input" type="checkbox" id="amg-Cf">
+              <label class="form-check-label" for="amg-Cf">
+                Cystic Fibrosis?
+              </label>
+            </div>
+          </div>
+          <div class="input-group col-6">
+            <div class="form-check form-check-inline align-self-start">
+              <input class="form-check-input" type="checkbox" id="amg-PrePostpartum">
+              <label class="form-check-label" for="amg-PrePostpartum">
+                Prepartum or Postpartum?
               </label>
             </div>
           </div>
         </div>
-        <div class="form-row">
-          <div class="input-group col-12">
-            <div class="output multi-line multi-line-2" id="amgDosingWeight"></div>
+        <div class="form-row mb-3">
+          <label class="col-form-label col-3" for="amg-dosingWeight">Dosing Weight</label>
+          <div class="input-group col-5">
+            <div class="output multi-line multi-line-2" id="amg-dosingWeight"></div>
           </div>
         </div>
+
+        <div class="form-row">
+          <label for="amg-medication" class="col-2">Drug</label>
+          <div class="input-group col-4">
+            <select id="amg-medication" class="form-control">
+              <option class="amg-ext-only" value="G">gentamicin</option>
+              <option value="A">amikacin</option>
+              <option value="T">tobramycin</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row mb-3">
+          <label for="amg-goalPeak" class="col-2 amg-ext-only">Goal Peak</label>
+          <div class="col-3 input-group amg-ext-only">
+            <input type="number" id="amg-goalPeak" class="form-control input-amg">
+            <div class="input-group-append">
+              <div class="input-group-text">mcg/mL</div>
+            </div>
+          </div>      
+          <label for="amg-goalPeakOutput" class="col-2 amg-cf-only">Goal Peak</label>
+          <div class="col-3 input-group amg-cf-only">
+            <div id="amg-goalPeakOutput" class="output"></div>
+          </div>
+          <label for="amg-goalTrough" class="col-3 text-right amg-ext-only">Goal Trough</label>
+          <div class="col-3 input-group amg-ext-only">
+            <div class="output" id="amg-goalTrough">2 mcg/mL</div>
+          </div>
+          <div class="col-1 icon-container amg-ext-only">
+            <a role="button" data-toggle="tooltip" data-placement="bottom" data-html= "true" title="Goal trough is auto set to the accepted MIC:<br>2 mcg/mL for gentamicin/tobramycin<br>4 mcg/mL for amikacin"><i class="fa fa-question-circle"></i></a>
+          </div>
+          <label for="amg-goalTroughOutput" class="col-3 text-right amg-cf-only">Goal Trough</label>
+          <div class="col-3 input-group amg-cf-only">
+            <div class="output" id="amg-goalTroughOutput"></div>
+          </div>
+        </div> <!-- .form-row -->
+
+
+        <div class="form-row">
+          <label for="amg-currentDose" class="col-3" id="label--amg-currentDose">Dose Administered</label>
+          <div class="col-3 input-group">
+            <input type="number" id="amg-currentDose" class="form-control input-amg" min="0" max="1000" step="10">
+            <div class="input-group-append">
+              <div class="input-group-text">mg</div>
+            </div>
+          </div>
+          <div class="col-2 output" id="amg-currentWtBasedDose"></div>
+          <label for="amg-currentFreq" class="col-2 pr-2 text-right amg-cf-only">Frequency</label>
+          <div class="col-2 input-group amg-cf-only">
+            <div class="input-group-prepend">
+              <div class="input-group-text">q</div>
+            </div>
+            <input type="number" id="amg-currentFreq" class="form-control input-amg" min="1" max="96" step="6">
+            <div class="input-group-append">
+              <div class="input-group-text">h</div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="form-row mb-3">
+          <label for="amg-doseDate" class="col-3">Last Dose</label>
+          <div class="col-4 input-group">
+            <input type="date" class="form-control dt-date input-amg" data-form-type="other" id="amg-doseDate">
+            <div class="input-group-prepend">
+              <div class="input-group-text border-left-0">@</div>
+            </div>
+            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-doseTime" placeholder="0000">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <label for="amg-level1Date" class="col-3 col-form-label">First Level</label>
+          <div class="col-4 input-group" id="amg-level1DateTime">
+            <input type="date" class="form-control dt-date input-amg" data-form-type="other" id="amg-level1Date">
+            <div class="input-group-prepend">
+              <div class="input-group-text border-left-0">@</div>
+            </div>
+            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-level1Time" placeholder="0000">
+          </div>
+          <div class="col-3 input-group">
+            <input type="text" class="form-control input-amg validate-amgLevel" id="amg-level1">
+            <div class="input-group-append">
+              <div class="input-group-text">mcg/mL</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row mb-3">
+          <label for="amg-level2Date" class="col-3 col-form-label">Second Level</label>
+          <div class="col-4 input-group" id="amg-level2DateTime">
+            <input type="date" class="form-control dt-date input-amg" data-form-type="other" id="amg-level2Date">
+            <div class="input-group-prepend">
+              <div class="input-group-text border-left-0">@</div>
+            </div>
+            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-level2Time" placeholder="0000">
+          </div>
+          <div class="col-3 input-group">
+            <input type="text" class="form-control input-amg validate-amgLevel" id="amg-level2">
+            <div class="input-group-append">
+              <div class="input-group-text">mcg/mL</div>
+            </div>
+          </div>  
+        </div>
+        <div class="form-row amg-ext-only mb-3">
+          <label for="amg-postAbxEffect" class="col-3 small">Post-Antibiotic Effect</label>
+          <div class="input-group col-3">
+            <select id="amg-postAbxEffect" class="form-control text-center">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option selected>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+            <div class="input-group-append">
+              <div class="input-group-text">hours</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-row amg-cf-only mb-3">
+          <label for="amg-goalAuc" class="col-3">Goal AUC</label>
+          <div class="col-3 input-group">
+            <div class="output" id="amg-goalAuc"></div>
+          </div>
+        </div>
+
+        <div class="form-row amg-ext-only">
+          <label for="amg-recDose" class="col-3 col-form-label">Recommended Dose</label>
+          <div class="col-4 input-group">
+            <div class="output" id="amg-recDose"></div>
+          </div>
+        </div>
+        <div class="form-row amg-ext-only">
+          <label for="amg-recDoseStart" class="col-3 col-form-label">Redose Point</label>
+          <div class="col-4 input-group">
+            <div class="output" id="amg-recDoseStart"></div>
+          </div>
+          <div class="col-1 icon-container">
+            <a role="button" data-toggle="tooltip" data-placement="bottom" data-html= "true" title="The redose point (i.e., when to give the next dose) is<br>the time to MIC (est. goal trough)<br>plus selected post-antibiotic effect time<br>(default 4 hours)."><i class="fa fa-question-circle"></i></a>
+          </div>
+        </div>
+        <div class="form-row amg-cf-only">
+          <label for="amg-predTrough" class="col-3 col-form-label">Predicted Trough</label>
+          <div class="col-3 input-group">
+            <div class="output" id="amg-predTrough"></div>
+          </div>
+        </div>  
+        <div class="form-row amg-cf-only">
+          <label for="amg-predPeak" class="col-3 col-form-label">Predicted Peak</label>
+          <div class="col-3 input-group">
+            <div class="output" id="amg-predPeak"></div>
+          </div>
+        </div>  
+        
+        <div class="form-row mt-4">
+          <div class="col-9 text-center text-danger ">
+            <span id="amg-warning">First level drawn before presumed complete distribution.<br>Results may be inaccurate</span>
+          </div>
+          <div class="col-3 input-group">
+            <button type="button" class="btn btn-light small" id="btnTapeAmg" data-toggle="modal" data-target="#tapeModalAmg">Show Calculations</button>
+          </div>
+        </div>
+        
+      </div> <!-- .card-body-->
+      <div class="card-body amg-ext-only border-top">
+        <div class="card-title h6 text-left">Point Level Estimate <span class="card-subtitle text-secondary font-italic ml-3">(Informational Only)</span> </div>
+        <div class="form-row">
+          <label for="amg-customDate" class="col-3">Custom Date/Time</label>
+          <div class="col-4 input-group" id="amg-customLevelDateTime">
+            <input type="date" class="form-control dt-date input-amg" data-form-type="other" id="amg-customDate">
+            <div class="input-group-prepend">
+              <div class="input-group-text border-left-0">@</div>
+            </div>
+            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-customTime" placeholder="0000">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="amg-customLevel" class="col-3 col-form-label">Estimated Level</label>
+          <div class="input-group col-4">
+            <div class="output" id="amg-customLevel"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-left small">
+        <ul class="pl-2">
+          <li>Assumes a 1 hour infusion time for all doses and a 1.7 hour time to complete distribution.</li>
+          <li>All calculations are based on first-order kinetics for aminoglycosides and requires 2 levels drawn</li>
+        </ul>
       </div>
     </div>
   </div>

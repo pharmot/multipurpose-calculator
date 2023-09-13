@@ -61,6 +61,12 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
+## 1.2.0 - Unreleased
+
+### Added
+- Extended interval aminoglycoside calculator
+- Vancomycin peak timing calculator
+
 ## [1.1.0] - 2023-01-30
 
 ### Added
