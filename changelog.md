@@ -6,6 +6,7 @@
 - addHoursToDate function in Utility module
 - displayTime function in Utility module
 - Vancomycin peak timing calculator [#66](https://github.com/pharmot/multipurpose-calculator/issues/66)
+- Corrected QT interval calculator [#80](https://github.com/pharmot/multipurpose-calculator/issues/80)
 
 ### Changed
 - Updated tints and shades of VMFH colors [#77](https://github.com/pharmot/multipurpose-calculator/issues/77)
