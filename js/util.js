@@ -68,6 +68,18 @@ export function getDateTime(d, t) {
 export function getHoursBetweenDates(first, second){
   return (second - first)/ 1000 / 60 / 60;
 }
+/**
+ * Add hours to a date
+ *
+ * @param   {Date}   d  Original date
+ * @param   {Number} h  Hours to add
+ * @returns {Date}
+ */
+export function addHoursToDate(d, h){
+  let c = new Date(d);
+  c.setTime( c.getTime() + ( h * 60 * 60 * 1000 ) );
+  return c;
+}
 
 /**
  * Rounds a number to a specified factor.
