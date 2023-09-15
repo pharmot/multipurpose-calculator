@@ -35,8 +35,8 @@ let validatedFields;
 $(() => {
   $("[data-toggle=\"popover\"]").popover({ html: true });
   $("[data-toggle=\"tooltip\"]").tooltip();
-  $(".hidden").hide();
-  $("#amg-warning").hide();
+  $(".hidden").addClass('hidden');
+  $("#amg-warning").addClass('hidden');
 
 
   if ( /debug/.test(location.search) ) {
@@ -92,8 +92,8 @@ $(() => {
     // $(`#nav-${debugDefaultTab}`).addClass("show active");
     // $(`#nav-${debugDefaultMoreTab}-tab`).addClass("active");
     // $(`#nav-${debugDefaultMoreTab}`).addClass("show active");
-    // $(`#nav-${debugDefaultMoreTab}`, `#nav-${debugDefaultTab}`).show();
-    $("#amg-warning").hide();
+    // $(`#nav-${debugDefaultMoreTab}`, `#nav-${debugDefaultTab}`).removeClass('hidden');
+    $("#amg-warning").addClass('hidden');
     calculate.syncCurrentDFT("revision");
     calculate.patientData();
     calculate.vancoInitial();
@@ -124,7 +124,8 @@ $(() => {
 
 // Reset Button
 $("#btnReset").on("click", () => {
-  $("input").val("");
+  $("input[type='text']").val("");
+  $("input[type='number']").val("");
   calculate.syncCurrentDFT("revision");
   resetDates();
   $("#aucDates-apply").removeClass("datesApplied");
@@ -152,10 +153,15 @@ $("#btnReset").on("click", () => {
   changedAmgMethod();
   $("#amg-postAbxEffect")[0].selectedIndex = 4;
 
-  $(".hidden").hide();
   $(".output").html("");
   $("#ptage").get(0).focus();
-
+  $("input[type='date']").val("");
+  $('.btn-group--nextdose-freq label').removeClass('active');
+  $('.btn-group--nextdose-time label').removeClass('active');
+  $('input[name="nextdose-freq"]:checked').prop('checked', false);
+  $('input[name="nextdose-time"]:checked').prop('checked', false);
+  $('.highlighted').removeClass('highlighted');
+  $('#nextdose-result').addClass('hidden');
 
   // PCA
   $("#pca-drug")[0].selectedIndex = 0;
@@ -164,6 +170,7 @@ $("#btnReset").on("click", () => {
   $(".pca-bg-warning").removeClass("pca-bg-warning");
   $(".pca-bg-danger").removeClass("pca-bg-danger");
   $(".pca-bg-error").removeClass("pca-bg-error");
+
 
 });
 
@@ -297,10 +304,10 @@ $("#aucDates-sameInterval").on("change", e => {
     $("#aucDates-label--dose1").html("Dose prior to levels");
     par.insertBefore(pk, tr);
     par.insertBefore(tr, spacer);
-    $("#aucDates-row--dose2").hide();
+    $("#aucDates-row--dose2").addClass('hidden');
   } else {
     $("#aucDates-label--dose1").html("Dose before trough");
-    $("#aucDates-row--dose2").show();
+    $("#aucDates-row--dose2").removeClass('hidden');
     par.insertBefore(tr, pk);
     par.insertBefore(pk, spacer);
   }
@@ -816,7 +823,7 @@ const calculate = {
       $("#amg-recDoseStart").html("");
       $("#amg-customLevel").html("");
       $("#amg-goalTrough").html("");
-      $("#amg-warning").hide();
+      $("#amg-warning").addClass('hidden');
 
       const { goalTrough, goalPeak, goalAuc, ke, predPeak, predTrough, auc, halflife } = amg.cf(params);
 
@@ -852,9 +859,9 @@ const calculate = {
 
       /* Show warning if indicated */
       if ( warn ) {
-        $("#amg-warning").show();
+        $("#amg-warning").removeClass('hidden');
       } else {
-        $("#amg-warning").hide();
+        $("#amg-warning").addClass('hidden');
       }
       displayValue("#amg-goalTrough", goalTrough, 1, " mcg/mL");
       const recDoseAndFreq = `${displayValue("", recDoseRounded, 0.1, " mg" )} ${displayValue("", recFreq, 1, "h", "q")}`;
@@ -1370,7 +1377,7 @@ const calculate = {
     const sd = getSecondDose({ fd: fd, freqId: freqId });
     if ( sd === undefined ) {
       $(".output[id^='seconddose']").html("");
-      $("#seconddose-row-1").show();
+      $("#seconddose-row-1").removeClass('hidden');
     } else {
       sd.forEach( (me, i) => {
         $(`#seconddose-text-${i}`).html(`${me.hours} hours (${me.diff} hours ${me.direction})`);
@@ -1379,9 +1386,9 @@ const calculate = {
         });
       });
       if ( sd.length === 1 ) {
-        $("#seconddose-row-1").hide();
+        $("#seconddose-row-1").addClass('hidden');
       } else {
-        $("#seconddose-row-1").show();
+        $("#seconddose-row-1").removeClass('hidden');
       }
     }
   },

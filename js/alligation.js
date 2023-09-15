@@ -2,7 +2,8 @@
  * Alligation Module
  * @module alligation
  * @requires module:util
- * @since v1.1.0
+ * @requires module:logger
+ * @since v1.2.0
  */
 import { checkValue, roundTo } from "./util.js";
 import * as LOG from "./logger.js";

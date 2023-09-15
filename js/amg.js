@@ -30,8 +30,8 @@ export const config = {
     freqMin: 4,
     freqMax: 96,
     doseMin: 1,
-    doseMax: 10000
-  }
+    doseMax: 10000,
+  },
 };
 
 
@@ -74,7 +74,7 @@ export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {}) {
       dosingWeight: 0,
       dosingWeightType: "",
       dosingWeightReason: "Does not apply for age &le; 15",
-      dosingWeightString: "Does not apply for age &le; 15"
+      dosingWeightString: "Does not apply for age &le; 15",
     };
   }
   if ( ibw === 0 ) {
@@ -82,7 +82,7 @@ export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {}) {
       dosingWeight: 0,
       dosingWeightType: "",
       dosingWeightReason: "",
-      dosingWeightString: ""
+      dosingWeightString: "",
     };
   }
   if ( overUnder > 20 ) {
@@ -90,7 +90,7 @@ export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {}) {
       dosingWeight: adjBW,
       dosingWeightType: "adjusted",
       dosingWeightReason: "ABW &gt; 120% of IBW",
-      dosingWeightString: `Use adjusted weight: <b>${roundTo( adjBW, 0.1 )} kg</b><br><i>(ABW &gt; 120% of IBW)</i>`
+      dosingWeightString: `Use adjusted weight: <b>${roundTo( adjBW, 0.1 )} kg</b><br><i>(ABW &gt; 120% of IBW)</i>`,
     };
   }
   if ( alt ) {
@@ -98,7 +98,7 @@ export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {}) {
       dosingWeight: wt,
       dosingWeightType: "actual",
       dosingWeightReason: "non-obese and CF OR pre-/postpartum",
-      dosingWeightString: `Use actual weight: <b>${roundTo( wt, 0.1 )} kg</b><br><i>(non-obese and CF OR pre-/postpartum)</i>`
+      dosingWeightString: `Use actual weight: <b>${roundTo( wt, 0.1 )} kg</b><br><i>(non-obese and CF OR pre-/postpartum)</i>`,
     };
   }
   if (  wt < ibw ) {
@@ -106,14 +106,14 @@ export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {}) {
       dosingWeight: wt,
       dosingWeightType: "actual",
       dosingWeightReason: "ABW &lt; IBW",
-      dosingWeightString: `Use actual weight: <b>${roundTo( wt, 0.1 )} kg</b><br><i>(ABW &lt; IBW)</i>`
+      dosingWeightString: `Use actual weight: <b>${roundTo( wt, 0.1 )} kg</b><br><i>(ABW &lt; IBW)</i>`,
     };
   }
   return {
     dosingWeight: ibw,
     dosingWeightType: "ideal",
     dosingWeightReason: "ABW &lt; 120% of IBW",
-    dosingWeightString: `Use ideal weight: <b>${roundTo( ibw, 0.1 )} kg</b><br><i>(ABW &lt; 120% of IBW)</i>`
+    dosingWeightString: `Use ideal weight: <b>${roundTo( ibw, 0.1 )} kg</b><br><i>(ABW &lt; 120% of IBW)</i>`,
   };
 }
 
@@ -227,7 +227,7 @@ export function extended({ drug, goalPeak, dose, doseTime, postAbxEffect, level1
     recDoseRounded: 0,
     recFreq: 0,
     levelAtCustom: undefined,
-    warn: false
+    warn: false,
   };
 }
 
@@ -275,10 +275,7 @@ export function cf({ drug, freq, doseTime, level1,  level1Time, level2, level2Ti
       predPeak: 0,
       predTrough: 0,
       auc: 0,
-      halflife: 0
+      halflife: 0,
     };
   }
-
-
-
 }

@@ -5,6 +5,7 @@ const commonConfig = require('./webpack.common.js');
 const devConfig = {
   mode: 'development',
   output: {
+    // eslint-disable-next-line no-undef
     path: `${__dirname}/dist`,
     filename: '[name].dev.js',
   },
@@ -19,16 +20,17 @@ const devConfig = {
           {
             loader: 'postcss-loader',
             options: {
-              postcssOptions: { plugins: [ [ "autoprefixer", { }, ], ], },
+              postcssOptions: { plugins: [["autoprefixer", { }]] },
             },
           },
-          { loader: 'sass-loader' }
+          { loader: 'sass-loader' },
         ],
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
 
+// eslint-disable-next-line no-undef
 module.exports = () => {
-	return merge(commonConfig, devConfig);
+  return merge(commonConfig, devConfig);
 };

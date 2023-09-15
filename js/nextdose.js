@@ -13,8 +13,6 @@
  * @property {string[]} resultText - Possibilities of when next dose should be given
  */
 
-// TODO: reset on resetAll
-
 /**
  * Standard Dosing Frequencies
  * @type {StandardDosingFrequency[]}
@@ -127,7 +125,7 @@ $('input.radio--nextdose').on('change', () => {
     $(`.st-${freq}`).addClass('highlighted');
   }
   if ( !isNaN(startTime) && freq !== undefined ) {
-    $('#nextdose-result').show();
+    $('#nextdose-result').removeClass('hidden');
     const stdFreq = freqs.filter( obj => obj.name === freq )[0];
     $('#nextdose-result').html(stdFreq.resultText[stdFreq.resultMap[startTime]]);
   }

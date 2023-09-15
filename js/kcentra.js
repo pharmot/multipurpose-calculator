@@ -132,6 +132,6 @@ const kcentra = {
       <button class="btn btn-light kcentra--remove" id="${Math.random().toString(36).substring(2, 9)}">Remove</button>
     </div>`);
     $("#kcentra--btnSum--wrapper").before(newDiv);
-    $("#kcentra--btnSum--wrapper").show();
+    $("#kcentra--btnSum--wrapper").removeClass('hidden');
   }
 }

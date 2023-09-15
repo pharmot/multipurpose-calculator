@@ -6,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const prodConfig = {
   mode: 'production',
   output: {
+    // eslint-disable-next-line no-undef
     path: `${__dirname}/dist`,
     filename: '[name].[contenthash:8].js',
     clean: true,
@@ -20,19 +21,19 @@ const prodConfig = {
           {
             loader: 'postcss-loader',
             options: {
-              postcssOptions: { plugins: [ [ "autoprefixer", { }, ], ], },
+              postcssOptions: { plugins: [["autoprefixer", { }]] },
             },
           },
-          { loader: 'sass-loader' }
+          { loader: 'sass-loader' },
         ],
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
       linkType: 'text/css',
-      filename: 'main.[contenthash:8].min.css'
-    })
+      filename: 'main.[contenthash:8].min.css',
+    }),
   ],
   optimization: {
     minimize: true,
@@ -40,8 +41,8 @@ const prodConfig = {
       extractComments: {
         condition: "some",
         filename: (fileData) => {
-           return `${fileData.filename}.LICENSE.txt${fileData.query}`;
-         },
+          return `${fileData.filename}.LICENSE.txt${fileData.query}`;
+        },
       },
     })],
     runtimeChunk: 'single',
@@ -55,14 +56,15 @@ const prodConfig = {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'initial',
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 };
 
 
+// eslint-disable-next-line no-undef
 module.exports = () => {
-	return merge(commonConfig, prodConfig);
+  return merge(commonConfig, prodConfig);
 };
 

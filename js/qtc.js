@@ -2,7 +2,7 @@
 * Corrected QT Calculatior Module
 * @module qtc
 * @requires module:util
-* @since v1.1.0
+* @since v1.2.0
 */
 import { checkValue, displayValue } from './util.js';
 
