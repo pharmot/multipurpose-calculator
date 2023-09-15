@@ -1,0 +1,150 @@
+{
+	// Place your multipurpose-calculator workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	// {
+	// 	"": {
+	// 		"scope": "html",
+	// 		"prefix": "",
+	// 		"body": [
+
+	// 		]
+	// 	},
+	// }
+
+	"Card": {
+		"scope": "html",
+		"prefix": "card",
+		"body": [
+			"<div class=\"card\" id=\"card--${1:identifier}\">",
+			"  <div class=\"card-header h5\">${2:header_text}</div>",
+			"  <div class=\"card-body\">",
+			"    ${0}",
+			"  </div>",
+			"</div>",
+		]
+	},
+	"Card Title": {
+		"scope": "html",
+		"prefix": "cardtitle",
+		"body": "<div class=\"card-title h6 text-left text-secondary\">${0}</div>"
+	},
+	"Input Row - Number with Units":{
+		"scope": "html",
+		"prefix": "inputnumber",
+		"body": [
+			"<div class=\"form-row\">",
+			"  <label for=\"${1:namespace}-${2:input_id}\" class=\"col-form-label col-${4:label_width}\">${3:label}</label>",
+			"  <div class=\"col-${5:group_width} input-group\">",
+			"    <input type=\"number\" id=\"${1:namespace}-${2:input_id}\" class=\"form-control input-${1:namespace}\" min=\"${6:minimum}\" max=\"${7:maximum}\" step=\"${8:step}\">",
+			"    <div class=\"input-group-append\">",
+			"      <div class=\"input-group-text\">${9:unit}</div>",
+			"    </div>",
+			"  </div>",
+			"</div>${0}"
+		]
+	},
+	"Input Row - Text":{
+		"scope": "html",
+		"prefix": "inputtext",
+		"body": [
+			"<div class=\"form-row\">",
+			"  <label for=\"${1:namespace}-${2:input_id}\" class=\"col-form-label col-${4:label_width}\">${3:label}</label>",
+			"  <div class=\"col-${5:group_width} input-group\">",
+			"    <input type=\"text\" id=\"${1:namespace}-${2:input_id}\" class=\"form-control input-${1:namespace}\">",
+			"  </div>",
+			"</div>${0}"
+		]
+	},
+	"Input Row - Date and Time": {
+		"scope": "html",
+		"prefix": "inputdatetime",
+		"body": [
+			"<div class=\"form-row\">",
+			"  <label for=\"${1:namespace}-${2:input_id}Date\" class=\"col-${4:label_width}\">${3:label}</label>",
+			"  <div class=\"col-${5:input_width} input-group\" id=\"group--${1:namespace}-${2:input_id}DateTime\">",
+			"    <input type=\"date\" class=\"form-control dt-date input-${1:namespace}\" data-form-type=\"other\" id=\"${1:namespace}-${2:input_id}Date\">",
+			"    <div class=\"input-group-prepend\">",
+			"      <div class=\"input-group-text border-left-0\">@</div>",
+			"    </div>",
+			"    <input type=\"text\" class=\"form-control dt-time validate-time input-${1:namespace}\" data-form-type=\"other\" id=\"${namespace}-${2:input_id}Time\" placeholder=\"0000\">",
+			"  </div>",
+			"</div>${0}"
+		]
+	},
+	"Input Row - Select": {
+		"scope": "html",
+		"prefix": "inputselect",
+		"body": [
+			"<div class=\"form-row\">",
+			"  <label for=\"${1:namespace}-${2:input_id}\" class=\"col-${5:label_width}\">${3:label}</label>",
+			"  <div class=\"input-group col-${6:select_width}\">",
+			"    <select id=\"${1:namespace}-${2:input_id}\" class=\"form-control text-center\">",
+			"      <option value=\"\">________</option>",
+			"      <option value=\"\" selected>________</option>",
+			"      <option value=\"\">________</option>",
+			"      <option value=\"\">________</option>",
+			"    </select>",
+			"    <div class=\"input-group-append\">",
+			"      <div class=\"input-group-text\">${4:unit}</div>",
+			"    </div>",
+			"  </div>",
+			"</div>${0}",
+		]
+	},
+	"Input Row - Checkbox": {
+		"scope": "html",
+		"prefix": "inputcheck",
+		"body": [
+			"<div class=\"form-row\">",
+			"  <div class=\"input-group col-12\">",
+			"    <div class=\"form-check form-check-inline\">",
+			"      <input class=\"form-check-input\" type=\"checkbox\" id=\"${1:namespace}-${2:input_id}\">",
+			"      <label class=\"form-check-label\" for=\"${1:namespace}-${2:input_id}\">${3:label}</label>",
+			"    </div>",
+			"  </div>",
+			"</div>${0}"
+		]
+	},
+	"Output Row": {
+		"scope": "html",
+		"prefix": "output",
+		"body": [
+			"<div class=\"form-row\">",
+			"  <label for=\"${1:namespace}-${2:output_id}\" class=\"col-${4:label_width}\">${3:label}</label>",
+			"  <div class=\"input-group col-${5:output_width}\">",
+			"    <div class=\"output\" id=\"${1:namespace}-${2:output_id}\"></div>",
+			"  </div>",
+			"</div>${0}"
+		]
+	},
+	"Tooltip": {
+		"scope": "html",
+		"prefix": "tooltip",
+		"body": [
+			"<div class=\"col-1 icon-container\">",
+			"  <a role=\"button\" data-toggle=\"tooltip\" data-placement=\"bottom\" data-html=\"true\"",
+			"    title=\"${1}\"><i class=\"fa fa-question-circle\"></i></a>",
+			"</div>${0}"
+		]
+	},
+	"Partial": {
+		"scope": "html",
+		"prefix": "partial",
+		"body": "<%= require('html-loader!./partials/${1:filename}.html').default %>"
+	}
+}
