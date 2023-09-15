@@ -4,37 +4,38 @@
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
 
-$ = require('jquery');
-import 'bootstrap';
+// eslint-disable-next-line no-global-assign
+$ = require("jquery");
+import "bootstrap";
 import "../scss/main.scss";
-import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge, displayTime } from './util.js'
-import { default as ivig } from './ivig.js';
-import { getSecondDose } from './seconddose.js';
-import * as arial from './arial.js';
-import { default as setupValidation } from './formValidation.js';
-import * as vanco from './vanco.js';
-import * as amg from './amg.js';
-import * as LOG from './logger.js';
-require('./heparin.js');
-require('./kcentra.js');
-require('./pca.js');
-require('./nextdose.js');
-require('./qtc.js');
+import { displayDate, displayValue, checkValue, roundTo, getDateTime, getHoursBetweenDates, checkTimeInput, parseAge, displayTime } from "./util.js";
+import { default as ivig } from "./ivig.js";
+import { getSecondDose } from "./seconddose.js";
+import * as arial from "./arial.js";
+import { default as setupValidation } from "./formValidation.js";
+import * as vanco from "./vanco.js";
+import * as amg from "./amg.js";
+import * as LOG from "./logger.js";
+require("./heparin.js");
+require("./kcentra.js");
+require("./pca.js");
+require("./nextdose.js");
+require("./qtc.js");
 
 let debug = false;
 // let debugDefaultTab = "more";
 // let debugDefaultMoreTab = "amg";
-let tape = {};
+const tape = {};
 let validatedFields;
 
 //---------------------------------------------------------------
 // ON PAGE LOAD
- 
-$(()=>{
-  $('[data-toggle="popover"]').popover({html: true});
-  $('[data-toggle="tooltip"]').tooltip()
-  $('.hidden').hide();
-  $('#amg-warning').hide()
+
+$(() => {
+  $("[data-toggle=\"popover\"]").popover({ html: true });
+  $("[data-toggle=\"tooltip\"]").tooltip();
+  $(".hidden").hide();
+  $("#amg-warning").hide();
 
 
   if ( /debug/.test(location.search) ) {
@@ -43,9 +44,9 @@ $(()=>{
     LOG.enable();
   }
 
-  if ( debug ){
+  if ( debug ) {
     $("#ptage").val(60);
-    $("#sex").val('M');
+    $("#sex").val("M");
     $("#height").val(170.2);
     $("#weight").val(123.1);
     $("#scr").val(0.9);
@@ -71,16 +72,16 @@ $(()=>{
 
     $("#amg-goalPeak").val(20);
     $("#amg-currentDose").val(500);
-    $("#amg-doseDate").val('2023-05-27');
-    $("#amg-doseTime").val('2100');
-    $('#amg-level1').val(17);
-    $('#amg-level1Date').val('2023-05-28');
-    $('#amg-level1Time').val('0000');
-    $('#amg-level2').val(7);
-    $('#amg-level2Date').val('2023-05-28');
-    $('#amg-level2Time').val('1200');
-    $('#amg-customDate').val('2023-05-29');
-    $('#amg-customTime').val('0200');
+    $("#amg-doseDate").val("2023-05-27");
+    $("#amg-doseTime").val("2100");
+    $("#amg-level1").val(17);
+    $("#amg-level1Date").val("2023-05-28");
+    $("#amg-level1Time").val("0000");
+    $("#amg-level2").val(7);
+    $("#amg-level2Date").val("2023-05-28");
+    $("#amg-level2Time").val("1200");
+    $("#amg-customDate").val("2023-05-29");
+    $("#amg-customTime").val("0200");
     LOG.enable();
 
 
@@ -91,7 +92,7 @@ $(()=>{
     // $(`#nav-${debugDefaultMoreTab}-tab`).addClass("active");
     // $(`#nav-${debugDefaultMoreTab}`).addClass("show active");
     // $(`#nav-${debugDefaultMoreTab}`, `#nav-${debugDefaultTab}`).show();
-    $('#amg-warning').hide();
+    $("#amg-warning").hide();
     calculate.syncCurrentDFT("revision");
     calculate.patientData();
     calculate.vancoInitial();
@@ -99,35 +100,35 @@ $(()=>{
     calculate.vancoAUC();
     calculate.amgWeight();
     calculate.amg();
-    
+
   } else {
     resetDates();
   }
 
   validatedFields = setupValidation([
-    { selector: "#ptage", inputType: 'age', min: pt.config.check.ageMin, max: pt.config.check.ageMax },
+    { selector: "#ptage", inputType: "age", min: pt.config.check.ageMin, max: pt.config.check.ageMax },
     { selector: "#sex", match: /^[MmFf]$/ },
-    { selector: "#height", min: pt.config.check.htMin, max: pt.config.check.htMax, },
+    { selector: "#height", min: pt.config.check.htMin, max: pt.config.check.htMax },
     { selector: "#weight", min: pt.config.check.wtMin, max: pt.config.check.wtMax },
     { selector: "#scr", min: pt.config.check.scrMin, max: pt.config.check.scrMax },
     { selector: ".validate-dose", min: vanco.config.check.doseMin, max: vanco.config.check.doseMax },
     { selector: ".validate-freq", min: vanco.config.check.freqMin, max: vanco.config.check.freqMax },
     { selector: ".validate-level", min: vanco.config.check.levelMin, max: vanco.config.check.levelMax },
-    { selector: ".validate-time", inputType: 'time' }
+    { selector: ".validate-time", inputType: "time" },
   ]);
-  $('#ptage').get(0).focus();
+  $("#ptage").get(0).focus();
 });
 //---------------------------------------------------------------
 // EVENT LISTENERS
 
 // Reset Button
-$("#btnReset").on('click', () => {
+$("#btnReset").on("click", () => {
   $("input").val("");
-  calculate.syncCurrentDFT('revision');
+  calculate.syncCurrentDFT("revision");
   resetDates();
-  $("#aucDates-apply").removeClass('datesApplied');
-  ($("#hd")[0]).selectedIndex = 0;
-  ($("#vancoIndication")[0]).selectedIndex = 0;
+  $("#aucDates-apply").removeClass("datesApplied");
+  $("#hd")[0].selectedIndex = 0;
+  $("#vancoIndication")[0].selectedIndex = 0;
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
@@ -137,36 +138,36 @@ $("#btnReset").on('click', () => {
   calculate.ivig();
   calculate.amgWeight();
   calculate.amg();
-  
-  $("#top-container").removeClass('age-adult age-child age-infant');
-  $("#top-container").addClass('age-adult');
-  $(validatedFields).removeClass('invalid');
-  
-  // Remove from manually marked invalid fields
-  $('.invalid').removeClass('invalid');
-  
-  $('#amg-Cf').prop( "checked", false );
-  $('#amg-PrePostpartum').prop( "checked", false );
-  changedAmgMethod();
-  ($("#amg-postAbxEffect")[0]).selectedIndex = 4;
 
-  $('.hidden').hide();
-  $('.output').html('');
-  $('#ptage').get(0).focus();
+  $("#top-container").removeClass("age-adult age-child age-infant");
+  $("#top-container").addClass("age-adult");
+  $(validatedFields).removeClass("invalid");
+
+  // Remove from manually marked invalid fields
+  $(".invalid").removeClass("invalid");
+
+  $("#amg-Cf").prop( "checked", false );
+  $("#amg-PrePostpartum").prop( "checked", false );
+  changedAmgMethod();
+  $("#amg-postAbxEffect")[0].selectedIndex = 4;
+
+  $(".hidden").hide();
+  $(".output").html("");
+  $("#ptage").get(0).focus();
 
 
   // PCA
-  ($("#pca-drug")[0]).selectedIndex = 0;
-  ($("#pca-orderset")[0]).selectedIndex = 0;
-  ($("#pca-continuous")[0]).selectedIndex = 0;
-  $('.pca-bg-warning').removeClass('pca-bg-warning');
-  $('.pca-bg-danger').removeClass('pca-bg-danger');
-  $('.pca-bg-error').removeClass('pca-bg-error');
+  $("#pca-drug")[0].selectedIndex = 0;
+  $("#pca-orderset")[0].selectedIndex = 0;
+  $("#pca-continuous")[0].selectedIndex = 0;
+  $(".pca-bg-warning").removeClass("pca-bg-warning");
+  $(".pca-bg-danger").removeClass("pca-bg-danger");
+  $(".pca-bg-error").removeClass("pca-bg-error");
 
 });
 
 // Patient
-$(".input-patient").on('keyup', () => {
+$(".input-patient").on("keyup", () => {
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
@@ -174,23 +175,23 @@ $(".input-patient").on('keyup', () => {
   calculate.amgWeight();
   calculate.amg();
 });
-$('#ptage').on('keyup', () => {
-  setTimeout(()=> {
-    $("#top-container").removeClass('age-adult age-child age-infant');
+$("#ptage").on("keyup", () => {
+  setTimeout(() => {
+    $("#top-container").removeClass("age-adult age-child age-infant");
     $("#top-container").addClass(`age-${pt.ageContext}`);
   }, 1000);
 });
 $("#hd").on("change", (e) => {
   const hd = e.target.selectedIndex;
-  $("#top-container").removeClass('hd-0 hd-1 hd-2 hd-3 hd-4');
+  $("#top-container").removeClass("hd-0 hd-1 hd-2 hd-3 hd-4");
   $("#top-container").addClass(`hd-${hd}`);
 
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
   calculate.vancoAUC();
-})
-$("#schwartz-k-infant").on('change', () => {
+});
+$("#schwartz-k-infant").on("change", () => {
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
@@ -198,59 +199,59 @@ $("#schwartz-k-infant").on('change', () => {
 });
 
 // Vancomycin
-$("#vancoIndication").on('change', () => {
+$("#vancoIndication").on("change", () => {
   calculate.patientData();
   calculate.vancoInitial();
 });
 
-$(".input-initialPK").on('keyup', () => {
+$(".input-initialPK").on("keyup", () => {
   calculate.vancoInitial();
 });
 
-$('#peakTiming-dose').on('keyup', () => calculate.peakTimingDuration() );
+$("#peakTiming-dose").on("keyup", () => calculate.peakTimingDuration() );
 
-$('.input-peakTiming').on('keyup',() => calculate.peakTiming() );
+$(".input-peakTiming").on("keyup", () => calculate.peakTiming() );
 
-$(".input-auc").on('keyup', () => {
+$(".input-auc").on("keyup", () => {
   calculate.syncCurrentDFT("auc");
   calculate.vancoAUC();
   calculate.vancoRevision();
 });
 
-$(".input-auc-interval").on('keyup', () => {
+$(".input-auc-interval").on("keyup", () => {
   calculate.vancoAUC(false);
 });
 
-$("#auc-reset").on('click', () => {
+$("#auc-reset").on("click", () => {
   calculate.vancoAUC();
 });
 
-$('#btnShowInitialPk').on('click', () => {
-  $('#row--initialPkAlert').hide(50, "linear");
-  $('#row--initialPkCalc').addClass('show');
+$("#btnShowInitialPk").on("click", () => {
+  $("#row--initialPkAlert").hide(50, "linear");
+  $("#row--initialPkCalc").addClass("show");
 });
 
-$(".input-revision").on('keyup', () => {
+$(".input-revision").on("keyup", () => {
   calculate.syncCurrentDFT("revision");
   calculate.vancoRevision();
   calculate.vancoAUC();
 });
 
-$(".input-aucDates").on('keyup', () => calculate.vancoAUCDates() );
-$(".input-twolevel").on('keyup', () => calculate.vancoTwolevel() );
-$(".input-twolevel-interval").on('keyup', () => calculate.vancoTwolevel(false) );
-$("#twolevel-reset").on('click', () => calculate.vancoTwolevel() );
+$(".input-aucDates").on("keyup", () => calculate.vancoAUCDates() );
+$(".input-twolevel").on("keyup", () => calculate.vancoTwolevel() );
+$(".input-twolevel-interval").on("keyup", () => calculate.vancoTwolevel(false) );
+$("#twolevel-reset").on("click", () => calculate.vancoTwolevel() );
 
 $("#revision-goalTrough").on("change", () => calculate.vancoRevision() );
 
-$(".input-steadystate").on('keyup', () => calculate.vancoSteadyStateCheck() );
+$(".input-steadystate").on("keyup", () => calculate.vancoSteadyStateCheck() );
 $("#seconddose-time1").on("keyup", () => calculate.secondDose() );
 $("[name='seconddose-freq']").on("change", () => calculate.secondDose() );
 
 // Aminoglycosides
-$(".input-amg").on('keyup', () => calculate.amg() );
-$("#amg-medication").on('change', () => calculate.amg() );
-$("#amg-postAbxEffect").on('change', () => calculate.amg() );
+$(".input-amg").on("keyup", () => calculate.amg() );
+$("#amg-medication").on("change", () => calculate.amg() );
+$("#amg-postAbxEffect").on("change", () => calculate.amg() );
 $("#amg-Cf").on("change", () => {
   changedAmgMethod();
   calculate.amgWeight();
@@ -260,17 +261,17 @@ $("#amg-Cf").on("change", () => {
 /**
  * Check CF box status and show/hide DOM elements based on dosing method
  */
-function changedAmgMethod(){
-  if ( $('#amg-Cf').is(':checked') ) {
-    $('#row--amgTab').removeClass('amg-ext').addClass('amg-cf');
-    $("#label--amg-currentDose").html('Current Dose');
+function changedAmgMethod() {
+  if ( $("#amg-Cf").is(":checked") ) {
+    $("#row--amgTab").removeClass("amg-ext").addClass("amg-cf");
+    $("#label--amg-currentDose").html("Current Dose");
     /* Change to tobramycin if gentamicin is selected */
-    if ( $("#amg-medication option:selected").val() === 'G' ) {
-      $("#amg-medication").val('T');
+    if ( $("#amg-medication option:selected").val() === "G" ) {
+      $("#amg-medication").val("T");
     }
   } else {
-    $('#row--amgTab').removeClass('amg-cf').addClass('amg-ext');
-    $("#label--amg-currentDose").html('Dose Administered');
+    $("#row--amgTab").removeClass("amg-cf").addClass("amg-ext");
+    $("#label--amg-currentDose").html("Dose Administered");
   }
 }
 
@@ -286,12 +287,12 @@ $("#ivig-dose").on("keyup", () => calculate.ivig() );
 
 // Vancomycin AUC Dates Modal
 $("#aucDates-sameInterval").on("change", e => {
-  const tr = document.getElementById('aucDates-row--trough');
-  const pk = document.getElementById('aucDates-row--peak');
-  const spacer = document.getElementById('aucDates-row--spacer');
-  const last = document.getElementById('aucDates-row--last');
+  const tr = document.getElementById("aucDates-row--trough");
+  const pk = document.getElementById("aucDates-row--peak");
+  const spacer = document.getElementById("aucDates-row--spacer");
+  // const last = document.getElementById("aucDates-row--last");
   const par = tr.parentNode;
-  if ( e.target.checked ){
+  if ( e.target.checked ) {
     $("#aucDates-label--dose1").html("Dose prior to levels");
     par.insertBefore(pk, tr);
     par.insertBefore(tr, spacer);
@@ -305,20 +306,20 @@ $("#aucDates-sameInterval").on("change", e => {
   calculate.vancoAUCDates();
 });
 
-$("#aucDates-apply").on('click', e => {
-  $(e.target).addClass('datesApplied');
-  $('#vancoAUCPeakTime').val($('#aucDates-peakResult').html());
-  $('#vancoAUCTroughTime').val($('#aucDates-troughResult').html());
-  $('#aucDatesModal').modal('hide');
+$("#aucDates-apply").on("click", e => {
+  $(e.target).addClass("datesApplied");
+  $("#vancoAUCPeakTime").val($("#aucDates-peakResult").html());
+  $("#vancoAUCTroughTime").val($("#aucDates-troughResult").html());
+  $("#aucDatesModal").modal("hide");
   calculate.vancoAUC();
 });
 
 /**
  * Resets date input fields to today's date.
  */
-function resetDates(){
+function resetDates() {
   const today = new Date();
-  $(".dt-date").val(`${today.getFullYear()}-${('0' + (today.getMonth()+1)).slice(-2)}-${('0' + today.getDate()).slice(-2)}`);
+  $(".dt-date").val(`${today.getFullYear()}-${`0${  today.getMonth() + 1}`.slice(-2)}-${`0${  today.getDate()}`.slice(-2)}`);
 }
 
 /**
@@ -331,7 +332,7 @@ function resetDates(){
  * @property {number}        _ht   petiant's height in cm, or 0 if invalid input
  * @property {number}        _scr  patient's serum creatinine, or 0 if invalid input
  */
-let pt = {
+const pt = {
   /**
    * Contains the min and max values for input validation
    * @const
@@ -346,8 +347,8 @@ let pt = {
       ageMin: 0.25, // minimum 3 months old
       ageMax: 120,
       scrMin: 0.1,
-      scrMax: 20
-    }
+      scrMax: 20,
+    },
   },
   /**
    * Gets/sets the sex of the patient.  Accepts a single letter - m or f - and
@@ -356,10 +357,10 @@ let pt = {
    * @param {any} [x] Patient's sex
    * @returns {string|number} Patient's sex as `M`, `F`, or 0 if invalid
    */
-  set sex(x){
+  set sex(x) {
     this._sex = /^[MmFf]$/.test(x) ? x.toUpperCase() : 0;
   },
-  get sex(){ return this._sex || 0; },
+  get sex() { return this._sex || 0; },
   /**
    * Gets/sets the weight of the patient.
    * @function
@@ -367,8 +368,8 @@ let pt = {
    * @param {number} [x] Patient's weight
    * @returns {number} Patient's weight in kg, or 0 if invalid
    */
-  set wt(x){ this._wt = checkValue(x, this.config.check.wtMin, this.config.check.wtMax); },
-  get wt(){ return this._wt || 0; },
+  set wt(x) { this._wt = checkValue(x, this.config.check.wtMin, this.config.check.wtMax); },
+  get wt() { return this._wt || 0; },
   /**
    * Gets/sets the height of the patient.
    * @function
@@ -376,8 +377,8 @@ let pt = {
    * @param    {number}     [x] Patient's height
    * @returns  {number}         Patient's height in cm, or 0 if invalid
    */
-  set ht(x){ this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
-  get ht(){ return this._ht || 0; },
+  set ht(x) { this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
+  get ht() { return this._ht || 0; },
   /**
    * Gets/sets the age of the patient.
    * Accepts in years, months, days, or months/days.
@@ -391,7 +392,7 @@ let pt = {
    * pt.age("16m3d"); // sets patient's age to 16 months, 3 days (getter returns in years)
    * pt.age("300d");  // sets patient's age to 300 days (getter returns in years)
    */
-  set age(x){
+  set age(x) {
     const ageInYears = parseAge(x);
     if ( ageInYears ) {
       this._age = checkValue(ageInYears, this.config.check.ageMin, this.config.check.ageMax);
@@ -400,17 +401,17 @@ let pt = {
     }
 
   },
-  get age(){ return this._age || 0; },
+  get age() { return this._age || 0; },
   /**
    * Gets the age context of the patient. 
    * Possible values are `adult` (default), `child`, and `infant`
    * @function
    * @returns {string} Patient's age context (adult, child, or infant)
    */
-  get ageContext(){
-    if ( this.age < 1 && this.age > 0 ) return 'infant';
-    if ( this.age < 18 && this.age !== 0 ) return 'child';
-    return 'adult';
+  get ageContext() {
+    if ( this.age < 1 && this.age > 0 ) return "infant";
+    if ( this.age < 18 && this.age !== 0 ) return "child";
+    return "adult";
   },
   /**
    * Gets/sets the patient's serum creatinine.
@@ -419,10 +420,10 @@ let pt = {
    * @param     {number}    [x]   Patient's SCr
    * @returns   {number}          Patient's SCr in mg/dL, or 0 if invalid
    */
-  set scr(x){
+  set scr(x) {
     this._scr = checkValue(x, this.config.check.scrMin, this.config.check.scrMax);
   },
-  get scr(){ return this._scr || 0; },
+  get scr() { return this._scr || 0; },
   /**
    * Gets the patient's body mass index
    * @function
@@ -431,7 +432,7 @@ let pt = {
    */
   get bmi() {
     if ( this.wt > 0 && this.ht > 0 ) {
-      return this.wt / (( this.ht / 100 )**2);
+      return this.wt / ( this.ht / 100  * ( this.ht / 100 ));
     }
     return 0;
   },
@@ -441,7 +442,7 @@ let pt = {
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#ideal-body-weight)
    */
-  get ibw(){
+  get ibw() {
     if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       return ( this.sex === "M" ? 50 : 45.5 ) + 2.3 * ( this.ht / 2.54 - 60 );
@@ -454,7 +455,7 @@ let pt = {
    * @returns {number} Patient's ideal body weight BMI in kg/m^2, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#adjusted-body-weight)
    */
-  get adjBW(){
+  get adjBW() {
     if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       if ( this.wt <= this.ibw ) return this.wt;
@@ -470,10 +471,10 @@ let pt = {
    * If patient is 30% above their IBW, returns `30`
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#percent-over-or-under-ibw)
    */
-  get overUnder(){
+  get overUnder() {
     if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex && this.adjBW > 0 ) {
-      return (this.wt / this.ibw - 1) * 100
+      return (this.wt / this.ibw - 1) * 100;
     }
     return 0;
   },
@@ -483,13 +484,13 @@ let pt = {
    * @returns {number} Patient's lean body weight in kg, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#lean-body-weight)
    */
-  get lbw(){
+  get lbw() {
     if ( this.age < 18 ) return 0;
     if ( this.ht > 0 && this.wt > 0 && this._sex ) {
       if ( this.sex === "F" ) {
-        return 9270 * this.wt / ( 8780 + 244 * this.bmi )
+        return 9270 * this.wt / ( 8780 + 244 * this.bmi );
       }
-      return 9270 * this.wt / ( 6680 + 216 * this.bmi )
+      return 9270 * this.wt / ( 6680 + 216 * this.bmi );
     }
     return 0;
   },
@@ -499,7 +500,7 @@ let pt = {
    * @returns {number} Patient's CrCl (C-G ABW) in mL/min, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
-  get cgActual(){
+  get cgActual() {
     if ( this.wt > 0 && this.age > 0 && this.scr > 0 && this._sex ) {
       return this.cg(this.wt);
     }
@@ -511,7 +512,7 @@ let pt = {
    * @returns {number} Patient's CrCl (C-G AdjBW) in mL/min, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
-  get cgAdjusted(){
+  get cgAdjusted() {
     if ( this.adjBW > 0 && this.age > 0 && this.scr > 0 ) {
       return this.cg(this.adjBW);
     }
@@ -523,7 +524,7 @@ let pt = {
    * @returns {number} Patient's CrCl (C-G IBW) in mL/min, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#cockroft-gault)
    */
-  get cgIdeal(){
+  get cgIdeal() {
     if ( this.ibw > 0 && this.age > 0 && this.scr > 0 ) {
       return this.cg(this.ibw);
     }
@@ -535,7 +536,7 @@ let pt = {
    * @returns {number} Patient's Protocol CrCl in mL/min, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md#protocol-crcl)
    */
-  get crcl(){
+  get crcl() {
     if ( this.age < 18 ) return this.schwartz;
     if ( this.ibw === 0 || this.age === 0 || this.scr === 0 ) return 0;
     if ( this.wt < this.ibw ) return this.cgActual;
@@ -548,7 +549,7 @@ let pt = {
    * @param {number} weight   weight in kg to use for calculation
    * @returns {number} Calculated CrCl in mL/min, or 0 if insufficient input
    */
-  cg(weight){
+  cg(weight) {
     return (140 - this.age) * weight / (this.scr * 72) * (pt.sex === "F" ? 0.85 : 1);
   },
   /**
@@ -558,19 +559,19 @@ let pt = {
    * @param {number}  [x] selectedIndex of k value input element where 0 is "term infant" and 1 is "LBW infant"
    * @returns {number} k value, or 0 if age > 18 or insufficient input
    */
-  set schwartzK(term){
-    if ( this.age === 0 || this.age >= 18 || ( this.age >= 13 && this.sex === 0 ) ) {
+  set schwartzK(term) {
+    if ( this.age === 0 || this.age >= 18 ||  this.age >= 13 && this.sex === 0  ) {
       this._schwartzK = 0;
     } else if ( this.age <= 1 ) {
       this._schwartzK = term === 0 ? 0.45 : 0.33;
     } else if ( this.age >= 13 && this.sex === "M" ) {
       this._schwartzK = 0.7;
     } else {
-      this._schwartzK = 0.55
+      this._schwartzK = 0.55;
     }
-    return this._schwartzK;
+    // return this._schwartzK;
   },
-  get schwartzK(){
+  get schwartzK() {
     return this._schwartzK || 0;
   },
   /**
@@ -579,10 +580,10 @@ let pt = {
    * @function
    * @returns {number} Patient's CrCl in mL/min using the Schwartz equation, or 0 if insufficient input
    */
-  get schwartz(){
+  get schwartz() {
     const k = this.schwartzK;
     if ( k === 0 || this.ht === 0 || this.scr === 0 ) return 0;
-    return ( k * this.ht ) / this.scr;
+    return  k * this.ht  / this.scr;
   },
   /**
    * Gets the patient's body surface area using the Mosteller formula if patient
@@ -592,14 +593,14 @@ let pt = {
    * @returns {number} Patient's BSA in m^2, or 0 if insufficient input
    * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/docs/equations.md/#body-surface-area)
    */
-   get bsa(){
-     if ( this.age < 14 ) return 0;
-     if ( this.ht > 0 && this.wt > 0 ) {
-       return Math.sqrt( ( this.wt * this.ht ) / 3600 );
-     }
-     return 0;
-   }
- };
+  get bsa() {
+    if ( this.age < 14 ) return 0;
+    if ( this.ht > 0 && this.wt > 0 ) {
+      return Math.sqrt(  this.wt * this.ht  / 3600 );
+    }
+    return 0;
+  },
+};
 
 /**
  * Functions called by event listeners to calculate and display results
@@ -611,7 +612,7 @@ const calculate = {
    * @requires module:util
    * @returns  {undefined}
    */
-  patientData(){
+  patientData() {
     // Remove highlighting on CrCls
     $(".outCrCl").removeClass("use-this");
 
@@ -626,11 +627,11 @@ const calculate = {
     displayValue("#schwartz-crcl", pt.schwartz, 0.1, " mL/min");
     // Display weights and CrCl
     displayValue("#ibw", pt.ibw, 0.1, " kg");
-    displayValue("#overUnder", pt.overUnder, 0.1, "%", '', true);
+    displayValue("#overUnder", pt.overUnder, 0.1, "%", "", true);
     displayValue("#adjBW", pt.adjBW, 0.1, " kg");
     displayValue("#lbw", pt.lbw, 0.1, " kg");
     displayValue("#bmi", pt.bmi, 0.1, " kg/m²");
-    displayValue("#bsa", pt.bsa, 0.01, " m²")
+    displayValue("#bsa", pt.bsa, 0.01, " m²");
     // Use Bayesian calculator instead of weight-based dosing if BMI > 30
     if ( pt.bmi > 30 ) {
       $("#alert--bayesian").removeClass("alert-secondary").addClass("alert-warning");
@@ -654,36 +655,36 @@ const calculate = {
       }
     }
 
-    let cboHD = $("#hd")[0];
-    let cboIndication = $("#vancoIndication")[0];
+    const cboHD = $("#hd")[0];
+    const cboIndication = $("#vancoIndication")[0];
     pt.hd = cboHD.selectedIndex;
     pt.vancoIndication = cboIndication.selectedIndex;
     tape.pt = [[
-      ["Age", displayValue('', pt.age, 0.01, " years")],
+      ["Age", displayValue("", pt.age, 0.01, " years")],
       ["Sex", pt.sex === 0 ? "" : pt.sex],
-      ["Weight", displayValue('', pt.wt, 0.0001, " kg")],
-      ["Height", displayValue('', pt.ht, 0.0001, " cm")],
-      ["SCr", displayValue('', pt.scr, 0.0001, " mg/dL")],
-      ["Dialysis", cboHD.options[pt.hd].innerHTML]
+      ["Weight", displayValue("", pt.wt, 0.0001, " kg")],
+      ["Height", displayValue("", pt.ht, 0.0001, " cm")],
+      ["SCr", displayValue("", pt.scr, 0.0001, " mg/dL")],
+      ["Dialysis", cboHD.options[pt.hd].innerHTML],
     ]];
-    if ( pt.ageContext === "adult" ){
+    if ( pt.ageContext === "adult" ) {
       tape.pt.push([
-        ["Ideal body weight", displayValue('', pt.ibw, 0.1, ' kg')],
-        ["Over/Under IBW", displayValue('', pt.overUnder, 0.1, "%", '', true)],
-        ["Adjusted body weight", displayValue('', pt.adjBW, 0.1, " kg")],
-        ["Lean body weight", displayValue('', pt.lbw, 0.1, " kg")],
-        ["Body mass index", displayValue('', pt.bmi, 0.1, " kg/m²")]
+        ["Ideal body weight", displayValue("", pt.ibw, 0.1, " kg")],
+        ["Over/Under IBW", displayValue("", pt.overUnder, 0.1, "%", "", true)],
+        ["Adjusted body weight", displayValue("", pt.adjBW, 0.1, " kg")],
+        ["Lean body weight", displayValue("", pt.lbw, 0.1, " kg")],
+        ["Body mass index", displayValue("", pt.bmi, 0.1, " kg/m²")],
       ]);
       tape.pt.push([
-        ["CrCl (C-G Actual)", displayValue('', pt.cgActual, 0.1, " mL/min")],
-        ["CrCl (C-G Ideal)", displayValue('', pt.cgIdeal, 0.1, " mL/min")],
-        ["CrCl (C-G Adjusted)", displayValue('', pt.cgAdjusted, 0.1, " mL/min")],
-        ["CrCl (Protocol)", displayValue('', pt.crcl, 0.1, " mL/min")]
+        ["CrCl (C-G Actual)", displayValue("", pt.cgActual, 0.1, " mL/min")],
+        ["CrCl (C-G Ideal)", displayValue("", pt.cgIdeal, 0.1, " mL/min")],
+        ["CrCl (C-G Adjusted)", displayValue("", pt.cgAdjusted, 0.1, " mL/min")],
+        ["CrCl (Protocol)", displayValue("", pt.crcl, 0.1, " mL/min")],
       ]);
     } else {
       tape.pt.push([
-        ["Body mass index", displayValue('', pt.bmi, 0.1, " kg/m^2")],
-        ["CrCl (Schwartz)", displayValue('', pt.schwartz, 0.1, " mL/min")]
+        ["Body mass index", displayValue("", pt.bmi, 0.1, " kg/m^2")],
+        ["CrCl (Schwartz)", displayValue("", pt.schwartz, 0.1, " mL/min")],
       ]);
     }
     $("#tape--pt").html(LOG.outputTape(tape.pt, "Patient Info"));
@@ -695,7 +696,7 @@ const calculate = {
    * @param    {String}     src  id prefix of element to use as the source
    * @returns  {undefined}
    */
-  syncCurrentDFT(src){
+  syncCurrentDFT(src) {
     pt.curDose = checkValue(+$(`#${src}-curDose`).val(), vanco.config.check.doseMin, vanco.config.check.doseMax);
     pt.curFreq = checkValue(+$(`#${src}-curFreq`).val(), vanco.config.check.freqMin, vanco.config.check.freqMax);
     pt.curTrough = checkValue(+$(`#${src}-curTrough`).val(), vanco.config.check.levelMin, vanco.config.check.levelMax);
@@ -707,7 +708,7 @@ const calculate = {
    * Input and output for aminoglycoside dosing
    * @requires module:amg
    */
-  amgWeight(){    
+  amgWeight() {
     /* Get dosing weight */
     const { dosingWeightString } = amg.getDosingWeight({
       age: pt.age,
@@ -715,18 +716,18 @@ const calculate = {
       ibw: pt.ibw,
       adjBW: pt.adjBW,
       overUnder: pt.overUnder,
-      alt: ( $('#amg-Cf').is(':checked') || $('#amg-PrePostpartum').is(':checked') ),
-    })
-    $("#amg-dosingWeight").html(dosingWeightString);    
+      alt:  $("#amg-Cf").is(":checked") || $("#amg-PrePostpartum").is(":checked"),
+    });
+    $("#amg-dosingWeight").html(dosingWeightString);
 
   },
-  amg(){
-    
+  amg() {
+
     /* Get limits for input checking */
     const { goalPeakMin, goalPeakMax, freqMin, freqMax, doseMin, doseMax } = amg.config.check;
-    
+
     /* Determine whether CF calculation method should be used */
-    const cf = $('#amg-Cf').is(':checked')
+    const cf = $("#amg-Cf").is(":checked");
 
     /* Get dosing weight */
     const { dosingWeight, dosingWeightType, dosingWeightReason } = amg.getDosingWeight({
@@ -735,185 +736,171 @@ const calculate = {
       ibw: pt.ibw,
       adjBW: pt.adjBW,
       overUnder: pt.overUnder,
-      alt: ( cf || $('#amg-PrePostpartum').is(':checked') ),
-    })   
+      alt:  cf || $("#amg-PrePostpartum").is(":checked"),
+    });
 
     /* First letter (uppercase) of selected drug */
-    const selectedDrug = $("#amg-medication option:selected").val();    
-    
+    const selectedDrug = $("#amg-medication option:selected").val();
+
     /* Selected post-antibiotic effect time */
-    const pae = +($('#amg-postAbxEffect option:selected').text());
-    
+    const pae = +$("#amg-postAbxEffect option:selected").text();
+
     /* Get input values */
     const params = {
       cf: cf,
-      prePostpartum: $('#amg-prePostpartum').is(':checked'),
+      prePostpartum: $("#amg-prePostpartum").is(":checked"),
       drug: selectedDrug,
       goalPeak: checkValue(+$("#amg-goalPeak").val(), goalPeakMin, goalPeakMax),
       dose: checkValue(+$("#amg-currentDose").val(), doseMin, doseMax),
-      freq: checkValue(+$('#amg-currentFreq').val(), freqMin, freqMax),
+      freq: checkValue(+$("#amg-currentFreq").val(), freqMin, freqMax),
       doseTime: getDateTime($("#amg-doseDate").val(), $("#amg-doseTime").val()),
       postAbxEffect: pae,
-      level1: checkValue(+$('#amg-level1').val(),0),
-      level1Time: getDateTime($('#amg-level1Date').val(), $('#amg-level1Time').val()),
-      level2: checkValue(+$('#amg-level2').val(),0),
-      level2Time: getDateTime($('#amg-level2Date').val(), $('#amg-level2Time').val()),
-      customTime: getDateTime($('#amg-customDate').val(), $('#amg-customTime').val())
+      level1: checkValue(+$("#amg-level1").val(), 0),
+      level1Time: getDateTime($("#amg-level1Date").val(), $("#amg-level1Time").val()),
+      level2: checkValue(+$("#amg-level2").val(), 0),
+      level2Time: getDateTime($("#amg-level2Date").val(), $("#amg-level2Time").val()),
+      customTime: getDateTime($("#amg-customDate").val(), $("#amg-customTime").val()),
     };
     //TODO: add input validation for amg-currentDose, amg-goalPeak, amg-currentFreq
 
-    const wtBasedDose = (dosingWeight > 0 && params.dose > 0 ) ? params.dose/dosingWeight : 0;
+    const wtBasedDose = dosingWeight > 0 && params.dose > 0  ? params.dose / dosingWeight : 0;
 
-    displayValue('#amg-currentWtBasedDose', wtBasedDose, 0.1, ' mg/kg');
+    displayValue("#amg-currentWtBasedDose", wtBasedDose, 0.1, " mg/kg");
 
     /* Check to make sure timing of dose/levels are in the correct sequence and highlight if not */
     params.valid = true;
     if ( params.level1Time > 0 && params.doseTime > 0 && params.level1Time <= params.doseTime ) {
-      $('#amg-level1DateTime').addClass('invalid');
+      $("#amg-level1DateTime").addClass("invalid");
       params.valid = false;
     } else {
-      $('#amg-level1DateTime').removeClass('invalid');
+      $("#amg-level1DateTime").removeClass("invalid");
     }
-    if ( params.level2Time > 0 && ( ( params.level1Time > 0 && params.level2Time <= params.level1Time ) ||  ( params.doseTime > 0 && params.level2Time <= params.doseTime ) ) ) {
-      $('#amg-level2DateTime').addClass('invalid');
+    if ( params.level2Time > 0 && (  params.level1Time > 0 && params.level2Time <= params.level1Time  ||   params.doseTime > 0 && params.level2Time <= params.doseTime  ) ) {
+      $("#amg-level2DateTime").addClass("invalid");
       params.valid = false;
     } else {
-      $('#amg-level2DateTime').removeClass('invalid');
+      $("#amg-level2DateTime").removeClass("invalid");
     }
     if ( params.customTime > 0 && params.doseTime > 0 && params.customTime <= params.doseTime ) {
-      $('#amg-customLevelDateTime').addClass('invalid');
+      $("#amg-customLevelDateTime").addClass("invalid");
     } else {
-      $('#amg-customLevelDateTime').removeClass('invalid');
+      $("#amg-customLevelDateTime").removeClass("invalid");
     }
-    const wtTape = dosingWeight > 0 ? `${displayValue('', dosingWeight, 0.1, ' kg')} (${dosingWeightType} weight)` : '';
+    const wtTape = dosingWeight > 0 ? `${displayValue("", dosingWeight, 0.1, " kg")} (${dosingWeightType} weight)` : "";
 
     /* Save common items to tape */
     tape.amg = [
       [
-        ['Dosing Weight', wtTape],
-        ['Used because', dosingWeightReason],
+        ["Dosing Weight", wtTape],
+        ["Used because", dosingWeightReason],
       ],
       [
-        ['Drug', $('#amg-medication option:selected').text()],
-        ['Cystic Fibrosis?', (params.cf ? 'Yes': 'No') ],
-        ['Pre-/Postpartum?', (params.prePostpartum ? 'Yes': 'No') ],
-        ['Dose administered', displayValue('', params.dose, 0.1, ' mg')],
-        ['Weight-based', displayValue('', wtBasedDose, 0.1, ' mg/kg')],
-        ['Time of dose', displayDate(params.doseTime)],
-        ['First level', displayValue('', params.level1, 0.01, ' mcg/mL')],
-        ['First level time', displayDate(params.level1Time)],
-        ['Second level', displayValue('', params.level2, 0.01, ' mcg/mL')],
-        ['Second level time', displayDate(params.level2Time)]
-      ]
+        ["Drug", $("#amg-medication option:selected").text()],
+        ["Cystic Fibrosis?", params.cf ? "Yes" : "No"],
+        ["Pre-/Postpartum?", params.prePostpartum ? "Yes" : "No"],
+        ["Dose administered", displayValue("", params.dose, 0.1, " mg")],
+        ["Weight-based", displayValue("", wtBasedDose, 0.1, " mg/kg")],
+        ["Time of dose", displayDate(params.doseTime)],
+        ["First level", displayValue("", params.level1, 0.01, " mcg/mL")],
+        ["First level time", displayDate(params.level1Time)],
+        ["Second level", displayValue("", params.level2, 0.01, " mcg/mL")],
+        ["Second level time", displayDate(params.level2Time)],
+      ],
     ];
 
 
     if ( cf ) {
       /* Reset non-cf items */
-      $('#amg-recDose').html('');
-      $('#amg-recDoseStart').html('');
-      $('#amg-customLevel').html('');
-      $('#amg-goalTrough').html('');
-      $('#amg-warning').hide()
+      $("#amg-recDose").html("");
+      $("#amg-recDoseStart").html("");
+      $("#amg-customLevel").html("");
+      $("#amg-goalTrough").html("");
+      $("#amg-warning").hide();
 
-      const {goalTrough, goalPeak, goalAuc, ke, predPeak, predTrough, auc, halflife} = amg.cf(params);
-     
-      displayValue('#amg-predTrough', predTrough, 0.1, ' mcg/mL');
-      displayValue('#amg-predPeak', predPeak, 0.1, ' mcg/mL');
-      displayValue('#amg-auc', auc, 1, ' mg&middot;hr/L');
+      const { goalTrough, goalPeak, goalAuc, ke, predPeak, predTrough, auc, halflife } = amg.cf(params);
 
-      $('#amg-goalTroughOutput').html(goalTrough);
-      $('#amg-goalPeakOutput').html(goalPeak);
-      $('#amg-goalAuc').html(goalAuc);
+      displayValue("#amg-predTrough", predTrough, 0.1, " mcg/mL");
+      displayValue("#amg-predPeak", predPeak, 0.1, " mcg/mL");
+      displayValue("#amg-auc", auc, 1, " mg&middot;hr/L");
+
+      $("#amg-goalTroughOutput").html(goalTrough);
+      $("#amg-goalPeakOutput").html(goalPeak);
+      $("#amg-goalAuc").html(goalAuc);
       if ( ke > 0 ) {
         tape.amg.push([
-          ['Goal trough', goalTrough],
-          ['Goal peak', goalPeak],
-          ['Goal AUC', goalAuc],
-          ['Calculated ke', displayValue('', ke, 0.001, '/hr')],
-          ['Halflife', displayValue('', halflife, 0.1, ' hr')],
-          ['Predicted trough', displayValue('', predTrough, 0.001, ' mcg/mL')],
-          ['Predicted peak', displayValue('', predPeak, 0.01, ' mcg/mL')],
-          ['Calculated AUC', displayValue('', auc, 0.1, ' mg&middot;hr/L')]
-        ])
+          ["Goal trough", goalTrough],
+          ["Goal peak", goalPeak],
+          ["Goal AUC", goalAuc],
+          ["Calculated ke", displayValue("", ke, 0.001, "/hr")],
+          ["Halflife", displayValue("", halflife, 0.1, " hr")],
+          ["Predicted trough", displayValue("", predTrough, 0.001, " mcg/mL")],
+          ["Predicted peak", displayValue("", predPeak, 0.01, " mcg/mL")],
+          ["Calculated AUC", displayValue("", auc, 0.1, " mg&middot;hr/L")],
+        ]);
       }
-    } else {      
+    } else {
       /* Reset cf-only items */
-      $('#amg-goalPeakOutput').html('');
-      $('#amg-goalAuc').html('');
-      $('#amg-predTrough').html('');
-      $('#amg-predPeak').html('');
-      $('#amg-auc').html('');
+      $("#amg-goalPeakOutput").html("");
+      $("#amg-goalAuc").html("");
+      $("#amg-predTrough").html("");
+      $("#amg-predPeak").html("");
+      $("#amg-auc").html("");
 
 
-      const {goalTrough, ke, truePeak, troughDT, redoseDT, redoseLevel, newDoseToRedoseTime, vd, recDose, recDoseRounded, recFreq, levelAtCustom, warn } = amg.extended(params);
+      const { goalTrough, ke, truePeak, troughDT, redoseDT, redoseLevel, newDoseToRedoseTime, vd, recDose, recDoseRounded, recFreq, levelAtCustom, warn } = amg.extended(params);
 
       /* Show warning if indicated */
       if ( warn ) {
-        $('#amg-warning').show()
+        $("#amg-warning").show();
       } else {
-        $('#amg-warning').hide()
+        $("#amg-warning").hide();
       }
-      displayValue('#amg-goalTrough', goalTrough, 1, ' mcg/mL');
-      const recDoseAndFreq = `${displayValue('', recDoseRounded, 0.1, ' mg' )} ${displayValue('', recFreq, 1, 'h', 'q')}`;
-      $('#amg-recDose').html(recDoseAndFreq);
-      $('#amg-recDoseStart').html(displayDate(redoseDT));
-      displayValue('#amg-customLevel', levelAtCustom, 0.1, ' mcg/mL');
+      displayValue("#amg-goalTrough", goalTrough, 1, " mcg/mL");
+      const recDoseAndFreq = `${displayValue("", recDoseRounded, 0.1, " mg" )} ${displayValue("", recFreq, 1, "h", "q")}`;
+      $("#amg-recDose").html(recDoseAndFreq);
+      $("#amg-recDoseStart").html(displayDate(redoseDT));
+      displayValue("#amg-customLevel", levelAtCustom, 0.1, " mcg/mL");
 
       if ( truePeak > 0 ) {
         tape.amg.push([
-          ['Goal peak', displayValue('', params.goalPeak, 0.1, " mcg/mL")],
-          ['Goal trough', displayValue('', goalTrough, 1, " mcg/mL")],
-          ['Post-antibiotic effect', displayValue('', pae, 1, ' hours', '', false, true)],
-          ['Calculated ke', displayValue('', ke, 0.001, '/hr')],
-          ['Estimated Vd', displayValue('', vd, 0.01, ' L')],
-          ['Calculated (true) Peak', displayValue('', truePeak, 0.01, ' mcg/mL')],
-          ['Time to goal trough (MIC)', displayDate(troughDT)],
-          ['Redose point', displayDate(redoseDT)],
-          ['Level at redose point', displayValue('', redoseLevel, 0.01, ' mcg/mL', '', false, true)],
-          ['Time to redose point', displayValue('', newDoseToRedoseTime, 0.01, ' hrs', '', true)]
+          ["Goal peak", displayValue("", params.goalPeak, 0.1, " mcg/mL")],
+          ["Goal trough", displayValue("", goalTrough, 1, " mcg/mL")],
+          ["Post-antibiotic effect", displayValue("", pae, 1, " hours", "", false, true)],
+          ["Calculated ke", displayValue("", ke, 0.001, "/hr")],
+          ["Estimated Vd", displayValue("", vd, 0.01, " L")],
+          ["Calculated (true) Peak", displayValue("", truePeak, 0.01, " mcg/mL")],
+          ["Time to goal trough (MIC)", displayDate(troughDT)],
+          ["Redose point", displayDate(redoseDT)],
+          ["Level at redose point", displayValue("", redoseLevel, 0.01, " mcg/mL", "", false, true)],
+          ["Time to redose point", displayValue("", newDoseToRedoseTime, 0.01, " hrs", "", true)],
         ],
         [
-          ['Recommended dose', displayValue('', recDose, 0.1, ' mg')],
-          ['Recommended frequency', displayValue('', recFreq, 1, 'h', 'q')]
-        ])          
+          ["Recommended dose", displayValue("", recDose, 0.1, " mg")],
+          ["Recommended frequency", displayValue("", recFreq, 1, "h", "q")],
+        ]);
         if ( levelAtCustom > 0 ) {
           tape.amg.push([
-            ['Point level estimate at', displayDate(params.customTime)],
-            ['Estimated level', displayValue('', levelAtCustom, 0.01, ' mcg/mL', false, true)]
-          ])
-        }        
+            ["Point level estimate at", displayDate(params.customTime)],
+            ["Estimated level", displayValue("", levelAtCustom, 0.01, " mcg/mL", false, true)],
+          ]);
+        }
       }
     } // end non-CF
 
     if ( tape.amg.length > 0 ) {
       $("#tapeAmg--calc").html(LOG.outputTape(tape.amg, "Aminoglycoside Extended Interval Dosing"));
     } else {
-      $('#tapeAmg--calc').html('')
+      $("#tapeAmg--calc").html("");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   },
- 
+
   /**
    * Input and output for initial protocol dosing and initial PK dosing
    * @requires module:util
    * @requires module:vanco
    * @returns  {undefined}
    */
-  vancoInitial(){
+  vancoInitial() {
     $("#vancoInitialLoad").html(vanco.loadingDose({
       ht: pt.ht,
       wt: pt.wt,
@@ -921,7 +908,7 @@ const calculate = {
       sex: pt.sex,
       bmi: pt.bmi,
       hd: pt.hd,
-      vancoIndication: pt.vancoIndication
+      vancoIndication: pt.vancoIndication,
     }));
     const { doseMin, doseMax, freqMin, freqMax } = vanco.config.check;
     const { maintText, freq } = vanco.getMaintenanceDose({
@@ -931,7 +918,7 @@ const calculate = {
       scr: pt.scr,
       hd: pt.hd,
       indication: pt.vancoIndication,
-      crcl: pt.crcl
+      crcl: pt.crcl,
     });
     $("#vancoInitialMaintenance").html(maintText);
     let maintTextTooltip = "";
@@ -940,16 +927,16 @@ const calculate = {
       if ( /^Must order/.test(maintText) ) {
         maintTextTooltip = maintText;
       } else {
-        maintTextTooltip = `<b>Calculated weight-based dose is</b> <br>${maintText}<br><b>but Bayesian calculator should be used instead for obese patients.</b>`
+        maintTextTooltip = `<b>Calculated weight-based dose is</b> <br>${maintText}<br><b>but Bayesian calculator should be used instead for obese patients.</b>`;
       }
     }
-    $("#tooltip--vanco-md-bayesian").attr('data-original-title', maintTextTooltip);
+    $("#tooltip--vanco-md-bayesian").attr("data-original-title", maintTextTooltip);
     if ( maintText.length > 0 && pt.bmi > 30 && pt.hd === 0 ) {
-      $("#row--vanco-md-default").css('display', 'none');
-      $("#row--vanco-md-bayesian").css('display', 'flex');
+      $("#row--vanco-md-default").css("display", "none");
+      $("#row--vanco-md-bayesian").css("display", "flex");
     } else {
-      $("#row--vanco-md-default").css('display', 'flex');
-      $("#row--vanco-md-bayesian").css('display', 'none');
+      $("#row--vanco-md-default").css("display", "flex");
+      $("#row--vanco-md-bayesian").css("display", "none");
     }
     const { monitoring, targetLevelText, pkParam, targetMin, targetMax, goalTroughIndex } = vanco.getMonitoringRecommendation({
       freq: freq,
@@ -958,23 +945,24 @@ const calculate = {
       scr: pt.scr,
       bmi: pt.bmi,
       indication: pt.vancoIndication,
-      age: pt.age
+      age: pt.age,
     });
 
     $("#vancoInitialMonitoring").html(monitoring);
     $("#vancoInitialTargetLevel").html(targetLevelText);
 
     // Set goal trough selection on the single level tab
-    if( goalTroughIndex >= 0 ) {
+    if ( goalTroughIndex >= 0 ) {
       $("#revision-goalTrough")[0].selectedIndex = goalTroughIndex;
     }
 
     const selectedDose = checkValue(+$("#vancoInitialPK-dose").val(), doseMin, doseMax);
     const selectedFrequency = checkValue(+$("#vancoInitialPK-interval").val(), freqMin, freqMax);
 
-    let {
-      arrDose, arrViable, arrLevel, vd, ke, pkLevel, pkRecLevel, pkRecDose,
-      pkFreq, pkRecFreq, pkHalflife, pkLevelRowHeading, pkLevelUnits, pkLevelLabel
+    const {
+      arrDose, arrViable, arrLevel, pkLevel, pkRecLevel, pkRecDose,
+      // vd, ke, 
+      pkFreq, pkRecFreq, pkHalflife, pkLevelRowHeading, pkLevelUnits, pkLevelLabel,
     } = vanco.getInitialDosing({
       method: pkParam,
       crcl: pt.crcl,
@@ -986,7 +974,7 @@ const calculate = {
       goalMin: targetMin,
       goalMax: targetMax,
       selDose: selectedDose,
-      selFreq: selectedFrequency
+      selFreq: selectedFrequency,
     });
 
     displayValue("#vancoInitialPK-halflife", pkHalflife, 0.1, " hrs");
@@ -997,21 +985,21 @@ const calculate = {
     displayValue("#vancoInitialPK-recLevel", pkRecLevel, 0.1, pkLevelUnits);
     displayValue("#vancoInitialPK-level", pkLevel, 0.1, pkLevelUnits);
     const tableHtml = this.createVancoTable({
-      rows: [{ title: "Dose", data: arrDose, roundTo: 1, units: " mg"},
-      { title: "Frequency", data: pkFreq, units: " hrs"},
-      { title: pkLevelRowHeading, data: arrLevel, roundTo: 0.1 }],
-      highlightColumns: arrViable
+      rows: [{ title: "Dose", data: arrDose, roundTo: 1, units: " mg" },
+        { title: "Frequency", data: pkFreq, units: " hrs" },
+        { title: pkLevelRowHeading, data: arrLevel, roundTo: 0.1 }],
+      highlightColumns: arrViable,
     });
     $("#vancoInitialPK-table").html(tableHtml);
 
-    let tableText = [[pkLevelLabel, []]];
-    for ( let i = 0; i < arrDose.length; i++ ){
+    const tableText = [[pkLevelLabel, []]];
+    for ( let i = 0; i < arrDose.length; i++ ) {
       tableText[0][1].push(
         [
           `${arrDose[i]} mg q${pkFreq}h`,
-          arial.padArray(["9999.99", displayValue('', arrLevel[i], 0.1, pkLevelUnits)], 0)[1]
+          arial.padArray(["9999.99", displayValue("", arrLevel[i], 0.1, pkLevelUnits)], 0)[1],
         ]
-      )
+      );
     }
   },
   /**
@@ -1020,7 +1008,7 @@ const calculate = {
    * @requires module:util
    * @returns {undefined}
    */
-  vancoRevision(){
+  vancoRevision() {
     const cboGoal = $("#revision-goalTrough")[0];
     const { goalmin, goalmax, goaltrough } = cboGoal.options[cboGoal.selectedIndex].dataset;
     const { doseMin, doseMax, freqMin, freqMax } = vanco.config.check;
@@ -1035,7 +1023,7 @@ const calculate = {
       curTrough: pt.curTrough,
       testDose: selectedLinearDose,
       testFreq: selectedLinearInterval,
-      goalTrough: goaltrough
+      goalTrough: goaltrough,
     });
 
     $("#revision-linearDose").html( linearDose === 0 ? "" : `${roundTo(linearDose, 1)} mg q ${linearFreq} h`);
@@ -1057,7 +1045,7 @@ const calculate = {
       goalMax: goalmax,
       goalPeak: 35,
       selFreq: selectedInterval,
-      selDose: selectedDose
+      selDose: selectedDose,
     });
     pt.adjHalflife = halflife;
     displayValue("#revision-halflife", halflife, 0.1, " hours");
@@ -1066,33 +1054,33 @@ const calculate = {
     displayChange("#revision-pkDoseChange", recDose, recFreq);
     displayValue("#revision-pkTrough", recTrough, 0.1, " mcg/mL");
 
-    displayChange("#revision-pkTestDoseChange", selDose, selFreq)
+    displayChange("#revision-pkTestDoseChange", selDose, selFreq);
     displayValue("#revision-pkTestTrough", selTrough, 0.1, " mcg/mL");
 
     this.vancoSteadyStateCheck();
 
     const tableHtml = this.createVancoTable({
-      rows: [{ title: "Maint. dose", data: newDose, roundTo: 1, units: " mg"},
-      { title: "Interval", data: newFreq, units: " hrs"},
-      { title: "Est. Trough (mcg/mL)", data: newTrough, roundTo: 0.1 }],
-      highlightColumns: newViable
+      rows: [{ title: "Maint. dose", data: newDose, roundTo: 1, units: " mg" },
+        { title: "Interval", data: newFreq, units: " hrs" },
+        { title: "Est. Trough (mcg/mL)", data: newTrough, roundTo: 0.1 }],
+      highlightColumns: newViable,
     });
     $("#revision-pkTable").html(tableHtml);
 
-    $("#vancoHdAdj").html(vanco.hdRevision({wt: pt.wt, trough: pt.curTrough}));
+    $("#vancoHdAdj").html(vanco.hdRevision({ wt: pt.wt, trough: pt.curTrough }));
   },
   /**
    * Input and output for Steady State Check on single-level tab
    * @requires module:vanco
    * @returns {undefined}
    */
-  vancoSteadyStateCheck(){
+  vancoSteadyStateCheck() {
     const firstDT = getDateTime($("#steadystate-dateFirst").val(), $("#steadystate-timeFirst").val());
     const troughDT = getDateTime($("#steadystate-dateTrough").val(), $("#steadystate-timeTrough").val());
     if ( firstDT !== 0 && troughDT !== 0 && pt.adjHalflife > 0 ) {
       const timeDiff = getHoursBetweenDates(firstDT, troughDT);
       const halflives = roundTo(timeDiff / pt.adjHalflife, 0.1);
-      $("#steadystate-timeDiff").html(`${roundTo(timeDiff, 0.1)} hrs&nbsp;&nbsp;&nbsp;(${halflives} ${halflives === 1 ? 'half-life' : 'half-lives'})`);
+      $("#steadystate-timeDiff").html(`${roundTo(timeDiff, 0.1)} hrs&nbsp;&nbsp;&nbsp;(${halflives} ${halflives === 1 ? "half-life" : "half-lives"})`);
       $("#steadystate-atSS").html(`${halflives < 4 ? "Not at" : "At"} steady state.`);
     } else {
       $("#steadystate-atSS").html("");
@@ -1100,18 +1088,16 @@ const calculate = {
     }
   },
 
-
-
   /**
    * For peak level timing, calculate and output infusion time for the selected dose
    * @requires module:vanco
    * 
    * @since v1.1.1
    */
-  peakTimingDuration(){
-    const dose = checkValue(+$('#peakTiming-dose').val(), vanco.config.check.doseMin, vanco.config.check.doseMax);
-    const infTime = dose > 0 ? vanco.getInfusionTime(dose)*60 : '';
-    $('#peakTiming-infTime').val(infTime);
+  peakTimingDuration() {
+    const dose = checkValue(+$("#peakTiming-dose").val(), vanco.config.check.doseMin, vanco.config.check.doseMax);
+    const infTime = dose > 0 ? vanco.getInfusionTime(dose) * 60 : "";
+    $("#peakTiming-infTime").val(infTime);
     this.peakTiming();
 
   },
@@ -1123,18 +1109,18 @@ const calculate = {
    * 
    * @since v1.1.1
    */
-  peakTiming(){
-    const infTime = checkValue(+$('#peakTiming-infTime').val(), vanco.config.check.infTimeMin, vanco.config.check.infTimeMax)
-    let startTime = getDateTime('1900-01-01', $("#peakTiming-startTime").val());
+  peakTiming() {
+    const infTime = checkValue(+$("#peakTiming-infTime").val(), vanco.config.check.infTimeMin, vanco.config.check.infTimeMax);
+    const startTime = getDateTime("1900-01-01", $("#peakTiming-startTime").val());
     if ( startTime instanceof Date ) {
       startTime.setMinutes(startTime.getMinutes() + 60 + infTime );
       const time1 = displayTime(startTime);
       startTime.setMinutes(startTime.getMinutes() + 60 );
       const time2 = displayTime(startTime);
       if ( infTime > 0 && startTime instanceof Date) {
-        $("#peakTiming-peak").html(`Draw peak between ${time1} and ${time2}.`)
+        $("#peakTiming-peak").html(`Draw peak between ${time1} and ${time2}.`);
       } else {
-        $("#peakTiming-peak").html("")
+        $("#peakTiming-peak").html("");
       }
     }
   },
@@ -1144,12 +1130,12 @@ const calculate = {
    * @requires module:vanco
    * @returns {undefined}
    */
-  vancoAUCDates(){
-    const sameInterval = $('#aucDates-sameInterval').is(':checked');
-    const dose1 = getDateTime($('#aucDates-doseDate-1').val(), $('#aucDates-doseTime-1').val());
-    const dose2 = sameInterval ? dose1 : getDateTime($('#aucDates-doseDate-2').val(), $('#aucDates-doseTime-2').val());
-    const trough = getDateTime($('#aucDates-troughDate').val(), $('#aucDates-troughTime').val());
-    const peak = getDateTime($('#aucDates-peakDate').val(), $('#aucDates-peakTime').val());
+  vancoAUCDates() {
+    const sameInterval = $("#aucDates-sameInterval").is(":checked");
+    const dose1 = getDateTime($("#aucDates-doseDate-1").val(), $("#aucDates-doseTime-1").val());
+    const dose2 = sameInterval ? dose1 : getDateTime($("#aucDates-doseDate-2").val(), $("#aucDates-doseTime-2").val());
+    const trough = getDateTime($("#aucDates-troughDate").val(), $("#aucDates-troughTime").val());
+    const peak = getDateTime($("#aucDates-peakDate").val(), $("#aucDates-peakTime").val());
 
     const troughHrs = roundTo(checkValue(getHoursBetweenDates(dose1, trough), 0, 48), 0.1);
     const peakHrs = roundTo(checkValue(getHoursBetweenDates(dose2, peak), 0, 48), 0.1);
@@ -1163,27 +1149,27 @@ const calculate = {
    * @param   {Boolean} [resetInterval=true]  whether recommended interval should override user input
    * @returns {undefined}
    */
-  vancoAUC(resetInterval = true){
-    let params = {
+  vancoAUC(resetInterval = true) {
+    const params = {
       dose: pt.curDose,
       interval: pt.curFreq,
       peak: checkValue(+$("#auc-curPeak").val(), vanco.config.check.levelMin, vanco.config.check.levelMax),
       peakTime: checkValue(+$("#vancoAUCPeakTime").val(), vanco.config.check.timeMin, vanco.config.check.timeMax),
       troughTime: checkValue(+$("#vancoAUCTroughTime").val(), vanco.config.check.timeMin, vanco.config.check.timeMax),
-      trough: pt.curTrough
+      trough: pt.curTrough,
     };
     const aucCurrent = vanco.calculateAUC(params);
     const auc24 = aucCurrent === undefined ? 0 : aucCurrent.auc24;
-    const oldInterval = aucCurrent === undefined ? 0 : aucCurrent.oldInterval;
+    // const oldInterval = aucCurrent === undefined ? 0 : aucCurrent.oldInterval;
     const goalTroughLow = aucCurrent === undefined ? 0 : aucCurrent.goalTroughLow;
     const goalTroughHigh = aucCurrent === undefined ? 0 : aucCurrent.goalTroughHigh;
     displayValue("#vancoAUC24", auc24 || 0, 0.1);
     const goalTrough = aucCurrent === undefined ? "" : `${roundTo(goalTroughLow, 0.1)} &ndash; ${roundTo(goalTroughHigh, 0.1)} mcg/mL`;
     $("#vancoAUCTroughGoal").html(goalTrough);
-    if( $("#vancoAUC24").html() !== "" ) {
+    if ( $("#vancoAUC24").html() !== "" ) {
       $("#vancoAUC24").append(` (${aucCurrent.therapeutic})`);
     }
-    if( resetInterval && $("#vancoCurrentInterval") !== "" && aucCurrent !== undefined ) {
+    if ( resetInterval && $("#vancoCurrentInterval") !== "" && aucCurrent !== undefined ) {
       $("#vancoAUCNewInterval").val(aucCurrent.oldInterval);
     }
     // done with first step here, have outputted new interval, auc24
@@ -1195,83 +1181,84 @@ const calculate = {
       rows: [
         { title: "Maint. dose", data: aucNew.dose, units: " mg" },
         { title: "Predicted AUC", data: aucNew.auc, roundTo: 0.1 },
-        { title: "Est. Trough (mcg/mL)", data: aucNew.trough, roundTo: 0.1}
+        { title: "Est. Trough (mcg/mL)", data: aucNew.trough, roundTo: 0.1 },
       ],
-      highlightColumns: aucNew.therapeutic
+      highlightColumns: aucNew.therapeutic,
     });
     $("#aucTable").html(tableHtml);
-    let tableText = [["Predicted AUC (est. trough) for New Dose", []]];
-    for ( let i = 0; i < aucNew.dose.length; i++ ){
+    const tableText = [["Predicted AUC (est. trough) for New Dose", []]];
+    for ( let i = 0; i < aucNew.dose.length; i++ ) {
       tableText[0][1].push(
         [
           `${aucNew.dose[i]} mg q${newInterval}h`,
-          `${arial.padArray(["9999.99", roundTo(aucNew.auc[i], 0.1)], 0)[1]} (${roundTo(aucNew.trough[i],0.1)} mcg/mL)`
+          `${arial.padArray(["9999.99", roundTo(aucNew.auc[i], 0.1)], 0)[1]} (${roundTo(aucNew.trough[i], 0.1)} mcg/mL)`,
         ]
-      )
+      );
     }
 
     if ( aucCurrent !== undefined ) {
       // was the date-time calculator modal used?
-      const usedDateTimeCalculator = $("#aucDates-apply").hasClass('datesApplied')
+      const usedDateTimeCalculator = $("#aucDates-apply").hasClass("datesApplied");
       tape.auc = [
         [
           ["Current dose", `${params.dose} mg q${params.interval}h`],
-          ["Peak level", displayValue('', params.peak, 0.1, " mcg/mL")],
-          ["Trough level", displayValue('', params.trough, 0.1, " mcg/mL")],
-          ["Time to peak", displayValue('', params.peakTime, 0.01, " hrs")],
-          ["Time to trough", displayValue('', params.troughTime, 0.01, " hrs")],
+          ["Peak level", displayValue("", params.peak, 0.1, " mcg/mL")],
+          ["Trough level", displayValue("", params.trough, 0.1, " mcg/mL")],
+          ["Time to peak", displayValue("", params.peakTime, 0.01, " hrs")],
+          ["Time to trough", displayValue("", params.troughTime, 0.01, " hrs")],
         ],
         [
-          ["Vd", displayValue('', aucCurrent.vd, 0.01, " L")],
-          ["Infusion time", displayValue('', 60 * aucCurrent.tInf, 1, ' min')],
-          ["ke", displayValue('', aucCurrent.ke, 0.0001, ` hr^-1`)],
-          ["Halflife", displayValue('', aucCurrent.halflife, 0.1, ' hr')],
-          ["True peak", displayValue('', aucCurrent.truePeak, 0.1, ' mcg/mL')],
-          ["True trough", displayValue('', aucCurrent.trueTrough, 0.1, ' mcg/mL')],
-          ["AUC (inf)", displayValue('', aucCurrent.aucInf, 0.1)],
-          ["AUC (elim)", displayValue('', aucCurrent.aucElim, 0.1)],
+          ["Vd", displayValue("", aucCurrent.vd, 0.01, " L")],
+          ["Infusion time", displayValue("", 60 * aucCurrent.tInf, 1, " min")],
+          ["ke", displayValue("", aucCurrent.ke, 0.0001, ` hr^-1`)],
+          ["Halflife", displayValue("", aucCurrent.halflife, 0.1, " hr")],
+          ["True peak", displayValue("", aucCurrent.truePeak, 0.1, " mcg/mL")],
+          ["True trough", displayValue("", aucCurrent.trueTrough, 0.1, " mcg/mL")],
+          ["AUC (inf)", displayValue("", aucCurrent.aucInf, 0.1)],
+          ["AUC (elim)", displayValue("", aucCurrent.aucElim, 0.1)],
         ],
         [
-          ["AUC24", `${displayValue('', aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
+          ["AUC24", `${displayValue("", aucCurrent.auc24, 0.1)} (${aucCurrent.therapeutic})`],
           [
             `Trough goal`,
-            `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`],
+            `${roundTo(aucCurrent.goalTroughLow, 0.1)} &ndash; ${roundTo(aucCurrent.goalTroughHigh, 0.1)} mcg/mL`,
           ],
-        ]
-        if ( usedDateTimeCalculator ) {
-          const sameInterval = $('#aucDates-sameInterval').is(':checked');
-          const addToTape = [];
+        ],
+      ];
+      if ( usedDateTimeCalculator ) {
+        const sameInterval = $("#aucDates-sameInterval").is(":checked");
+        const addToTape = [];
+        addToTape.push([
+          "Drawn in same interval?",
+          sameInterval ? "Yes" : "No",
+        ]);
+        addToTape.push([
+          sameInterval ? "Dose before levels" : "Dose before trough",
+          displayDate( getDateTime( $("#aucDates-doseDate-1").val(), $("#aucDates-doseTime-1").val() ) ),
+        ]);
+        addToTape.push([
+          "Trough time",
+          displayDate( getDateTime($("#aucDates-troughDate").val(), $("#aucDates-troughTime").val() ) ),
+        ]);
+        if ( !sameInterval ) {
           addToTape.push([
-            "Drawn in same interval?",
-            sameInterval ? "Yes" : "No"
+            "Dose before peak",
+            displayDate( getDateTime($("#aucDates-doseDate-2").val(), $("#aucDates-doseTime-2").val() ) ),
           ]);
-          addToTape.push([
-            sameInterval ? "Dose before levels" : "Dose before trough",
-            displayDate( getDateTime( $('#aucDates-doseDate-1').val(), $('#aucDates-doseTime-1').val() ) )
-          ]);
-          addToTape.push([
-            "Trough time",
-            displayDate( getDateTime($('#aucDates-troughDate').val(), $('#aucDates-troughTime').val() ) )
-          ]);
-          if ( !sameInterval ) {
-            addToTape.push([
-              "Dose before peak",
-              displayDate( sameInterval ? dateTimeInputs.troughDose : getDateTime($('#aucDates-doseDate-2').val(), $('#aucDates-doseTime-2').val() ) )
-            ])
-          }
-          addToTape.push([
-            "Peak time",
-            displayDate( getDateTime($('#aucDates-peakDate').val(), $('#aucDates-peakTime').val() ) )
-          ]);
-          tape.auc.unshift(addToTape)
         }
-        $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing Calculation"));
-        $("#tape--auc").append(LOG.outputTape(tableText));
-      } else {
-        tape.auc = [];
-        $("#tape--auc").html('');
+        addToTape.push([
+          "Peak time",
+          displayDate( getDateTime($("#aucDates-peakDate").val(), $("#aucDates-peakTime").val() ) ),
+        ]);
+        tape.auc.unshift(addToTape);
       }
-    },
+      $("#tape--auc").html(LOG.outputTape(tape.auc, "AUC Dosing Calculation"));
+      $("#tape--auc").append(LOG.outputTape(tableText));
+    } else {
+      tape.auc = [];
+      $("#tape--auc").html("");
+    }
+  },
   /**
    * Input and output for Two-Level kinetic calculation
    * @requires module:util
@@ -1279,8 +1266,15 @@ const calculate = {
    * @param   {Boolean} [resetInterval=true]  whether recommended interval should override user input
    * @returns {undefined}
    */
-  vancoTwolevel(resetInterval = true){
-    const { levelMin, levelMax, freqMin, freqMax, doseMin, doseMax } = vanco.config.check;
+  vancoTwolevel(resetInterval = true) {
+    const {
+      levelMin,
+      levelMax,
+      // doseMin,
+      // doseMax,
+      freqMin,
+      freqMax,
+    } = vanco.config.check;
     const time1 = getDateTime($("#twolevelDate1").val(), $("#twolevelTime1").val());
     const time2 = getDateTime($("#twolevelDate2").val(), $("#twolevelTime2").val());
     const level1 = checkValue(+$("#twolevelLevel1").val(), levelMin, levelMax);
@@ -1291,11 +1285,20 @@ const calculate = {
       ke = Math.log(level1 / level2) / timeDiff;
     }
     const selectedInterval = resetInterval ? 0 : checkValue(+$("#twolevelInterval").val(), freqMin, freqMax);
-    const { pkDose, pkFreq, pkTrough, halflife, newPeak, newTrough, newViable, newDose } = vanco.calculateTwoLevelPK({
+    const {
+      pkDose,
+      pkFreq,
+      pkTrough,
+      halflife,
+      // newPeak,
+      newTrough,
+      newViable,
+      newDose,
+    } = vanco.calculateTwoLevelPK({
       wt: pt.wt,
       bmi: pt.bmi,
       ke: ke,
-      selectedInterval: selectedInterval
+      selectedInterval: selectedInterval,
     });
     displayValue("#twolevelHalflife", halflife, 0.1, " hours");
     displayValue("#twolevelNewDose", pkDose, 1, " mg");
@@ -1304,10 +1307,10 @@ const calculate = {
     }
     displayValue("#twolevelNewTrough", pkTrough, 0.1, " mcg/mL");
     const tableHtml = this.createVancoTable({
-      rows: [{ title: "Maint. dose", data: newDose, units: " mg"},
-      { title: "Interval", data: pkFreq, units: " hrs"},
-      { title: "Est. Trough (mcg/mL)", data: newTrough, roundTo: 0.1 }],
-      highlightColumns: newViable
+      rows: [{ title: "Maint. dose", data: newDose, units: " mg" },
+        { title: "Interval", data: pkFreq, units: " hrs" },
+        { title: "Est. Trough (mcg/mL)", data: newTrough, roundTo: 0.1 }],
+      highlightColumns: newViable,
     });
     $("#twolevelTable").html(tableHtml);
   },
@@ -1326,17 +1329,17 @@ const calculate = {
    * @param   {Boolean[]}         [obj.highlightColumns] Whether column is to be highlighted
    * @returns {String}                                   HTML tbody tag with class 'isTherapeutic' on highlighted columns
    */
-  createVancoTable({rows, highlightColumns} = {}){
+  createVancoTable({ rows, highlightColumns } = {}) {
     let rowHtml = "";
     if ( rows[0].data.length === 0 ) return "";
-    for( let row of rows ) {
+    for ( const row of rows ) {
       rowHtml += `<tr><th scope="row">${row.title}</th>`;
       if ( row.units === undefined ) { row.units = ""; }
       if ( row.roundTo === undefined ) { row.roundTo = -1; }
-      for ( let i=0; i<vanco.config.doses.length; i++ ){
+      for ( let i = 0; i < vanco.config.doses.length; i++ ) {
         let value = "";
         if ( Array.isArray(row.data) ) {
-          if ( row.data.length > 0 ) { value = row.data[i] };
+          if ( row.data.length > 0 ) { value = row.data[i]; }
         } else {
           value = row.data;
         }
@@ -1346,10 +1349,10 @@ const calculate = {
             rowClass = "isTherapeutic";
           }
         }
-        rowHtml += `<td class="${rowClass}">${displayValue("", value, row.roundTo, row.units)}</td>`
+        rowHtml += `<td class="${rowClass}">${displayValue("", value, row.roundTo, row.units)}</td>`;
 
       }
-      rowHtml += `</tr>`
+      rowHtml += `</tr>`;
     }
     return `<tbody>${rowHtml}</tbody>`;
   },
@@ -1359,11 +1362,11 @@ const calculate = {
    * @requires module:seconddose
    * @returns {undefined}
    */
-  secondDose(){
+  secondDose() {
     const fd = checkTimeInput($("#seconddose-time1").val());
     let freqId = $("[name='seconddose-freq']:checked")[0].id;
-    freqId = freqId.replace("seconddose-","");
-    const sd = getSecondDose({fd: fd, freqId: freqId});
+    freqId = freqId.replace("seconddose-", "");
+    const sd = getSecondDose({ fd: fd, freqId: freqId });
     if ( sd === undefined ) {
       $(".output[id^='seconddose']").html("");
       $("#seconddose-row-1").show();
@@ -1387,12 +1390,12 @@ const calculate = {
    * @requires module:ivig
    * @returns {undefined}
    */
-  ivig(){
+  ivig() {
     const dose = checkValue(+$("#ivig-dose").val());
     const selected = $("#ivig-product")[0].selectedIndex;
     $("#ivig-text").html(ivig.getText(selected, pt.wt, dose));
-  }
-}
+  },
+};
 
 /**
  * Provides a color to highlight the percent change of total daily vancomycin dose.
@@ -1412,13 +1415,13 @@ function colorScale(x) {
     arr = [
       Math.floor(100 + 155 * ((x - 20) / 10)),
       Math.floor(221 + 14 * ((x - 20) / 10)),
-      Math.floor(67 + 65 * ((x - 20) / 10))
+      Math.floor(67 + 65 * ((x - 20) / 10)),
     ];
   } else {
     arr = [
       Math.ceil(255 - 7 * ((x - 30) / 5)),
       Math.ceil(235 - 130 * ((x - 30) / 5)),
-      Math.ceil(132 - 25 * ((x - 30) / 5))
+      Math.ceil(132 - 25 * ((x - 30) / 5)),
     ];
   }
   return `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`;
@@ -1429,9 +1432,9 @@ function colorScale(x) {
  * @param   {Number} ke    elimination rate constant
  * @returns {Number}       halflife in hours
  */
-function getHalflife(ke){
-  return Math.log(2) / ke;
-}
+// function getHalflife(ke) {
+//   return Math.log(2) / ke;
+// }
 
 /**
  * From a proposed dose and frequency, calculate and display
@@ -1443,14 +1446,14 @@ function getHalflife(ke){
  * @returns  {HTMLElement}              The original DOM element, for chaining
  */
 function displayChange(el, d = 0, f = 0) {
-  let newDose = checkValue(d),
-  newFreq = checkValue(f),
-  oldTdd = 24 / pt.curFreq * pt.curDose,
-  arrow = "";
+  const newDose = checkValue(d);
+  const newFreq = checkValue(f);
+  const oldTdd = 24 / pt.curFreq * pt.curDose;
+  let arrow = "";
 
   if ( newDose > 0 && newFreq > 0 && pt.curDose > 0 && pt.curFreq > 0 ) {
-    let newTdd = 24 / newFreq * newDose;
-    let change = (newTdd - oldTdd) / oldTdd;
+    const newTdd = 24 / newFreq * newDose;
+    const change = (newTdd - oldTdd) / oldTdd;
     if (change === 0) {
       arrow = "&nbsp;&nbsp;&nbsp;";
     } else if (change < 0) {
@@ -1458,7 +1461,7 @@ function displayChange(el, d = 0, f = 0) {
     } else {
       arrow = "&uarr;&nbsp;&nbsp;";
     }
-    $(el).html(arrow + roundTo(Math.abs(change * 100), 0.1) + "%");
+    $(el).html(`${arrow + roundTo(Math.abs(change * 100), 0.1)  }%`);
     $(el).css("background-color", colorScale(Math.abs(change * 100)));
   } else {
     $(el).html("");
