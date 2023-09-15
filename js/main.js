@@ -21,6 +21,7 @@ require("./kcentra.js");
 require("./pca.js");
 require("./nextdose.js");
 require("./qtc.js");
+require("./alligation.js");
 
 let debug = false;
 // let debugDefaultTab = "more";

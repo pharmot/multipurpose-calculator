@@ -1,0 +1,121 @@
+<div class="card alligation-single" id="card--alligation">
+  <div class="card-header h5">Alligation</div>
+  <div class="card-body">
+    <div class="form-row mb-3">
+      <div class="col-6">
+        <div class="form-row">
+          <label for="alligation-type--single" class="col-5">Calculation</label>
+          <div class="btn-group btn-group-toggle col-auto" data-toggle="buttons">
+            <label class="btn btn-outline-secondary active">
+              <input type="radio" name="alligation-type" id="alligation-type--single" checked>Single
+            </label>
+            <label class="btn btn-outline-secondary">
+              <input type="radio" name="alligation-type" id="alligation-type--double">Double
+            </label>
+          </div>
+        </div>
+      </div> 
+      <div class="col-3">
+        <div class="form-row">
+            <button type="button" class="btn btn-light small border" id="button--alligation-example">Show Example</button>
+        </div>
+      </div>
+    </div> 
+    <div class="form-row">
+      <div class="col-6">        
+        <div class="card-subtitle text-left font-weight-bold large alligation-double-only">First Component</div>
+        <div class="form-row alligation-double-only">
+          <label for="alligation-name1" class="col-form-label col-5">Component Name</label>
+          <div class="col-7 input-group">
+            <input type="text" id="alligation-name1" class="form-control input-alligation">
+          </div>
+        </div>
+        <div class="form-row mb-3 alligation-double-only">
+          <label for="alligation-finalConc1" class="col-form-label col-5">Final Conc.</label>
+          <div class="col-4 input-group">
+            <input type="number" id="alligation-finalConc1" class="form-control input-alligation" min="0" max="100" step="1">
+            <div class="input-group-append">
+              <div class="input-group-text">%</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="alligation-lowerName" class="col-form-label col-5">Name (Lower)</label>
+          <div class="col-7 input-group">
+            <input type="text" id="alligation-lowerName" class="form-control input-alligation">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="alligation-lowerConc" class="col-form-label col-5">Concentration</label>
+          <div class="col-4 input-group">
+            <input type="number" id="alligation-lowerConc" class="form-control input-alligation" min="0" max="100" step="1">
+            <div class="input-group-append">
+              <div class="input-group-text">%</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row mt-3">
+          <label for="alligation-higherName" class="col-form-label col-5">Name (Higher)</label>
+          <div class="col-7 input-group">
+            <input type="text" id="alligation-higherName" class="form-control input-alligation">
+          </div>
+        </div>
+        <div class="form-row mb-5">
+          <label for="alligation-higherConc" class="col-form-label col-5">Concentration</label>
+          <div class="col-4 input-group">
+            <input type="number" id="alligation-higherConc" class="form-control input-alligation" min="0" max="100" step="1">
+            <div class="input-group-append">
+              <div class="input-group-text">%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card-subtitle text-left font-weight-bold large alligation-double-only">Second Component</div>
+        <div class="form-row alligation-double-only">
+          <label for="alligation-name2" class="col-form-label col-5">Component Name</label>
+          <div class="col-7 input-group">
+            <input type="text" id="alligation-name2" class="form-control input-alligation">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="alligation-finalConc2" class="col-form-label col-5">Final Conc.</label>
+          <div class="col-4 input-group">
+            <input type="number" id="alligation-finalConc2" class="form-control input-alligation" min="0" max="100" step="1">
+            <div class="input-group-append">
+              <div class="input-group-text">%</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row mt-3 alligation-double-only">
+          <label for="alligation-secondName" class="col-form-label col-5 font-bold">Solution Name</label>
+          <div class="col-7 input-group">
+            <input type="text" id="alligation-secondName" class="form-control input-alligation">
+          </div>
+        </div>
+        <div class="form-row alligation-double-only">
+          <label for="alligation-secondConc" class="col-form-label col-5">Concentration</label>
+          <div class="col-4 input-group">
+            <input type="number" id="alligation-secondConc" class="form-control input-alligation" min="0" max="100" step="1">
+            <div class="input-group-append">
+              <div class="input-group-text">%</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row mt-5">
+          <label for="alligation-finalVolume" class="col-form-label col-5">Final Volume</label>
+          <div class="col-4 input-group">
+            <input type="number" id="alligation-finalVolume" class="form-control input-alligation">
+            <div class="input-group-append">
+              <div class="input-group-text">mL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-9 offset-1" id="col--alligation-result">
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,37 +21,48 @@ body {
 }
 
 #col--logo,
-#col--main-left {
-  @include fixed-width('leftCol');
+#col--main-left,
+#card--current-dose {
+  @include fixed-width(320px);
+}
+ 
+#card--steady-state { @include fixed-width(350px); }
+
+#card--vancoHdAdj { @include fixed-width(550px); }
+
+#card--twolevel { @include fixed-width(580px); }
+
+#card--amg,
+#card--ivig {
+  @include fixed-width(600px);
 }
 
-#card--initial-pk,
-#card--initial-dosing,
-#nav-initial .has-alert-only .alert {
-  @include fixed-width('initial');
+
+// #card--tpn-1,
+// #card--tpn-2,
+#card--qtc {
+  @include fixed-width(400px);
 }
-#card--current-dose { @include fixed-width('currentDose'); }
-#card--steady-state { @include fixed-width('steadyState'); }
-#card--protocol-adjustment { @include fixed-width('protocolAdjustment'); }
-#card--vancoHdAdj { @include fixed-width('vancoHdAdj'); }
-#card--twolevel { @include fixed-width('twoLevel'); }
-#card--seconddose { @include fixed-width('secondDose'); }
-#card--ivig { @include fixed-width("amg"); }
-#card--amg { @include fixed-width("amg"); }
-#card--qtc { @include fixed-width("qtc"); }
-// #card--tpn-1 { @include fixed-width('tpn'); }
-// #card--tpn-2 { @include fixed-width('tpn'); }
-// #card--tpn-kcal { @include fixed-width('tpnEnergy'); }
-#card--heparin, #alert--heparin { @include fixed-width(650px); }
-#card--pca { @include fixed-width(650px); }
+// #card--tpn-kcal { @include fixed-width(500px); }
+ 
+ 
 #card--nextdose { @include fixed-width(700px); }
 #card--kcentra { @include fixed-width(700px); }
+#card--alligation { @include fixed-width(700px); }
 // #col--pca-params { @include fixed-width(500px); }
 
 #card--auc,
 #card--aucLinear,
-#card--peakTiming {
-  @include fixed-width('auc');
+#card--peakTiming,
+#card--seconddose,
+#card--protocol-adjustment,
+#card--heparin,
+#alert--heparin,
+#card--pca,
+#card--initial-pk,
+#card--initial-dosing,
+#nav-initial .has-alert-only .alert {
+  @include fixed-width(650px);
 }
 
 #col--resetButton {
@@ -69,14 +80,6 @@ body {
 #img--logo {
   margin: $len-2;
 }
-
-// #row--main {
-//   margin-top: -20px;
-// }
-
-// #form-row--ivig-weight-note {
-//   margin-top: 35px;
-// }
 
 .h1,
 h1 {
@@ -147,6 +150,14 @@ h1 {
   }
   &.xsmall {
     font-size: $len-25;
+  }
+  &.large {
+    font-size: $len-35;
+  }
+}
+.card-subtitle {
+  &.large {
+    font-size: $len-35;
   }
 }
 
@@ -394,6 +405,21 @@ input {
     }
   }
 }
+
+#card--alligation.alligation-single {
+  .alligation-double-only {
+    display: none;
+  }
+}
+
+#col--alligation-result {
+  font-family: "Arial", sans-serif;
+  font-size: 10pt;
+  line-height: 1.1em;
+  text-align:left;
+  justify-content: flex-start;
+}
+
 
 #row--vanco-md-bayesian {
   display: none;

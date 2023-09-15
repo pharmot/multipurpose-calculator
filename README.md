@@ -7,7 +7,7 @@
 [![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)&nbsp;&nbsp;&nbsp;
 ![GitHub Release Date](https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2355a63a)&nbsp;&nbsp;&nbsp;
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)&nbsp;&nbsp;&nbsp;
-![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.0.5&color=orange&logo=windowsxp)&nbsp;&nbsp;&nbsp;
+![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.1.0&color=%2355a63a&logo=windowsxp)&nbsp;&nbsp;&nbsp;
 ![MIT Licensed](https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a)
 
 ## Open the Calculator
@@ -67,6 +67,7 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 - Extended interval aminoglycoside calculator
 - Vancomycin peak timing calculator
 - Corrected QT interval calculator
+- Single and double alligation calculator
 
 ## [1.1.0] - 2023-01-30
 
