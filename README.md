@@ -34,10 +34,12 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 - Second dose timing
 - IVIG rate calculation and admin instruction generation
 - Heparin calcualtor for transferred patients
-- Aminoglycoside Dosing Weight
+- Aminoglycoside Extended Interval Dosing
+- Custom QT Interval Correction
 - PCA Calculator
 - KCentra calculation and admin instruction generation
 - Standard administration times tool
+- Single and double alligation
 
 # Documentation
 <ul>
