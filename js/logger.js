@@ -70,6 +70,15 @@ export function group(msg = "") {
   console.group(msg);
 }
 /**
+ * Wrapper for console.groupCollapsed, dependent on whether logging has been enabled
+ * @param   {String}    msg     Message to log to console
+ * @returns {undefined}
+ */
+export function groupCollapsed(msg = "") {
+  if (!enabled) return;
+  console.groupCollapsed(msg);
+}
+/**
  * Wrapper for console.groupEnd, dependent on whether logging has been enabled
  * @returns {undefined}
  */
