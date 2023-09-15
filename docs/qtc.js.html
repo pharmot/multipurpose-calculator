@@ -74,7 +74,7 @@
 
     
 
-    <h3>Modules</h3><ul><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
     <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
 </svg>
@@ -95,11 +95,11 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>/**
- * Corrected QT Calculatior Module
- * @module qtc
- * @requires module:util
- * @since v1.1.0
- */
+* Corrected QT Calculatior Module
+* @module qtc
+* @requires module:util
+* @since v1.1.0
+*/
 import { checkValue, displayValue } from './util.js';
 
 $(".input-qtc").on('keyup', () => calculateQtc() );
@@ -110,9 +110,9 @@ $("#btnReset").on('click', () => {
 });
 
 /**
- * Check AF box status and show/hide DOM elements based on dosing method
- */
-function changedAfib(){
+* Check AF box status and show/hide DOM elements based on dosing method
+*/
+function changedAfib() {
   if ( $('#qtc-af').is(':checked') ) {
     $('#card--qtc').addClass('qtc-afib');
   } else {
@@ -122,29 +122,22 @@ function changedAfib(){
 }
 
 /**
- * Calculate Corrected QT interval depending on AF or non-AF
- */
-function calculateQtc(){
-  console.log({
-    shortest: +checkValue($('#qtc-qt-shortest').val(), 1, 9999),
-    longest: +checkValue($('#qtc-qt-longest').val(), 1, 9999),
-    hr: +checkValue($('#qtc-hr').val(), 1, 9999),
-    qrs: +checkValue($('#qtc-qrs').val(), 1, 9999),
-    qt: +checkValue($('#qtc-qt').val(), 1, 9999)
-  })
-
+* Calculate Corrected QT interval depending on AF or non-AF
+*/
+function calculateQtc() {
+  
   let res;
-
+  
   if ( $('#qtc-af').is(':checked') ) {
     res = calculateAfib(
       +checkValue($('#qtc-qt-shortest').val(), 1, 9999),
       +checkValue($('#qtc-qt-longest').val(), 1, 9999)
-    )
+    );
   } else {
     res = calculateStandard({
       hr: +checkValue($('#qtc-hr').val(), 1, 9999),
       qrs: +checkValue($('#qtc-qrs').val(), 1, 9999),
-      qt: +checkValue($('#qtc-qt').val(), 1, 9999)
+      qt: +checkValue($('#qtc-qt').val(), 1, 9999),
     });
   }
   if ( res.value !== '' ) {
@@ -155,74 +148,74 @@ function calculateQtc(){
   displayValue('#qtc-result', res.value, 1, ' msec');
 }
 /**
- * QTc calculation result
- *
- * @typedef  {Object} QtcResult
- * @property {String}        method - Method used for calculation
- * @property {Number|String} value  - Corrected QT interval, or empty string if invalid/insufficient inputs
- */
+* QTc calculation result
+*
+* @typedef  {Object} QtcResult
+* @property {String}        method - Method used for calculation
+* @property {Number|String} value  - Corrected QT interval, or empty string if invalid/insufficient inputs
+*/
 
 /**
- * Calculate corrected QT interval for non-AF rhythms
- *
- * @param   {Object} param     - object containing input values
- * @param   {Number} param.hr  - heart rate
- * @param   {Number} param.qrs - QRS interval
- * @param   {Number} param.qt  - QT interval
- * @returns {QtcResult}
- */
-function calculateStandard({hr, qrs, qt}={}){
-
-  if ( hr === 0 || qrs === 0 || qt === 0 ) return {value: 0, method: ''};
-
+* Calculate corrected QT interval for non-AF rhythms
+*
+* @param   {Object} param     - object containing input values
+* @param   {Number} param.hr  - heart rate
+* @param   {Number} param.qrs - QRS interval
+* @param   {Number} param.qt  - QT interval
+* @returns {QtcResult}
+*/
+function calculateStandard({ hr, qrs, qt } = {}) {
+  
+  if ( hr === 0 || qrs === 0 || qt === 0 ) return { value: 0, method: '' };
+  
   /** QT interval adjusted using Modified Bogossian formula if QRS > 120 */
   let qta = qt;
   
   let adj = '';
-
+  
   if ( qrs > 120 ) {
-    qta = qt - ( 0.5 * qrs );
+    qta = qt -  0.5 * qrs;
     adj = 'Modified Bogossian &amp;amp; ';
-  } 
-
+  }
+  
   /** RR interval */
-  const rr = 60/hr;
+  const rr = 60 / hr;
   
   /** Fridericia formula */
-  if ( hr &lt; 50 ) return {
+  if ( hr &lt; 50 ) {return {
     method: `${adj}Fridericia formula`,
-    value: ( qta / Math.cbrt(rr) )
-  };
-
-  if ( hr > 70 ) return {
+    value:  qta / Math.cbrt(rr),
+  };}
+  
+  if ( hr > 70 ) {return {
     method: `${adj}Framingham formula`,
-    value: ( qta + ( 154 * ( 1 - rr ) ) )
-  };
-
+    value:  qta +  154 * ( 1 - rr ),
+  };}
+  
   return {
     method: `${adj}Bazett formula`,
-    value: ( qta / Math.sqrt(rr) )
+    value:  qta / Math.sqrt(rr),
   };
 }
 
 /**
- * Calculate corrected QT interval for AFib
- *
- * @param   {Number} qt1    - shortest QT interval
- * @param   {Number} qt2    - longest QT interval
- * @returns {QtcResult}
- */
-function calculateAfib(qt1, qt2){
+* Calculate corrected QT interval for AFib
+*
+* @param   {Number} qt1    - shortest QT interval
+* @param   {Number} qt2    - longest QT interval
+* @returns {QtcResult}
+*/
+function calculateAfib(qt1, qt2) {
   const method = 'Average of longest and shortest QT intervals';
   if ( qt1 === 0 || qt2 === 0 ) {
     return {
       method: method,
-      value: ''
+      value: '',
     };
   }
   return {
     method: method,
-    value: ( ( qt1 + qt2 ) / 2 )
+    value:  ( qt1 + qt2 ) / 2,
   };
 }
 

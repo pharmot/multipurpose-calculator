@@ -74,7 +74,7 @@
 
     
 
-    <h3>Modules</h3><ul><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
     <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
 </svg>
@@ -100,7 +100,7 @@
  * @since v1.1.0
  * @requires module:util
  */
-import { addHoursToDate, getHoursBetweenDates, roundTo } from './util.js';
+import { addHoursToDate, getHoursBetweenDates, roundTo } from "./util.js";
 
 /**
  * Configuration for aminoglycoside calculations and related input validation.
@@ -126,7 +126,7 @@ export const config = {
     freqMin: 4,
     freqMax: 96,
     doseMin: 1,
-    doseMax: 10000,
+    doseMax: 10000
   }
 };
 
@@ -164,53 +164,53 @@ export const config = {
  * @param   {DosingWeightParams}  - Dosing weight calculation parameters
  * @returns {DosingWtResults}     - Dosing weight recommendations
  */
-export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {} ){
+export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {}) {
   if ( age &lt;= 15 &amp;&amp; age > 0 ) {
     return {
       dosingWeight: 0,
-      dosingWeightType: '',
-      dosingWeightReason: 'Does not apply for age &amp;le; 15',
-      dosingWeightString: 'Does not apply for age &amp;le; 15'
-    }
+      dosingWeightType: "",
+      dosingWeightReason: "Does not apply for age &amp;le; 15",
+      dosingWeightString: "Does not apply for age &amp;le; 15"
+    };
   }
   if ( ibw === 0 ) {
     return {
       dosingWeight: 0,
-      dosingWeightType: '',
-      dosingWeightReason: '',
-      dosingWeightString: ''
-    }
+      dosingWeightType: "",
+      dosingWeightReason: "",
+      dosingWeightString: ""
+    };
   }
   if ( overUnder > 20 ) {
     return {
       dosingWeight: adjBW,
-      dosingWeightType: 'adjusted',
-      dosingWeightReason: 'ABW &amp;gt; 120% of IBW',
-      dosingWeightString: `Use adjusted weight: &lt;b>${roundTo(adjBW, 0.1)} kg&lt;/b>&lt;br>&lt;i>(ABW &amp;gt; 120% of IBW)&lt;/i>`
-    }
+      dosingWeightType: "adjusted",
+      dosingWeightReason: "ABW &amp;gt; 120% of IBW",
+      dosingWeightString: `Use adjusted weight: &lt;b>${roundTo( adjBW, 0.1 )} kg&lt;/b>&lt;br>&lt;i>(ABW &amp;gt; 120% of IBW)&lt;/i>`
+    };
   }
   if ( alt ) {
     return {
       dosingWeight: wt,
-      dosingWeightType: 'actual',
-      dosingWeightReason: 'non-obese and CF OR pre-/postpartum',
-      dosingWeightString: `Use actual weight: &lt;b>${roundTo(wt, 0.1)} kg&lt;/b>&lt;br>&lt;i>(non-obese and CF OR pre-/postpartum)&lt;/i>`
-    }
+      dosingWeightType: "actual",
+      dosingWeightReason: "non-obese and CF OR pre-/postpartum",
+      dosingWeightString: `Use actual weight: &lt;b>${roundTo( wt, 0.1 )} kg&lt;/b>&lt;br>&lt;i>(non-obese and CF OR pre-/postpartum)&lt;/i>`
+    };
   }
   if (  wt &lt; ibw ) {
     return {
       dosingWeight: wt,
-      dosingWeightType: 'actual',
-      dosingWeightReason: 'ABW &amp;lt; IBW',
-      dosingWeightString: `Use actual weight: &lt;b>${roundTo(wt, 0.1)} kg&lt;/b>&lt;br>&lt;i>(ABW &amp;lt; IBW)&lt;/i>`
-    }
+      dosingWeightType: "actual",
+      dosingWeightReason: "ABW &amp;lt; IBW",
+      dosingWeightString: `Use actual weight: &lt;b>${roundTo( wt, 0.1 )} kg&lt;/b>&lt;br>&lt;i>(ABW &amp;lt; IBW)&lt;/i>`
+    };
   }
   return {
     dosingWeight: ibw,
-    dosingWeightType: 'ideal',
-    dosingWeightReason: 'ABW &amp;lt; 120% of IBW',
-    dosingWeightString: `Use ideal weight: &lt;b>${roundTo(ibw, 0.1)} kg&lt;/b>&lt;br>&lt;i>(ABW &amp;lt; 120% of IBW)&lt;/i>`
-  }
+    dosingWeightType: "ideal",
+    dosingWeightReason: "ABW &amp;lt; 120% of IBW",
+    dosingWeightString: `Use ideal weight: &lt;b>${roundTo( ibw, 0.1 )} kg&lt;/b>&lt;br>&lt;i>(ABW &amp;lt; 120% of IBW)&lt;/i>`
+  };
 }
 
 /**
@@ -219,7 +219,7 @@ export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {} ){
  * @param   {String} drug - The selected drug, as a single uppercase letter: [G]entamicin, [T]obramycin, or [A]mikacin
  * @returns {Number}      - The goal trough, in mcg/mL
  */
-function getGoalTrough(drug){
+function getGoalTrough( drug ) {
   if ( drug === "A" ) return 4;
   return 2;
 }
@@ -231,37 +231,10 @@ function getGoalTrough(drug){
  * @param   {String} drug - The selected drug, as a single uppercase letter: [G]entamicin, [T]obramycin, or [A]mikacin
  * @returns {Number}      - The goal trough, in mcg/mL
  */
-export function roundDose(dose, drug){
-  if ( drug === "A" ) return roundTo(dose, 50);
-  return roundTo(dose, 10);
+export function roundDose( dose, drug ) {
+  if ( drug === "A" ) return roundTo( dose, 50 );
+  return roundTo( dose, 10 );
 }
-
-//TODO: add AMG goal trough to equations.md
-//TODO: add AMG round dose to equations.md
-//TODO: add AMG kinetics to equations.md
-
-
-
-
-// ## Aminoglycoside Dosing Weight
-
-// | Condition                    | Weight to Use                  |
-// | ---------------------------- | ------------------------------ |
-// | if age &lt; 15                  | n/a - guideline does not apply |
-// | else if overUnder > 20       | use adjusted wt                |
-// | else if actual wt &lt; ideal wt | use actual wt                  |
-// | else                         | use ideal weight               |
-
-// ## Alternate Aminoglycoside Dosing Weight
-
-// Used for patients with cystic fibrosis or who are pre- or postpartum.
-
-// | Condition              | Weight to Use                  |
-// | ---------------------- | ------------------------------ |
-// | if age &lt; 15            | n/a - guideline does not apply |
-// | else if overUnder > 20 | use adjusted wt                |
-// | else                   | use actual wt                  |
-
 
 /**
  * Aminoglycoside Calculation Parameters
@@ -302,11 +275,11 @@ export function roundDose(dose, drug){
  * @param   {AmgParams}             - Input parameters
  * @returns {AmgExtendedResult}     - Results
  */
-export function extended({drug, goalPeak, dose, doseTime, postAbxEffect, level1, level1Time, level2, level2Time, customTime, valid=true} = {}){
+export function extended({ drug, goalPeak, dose, doseTime, postAbxEffect, level1, level1Time, level2, level2Time, customTime, valid = true } = {}) {
 
-  const goalTrough = getGoalTrough(drug);
+  const goalTrough = getGoalTrough( drug );
 
-  
+
   if ( valid &amp;&amp; level1Time > 0 &amp;&amp; level2Time > 0 &amp;&amp; doseTime > 0 &amp;&amp; level1 > 0 &amp;&amp; level2 > 0 &amp;&amp; dose > 0 &amp;&amp; goalPeak > 0 ) {
 
 
@@ -314,28 +287,28 @@ export function extended({drug, goalPeak, dose, doseTime, postAbxEffect, level1,
     // dose      truePeak   level1    level2     trough      redose
     //      warn               └────ke──┴────TTT────┴───PAE────┘
     //  └─2.7─┘
-    const ke = Math.log(level1/level2) / getHoursBetweenDates(level1Time, level2Time);
-    const truePeakOffset = getHoursBetweenDates(doseTime, level1Time) - ( config.infTime + config.distTime );
-    const truePeak = level1 / Math.exp( -truePeakOffset * ke);
+    const ke = Math.log( level1 / level2 ) / getHoursBetweenDates( level1Time, level2Time );
+    const truePeakOffset = getHoursBetweenDates( doseTime, level1Time ) - ( config.infTime + config.distTime );
+    const truePeak = level1 / Math.exp( -truePeakOffset * ke );
     const timeToTrough = Math.log( goalTrough / level2 ) / -ke;
-    const troughDT = addHoursToDate(level2Time, timeToTrough);    
-    const redoseDT = addHoursToDate(troughDT, postAbxEffect);
-    const timeToRedose = timeToTrough + postAbxEffect
+    const troughDT = addHoursToDate( level2Time, timeToTrough );
+    const redoseDT = addHoursToDate( troughDT, postAbxEffect );
+    const timeToRedose = timeToTrough + postAbxEffect;
     const redoseLevel = Math.exp( -ke * timeToRedose ) * level2;
     const peakToTroughTime = Math.log( goalTrough / goalPeak ) / -ke;
     const newDoseToRedoseTime = peakToTroughTime + postAbxEffect + ( config.infTime + config.distTime );
-    const vd = +(dose / truePeak);
+    const vd = +( dose / truePeak );
     const recDose = goalPeak / truePeak * dose;
-    const recDoseRounded = roundDose(recDose, drug);
-    const recFreq = roundTo(newDoseToRedoseTime, 12);
-    const warnTime = addHoursToDate(doseTime, ( config.infTime + config.distTime ) );
+    const recDoseRounded = roundDose( recDose, drug );
+    const recFreq = roundTo( newDoseToRedoseTime, 12 );
+    const warnTime = addHoursToDate( doseTime,  config.infTime + config.distTime  );
 
-    const levelAtCustom = ( customTime > 0 &amp;&amp; customTime > level1Time ) ? Math.exp( -ke * getHoursBetweenDates(level2Time,  customTime) ) * level2 : undefined;
+    const levelAtCustom =  customTime > 0 &amp;&amp; customTime > level1Time  ? Math.exp( -ke * getHoursBetweenDates( level2Time,  customTime ) ) * level2 : undefined;
 
     const warn = warnTime > level1Time;
 
-    return { goalTrough, ke, truePeak, troughDT, redoseDT, redoseLevel, newDoseToRedoseTime, vd, recDose, recFreq, levelAtCustom, recDoseRounded, warn};
-    
+    return { goalTrough, ke, truePeak, troughDT, redoseDT, redoseLevel, newDoseToRedoseTime, vd, recDose, recFreq, levelAtCustom, recDoseRounded, warn };
+
   }
   return {
     goalTrough: goalTrough,
@@ -351,7 +324,7 @@ export function extended({drug, goalPeak, dose, doseTime, postAbxEffect, level1,
     recFreq: 0,
     levelAtCustom: undefined,
     warn: false
-  }  
+  };
 }
 
 /**
@@ -373,22 +346,22 @@ export function extended({drug, goalPeak, dose, doseTime, postAbxEffect, level1,
  * @param   {AmgParams}       - Input parameters
  * @returns {AmgCfResult}     - Results
  */
-export function cf({drug, freq, doseTime, level1,  level1Time, level2, level2Time}={}){
+export function cf({ drug, freq, doseTime, level1,  level1Time, level2, level2Time } = {}) {
 
-  const goalTrough = 'Undetectable'
-  const goalPeak = drug === 'A' ? '35-50 mcg/mL' : '20-30 mcg/mL';
-  const goalAuc = (drug === 'T' &amp;&amp; freq === 24 ) ? '&amp;lt; 101 mg&amp;middot;hr/L' : 'n/a' ;  
+  const goalTrough = "Undetectable";
+  const goalPeak = drug === "A" ? "35-50 mcg/mL" : "20-30 mcg/mL";
+  const goalAuc = drug === "T" &amp;&amp; freq === 24  ? "&amp;lt; 101 mg&amp;middot;hr/L" : "n/a";
 
   if ( level1Time &lt; level2Time &amp;&amp; doseTime &lt; level1Time &amp;&amp; level1Time !== 0 &amp;&amp; level2Time !== 0 &amp;&amp; doseTime !== 0 &amp;&amp; level1 !== 0 &amp;&amp; level2 !== 0 &amp;&amp; freq !== 0 ) {
-    const timeBetweenLevels = getHoursBetweenDates(level1Time, level2Time);
-    const timeToLevel1 = getHoursBetweenDates(doseTime, level1Time);
-    const timeToLevel2 = getHoursBetweenDates(doseTime, level2Time);
-    const ke = Math.log(level1/level2)/timeBetweenLevels;
+    const timeBetweenLevels = getHoursBetweenDates( level1Time, level2Time );
+    const timeToLevel1 = getHoursBetweenDates( doseTime, level1Time );
+    const timeToLevel2 = getHoursBetweenDates( doseTime, level2Time );
+    const ke = Math.log( level1 / level2 ) / timeBetweenLevels;
     const predPeak = level1 / Math.exp( -ke * ( timeToLevel1 - config.infTime ) );
     const predTrough = level2 * Math.exp( -ke * ( freq - timeToLevel2 ) );
     const auc = ( predPeak - predTrough ) / ke;
-    const halflife = 0.693/ke;
-    return {goalTrough, goalPeak, goalAuc, ke, predPeak, predTrough, auc, halflife};
+    const halflife = 0.693 / ke;
+    return { goalTrough, goalPeak, goalAuc, ke, predPeak, predTrough, auc, halflife };
   } else {
     return {
       goalTrough: goalTrough,
@@ -399,7 +372,7 @@ export function cf({drug, freq, doseTime, level1,  level1Time, level2, level2Tim
       predTrough: 0,
       auc: 0,
       halflife: 0
-    }
+    };
   }
 
 

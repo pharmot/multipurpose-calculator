@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Source: alligation.js - Multipurpose Calculator Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
+  
+
+  
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+  mixpanel.init("1919205b2da72e4da3b9b6639b444d59");</script>
+  <!-- end Mixpanel -->
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">Documentation</h3>
+
+    
+
+    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+    <a href="https://github.com/pharmot/multipurpose-calculator">Repository</a>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        Source: alligation.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>/**
+ * Alligation Module
+ * @module alligation
+ * @requires module:util
+ * @since v1.1.0
+ */
+import { checkValue, roundTo } from "./util.js";
+import * as LOG from "./logger.js";
+
+$( ".input-alligation" ).on( "keyup", () => calculate() );
+$( "[name='alligation-type']" ).on( "change", () => changedType() );
+$( "#btnReset" ).on( "click", () => clearOutput() );
+
+$('#button--alligation-example').on('click', () => {
+  if ( isSingle() ) {
+    $('#alligation-lowerName').val('D5W');
+    $('#alligation-lowerConc').val(5);
+    $('#alligation-higherName').val('D50W');
+    $('#alligation-higherConc').val(50);
+    $('#alligation-finalConc2').val(20);
+    $('#alligation-finalVolume').val(1000);
+  } else {
+    $('#alligation-lowerConc').val(0);
+    $('#alligation-higherConc').val(50);
+    $('#alligation-lowerName').val('sterile water');
+    $('#alligation-higherName').val('D50W');
+    $('#alligation-secondConc').val(23.4);
+    $('#alligation-secondName').val('concentrated NaCl');
+    $('#alligation-finalConc1').val(10);
+    $('#alligation-finalConc2').val(0.9);
+    $('#alligation-finalVolume').val(1000);
+    $('#alligation-name1').val('dextrose');
+    $('#alligation-name2').val('sodium chloride');
+  }
+  calculate();
+});
+
+/**
+ * Update DOM based on Single/Double selection, clear inputs, then recalculate
+ */
+function changedType() {
+  clearOutput();
+  if ( isSingle() ) {
+    $( "#card--alligation" ).addClass( "alligation-single" );
+  } else {
+    $( "#card--alligation" ).removeClass( "alligation-single" );
+  }
+  $( ".input-alligation" ).val( "" );
+  calculate();
+}
+
+function clearOutput() {
+  $('#col--alligation-result').html('');
+}
+
+/**
+ * Run calculation and display or clear result
+ */
+function calculate() {
+  clearOutput();
+  const res = getValues();
+  let txt = '';
+  if ( res.hasOwnProperty('err') ) {
+    txt = res.err;
+  } else {
+    res.components.forEach( (c, i, arr) => {
+      const last = i + 1 === arr.length ? true : false;
+      txt += `&lt;div class="form-row${last ? ' border-bottom' : ''}">
+                ${last ? '&lt;div class="col-1">+&lt;/div>' : ''}
+                &lt;div class="col-2 ${last ? '' : 'offset-1 '}text-right">${c.amount}&lt;/div>
+                &lt;div class="col-1 text-center">of&lt;/div>
+                &lt;div class="col-8">${c.description}&lt;/div>
+              &lt;/div>`;
+    });
+    txt += `&lt;div class="form-row">
+              &lt;div class="col-2 offset-1 text-right">${res.final.amount}&lt;/div>
+              &lt;div class="col-1 text-center">of a&lt;/div>
+              &lt;div class="col-8">${res.final.description}&lt;/div>
+            &lt;/div>`;
+  }
+  $('#col--alligation-result').html(txt);
+}
+
+/**
+ * @function  
+ * @returns {Boolean} Is single alligation selected
+ */
+const isSingle = () => $( "#alligation-type--single" ).prop( "checked" );
+
+/**
+ * Check values and return result or undefined if invalid inputs
+ * 
+ * @returns {AlligationResult}
+ */
+function getValues() {
+  LOG.group('Alligation Calculator');
+  $('#card--alligation .input-alligation').removeClass('invalid');
+
+  const single = isSingle();
+  let lowerConc = +checkValue($('#alligation-lowerConc').val(), 0, 100, true);
+  if ( $('#alligation-lowerConc').val() === '' ) lowerConc = 0;
+  const higherConc = +checkValue($('#alligation-higherConc').val(), 0, 100);
+  const secondConc = +checkValue($('#alligation-secondConc').val(), 0, 100);
+  const finalConc1 = +checkValue($('#alligation-finalConc1').val(), 0, 100);
+  const finalConc2 = +checkValue($('#alligation-finalConc2').val(), 0, 100);
+  const finalVolume = +checkValue($('#alligation-finalVolume').val(), 0);
+  
+  let lowerName = $('#alligation-lowerName').val();
+  if ( lowerName.length === 0 ) {
+    if ( lowerConc === 0 ) {
+      lowerName = 'sterile water';
+    } else {
+      lowerName = `${lowerConc}%${single ? '' : ' first solution'}`;
+    }
+  }
+  
+  let higherName = $('#alligation-higherName').val();
+  if ( higherName.length === 0 ) higherName = `${higherConc}%${single ? '' : ' first solution'}`;
+  
+  let name1 = $('#alligation-name1').val();
+  if ( name1.length === 0 ) name1 = `(FIRST)`;
+  
+  let name2 = $('#alligation-name2').val();
+  if ( name2.length === 0 ) name2 = `(SECOND)`;
+  
+  let secondName = $('#alligation-secondName').val();
+  if ( secondName.length === 0 ) secondName = `${secondConc}% second solution`;
+  LOG.groupCollapsed(`Inputs for ${single ? 'Single' : 'Double'} Alligation`);
+  if ( single) LOG.log(`name1: ${name1}`);
+  if ( single) LOG.log(`finalConc1: ${finalConc1}`);
+  LOG.log(`lowerName: ${lowerName}`);
+  LOG.log(`lowerConc: ${lowerConc}`);
+  LOG.log(`higherName: ${higherName}`);
+  LOG.log(`higherConc: ${higherConc}`);
+  if ( single) LOG.log(`name2: ${name2}`);
+  if ( single) LOG.log(`secondName: ${secondName}`);
+  if ( single) LOG.log(`secondConc: ${secondConc}`);
+  LOG.log(`finalConc2: ${finalConc2}`);
+  LOG.log(`finalVolume: ${finalVolume}`);
+  LOG.groupEnd();
+  /** @type {AlligationCheck[]} */
+  const checks = [
+    {
+      errMessage: "Lower concentration must be 0 or more",
+      check: lowerConc >= 0,
+    },
+    {
+      errMessage: "Higher concentration must be greater than 0",
+      check: higherConc > 0,
+    },
+    {
+      errMessage: "Second concentration must be greater than 0",
+      check: secondConc > 0,
+      ignoreSingle: true,
+    },
+    {
+      errMessage: "Final concentration must be greater than 0",
+      check: finalConc2 > 0,
+      ignoreDouble: true,
+    },
+    {
+      errMessage: "Final concentration of second component must be greater than 0",
+      check: finalConc2 > 0,
+      ignoreSingle: true,
+    },
+    {
+      errMessage: "Final volume must be greater than 0",
+      check: finalVolume > 0,
+    },
+    {
+      errMessage: "Higher concentration must be greater than lower concentration",
+      check: lowerConc &lt; higherConc,
+      markInvalid: '#alligation-higherConc',
+    },
+    {
+      errMessage: "Final concentration must be between lower and higher concentrations",
+      check: finalConc2 > lowerConc &amp;&amp; finalConc2 &lt; higherConc,
+      ignoreDouble: true,
+      markInvalid: '#alligation-finalConc2',
+    },
+    {
+      errMessage: "Second component's final concentration must be less than its original concentration",
+      check: finalConc2 &lt; secondConc,
+      ignoreSingle: true,
+      markInvalid: secondConc > 0 ? '#alligation-finalConc2' : '',
+    },
+    {
+      errMessage: "First component's final concentration must be between the lower and higher original concentrations",
+      check: lowerConc &lt; finalConc1 &amp;&amp; higherConc > finalConc1,
+      ignoreSingle: true,
+      markInvalid: higherConc > 0 ? '#alligation-finalConc1' : '',
+    },
+    {
+      errMessage: "First component's final concentration must be greater than 0",
+      check: finalConc1 > 0,
+      ignoreSingle: true,
+    },
+  ];
+  let passedChecks = true;
+  LOG.groupCollapsed("Checks");
+  checks.forEach( c => {
+    let runCheck = true;
+    if ( c.hasOwnProperty('ignoreSingle') ) {
+      if ( c.ignoreSingle &amp;&amp; single) runCheck = false;
+    }
+    if ( c.hasOwnProperty('ignoreDouble') ) {
+      if ( c.ignoreDouble &amp;&amp; !single ) runCheck = false;
+    }
+    if ( runCheck &amp;&amp; !c.check ) {
+      passedChecks = false;
+      if ( c.hasOwnProperty('markInvalid') ) {
+        if ( c.markInvalid !== '' ) {
+          if ( $(c.markInvalid).val() !== 0 &amp;&amp; $(c.markInvalid).val() !== '' ) {
+            $(c.markInvalid).addClass('invalid');
+            LOG.log(`[${c.markInvalid}] ${c.errMessage}`);
+          } else {
+            LOG.log(c.errMessage);
+          }
+        } else {
+          LOG.log(c.errMessage);
+        }
+      } else {
+        LOG.log(c.errMessage);
+      }
+    }
+  });
+  LOG.groupEnd();
+  if ( passedChecks ) {
+    LOG.logArgs("%cPassed Checks", 'color:green');
+  } else {
+    LOG.logArgs("%cFailed Checks", 'color: red');
+  }
+  
+  
+  if ( passedChecks ) {
+    LOG.groupCollapsed('Calculations');
+    if ( single ) {
+      const partsLow = higherConc - finalConc2;
+      const partsHi = finalConc2 - lowerConc;
+      const partsTotal = partsLow + partsHi;
+      const lowerAmount = partsLow / partsTotal * finalVolume;
+      const higherAmount = partsHi / partsTotal * finalVolume;
+
+
+      LOG.log(`partsLow: ${partsLow}`);
+      LOG.log(`partsHi: ${partsHi}`);
+      LOG.log(`partsTotal: ${partsTotal}`);
+      LOG.log(`lowerAmount: ${lowerAmount}`);
+      LOG.log(`higherAmount: ${higherAmount}`);
+      LOG.groupEnd();
+      LOG.groupEnd();
+      return {
+        components: [
+          { amount: `${roundTo(lowerAmount, 0.1)} mL`, description: lowerName },
+          { amount: `${roundTo(higherAmount, 0.1)} mL`, description: higherName },
+        ],
+        final: { amount: `${finalVolume} mL`, description: `${finalConc2}% solution` },
+      };
+    } else {
+      const secondAmount =  finalConc2 / 100  * ( finalVolume / ( secondConc / 100 ) );
+      const lowerAmount =  -( finalConc1 / 100 * finalVolume - higherConc / 100  * ( finalVolume - secondAmount ) ) / ( higherConc / 100 - lowerConc / 100 );
+      const higherAmount = finalVolume - secondAmount - lowerAmount;
+      LOG.log(`secondAmount: ${secondAmount}`);
+      LOG.log(`lowerAmount: ${lowerAmount}`);
+      LOG.log(`higherAmount: ${higherAmount}`);
+      LOG.groupEnd();
+      LOG.groupEnd();
+      if ( lowerAmount &lt; 0 || higherAmount &lt; 0 || secondAmount &lt; 0 ) {
+        return { err: "The desired solution cannot be made with the defined stock solutions." };
+      } else {
+        return {
+          components: [
+            { amount: `${roundTo(lowerAmount, 0.1)} mL`, description: lowerName },
+            { amount: `${roundTo(higherAmount, 0.1)} mL`, description: higherName },
+            { amount: `${roundTo(secondAmount, 0.1)} mL`, description: secondName },
+          ],
+          final: { amount: `${finalVolume} mL`, description: `${name1} ${finalConc1}% and ${name2} ${finalConc2}% solution` },
+        };
+      }
+    }
+  } else {
+    LOG.groupEnd();
+    return { err: '' };
+  }
+}
+/**
+ * Alligation Result Row
+ *
+ * @typedef  {Object} AlligationResultRow
+ * @property {String} amount                - Amount and units of the solution
+ * @property {String} description           - Description of the solution
+ */
+
+/**
+ * Alligation Result
+ *
+ * @typedef  {Object} AlligationResult
+ * @property {String}                err        - Error text if calculation is not possible
+ * @property {AlligationResultRow[]} components - Components that make the final solution
+ * @property {AlligationResultRow}   final      - Details of final solution
+ */
+
+/**
+ * Input validity check
+ *
+ * @typedef  {Object}   AlligationCheck
+ * @property {String}   errMessage          - Error message to display if check fails
+ * @property {Boolean}  check               - Expression to evaluate that returns true if valid
+ * @property {Boolean} [ignoreSingle=false] - Ignore this check for single alligation
+ * @property {Boolean} [ignoreDouble=false] - Ignore this check for double alligation
+ * @property {String}  [markInvalid]        - jQuery selector of element to mark as invalid if check fails
+ */</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>
