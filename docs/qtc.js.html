@@ -98,7 +98,7 @@
 * Corrected QT Calculatior Module
 * @module qtc
 * @requires module:util
-* @since v1.1.0
+* @since v1.2.0
 */
 import { checkValue, displayValue } from './util.js';
 
@@ -125,52 +125,56 @@ function changedAfib() {
 * Calculate Corrected QT interval depending on AF or non-AF
 */
 function calculateQtc() {
+
+  const _qt = +checkValue($('#qtc-qt').val(), 1, 9999);
+  const _qt2 = +checkValue($('#qtc-qt-longest').val(), 1, 9999);
+  const _qrs = +checkValue($('#qtc-qrs').val(), 1, 9999);
+  const _hr = +checkValue($('#qtc-hr').val(), 1, 9999);
+  const _af = $('#qtc-af').is(':checked');
   
-  let res;
-  
-  if ( $('#qtc-af').is(':checked') ) {
-    res = calculateAfib(
-      +checkValue($('#qtc-qt-shortest').val(), 1, 9999),
-      +checkValue($('#qtc-qt-longest').val(), 1, 9999)
-    );
-  } else {
-    res = calculateStandard({
-      hr: +checkValue($('#qtc-hr').val(), 1, 9999),
-      qrs: +checkValue($('#qtc-qrs').val(), 1, 9999),
-      qt: +checkValue($('#qtc-qt').val(), 1, 9999),
-    });
-  }
-  if ( res.value !== '' ) {
-    $('#qtc-method').html(res.method);
-  } else {
-    $('#qtc-method').html('');
-  }
-  displayValue('#qtc-result', res.value, 1, ' msec');
+  const { method, value } = calculate({
+    hr: _hr,
+    qrs: _qrs,
+    qt: _qt,
+    qt2: _qt2,
+    af: _af,
+  });
+  $('#qtc-method').html(method);
+  displayValue('#qtc-result', value, 1, ' msec');
 }
-/**
-* QTc calculation result
-*
-* @typedef  {Object} QtcResult
-* @property {String}        method - Method used for calculation
-* @property {Number|String} value  - Corrected QT interval, or empty string if invalid/insufficient inputs
-*/
 
 /**
 * Calculate corrected QT interval for non-AF rhythms
-*
-* @param   {Object} param     - object containing input values
-* @param   {Number} param.hr  - heart rate
-* @param   {Number} param.qrs - QRS interval
-* @param   {Number} param.qt  - QT interval
+* @param   {QTCalcParams}
 * @returns {QtcResult}
 */
-function calculateStandard({ hr, qrs, qt } = {}) {
+function calculate({ hr, qrs, qt, qt2, af } = {}) {
+  const res = {
+    value: 0,
+    method: '',
+  };
+
+  /* Check for required inputs */
+  if ( hr === 0 || qrs === 0 || qt === 0 ) return res;
   
-  if ( hr === 0 || qrs === 0 || qt === 0 ) return { value: 0, method: '' };
+  /* Check for additional required input if Afib */
+  if ( af &amp;&amp; qt2 === 0 ) return res;
   
-  /** QT interval adjusted using Modified Bogossian formula if QRS > 120 */
+  /**
+   * QT interval adjusted using Modified Bogossian formula if QRS > 120
+   * @type {Number}
+   */
   let qta = qt;
+
+  /* Use average of longest and shortest QT if Afib */
+  if ( af ) {
+    qta = ( qt + qt2 ) / 2;
+  }
   
+  /**
+   * Text to prepend to final formula used
+   * @type {String}
+   */
   let adj = '';
   
   if ( qrs > 120 ) {
@@ -182,44 +186,41 @@ function calculateStandard({ hr, qrs, qt } = {}) {
   const rr = 60 / hr;
   
   /** Fridericia formula */
-  if ( hr &lt; 50 ) {return {
-    method: `${adj}Fridericia formula`,
-    value:  qta / Math.cbrt(rr),
-  };}
+  if ( hr &lt; 50 ) {
+    res.method = `${adj}Fridericia formula`;
+    res.value = qta / Math.cbrt(rr);
+    return res;
+  }
   
-  if ( hr > 70 ) {return {
-    method: `${adj}Framingham formula`,
-    value:  qta +  154 * ( 1 - rr ),
-  };}
-  
-  return {
-    method: `${adj}Bazett formula`,
-    value:  qta / Math.sqrt(rr),
-  };
+  if ( hr > 70 ) {
+    res.method = `${adj}Framingham formula`;
+    res.value =  qta +  154 * ( 1 - rr );
+    return res;
+  }
+
+  res.method = `${adj}Bazett formula`;
+  res.value =  qta / Math.sqrt(rr);
+  return res;
 }
 
 /**
-* Calculate corrected QT interval for AFib
+* QTc calculation result
 *
-* @param   {Number} qt1    - shortest QT interval
-* @param   {Number} qt2    - longest QT interval
-* @returns {QtcResult}
+* @typedef  {Object} QtcResult
+* @property {String}        method - Method used for calculation
+* @property {Number|String} value  - Corrected QT interval, or empty string if invalid/insufficient inputs
 */
-function calculateAfib(qt1, qt2) {
-  const method = 'Average of longest and shortest QT intervals';
-  if ( qt1 === 0 || qt2 === 0 ) {
-    return {
-      method: method,
-      value: '',
-    };
-  }
-  return {
-    method: method,
-    value:  ( qt1 + qt2 ) / 2,
-  };
-}
 
-</code></pre>
+/**
+ * QT Calculation Parameters
+ *
+ * @typedef  {Object}  QTCalcParams
+ * @property {Number}   hr   - heart rate
+ * @property {Number}   qrs  - QRS interval
+ * @property {Number}   qt   - QT interval or shortest QT interval for Afib
+ * @property {Number}  [qt2] - longest QT interval for Afib
+ * @property {Boolean}  af   - rhythm is atrial fibrillation
+ */</code></pre>
   </article>
 </section>
 

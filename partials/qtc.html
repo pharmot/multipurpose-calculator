@@ -11,8 +11,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="card-title h6 text-left text-secondary">Data from EKG</div> -->
-    <div class="form-row qtc-non-af">
+    <div class="form-row">
       <label for="qtc-hr" class="col-form-label col-4">Heart Rate</label>
       <div class="col-4 input-group">
         <input type="number" id="qtc-hr" class="form-control input-qtc" min="0">
@@ -21,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="form-row qtc-non-af">
+    <div class="form-row">
       <label for="qtc-qrs" class="col-form-label col-4">QRS Interval</label>
       <div class="col-4 input-group">
         <input type="number" id="qtc-qrs" class="form-control input-qtc" min="0">
@@ -30,10 +29,13 @@
         </div>
       </div>
     </div>
-    <div class="form-row qtc-af-only">
-      <label for="qtc-qt-shortest" class="col-form-label col-4">Shortest QT</label>
+    <div class="form-row">
+      <label for="qtc-qt" class="col-form-label col-4">
+        <span class="qtc-af-only">Shortest QT</span>
+        <span class="qtc-non-af">QT Interval</span>
+      </label>
       <div class="col-4 input-group">
-        <input type="number" id="qtc-qt-shortest" class="form-control input-qtc" min="0">
+        <input type="number" id="qtc-qt" class="form-control input-qtc" min="0">
         <div class="input-group-append">
           <div class="input-group-text">msec</div>
         </div>
@@ -43,15 +45,6 @@
       <label for="qtc-qt-longest" class="col-form-label col-4">Longest QT</label>
       <div class="col-4 input-group">
         <input type="number" id="qtc-qt-longest" class="form-control input-qtc" min="0">
-        <div class="input-group-append">
-          <div class="input-group-text">msec</div>
-        </div>
-      </div>
-    </div>
-    <div class="form-row qtc-non-af">
-      <label for="qtc-qt" class="col-form-label col-4">QT Interval</label>
-      <div class="col-4 input-group">
-        <input type="number" id="qtc-qt" class="form-control input-qtc" min="0">
         <div class="input-group-append">
           <div class="input-group-text">msec</div>
         </div>

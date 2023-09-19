@@ -128,53 +128,55 @@ class Pca {
    * Get the syringe concentration
    * @return {string} The concentration (e.g. '150 mg/30 mL')
    */
-  get syringe(){
-    return `${this.conc*30} ${this.unit}/30 mL`
+  get syringe() {
+    return `${this.conc * 30} ${this.unit}/30 mL`;
   }
   /**
    * Get the units for continuous infusion rate
    * @return {string} The rate units.
    */
-  get unitRate(){
+  get unitRate() {
     return `${this.unit}/hr`;
   }
   /**
    * Get the units for the dose max
    * @return {string} The units (e.g. mg/4 hr or mcg/1 hr)
    */
-  get unitMax(){
-    if ( this.range === "standard" ) return `${this.unit}/4 hr`;
+  get unitMax() {
+    if ( this.range === 'standard' ) return `${this.unit}/4 hr`;
     if ( this.range === 'high' ) return `${this.unit}/hr`;
+    return undefined;
   }
   /**
    * Get the time corresponding to the max dose
    * @return {number} Time in hours for max dose
    */
-  get maxDoseTimespan(){
+  get maxDoseTimespan() {
     if ( this.range === "standard" ) return 4;
     if ( this.range === 'high' ) return 1;
+    return undefined;
   }
   /**
    * Get the amount of drug in each syringe
    * @return {number} Total mg/mcg per syringe
    */
-  get mgPerSyr(){
-    return this.conc*30;
+  get mgPerSyr() {
+    return this.conc * 30;
   }
   /**
    * Get a pump limit value.
    * @param {string} param - The pump parameter to get.  Must be doseUSL, doseUHL, rateUSL, rateUHL, maxUSL, or maxUHL
    * @return {number} The requested limit.
    */
-  getLimit(param){
-    switch(param) {
-      case 'doseUSL': return this.limits[0];
-      case 'doseUHL': return this.limits[1];
-      case 'rateUSL': return this.limits[2];
-      case 'rateUHL': return this.limits[3];
-      case 'maxUSL': return this.limits[4];
-      case 'maxUHL': return this.limits[5];
-      default: return 0;
+  getLimit(param) {
+    switch (param) {
+    case 'doseUSL': return this.limits[0];
+    case 'doseUHL': return this.limits[1];
+    case 'rateUSL': return this.limits[2];
+    case 'rateUHL': return this.limits[3];
+    case 'maxUSL': return this.limits[4];
+    case 'maxUHL': return this.limits[5];
+    default: return 0;
     }
   }
   /**
@@ -185,8 +187,8 @@ class Pca {
     return [
       `${this.getLimit('doseUSL')}-&lt;b>${this.getLimit('doseUHL')} ${this.unit}&lt;/b>`,
       `${this.getLimit('rateUSL')}-&lt;b>${this.getLimit('rateUHL')} ${this.unitRate}&lt;/b>`,
-      `${this.getLimit('maxUSL')}-&lt;b>${this.getLimit('maxUHL')} ${this.unitMax}&lt;/b>`
-    ]
+      `${this.getLimit('maxUSL')}-&lt;b>${this.getLimit('maxUHL')} ${this.unitMax}&lt;/b>`,
+    ];
   }
 }
 
@@ -198,13 +200,13 @@ const fStd = new Pca('fentanyl', 'standard', 'mcg', 20, [20, 50, 40, 50, 300, 50
 const fHigh = new Pca('fentanyl', 'high', 'mcg', 50, [50, 100, 50, 400, 300, 750]);
 
 let pca = mStd;
-let ci = 'none'
+let ci = 'none';
 
 /**
  * Called when drug selection is changed. Changes units, hour max interval, and pump limits displayed on form.
  * @returns {Null}
  */
-function changedDrug(){
+function changedDrug() {
   const drug = $('#pca-drug')[0].value;
   const range = $('#pca-orderset')[0].value;
 
@@ -241,26 +243,26 @@ function changedDrug(){
  * Called when continuous infusion selection is changed. Shows or hides relevant inputs and rows on form.
  * @returns {Null}
  */
-function changedCi(){
+function changedCi() {
   ci = $('#pca-continuous')[0].value;
   if ( ci !== 'overnight') {
-    $('.pca-ci-night').hide();
+    $('.pca-ci-night').addClass('hidden');
   } else {
-    $('.pca-ci-night').show();
+    $('.pca-ci-night').removeClass('hidden');
   }
   if ( ci === 'none' ) {
-    $('.pca-ci-only').hide();
+    $('.pca-ci-only').addClass('hidden');
   } else {
-    $('.pca-ci-only').show();
+    $('.pca-ci-only').removeClass('hidden');
   }
-calcDose();
+  calcDose();
 
 }
 /**
  * Calculates all outputs based on inputs and adds/removes shading in output/limit fields.
  * @returns {Null}
  */
-function calcDose(){
+function calcDose() {
 
   $('.pca-bg-warning').removeClass('pca-bg-warning');
   $('.pca-bg-danger').removeClass('pca-bg-danger');
@@ -273,23 +275,24 @@ function calcDose(){
   const max = checkValue($('#pca-orderedMax').val(), 0.1, 2000);
 
   // Set rate to zero if rate input field is hidden
-  const rate = (ci === 'none') ? 0 : checkValue($('#pca-ciRate').val(), 0.01, 1000, true);
+  const rate = ci === 'none' ? 0 : checkValue($('#pca-ciRate').val(), 0.01, 1000, true);
 
   const hours = pca.maxDoseTimespan;
 
   const syringeTotal = pca.mgPerSyr;
 
-  const doseUnit = ` ${pca.unit}`;
+  // const doseUnit = ` ${pca.unit}`;
+
   const doseUnitHour = ` ${pca.unitMax}`;
 
-  const fromBolus = lockout === 0 ? 0 : (60 / lockout) * hours * bolus;
+  const fromBolus = lockout === 0 ? 0 : 60 / lockout * hours * bolus;
   displayValue("#pca-maxFromBolus", fromBolus, 0.1, doseUnitHour);
   displayValue("#pca-maxFromBolus2", fromBolus, 0.1, doseUnitHour);
 
-  const fromInfusionDay = (ci === 'continuous') ? rate*hours : 0;
+  const fromInfusionDay = ci === 'continuous' ? rate * hours : 0;
 
 
-  const fromInfusionNight = ((ci !== 'none') ? rate*hours : 0) || 0;
+  const fromInfusionNight = (ci !== 'none' ? rate * hours : 0) || 0;
   displayValue("#pca-amtFromCI", fromInfusionNight, 0.1, doseUnitHour);
 
 
@@ -305,10 +308,10 @@ function calcDose(){
   const preMaxNight = fromInfusionNight + fromBolus;
   displayValue('#pca-totalAmtPossible-night', preMaxNight, 0.1, doseUnitHour);
 
-  const dispFreqDay = ( syringeTotal / preMaxDay ) * hours;
+  const dispFreqDay =  syringeTotal / preMaxDay  * hours;
   displayValue('#pca-maxDispenseFreq-day', dispFreqDay, 0.1, ' hr');
 
-  const dispFreqNight = ( syringeTotal / preMaxNight ) * hours;
+  const dispFreqNight =  syringeTotal / preMaxNight  * hours;
   displayValue('#pca-maxDispenseFreq-night', dispFreqNight, 0.1, ' hr');
 
   let forBolusDay = max - fromInfusionDay;
@@ -328,8 +331,8 @@ function calcDose(){
     displayValue('#pca-availableForBolus-night', forBolusNight, 0.1, doseUnitHour);
   }
 
-  const avgLockoutDay = max > 0 ? 60 / ( ( forBolusDay / hours ) / bolus ) : 0;
-  const avgLockoutNight = max > 0 ?  60 / ( ( forBolusNight / hours ) / bolus ) : 0;
+  const avgLockoutDay = max > 0 ? 60 / (  forBolusDay / hours  / bolus ) : 0;
+  const avgLockoutNight = max > 0 ?  60 / (  forBolusNight / hours  / bolus ) : 0;
 
 
   if ( forBolusDay &lt; bolus &amp;&amp; max > 0 ) {
@@ -352,14 +355,14 @@ function calcDose(){
   }
 
 
-  const finalDispFreq = ( syringeTotal / max ) * hours;
+  const finalDispFreq =  syringeTotal / max  * hours;
   displayValue('#pca-maxDispenseFreq-final', finalDispFreq, 0.1, ' hr');
 
   checkPumpLimits(
-    [ bolus, rate, max ],
-    [ pca.getLimit('doseUSL'), pca.getLimit('rateUSL'), pca.getLimit('maxUSL') ],
-    [ pca.getLimit('doseUHL'), pca.getLimit('rateUHL'), pca.getLimit('maxUHL') ],
-    [ '#pca-pumplimit-dose', '#pca-pumplimit-rate', '#pca-pumplimit-max' ]
+    [bolus, rate, max],
+    [pca.getLimit('doseUSL'), pca.getLimit('rateUSL'), pca.getLimit('maxUSL')],
+    [pca.getLimit('doseUHL'), pca.getLimit('rateUHL'), pca.getLimit('maxUHL')],
+    ['#pca-pumplimit-dose', '#pca-pumplimit-rate', '#pca-pumplimit-max']
   );
 }
 /**
@@ -374,9 +377,9 @@ function calcDose(){
 function checkPumpLimits(settings, softLimits, hardLimits, selectors) {
   for ( let i = 0; i &lt;= settings.length; i++ ) {
     if ( settings[i] > hardLimits[i] ) {
-      $(selectors[i]).addClass('pca-bg-danger')
+      $(selectors[i]).addClass('pca-bg-danger');
     } else if ( settings[i] > softLimits[i] ) {
-      $(selectors[i]).addClass('pca-bg-warning')
+      $(selectors[i]).addClass('pca-bg-warning');
     }
   }
 }

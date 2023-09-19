@@ -462,26 +462,57 @@ $\frac{\mathrm{predicted\ peak}-\mathrm{predicted\ trough}}{ke}$
 
 # Corrected QT Interval
 
-## Atrial Fibrillation
+### Calculation Process
+- **Determine QT value to use in equation**
+  - If atrial fibrillation, use the average of shortest and longest QT from EKG
+  - Otherwise, use QT interval from EKG
+- **Adjust for prolonged QRS interval**
+  - If QRS > 120, use Modified Bogossian formula to correct the above (QT or average QT)
+- **Calculate QTc using the formula determined by the heart rate**
+  - If HR < 50, use the Fridericia formula
+  - If HR 50-70, use the Bazett formula
+  - If HR > 70, use the Framingham formula
 
-QTc = average of longest and shortest QT intervals from EKG
+### Variables
 
+- **QT** : QT Interval (from EKG)
+- **QRS** : QRS Interval (from EKG)
+- **HR** : Heart rate (bpm)
+- **RR** : $60\div\mathrm{HR}$
 
+### Formulas
 
-## Not Atrial Fibrillation
+| Formula    | Equation                              |
+| ---------- | ------------------------------------- |
+| Modified Bogossian | $QT-0.5(\mathrm{QRS})$ |
+| Fridericia | $\frac{QT}{\sqrt[3]{RR}}$ |
+| Bazett     | $\frac{QT}{\sqrt{RR}}$    |
+| Framingham | $QT+154(1-RR)$            |
 
-$RR=\frac{60}{HR}$
+### Diagram
 
-If QRS > 120, adjust QT first using the Modified Bogossian formula, then use that value in the Bazett, Fridericia, or Framingham formula.
+```mermaid
+flowchart LR
+  AF[A fib?]:::gray
+  AF -->|No| QRS1[QRS?]:::gray
+  AF -->|Yes|QRS2[QRS?]:::gray
 
+  QRS1 -->|<120 msec| NL
+  NL[Use QT from EKG]:::start --> HR
+  QRS1 -->|>=120 msec| NH
+  NH[Correct QT using Mod. Bogossian]:::blue --> HR
+  QRS2 -->|<120 msec| YL
+  YL[Use average highest & lowest QT from EKG]:::calc --> HR
+  QRS2 -->|>=120 msec| YH
+  YH[Average highest & lowest QT from EKG<br><b>and</b> correct QT using Mod. Bogossian]:::green --> HR
+  HR[Determine which<br>formula to use]:::gray -->|HR < 50| F[use Fridericia formula]:::final
+  HR -->|HR 50-70| G[use Bazett formula]:::final
+  HR -->|HR >70| H[use Framingham formula]:::final
 
-**Modified Bogossian formula**:&nbsp;&nbsp;&nbsp;&nbsp;
-$QT^\prime=QT-0.5(\mathrm{QRS})$
-
-Corrected QT is calculated using:
-
-| Heart Rate | Formula    | Equation                              |
-| ---------- | ---------- | ------------------------------------- |
-| < 50       | Fridericia | $QT_c=\frac{QT^\prime}{\sqrt[3]{RR}}$ |
-| 50-70      | Bazett     | $QT_c=\frac{QT^\prime}{\sqrt{RR}}$    |
-| > 70       | Framingham | $QT_c=QT^\prime+154(1-RR)$            |
+  classDef gray fill:#dedede,stroke:#333,color:black
+  classDef calc fill:#FFE5B4,stroke:#FFA500,color:black
+  classDef start fill:#a9e695,stroke:#2e691a,color:black
+  classDef blue fill:#95dcfa,stroke:#1D7EA8,color:black
+  classDef green fill:#d5f291,stroke:#63870e,color:black
+  classDef final fill:#ececff,stroke:#c7b5ed,color:black
+```
