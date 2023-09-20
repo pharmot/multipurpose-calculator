@@ -23,7 +23,7 @@
         </div>
         <div class="form-row mb-3">
           <label class="col-form-label col-3" for="amg-dosingWeight">Dosing Weight</label>
-          <div class="input-group col-5">
+          <div class="input-group col-6">
             <div class="output multi-line multi-line-2" id="amg-dosingWeight"></div>
           </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="form-row mb-3">
           <label for="amg-goalPeak" class="col-2 amg-ext-only">Goal Peak</label>
           <div class="col-3 input-group amg-ext-only">
-            <input type="number" id="amg-goalPeak" class="form-control input-amg">
+            <input type="number" id="amg-goalPeak" class="form-control input-amg validate-amgPeak">
             <div class="input-group-append">
               <div class="input-group-text">mcg/mL</div>
             </div>
@@ -67,7 +67,7 @@
         <div class="form-row">
           <label for="amg-currentDose" class="col-3" id="label--amg-currentDose">Dose Administered</label>
           <div class="col-3 input-group">
-            <input type="number" id="amg-currentDose" class="form-control input-amg" min="0" max="1000" step="10">
+            <input type="number" id="amg-currentDose" class="form-control input-amg validate-amgDose" min="0" max="1000" step="10">
             <div class="input-group-append">
               <div class="input-group-text">mg</div>
             </div>
@@ -78,7 +78,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text">q</div>
             </div>
-            <input type="number" id="amg-currentFreq" class="form-control input-amg" min="1" max="96" step="6">
+            <input type="number" id="amg-currentFreq" class="form-control input-amg validate-amgFreq" min="1" max="96" step="6">
             <div class="input-group-append">
               <div class="input-group-text">h</div>
             </div>
@@ -92,7 +92,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text border-left-0">@</div>
             </div>
-            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-doseTime" placeholder="0000">
+            <input type="text" class="form-control dt-time input-amg validate-time" data-form-type="other" id="amg-doseTime" placeholder="0000">
           </div>
         </div>
         
@@ -103,7 +103,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text border-left-0">@</div>
             </div>
-            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-level1Time" placeholder="0000">
+            <input type="text" class="form-control dt-time input-amg validate-time" data-form-type="other" id="amg-level1Time" placeholder="0000">
           </div>
           <div class="col-3 input-group">
             <input type="text" class="form-control input-amg validate-amgLevel" id="amg-level1">
@@ -119,7 +119,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text border-left-0">@</div>
             </div>
-            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-level2Time" placeholder="0000">
+            <input type="text" class="form-control dt-time input-amg validate-time" data-form-type="other" id="amg-level2Time" placeholder="0000">
           </div>
           <div class="col-3 input-group">
             <input type="text" class="form-control input-amg validate-amgLevel" id="amg-level2">
@@ -180,6 +180,18 @@
             <div class="output" id="amg-predPeak"></div>
           </div>
         </div>  
+        <div class="form-row amg-cf-only">
+          <label for="amg-predAuc" class="col-3 col-form-label">Calculated AUC</label>
+          <div class="col-3 input-group">
+            <div class="output" id="amg-predAuc"></div>
+          </div>
+        </div>  
+        <div class="form-row amg-cf-only">
+          <label for="amg-predHalflife" class="col-3 col-form-label">Halflife</label>
+          <div class="col-3 input-group">
+            <div class="output" id="amg-predHalflife"></div>
+          </div>
+        </div>  
         
         <div class="form-row mt-4">
           <div class="col-9 text-center text-danger ">
@@ -200,7 +212,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text border-left-0">@</div>
             </div>
-            <input type="text" class="form-control dt-time validate-time input-amg" data-form-type="other" id="amg-customTime" placeholder="0000">
+            <input type="text" class="form-control dt-time input-amg validate-time" data-form-type="other" id="amg-customTime" placeholder="0000">
           </div>
         </div>
         <div class="form-row">

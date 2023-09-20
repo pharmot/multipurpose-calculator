@@ -3,6 +3,7 @@
  * @module amg
  * @since v1.1.0
  * @requires module:util
+ * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/equations.md/#aminoglycoside-dosing)
  */
 import { addHoursToDate, getHoursBetweenDates, roundTo } from "./util.js";
 
@@ -31,39 +32,16 @@ export const config = {
     freqMax: 96,
     doseMin: 1,
     doseMax: 10000,
+    levelMin: 0.001,
+    levelMax: 10000,
   },
 };
-
-
-/**
- * Parameters for calculating AMG dosing weight
- *
- * @typedef  {Object}  DosingWeightParams
- * @property {Boolean} alt       Use alternate dosing weight
- * @property {Number}  age       Patient age in years
- * @property {Number}  wt        Patient weight in kg
- * @property {Number}  ibw       Ideal body weight in kg
- * @property {Number}  adjBW     Adjusted body weight in kg
- * @property {Number}  overUnder Percent over or under ideal body weight
- */
-
-/**
- * Results from AMG dosing weight calculations
- *
- * @typedef  {Object} DosingWtResults
- * @property {Number} dosingWeight       Dosing weight in kg
- * @property {String} dosingWeightType   Weight type
- * @property {String} dosingWeightReason Reason for using specified weight
- * @property {String} dosingWeightString Full HTML string for display
- */
 
 /**
  * Gets the dosing weight for aminoglycoside dosing, per AMG dosing guidelines (2018 version).
  *
  * Return weight of 0 if age <= 15 years (per attachment "B" of aminoglycoside
  * dosing guidelines, use LexiPeds for ages 29 days through 15 years).
- *
- * @see [equations.md](https://pharmot.github.io/multipurpose-calculator/equations.md/#aminoglycoside-dosing-weight)
  *
  * @param   {DosingWeightParams}  - Dosing weight calculation parameters
  * @returns {DosingWtResults}     - Dosing weight recommendations
@@ -119,6 +97,7 @@ export function getDosingWeight({ alt, age, wt, ibw, adjBW, overUnder } = {}) {
 
 /**
  * Gets the goal trough level
+ * @since v1.2.0
  *
  * @param   {String} drug - The selected drug, as a single uppercase letter: [G]entamicin, [T]obramycin, or [A]mikacin
  * @returns {Number}      - The goal trough, in mcg/mL
@@ -130,6 +109,7 @@ function getGoalTrough( drug ) {
 
 /**
  * Rounds the dose with factor based on drug
+ * @since v1.2.0
  *
  * @param   {Number} dose - The dose to be rounded
  * @param   {String} drug - The selected drug, as a single uppercase letter: [G]entamicin, [T]obramycin, or [A]mikacin
@@ -141,40 +121,8 @@ export function roundDose( dose, drug ) {
 }
 
 /**
- * Aminoglycoside Calculation Parameters
- *
- * @typedef  {Object}  AmgParams
- * @property {String}  drug          - The selected drug, as a single uppercase letter: [G]entamicin, [T]obramycin, or [A]mikacin
- * @property {Number}  goalPeak      - Goal peak level in mcg/mL
- * @property {Number}  dose          - Current dose in mg
- * @property {Date}    doseTime      - Date and time of dose
- * @property {Number}  postAbxEffect - Post antibiotic effect, in hours
- * @property {Number}  level1        - First level in mcg/mL
- * @property {Date}    level1Time    - Date and time of first level
- * @property {Number}  level2        - Second level in mcg/mL
- * @property {Date}    level12ime    - Date and time of second level
- * @property {Date}    customTime    - Date and time for custom estimation
- */
-/**
- * Aminoglycoside Extended Interval Calculation Results
- *
- * @typedef  {Object}  AmgExtendedResult
- * @property {Number}  ke                     - Elinimation rate constant in (1/hr), or 0 if insufficient inputs
- * @property {Number}  truePeak               - True peak level in mcg/mL, or 0 if insufficient inputs     
- * @property {Date}    troughDT               - Date and time of goal trough/target MIC, or 0 if insufficient inputs
- * @property {Date}    redoseDT               - Date and time of redose point, or 0 if insufficient inputs
- * @property {Number}  redoseLevel            - Estimated level at redose point, or undefined if insufficient inputs
- * @property {Date}    newDoseToRedoseTime    - Time from start of new dose to redose point, or 0 if insufficient inputs
- * @property {Number}  vd                     - Volume of distribution, or 0 if insufficient inputs
- * @property {Number}  recDose                - Recommended new dose in mg, or 0 if insufficient inputs
- * @property {Number}  recFreq                - Recommended new frequency to the nearest 12 hours, or 0 if insufficient inputs
- * @property {Number}  levelAtCustom          - Estimated level at custom date and time, or undefined if insufficient inputs
- * @property {Boolean} warn                   - Show warning that distribution may not be complete
- * @property {Boolean} [valid=true]           - Set to false if inputs already known to be invalid
- */
-
-/**
  * Calculate extended interval kinetics
+ * @since v1.2.0
  *
  * @param   {AmgParams}             - Input parameters
  * @returns {AmgExtendedResult}     - Results
@@ -232,20 +180,8 @@ export function extended({ drug, goalPeak, dose, doseTime, postAbxEffect, level1
 }
 
 /**
- * Aminoglycoside Cystic Fibrosis Calculation Results
- *
- * @typedef  {Object}
- * @property {String} goalTrough - Goal trough
- * @property {String} goalPeak   - Goal peak, with units
- * @property {String} goalAuc    - Goal AUC, with units
- * @property {Number} ke         - Elimination rate constant in 1/hr
- * @property {Number} predPeak   - Predicted peak in mcg/mL
- * @property {Number} predTrough - Predicted trough in mcg/mL
- * @property {Number} auc        - AUC in mg·hr/L
- * @property {Number} halflife   - Halflife in hours
- */
-/**
  * Calculate kinetics for CF dosing
+ * @since v1.2.0
  *
  * @param   {AmgParams}       - Input parameters
  * @returns {AmgCfResult}     - Results
@@ -279,3 +215,68 @@ export function cf({ drug, freq, doseTime, level1,  level1Time, level2, level2Ti
     };
   }
 }
+/**
+ * Parameters for calculating AMG dosing weight
+ *
+ * @typedef  {Object}  DosingWeightParams
+ * @property {Boolean} alt       Use alternate dosing weight
+ * @property {Number}  age       Patient age in years
+ * @property {Number}  wt        Patient weight in kg
+ * @property {Number}  ibw       Ideal body weight in kg
+ * @property {Number}  adjBW     Adjusted body weight in kg
+ * @property {Number}  overUnder Percent over or under ideal body weight
+ */
+/**
+ * Aminoglycoside Cystic Fibrosis Calculation Results
+ *
+ * @typedef  {Object}
+ * @property {String} goalTrough - Goal trough
+ * @property {String} goalPeak   - Goal peak, with units
+ * @property {String} goalAuc    - Goal AUC, with units
+ * @property {Number} ke         - Elimination rate constant in 1/hr
+ * @property {Number} predPeak   - Predicted peak in mcg/mL
+ * @property {Number} predTrough - Predicted trough in mcg/mL
+ * @property {Number} auc        - AUC in mg·hr/L
+ * @property {Number} halflife   - Halflife in hours
+ */
+/**
+ * Aminoglycoside Calculation Parameters
+ *
+ * @typedef  {Object}  AmgParams
+ * @property {String}  drug          - The selected drug, as a single uppercase letter: [G]entamicin, [T]obramycin, or [A]mikacin
+ * @property {Number}  goalPeak      - Goal peak level in mcg/mL
+ * @property {Number}  dose          - Current dose in mg
+ * @property {Date}    doseTime      - Date and time of dose
+ * @property {Number}  postAbxEffect - Post antibiotic effect, in hours
+ * @property {Number}  level1        - First level in mcg/mL
+ * @property {Date}    level1Time    - Date and time of first level
+ * @property {Number}  level2        - Second level in mcg/mL
+ * @property {Date}    level12ime    - Date and time of second level
+ * @property {Date}    customTime    - Date and time for custom estimation
+ */
+/**
+ * Aminoglycoside Extended Interval Calculation Results
+ *
+ * @typedef  {Object}  AmgExtendedResult
+ * @property {Number}  ke                     - Elinimation rate constant in (1/hr), or 0 if insufficient inputs
+ * @property {Number}  truePeak               - True peak level in mcg/mL, or 0 if insufficient inputs     
+ * @property {Date}    troughDT               - Date and time of goal trough/target MIC, or 0 if insufficient inputs
+ * @property {Date}    redoseDT               - Date and time of redose point, or 0 if insufficient inputs
+ * @property {Number}  redoseLevel            - Estimated level at redose point, or undefined if insufficient inputs
+ * @property {Date}    newDoseToRedoseTime    - Time from start of new dose to redose point, or 0 if insufficient inputs
+ * @property {Number}  vd                     - Volume of distribution, or 0 if insufficient inputs
+ * @property {Number}  recDose                - Recommended new dose in mg, or 0 if insufficient inputs
+ * @property {Number}  recFreq                - Recommended new frequency to the nearest 12 hours, or 0 if insufficient inputs
+ * @property {Number}  levelAtCustom          - Estimated level at custom date and time, or undefined if insufficient inputs
+ * @property {Boolean} warn                   - Show warning that distribution may not be complete
+ * @property {Boolean} [valid=true]           - Set to false if inputs already known to be invalid
+ */
+/**
+ * Results from AMG dosing weight calculations
+ *
+ * @typedef  {Object} DosingWtResults
+ * @property {Number} dosingWeight       Dosing weight in kg
+ * @property {String} dosingWeightType   Weight type
+ * @property {String} dosingWeightReason Reason for using specified weight
+ * @property {String} dosingWeightString Full HTML string for display
+ */

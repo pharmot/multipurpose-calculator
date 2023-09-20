@@ -105,7 +105,6 @@ $(() => {
   } else {
     resetDates();
   }
-
   validatedFields = setupValidation([
     { selector: "#ptage", inputType: "age", min: pt.config.check.ageMin, max: pt.config.check.ageMax },
     { selector: "#sex", match: /^[MmFf]$/ },
@@ -115,6 +114,10 @@ $(() => {
     { selector: ".validate-dose", min: vanco.config.check.doseMin, max: vanco.config.check.doseMax },
     { selector: ".validate-freq", min: vanco.config.check.freqMin, max: vanco.config.check.freqMax },
     { selector: ".validate-level", min: vanco.config.check.levelMin, max: vanco.config.check.levelMax },
+    { selector: ".validate-amgDose", min: amg.config.check.levelMin, max: amg.config.check.levelMax },
+    { selector: ".validate-amgFreq", min: amg.config.check.freqMin, max: amg.config.check.freqMax },
+    { selector: ".validate-amgPeak", min: amg.config.check.goalPeakMin, max: amg.config.check.goalPeakMax },
+    { selector: ".validate-amgLevel", min: amg.config.check.levelMin, max: amg.config.check.levelMax },
     { selector: ".validate-time", inputType: "time" },
   ]);
   $("#ptage").get(0).focus();
@@ -769,7 +772,7 @@ const calculate = {
       level2Time: getDateTime($("#amg-level2Date").val(), $("#amg-level2Time").val()),
       customTime: getDateTime($("#amg-customDate").val(), $("#amg-customTime").val()),
     };
-    //TODO: add input validation for amg-currentDose, amg-goalPeak, amg-currentFreq
+    //TODO: add input validation for amg-currentDose, amg-goalPeak, amg-currentFreq -- add to HTML
 
     const wtBasedDose = dosingWeight > 0 && params.dose > 0  ? params.dose / dosingWeight : 0;
 
@@ -830,22 +833,28 @@ const calculate = {
       displayValue("#amg-predTrough", predTrough, 0.1, " mcg/mL");
       displayValue("#amg-predPeak", predPeak, 0.1, " mcg/mL");
       displayValue("#amg-auc", auc, 1, " mg&middot;hr/L");
+      displayValue("#amg-predAuc", auc, 1, " mg&middot;hr/L");
+      displayValue("#amg-predHalflife", halflife, 0.1, " hr");
 
       $("#amg-goalTroughOutput").html(goalTrough);
       $("#amg-goalPeakOutput").html(goalPeak);
       $("#amg-goalAuc").html(goalAuc);
+
       if ( ke > 0 ) {
         tape.amg.push([
           ["Goal trough", goalTrough],
           ["Goal peak", goalPeak],
           ["Goal AUC", goalAuc],
+        ],
+        [
           ["Calculated ke", displayValue("", ke, 0.001, "/hr")],
-          ["Halflife", displayValue("", halflife, 0.1, " hr")],
+          ["Halflife", displayValue("", halflife, 0.01, " hr")],
           ["Predicted trough", displayValue("", predTrough, 0.001, " mcg/mL")],
           ["Predicted peak", displayValue("", predPeak, 0.01, " mcg/mL")],
           ["Calculated AUC", displayValue("", auc, 0.1, " mg&middot;hr/L")],
         ]);
       }
+
     } else {
       /* Reset cf-only items */
       $("#amg-goalPeakOutput").html("");
@@ -853,7 +862,8 @@ const calculate = {
       $("#amg-predTrough").html("");
       $("#amg-predPeak").html("");
       $("#amg-auc").html("");
-
+      $("#amg-predAuc").html("");
+      $("#amg-predHalflife").html("");
 
       const { goalTrough, ke, truePeak, troughDT, redoseDT, redoseLevel, newDoseToRedoseTime, vd, recDose, recDoseRounded, recFreq, levelAtCustom, warn } = amg.extended(params);
 
@@ -874,6 +884,8 @@ const calculate = {
           ["Goal peak", displayValue("", params.goalPeak, 0.1, " mcg/mL")],
           ["Goal trough", displayValue("", goalTrough, 1, " mcg/mL")],
           ["Post-antibiotic effect", displayValue("", pae, 1, " hours", "", false, true)],
+        ],
+        [
           ["Calculated ke", displayValue("", ke, 0.001, "/hr")],
           ["Estimated Vd", displayValue("", vd, 0.01, " L")],
           ["Calculated (true) Peak", displayValue("", truePeak, 0.01, " mcg/mL")],
@@ -893,13 +905,14 @@ const calculate = {
           ]);
         }
       }
-    } // end non-CF
+    }
 
     if ( tape.amg.length > 0 ) {
       $("#tapeAmg--calc").html(LOG.outputTape(tape.amg, "Aminoglycoside Extended Interval Dosing"));
     } else {
       $("#tapeAmg--calc").html("");
     }
+
   },
 
   /**
