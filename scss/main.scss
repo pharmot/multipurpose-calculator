@@ -4,6 +4,7 @@
 @import './fontawesome';
 @import './variables';
 @import './mixins';
+@import './fixedWidths';
 
 html {
   position: relative;
@@ -20,50 +21,7 @@ body {
   text-align: center;
 }
 
-#col--logo,
-#col--main-left,
-#card--current-dose {
-  @include fixed-width(320px);
-}
- 
-#card--steady-state { @include fixed-width(350px); }
 
-#card--vancoHdAdj { @include fixed-width(550px); }
-
-#card--twolevel { @include fixed-width(580px); }
-
-#card--amg,
-#card--ivig {
-  @include fixed-width(600px);
-}
-
-
-// #card--tpn-1,
-// #card--tpn-2,
-#card--qtc {
-  @include fixed-width(400px);
-}
-// #card--tpn-kcal { @include fixed-width(500px); }
- 
- 
-#card--nextdose { @include fixed-width(700px); }
-#card--kcentra { @include fixed-width(700px); }
-#card--alligation { @include fixed-width(700px); }
-// #col--pca-params { @include fixed-width(500px); }
-
-#card--auc,
-#card--aucLinear,
-#card--peakTiming,
-#card--seconddose,
-#card--protocol-adjustment,
-#card--heparin,
-#alert--heparin,
-#card--pca,
-#card--initial-pk,
-#card--initial-dosing,
-#nav-initial .has-alert-only .alert {
-  @include fixed-width(650px);
-}
 
 #col--resetButton {
   flex-grow: 0;
@@ -141,19 +99,21 @@ h1 {
     justify-content: flex-end;
   }
 
-  &.offset-2 {
-    margin-left: 16.66667%;
-  }
+  &.offset-1  { margin-left: 8.333333%;  }
+  &.offset-2  { margin-left: 16.666667%; }
+  &.offset-3  { margin-left: 25%;        }
+  &.offset-4  { margin-left: 33.333333%; }
+  &.offset-5  { margin-left: 41.666667%; }
+  &.offset-6  { margin-left: 50%;        }
+  &.offset-7  { margin-left: 58.333333%; }
+  &.offset-8  { margin-left: 66.666667%; }
+  &.offset-9  { margin-left: 75%;        }
+  &.offset-10 { margin-left: 83.333333%; }
+  &.offset-11 { margin-left: 91.666667%; }
 
-  &.small {
-    font-size: $len-275;
-  }
-  &.xsmall {
-    font-size: $len-25;
-  }
-  &.large {
-    font-size: $len-35;
-  }
+  &.small { font-size: $len-275; }
+  &.xsmall { font-size: $len-25; }
+  &.large { font-size: $len-35; }
 }
 .card-subtitle {
   &.large {
@@ -714,4 +674,7 @@ ul {
 
 .hidden {
   display: none !important;
+}
+.pl-5px {
+  padding-left: 5px !important;
 }

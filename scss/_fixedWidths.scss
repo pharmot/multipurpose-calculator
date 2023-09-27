@@ -1,0 +1,45 @@
+#col--logo,
+#col--main-left,
+#card--current-dose {
+  @include fixed-width(320px);
+}
+ 
+#card--steady-state { @include fixed-width(350px); }
+
+#card--vancoHdAdj { @include fixed-width(550px); }
+
+#card--twolevel { @include fixed-width(580px); }
+
+#card--amg,
+#card--ivig {
+  @include fixed-width(600px);
+}
+
+
+// #card--tpn-1,
+// #card--tpn-2,
+#card--qtc {
+  @include fixed-width(400px);
+}
+// #card--tpn-kcal { @include fixed-width(500px); }
+ 
+ 
+#card--nextdose { @include fixed-width(700px); }
+#card--kcentra { @include fixed-width(700px); }
+#card--alligation { @include fixed-width(700px); }
+// #col--pca-params { @include fixed-width(500px); }
+
+#card--auc,
+#card--aucLinear,
+#card--peakTiming,
+#card--seconddose,
+#card--protocol-adjustment,
+#card--heparin,
+#alert--heparin,
+#card--pca,
+#card--initial-pk,
+#card--initial-dosing,
+#card--warf,
+#nav-initial .has-alert-only .alert {
+  @include fixed-width(650px);
+}
