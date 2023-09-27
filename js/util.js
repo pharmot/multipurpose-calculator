@@ -250,3 +250,108 @@ export function checkTimeInput(x){
   }
   return "";
 }
+/**
+ * Convert RGB value to Hex value.
+ * @example
+ * rgbToHex('RGB(0, 0, 0)')
+ * rgbToHex('rgb(0, 0, 0)')
+ * rgbToHex('0, 0, 0')
+ * rgbToHex('0,0,0') * 
+ *
+ * @param   {String} val RGB value to convert
+ * @returns {String}     Hex color value
+ */
+export function rgbToHex(val) {
+  const [r, g, b] = val instanceof Array ? val : val.replace(/[RrGgBb() ]/g, '').split(',');
+  if ( isNaN(r) || isNaN(g) || isNaN(b) || r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 ) return;
+  return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)}`;
+}
+
+/**
+ * Convert a hex color string to rgb values
+ * 
+ * @param   {String}   h  Hex color string, as #000000
+ * @returns {Number[]}    Array of length 3, containing R, G, and B values
+ */
+export function hexToRgb(h) {
+  
+  if ( /^(#?[a-fA-F0-9]{3})$/.test(h) ) {
+    h = `#${h[1]}${h[1]}${h[2]}${h[2]}${h[3]}${h[3]}`;
+  }
+  
+  if ( /^([a-fA-F0-9]{6})$/.test(h) ) {
+    h = `#${h}`;
+  }
+  if ( !/^(#[a-fA-F0-9]{6})$/.test(h) ) {
+    console.warn(`hexToRgb : ${h} is not a valid hex color string`);
+    return;
+  }
+  
+  if ( !/^(#[a-fA-F0-9]{6})$/.test(h) ) {
+    console.warn(`hexToRgb : ${h} is not a valid hex color string`);
+    return;
+  }
+
+  const r = `0x${  h[1]  }${h[2]}`;
+  const g = `0x${  h[3]  }${h[4]}`;
+  const b = `0x${  h[5]  }${h[6]}`;
+  return [+r, +g, +b];
+}
+
+// function isDark(rgb) {
+//   const [r, g, b] = rgb;
+//   const hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
+//   if (hsp > 127.5) return false;
+//   return true;
+// }
+
+/**
+ * Provides a color, scaled between specified or default colors.
+ * Values in between color stops are scaled using R, G, and B values
+ * @param   {Number}      val     Value to calculate color for
+ * @param   {ColorStop[]} colors  Stops and color values
+ * @returns {String}              hex color code
+ */
+export function colorScale(val, colors) {
+  const max = colors.length - 1;
+  colors.forEach(c => {
+    const [r, g, b] = hexToRgb(c.hex);
+    c.red = r;
+    c.green = g;
+    c.blue = b;
+  });
+  
+  if ( val > colors[max].stop ) return colors[max].hex;
+
+  if ( val <= colors[0].stop ) return colors[0].hex;
+
+  for ( let i = 1; i < max; i++ ) {
+    const me = colors[i];
+    if (val <= me.stop) {
+      const prev = colors[i - 1];
+      const scale =  ( val - prev.stop ) / ( me.stop - prev.stop );
+      return rgbToHex([
+        Math.floor( prev.red   + ( me.red   - prev.red   ) * scale ),
+        Math.floor( prev.green + ( me.green - prev.green ) * scale ),
+        Math.floor( prev.blue  + ( me.blue  - prev.blue  ) * scale ),
+      ]);
+    }
+    if ( i + 1 === max ) {
+      const next = colors[i + 1];
+      const scale =  ( val - me.stop ) / ( next.stop - me.stop );
+      return rgbToHex([
+        Math.ceil( me.red   - ( next.red   - me.red   ) * scale ),
+        Math.ceil( me.green - ( next.green - me.green ) * scale ),
+        Math.ceil( me.blue  - ( next.blue  - me.blue  ) * scale ),
+      ]);
+    }
+  }
+}
+
+/**
+ * Color Scale Options
+ *
+ * @typedef  {Object} ColorStop
+ * @property {Number} stop       - Value to set the color stop
+ * @property {String} hex        - Hexadecimal color string
+ */
