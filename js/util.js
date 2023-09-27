@@ -13,15 +13,15 @@
  */
 export function displayDate(d) {
   try {
-    const mm = ("0" + d.getMinutes()).slice(-2),
-      hh = ("0" + d.getHours()).slice(-2),
+    const mm = `0${  d.getMinutes()}`.slice(-2),
+      hh = `0${  d.getHours()}`.slice(-2),
       mo = d.getMonth() + 1,
       dd = d.getDate(),
       yyyy = d.getFullYear();
-      return `${mo}/${dd}/${yyyy} ${hh}:${mm}`;
-  } catch {
+    return `${mo}/${dd}/${yyyy} ${hh}:${mm}`;
+  } catch (err) {
     return '';
-  }  
+  }
 }
 /**
  * Convert a date object to string formatted as 'HH:mm'
@@ -30,12 +30,12 @@ export function displayDate(d) {
  * @param {Date} d   date object to convert
  * @returns {String}
  */
-export function displayTime(d){
+export function displayTime(d) {
   try {
-    const mm = ("0" + d.getMinutes()).slice(-2);
-    const hh = ("0" + d.getHours()).slice(-2);
+    const mm = `0${  d.getMinutes()}`.slice(-2);
+    const hh = `0${  d.getHours()}`.slice(-2);
     return `${hh}:${mm}`;
-  } catch {
+  } catch (err) {
     return '';
   }
 }
@@ -50,11 +50,11 @@ export function displayTime(d){
 export function getDateTime(d, t) {
   t = checkTimeInput(t);
   if ( d === "" || t === "" ) return 0;
-  let dy = +d.slice(0, 4),
-      dm = +d.slice(5, 7),
-      dd = +d.slice(8, 10),
-      th = +t.slice(0, 2),
-      tm = +t.slice(2, 4);
+  const dy = +d.slice(0, 4),
+    dm = +d.slice(5, 7),
+    dd = +d.slice(8, 10),
+    th = +t.slice(0, 2),
+    tm = +t.slice(2, 4);
   return new Date(dy, dm - 1, dd, th, tm, 0, 0);
 }
 
@@ -65,8 +65,8 @@ export function getDateTime(d, t) {
  * @param   {Date}   second  second Date object
  * @returns {Number}         hours between first and second date
  */
-export function getHoursBetweenDates(first, second){
-  return (second - first)/ 1000 / 60 / 60;
+export function getHoursBetweenDates(first, second) {
+  return (second - first) / 1000 / 60 / 60;
 }
 /**
  * Add hours to a date
@@ -75,9 +75,9 @@ export function getHoursBetweenDates(first, second){
  * @param   {Number} h  Hours to add
  * @returns {Date}
  */
-export function addHoursToDate(d, h){
-  let c = new Date(d);
-  c.setTime( c.getTime() + ( h * 60 * 60 * 1000 ) );
+export function addHoursToDate(d, h) {
+  const c = new Date(d);
+  c.setTime( c.getTime() +  h * 60 * 60 * 1000  );
   return c;
 }
 
@@ -109,7 +109,7 @@ export function roundTo(x, n = 0) {
  * @param   {Boolean}           [allowZero = false]        Accept 0 as valid
  * @returns {HTMLElement|String}                           The original DOM element, for chaining (or empty string if no HTMLElement specified)
  */
-export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false, allowZero = false){
+export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false, allowZero = false) {
   let txt = '';
   let wasNeg = false;
   let wasNeg2 = false;
@@ -122,12 +122,12 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
 
       // Make numbers positive if they're negative and negative is allowed
       if ( num1 < 0 && allowNegative ) {
-        num1 = 0-num1;
+        num1 = 0 - num1;
         wasNeg = true;
       }
 
       if ( num2 < 0 && allowNegative ) {
-        num2 = 0-num2;
+        num2 = 0 - num2;
         wasNeg2 = true;
       }
 
@@ -136,25 +136,25 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
         num1Rounded = roundTo(num1, round);
       } else if ( num1 === 0 && allowZero ) {
         num1Rounded = 0;
-      } 
+      }
 
       if ( num2 > 0 ) {
         num2Rounded = roundTo(num2, round);
       } else if ( num2 === 0 && allowZero ) {
-        num2Rounded = 0
+        num2Rounded = 0;
       }
 
       // Change back to negative if originally negative
       if ( wasNeg ) {
         num1Rounded = 0 - num1Rounded;
-      } 
+      }
 
       if ( wasNeg2 ) {
-        num2Rounded = 0 - num2Rounded
-      };
+        num2Rounded = 0 - num2Rounded;
+      }
 
       // Express rounded numbers as a range, or a single number if they're equal
-      if ( num1 == num2 ) {
+      if ( num1 === num2 ) {
         txt = num1;
       } else {
         txt = `${num1Rounded} - ${num2Rounded}`;
@@ -170,7 +170,7 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
       }
 
       // Round number if not zero, otherwise set rounded number to zero if zero is allowed
-      if( num > 0 ) {
+      if ( num > 0 ) {
         txt = roundTo(num, round);
       } else if ( num === 0 && allowZero ) {
         txt = 0;
@@ -192,7 +192,7 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
   // Set text of specified element to result
   $(el).html(txt);
   return el;
-};
+}
 
 /**
  * Parses age input in years, months, days, or months+days and returns in years.
@@ -200,20 +200,20 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
  * @param   {String} x     Age input
  * @returns {Number}       Age in years (or undefined if invalid input)
  */
-export function parseAge(x){
-  let yearsOld = 0;
+export function parseAge(x) {
+  // const yearsOld = 0;
   if ( /^\d+ *[Dd]$/.test(x) ) {
     const days = +x.replace(/ *d */gi, '');
-    return days/365.25;
+    return days / 365.25;
   }
   if ( /^\d+ *[Mm]$/.test(x) ) {
     const months = +x.replace(/ *m */gi, '');
-    return months/12;
+    return months / 12;
   }
   if ( /^\d+ *[Mm]\d+ *[Dd]$/.test(x) ) {
-    let arrAge = x.split('m');
+    const arrAge = x.split('m');
     arrAge[1] = arrAge[1].replace('d', '');
-    return arrAge[0]/12 + arrAge[1]/365.25;
+    return arrAge[0] / 12 + arrAge[1] / 365.25;
   }
   if ( isNaN(+x) ) return undefined;
   return +x;
@@ -240,13 +240,13 @@ export function checkValue(x, min = -Infinity, max = Infinity, zeroAllowed = fal
   return x;
 }
 //TODO: document checkTimeInput
-export function checkTimeInput(x){
+export function checkTimeInput(x) {
   x += "";
   if (/(^[0-1]{0,1}[0-9]{1}$)|(^2[0-3]{1}$)/.test(x)) {
-    return ("0" + x + "00").slice(-4);
+    return `0${  x  }00`.slice(-4);
   }
   if ( /^(([0-1]{0,1}[0-9]{1})|2{1}[0-4]{1})[0-5]{1}[0-9]{1}$/.test(x) ) {
-    return ("0"+ x.slice(0, -2) ).slice(-2) + x.slice(-2);
+    return `0${ x.slice(0, -2)}` .slice(-2) + x.slice(-2);
   }
   return "";
 }
