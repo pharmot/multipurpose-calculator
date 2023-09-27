@@ -6,8 +6,9 @@
 - Vancomycin peak timing calculator [#66](https://github.com/pharmot/multipurpose-calculator/issues/66)
 - Corrected QT interval calculator [#80](https://github.com/pharmot/multipurpose-calculator/issues/80)
 - Single and Double Alligation calculator [#69](https://github.com/pharmot/multipurpose-calculator/issues/69)
-- addHoursToDate and displayTime functions in Utility module
-- groupCollapsed and logArgs functions in Utility module
+- Warfarin average dose adjustment calculator [#71](https://github.com/pharmot/multipurpose-calculator/issues/71)
+- colorScale, addHoursToDate, and displayTime functions in Utility module
+- groupCollapsed and logArgs functions in Logger module
 - Created vscode snippets for commonly used Bootstrap elements
 
 ### Changed

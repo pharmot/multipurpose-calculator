@@ -22,6 +22,7 @@ require("./pca.js");
 require("./nextdose.js");
 require("./qtc.js");
 require("./alligation.js");
+require("./warf.js");
 
 let debug = false;
 // let debugDefaultTab = "more";
@@ -1425,7 +1426,7 @@ const calculate = {
  * @param   {Number} x  percent change (from -100 to 100)
  * @returns {String}    color as rgb(__, __, __)
  */
-function colorScale(x) {
+function vancoColorScale(x) {
   let arr = [];
   x = Math.abs(x);
   if (x >= 35) {
@@ -1483,7 +1484,7 @@ function displayChange(el, d = 0, f = 0) {
       arrow = "&uarr;&nbsp;&nbsp;";
     }
     $(el).html(`${arrow + roundTo(Math.abs(change * 100), 0.1)  }%`);
-    $(el).css("background-color", colorScale(Math.abs(change * 100)));
+    $(el).css("background-color", vancoColorScale(Math.abs(change * 100)));
   } else {
     $(el).html("");
     $(el).css("background-color", "#f2f7fa");
