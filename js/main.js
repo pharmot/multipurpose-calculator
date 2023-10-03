@@ -86,22 +86,10 @@ $(() => {
     $("#amg-customTime").val("0200");
     LOG.enable();
 
-
-    // $(".nav-item.nav-link.active").removeClass("active");
-    // $(".tab-pane.fade.show.active").removeClass("show active");
-    // $(`#nav-${debugDefaultTab}-tab`).addClass("active");
-    // $(`#nav-${debugDefaultTab}`).addClass("show active");
-    // $(`#nav-${debugDefaultMoreTab}-tab`).addClass("active");
-    // $(`#nav-${debugDefaultMoreTab}`).addClass("show active");
-    // $(`#nav-${debugDefaultMoreTab}`, `#nav-${debugDefaultTab}`).removeClass('hidden');
     $("#amg-warning").addClass('hidden');
+
     calculate.syncCurrentDFT("revision");
-    calculate.patientData();
-    calculate.vancoInitial();
-    calculate.vancoRevision();
-    calculate.vancoAUC();
-    calculate.amgWeight();
-    calculate.amg();
+    calculate.allForPatient();
 
   } else {
     resetDates();
@@ -135,15 +123,13 @@ $("#btnReset").on("click", () => {
   $("#aucDates-apply").removeClass("datesApplied");
   $("#hd")[0].selectedIndex = 0;
   $("#vancoIndication")[0].selectedIndex = 0;
-  calculate.patientData();
-  calculate.vancoInitial();
-  calculate.vancoRevision();
-  calculate.vancoAUC();
-  calculate.vancoTwolevel();
+
+
+  /** Add methods to calculate.allForPatient if dependant on input-patient fields */
+  calculate.allForPatient();
+  /** Methods that aren't dependant on input-patient fields */
   calculate.secondDose();
   calculate.ivig();
-  calculate.amgWeight();
-  calculate.amg();
 
   $("#top-container").removeClass("age-adult age-child age-infant");
   $("#top-container").addClass("age-adult");
@@ -179,14 +165,8 @@ $("#btnReset").on("click", () => {
 });
 
 // Patient
-$(".input-patient").on("keyup", () => {
-  calculate.patientData();
-  calculate.vancoInitial();
-  calculate.vancoRevision();
-  calculate.vancoAUC();
-  calculate.amgWeight();
-  calculate.amg();
-});
+$(".input-patient").on("keyup", () => calculate.allForPatient() );
+
 $("#ptage").on("keyup", () => {
   setTimeout(() => {
     $("#top-container").removeClass("age-adult age-child age-infant");
@@ -619,6 +599,16 @@ const pt = {
  * @namespace
  */
 const calculate = {
+  /** Call all methods that depend on patient data  */
+  allForPatient() {
+    this.patientData();
+    this.vancoInitial();
+    this.vancoRevision();
+    this.vancoTwolevel();
+    this.vancoAUC();
+    this.amgWeight();
+    this.amg();
+  },
   /**
    * Input and output for patient parameters including CrCl, weights, etc.
    * @requires module:util
