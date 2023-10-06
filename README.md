@@ -64,7 +64,7 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
-## 1.2.0 - Unreleased
+## [1.2.0] - 2023-10-06
 
 ### Added
 - Extended interval aminoglycoside calculator
@@ -229,6 +229,7 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
+[1.1.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.0
 [1.1.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.1.0
 [1.0.5]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.5
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.0.4

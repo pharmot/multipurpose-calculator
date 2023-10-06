@@ -1,5 +1,7 @@
 # Changelog
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [1.2.0] - 2023-10-06
 
 ### Added
 - Extended interval aminoglycoside calculator [#79](https://github.com/pharmot/multipurpose-calculator/issues/79)
@@ -222,7 +224,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/pharmot/multipurpose-calculator/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...v1.0.5
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...v1.0.4
