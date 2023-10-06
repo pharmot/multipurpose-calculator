@@ -1,0 +1,64 @@
+<div class="card" id="card--qtc">
+  <div class="card-header h5">Corrected QT Interval</div>
+  <div class="card-body">
+    <div class="form-row mb-3">
+      <div class="input-group col-12">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="qtc-af">
+          <label class="form-check-label" for="qtc-af">
+            Atrial Fibrillation?
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="qtc-hr" class="col-form-label col-4">Heart Rate</label>
+      <div class="col-4 input-group">
+        <input type="number" id="qtc-hr" class="form-control input-qtc" min="0">
+        <div class="input-group-append">
+          <div class="input-group-text">bpm</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="qtc-qrs" class="col-form-label col-4">QRS Interval</label>
+      <div class="col-4 input-group">
+        <input type="number" id="qtc-qrs" class="form-control input-qtc" min="0">
+        <div class="input-group-append">
+          <div class="input-group-text">msec</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="qtc-qt" class="col-form-label col-4">
+        <span class="qtc-af-only">Shortest QT</span>
+        <span class="qtc-non-af">QT Interval</span>
+      </label>
+      <div class="col-4 input-group">
+        <input type="number" id="qtc-qt" class="form-control input-qtc" min="0">
+        <div class="input-group-append">
+          <div class="input-group-text">msec</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row qtc-af-only">
+      <label for="qtc-qt-longest" class="col-form-label col-4">Longest QT</label>
+      <div class="col-4 input-group">
+        <input type="number" id="qtc-qt-longest" class="form-control input-qtc" min="0">
+        <div class="input-group-append">
+          <div class="input-group-text">msec</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="qtc-result" class="col-form-label col-4">Corrected QT</label>
+      <div class="col-4 input-group">
+        <div id="qtc-result" class="output"> </div>
+      </div>
+    </div>
+    <div class="card-subtitle small text-left text-secondary mt-3">Calculation method:</div>
+    <div class="input-group">
+      <div class="card-text small output" id="qtc-method"> </div>
+    </div>
+  </div>
+</div>

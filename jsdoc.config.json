@@ -2,7 +2,7 @@
   "source": {
     "includePattern": ".+\\.js(doc|x)?$",
     "include": ["."],
-    "exclude": ["node_modules", "dist", "docs", "jsdoc-template", "webpack.config.js", "webpack.dev.config.js"]
+    "exclude": ["node_modules", "dist", "docs", "jsdoc-template", "webpack.config.js", "webpack.dev.config.js", "webpack.common.js"]
   },
   "recurseDepth": 4,
   "opts": {
@@ -11,13 +11,24 @@
     "recurse": true,
     "template": "jsdoc-template"
   },
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc"]
+  },
   "templates": {
     "showExpandedNav": false,
     "repository": "https://github.com/pharmot/multipurpose-calculator",
-    "projectTitle": "Multipurpose Calculator"
+    "projectTitle": "Multipurpose Calculator",
+    "default": {
+      "staticFiles": {
+        "include": [
+            "./lib"
+        ]
+      }
+    }
   },
   "plugins": ["plugins/markdown"],
   "markdown": {
-    "tags": ["author", "classdesc", "description", "exceptions", "params", "properties", "returns", "see", "summary", "example"]
+    "tags": ["author", "classdesc", "description", "exceptions", "param", "property", "returns", "see", "summary", "example"]
   }
 }

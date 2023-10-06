@@ -21,10 +21,15 @@ $("#btnReset").on('click', () => {
   $(".kcentra--inputRow").remove();
 });
 /**
- * KCentra module namespace
+ * KCentra module
  * @namespace
  */
 const kcentra = {
+  /**
+   * Removes the row when the remove button is clicked
+   * @param {DOMEvent} ev Event triggering this method (clicking .kcentra--remove)
+   * @returns {null}
+   */
   removeRow(ev){
     const el = ev.target;
     const btn = $(`#${el.id}`)[0];
@@ -33,6 +38,10 @@ const kcentra = {
     row.parentNode.removeChild(row);
     this.clearText();
   },
+  /**
+   * Clears output field, parses scancode input and creates an input row for each scan code.
+   * @returns {null}
+   */
   processInput(){
     let self = this;
     $("#kcentra--output").val("");
@@ -51,6 +60,10 @@ const kcentra = {
       self.addRow(thisLot, thisExp);
     });
   },
+  /**
+   * Outputs text from input rows.  Blank inputs are converted to `***` wildcards. If no input rows exist, outputs default admin instructions
+   * @returns {null}
+   */
   makeText(){
     $("#kcentra--output").empty();
     let sumQty = 0;
@@ -80,9 +93,19 @@ const kcentra = {
     // const scrollheight = document.getElementById("kcentra--output").scrollHeight + 2;
     // $("#kcentra--output").height(`${scrollheight}px`);
   },
+  /**
+   * Clears output field
+   * @returns {null}
+   */
   clearText(){
     $("#kcentra--output").val("");
   },
+  /**
+   * Creates an input row with the provided lot and expiration and adds to DOM before the "process text" button
+   * @param {String} lot Lot number
+   * @param {String} exp Expiration date
+   * @returns {null}
+   */
   addRow(lot, exp){
     let newDiv = document.createElement("div");
     $(newDiv).addClass("form-row kcentra--inputRow");
@@ -109,6 +132,6 @@ const kcentra = {
       <button class="btn btn-light kcentra--remove" id="${Math.random().toString(36).substring(2, 9)}">Remove</button>
     </div>`);
     $("#kcentra--btnSum--wrapper").before(newDiv);
-    $("#kcentra--btnSum--wrapper").show();
+    $("#kcentra--btnSum--wrapper").removeClass('hidden');
   }
 }

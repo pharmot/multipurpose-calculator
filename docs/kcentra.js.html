@@ -74,7 +74,7 @@
 
     
 
-    <h3>Modules</h3><ul><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#colorScale">colorScale</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#getHalflife">getHalflife</a></li><li><a href="global.html#resetDates">resetDates</a></li></ul><div class="repo-link">
+    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li><li id="warf-nav"><a href="module-warf.html">warf</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li><li id="Dose-nav"><a href="module-warf-Dose.html">Dose</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#resetDates">resetDates</a></li><li><a href="global.html#vancoColorScale">vancoColorScale</a></li></ul><div class="repo-link">
     <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
 </svg>
@@ -117,10 +117,15 @@ $("#btnReset").on('click', () => {
   $(".kcentra--inputRow").remove();
 });
 /**
- * KCentra module namespace
+ * KCentra module
  * @namespace
  */
 const kcentra = {
+  /**
+   * Removes the row when the remove button is clicked
+   * @param {DOMEvent} ev Event triggering this method (clicking .kcentra--remove)
+   * @returns {null}
+   */
   removeRow(ev){
     const el = ev.target;
     const btn = $(`#${el.id}`)[0];
@@ -129,6 +134,10 @@ const kcentra = {
     row.parentNode.removeChild(row);
     this.clearText();
   },
+  /**
+   * Clears output field, parses scancode input and creates an input row for each scan code.
+   * @returns {null}
+   */
   processInput(){
     let self = this;
     $("#kcentra--output").val("");
@@ -147,6 +156,10 @@ const kcentra = {
       self.addRow(thisLot, thisExp);
     });
   },
+  /**
+   * Outputs text from input rows.  Blank inputs are converted to `***` wildcards. If no input rows exist, outputs default admin instructions
+   * @returns {null}
+   */
   makeText(){
     $("#kcentra--output").empty();
     let sumQty = 0;
@@ -176,9 +189,19 @@ const kcentra = {
     // const scrollheight = document.getElementById("kcentra--output").scrollHeight + 2;
     // $("#kcentra--output").height(`${scrollheight}px`);
   },
+  /**
+   * Clears output field
+   * @returns {null}
+   */
   clearText(){
     $("#kcentra--output").val("");
   },
+  /**
+   * Creates an input row with the provided lot and expiration and adds to DOM before the "process text" button
+   * @param {String} lot Lot number
+   * @param {String} exp Expiration date
+   * @returns {null}
+   */
   addRow(lot, exp){
     let newDiv = document.createElement("div");
     $(newDiv).addClass("form-row kcentra--inputRow");
@@ -205,7 +228,7 @@ const kcentra = {
       &lt;button class="btn btn-light kcentra--remove" id="${Math.random().toString(36).substring(2, 9)}">Remove&lt;/button>
     &lt;/div>`);
     $("#kcentra--btnSum--wrapper").before(newDiv);
-    $("#kcentra--btnSum--wrapper").show();
+    $("#kcentra--btnSum--wrapper").removeClass('hidden');
   }
 }</code></pre>
   </article>

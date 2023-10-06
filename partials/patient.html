@@ -1,0 +1,153 @@
+<div class="card">
+  <div class="card-body">
+    <div class="form-row">
+      <label for="ptage" class="col-4">Age</label>
+      <div class="col-1 icon-container">
+        <a role="button" data-toggle="tooltip" data-placement="bottom" data-html= "true" title="Enter age in years.<br>To enter in months or days,<br>enter in the format:<br>#m, #d, or #m#d."><i class="fa fa-question-circle"></i></a>
+      </div>
+      <div class="input-group col-7">
+        <input type="text" id="ptage" class="form-control input-patient">
+      </div>            
+    </div>
+    <div class="form-row">
+      <label for="sex" class="col-5">Sex</label>
+      <div class="input-group col-7">
+        <input type="text" id="sex" class="form-control input-patient" placeholder="M or F">
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="weight" class="col-5">Weight</label>
+      <div class="input-group col-7">
+        <input type="text" id="weight" class="form-control input-patient">
+        <div class="input-group-append">
+          <div class="input-group-text">kg</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="height" class="col-5">Height</label>
+      <div class="input-group col-7">
+        <input type="text" id="height" class="form-control input-patient">
+        <div class="input-group-append">
+          <div class="input-group-text">cm</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="scr" class="col-5">SCr</label>
+      <div class="input-group col-7">
+        <input type="text" id="scr" class="form-control input-patient">
+        <div class="input-group-append">
+          <div class="input-group-text">mg/dL</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="hd" class="col-5">Dialysis</label>
+      <div class="input-group col-7">
+        <select id="hd" class="form-control">
+          <option>No</option>
+          <option>HD</option>
+          <option>PD</option>
+          <option>CVVH/CVVHD/CVVHDF</option>
+          <option>SLED</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <button type="button" class="btn btn-outline-secondary" id="btnReset" tabindex="999">Reset All</button>
+</div>
+<div class="card">
+  <div class="card-header h5">Calculated Weights</div>
+  <div class="card-body">
+    <div class="form-row hide-age-infant hide-age-child">
+      <label for="ibw" class="col-5">IBW</label>
+      <div class="input-group col-7">
+        <div class="output" id="ibw"></div>
+      </div>
+    </div>
+    <div class="form-row hide-age-infant hide-age-child">
+      <label for="overUnder" class="col-5 pl-3">Over/Under</label>
+      <div class="input-group col-7">
+        <div class="output" id="overUnder"></div>
+      </div>
+    </div>
+    <div class="form-row hide-age-infant hide-age-child">
+      <label for="adjBW" class="col-5">AdjBW</label>
+      <div class="input-group col-7">
+        <div class="output" id="adjBW"></div>
+      </div>
+    </div>
+    <div class="form-row hide-age-infant hide-age-child">
+      <label for="lbw" class="col-5">LBW</label>
+      <div class="input-group col-7">
+        <div class="output" id="lbw"></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="bmi" class="col-5">BMI</label>
+      <div class="input-group col-7">
+        <div class="output" id="bmi"></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="bsa" class="col-5">BSA</label>
+      <div class="input-group col-7">
+        <div class="output" id="bsa"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="card--crcl">
+  <div class="card-header h5">Creatinine Clearance</div>
+  <div class="card-body">
+    <div class="form-row hide-age-infant hide-age-child">
+      <label for="cgActual" class="col-5">C-G (Actual)</label>
+      <div class="col-7 input-group">
+        <div class="output outCrCl" id="cgActual"></div>
+      </div>
+    </div>
+    <div class="form-row hide-age-infant hide-age-child">
+      <label for="cgIdeal" class="col-5">C-G (Ideal)</label>
+      <div class="col-7 input-group">
+        <div class="output outCrCl" id="cgIdeal"></div>
+      </div>
+    </div>
+    <div class="form-row hide-age-infant hide-age-child">
+      <label for="cgAdjusted" class="col-5 col-form-label">C-G (Adjusted)</label>
+      <div class="col-7 input-group">
+        <div class="output outCrCl" id="cgAdjusted"></div>
+      </div>
+    </div>
+    <div class="form-row hide-age-adult hide-age-child">
+      <label for="schwartz-k-infant" class="col-4 col-form-label">K value</label>
+      <div class="col-8 input-group">
+        <select id="schwartz-k-infant" class="form-control">
+          <option>0.45 (Term Infant)</option>
+          <option>0.33 (LBW Infant)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row hide-age-adult">
+      <label for="schwartz-crcl" class="col-4 col-form-label">Schwartz</label>
+      <div class="col-8 input-group">
+        <div class="output font-weight-bold" id="schwartz-crcl"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-left hide-age-infant hide-age-child">
+    <div class="card-text small">
+      Use highlighted CrCl for most medications.
+    </div>
+    <div class="card-text small mt-2">
+      C-G (Actual) should <strong>always</strong> be used for:
+      <ul>
+        <li>dofetilide (Tikosyn)</li>
+        <li>rivaroxaban (Xarelto)</li>
+        <li>zoledronic acid (Reclast)</li>
+      </ul>
+    </div>
+  </div>
+</div>

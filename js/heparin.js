@@ -23,9 +23,10 @@ $('.input-heparin').on('keyup', () => {
    finalRate: 0,
    /**
     * Calculates rates and displays calculated values
+    * @returns {Null}
     */
    calc() {
-     $('#heparin-icon-yes, #heparin-icon-no, #heparin-resultText').hide();
+     $('#heparin-icon-yes, #heparin-icon-no, #heparin-resultText').addClass('hidden');
      const dw = checkValue(+$('#heparin-wt').val(), 20, 300);
      this.startingRate = checkValue(+$('#heparin-startingRate').val(), 0, 4000);
      const tr = checkValue(+$('#heparin-roundedRate').val(), 0, 50);
@@ -43,16 +44,17 @@ $('.input-heparin').on('keyup', () => {
    },
    /**
     * Checks final rate against desired rate and displays whether they match
+    * @returns {Null}
     */
    check(){
      if ( this.finalRate > 0 && this.startingRate > 0 ) {
-       $('#heparin-resultText').show();
+       $('#heparin-resultText').removeClass('hidden');
        if ( this.startingRate === this.finalRate ) {
          $('#heparin-resultText').html('Initial rate = desired starting rate').addClass('text-success').removeClass('text-danger');
-         $('#heparin-icon-yes').show();
+         $('#heparin-icon-yes').removeClass('hidden');
        } else {
          $('#heparin-resultText').html('Initial rate will not equal desired starting rate.').addClass('text-danger').removeClass('text-success');
-         $('#heparin-icon-no').show();
+         $('#heparin-icon-no').removeClass('hidden');
        }
      }
    }

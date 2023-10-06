@@ -1,6 +1,27 @@
 # Changelog
 <!-- ## [Unreleased] -->
 
+## [1.2.0] - 2023-10-06
+
+### Added
+- Extended interval aminoglycoside calculator [#79](https://github.com/pharmot/multipurpose-calculator/issues/79)
+- Vancomycin peak timing calculator [#66](https://github.com/pharmot/multipurpose-calculator/issues/66)
+- Corrected QT interval calculator [#80](https://github.com/pharmot/multipurpose-calculator/issues/80)
+- Single and Double Alligation calculator [#69](https://github.com/pharmot/multipurpose-calculator/issues/69)
+- Warfarin average dose adjustment calculator [#71](https://github.com/pharmot/multipurpose-calculator/issues/71)
+- colorScale, addHoursToDate, and displayTime functions in Utility module
+- groupCollapsed and logArgs functions in Logger module
+- Created vscode snippets for commonly used Bootstrap elements
+
+### Changed
+- Updated tints and shades of VMFH colors [#77](https://github.com/pharmot/multipurpose-calculator/issues/77)
+- Split left column (patient info) into its own partial html file
+- Updated documentation
+- Updated eslint configuration
+
+### Fixed
+- Added hash to manifest in head of template.html for cache busting [#78](https://github.com/pharmot/multipurpose-calculator/issues/78)
+
 ## [1.1.0] - 2023-01-30
 
 ### Added
@@ -203,7 +224,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/pharmot/multipurpose-calculator/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...v1.0.5
 [1.0.4]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.3...v1.0.4

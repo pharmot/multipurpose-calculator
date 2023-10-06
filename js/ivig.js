@@ -1,6 +1,7 @@
 /**
  * IVIG Rate Calculation and admin instruciton generation module
  * @module ivig
+ * @exports getText
  * @requires module:util
  * @requires module:arial
  * @since v0.2.0
@@ -8,6 +9,22 @@
 
 import * as arial from './arial.js';
 import { roundTo } from './util.js';
+
+
+
+/**
+ * IVIG Product Object
+ *
+ * @typedef  {Object} IvigProduct
+ * @property {Number[]}   rates      Titration rates in mL/kg/hour
+ * @property {Number[]}   durations  Length in minutes of each titration step. Must have same length as `rates` property.
+ * @property {Number}     conc       Concentration of product, in g/mL (e.g. 0.1 = 10%)
+ */
+
+/**
+ * Product titrations that correspond with the products in the input/select 
+ * @type {IvigProduct[]}
+ */
 const drugs = [
   {
     rates: [0.3, 0.6, 1.2, 2.4, 4.8],
@@ -40,6 +57,13 @@ const drugs = [
     conc: 0.1
   }
 ];
+/**
+ * Generate admin instruction text for IVIG rate titration
+ * @param {Integer} selected    Selected index of product selection
+ * @param {Number} wt           Patient's actual body weight, in kg
+ * @param {Number} [totalDose]  Total dose to be administered, in grams
+ * @returns {String}            Admin instruction text
+ */
 function getText(selected, wt, totalDose){
   let allSteps = {
     steps: ["Time"],
