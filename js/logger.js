@@ -111,7 +111,24 @@ export function outputTape(parent, title = "") {
   });
   return `${titleHtml}${printArray(items)}${txt}`;
 }
-//TODO: document printArray function
+/**
+ * Takes an array of [label, value] arrays and converts to text/html with breaks
+ * after each line, padded with nonbreaking spaces so values will be aligned.
+ * Labels with an empty string as their value will not be included.
+ * 
+ * @example
+ * printArray([
+ *   ['Actual Body Weight', '70 kg'],
+ *   ['Height', '180 cm'],
+ * ]);
+ * 
+ * // resulting HTML will appear like this (in Arial):
+ * Actual Body Weight:  70 kg
+ * Height:              180 cm
+ * 
+ * @param   {String[][]} arr Array of any length, each member must be an array of 2 strings
+ * @returns {String}
+ */
 function printArray(arr) {
   let labels = [];
   const values = [];

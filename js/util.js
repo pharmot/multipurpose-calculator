@@ -239,12 +239,22 @@ export function checkValue(x, min = -Infinity, max = Infinity, zeroAllowed = fal
   if ( typeof x === 'string' || isNaN(x) || x < min || x > max ) return 0;
   return x;
 }
-//TODO: document checkTimeInput
+/**
+ * Determines if a string of 1-4 numbers is a valid time (24-hr time, without a colon
+ * as 'H', 'HH', 'HMM', or 'HHMM'). If input is a valid time, returns the input as a
+ * 4-digit string as 'HHMM'. If not valid, returns an empty string.
+ *
+ * @param   {Number|String} x - One to four digits representing a time
+ * @returns {String}
+ */
 export function checkTimeInput(x) {
+  /* Make sure x is a string */
   x += "";
+  /* Just the hour: 0-9, 00-09, 10-19, 20-23 */
   if (/(^[0-1]{0,1}[0-9]{1}$)|(^2[0-3]{1}$)/.test(x)) {
     return `0${  x  }00`.slice(-4);
   }
+  /* Hour and minutes */
   if ( /^(([0-1]{0,1}[0-9]{1})|2{1}[0-4]{1})[0-5]{1}[0-9]{1}$/.test(x) ) {
     return `0${ x.slice(0, -2)}` .slice(-2) + x.slice(-2);
   }
