@@ -37,6 +37,9 @@ module.exports = {
         betaBanner: betaBanner,
         bodyStyle: bodyStyle,
       },
+      minify: {
+        removeRedundantAttributes: false,
+      },
     }),
     new CopyPlugin({
       patterns: [
