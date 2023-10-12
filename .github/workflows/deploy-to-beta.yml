@@ -25,4 +25,4 @@ jobs:
         ssh-keyscan -t rsa -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
     - name: Deploy with rsync
-      run: rsync -arvz -e "ssh -p ${{ secrets.DEPLOY_PORT }} -o HostKeyAlgorithms=+ssh-dss" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
+      run: rsync -arvz -e "ssh -o HostKeyAlgorithms=+ssh-rsa" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
