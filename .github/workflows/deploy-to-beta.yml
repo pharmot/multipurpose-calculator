@@ -24,5 +24,7 @@ jobs:
         echo $REMOTE_HOST
         ssh-keyscan -H $REMOTE_HOST >> ~/.ssh/known_hosts
 
+        "ssh -p ${remote_port} -i ~/.ssh/id_github -o StrictHostKeyChecking=no" 
+
     - name: Deploy with rsync
-      run: rsync -arvz ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta        
+      run: rsync -arvz -e "ssh -p ${{ secrets.DEPLOY_PORT }} -oHostKeyAlgorithms=+ssh-dss" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta        
