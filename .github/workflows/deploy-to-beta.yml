@@ -20,9 +20,9 @@ jobs:
 
     - name: Add Known Hosts
       run: |
-        REMOTE_HOST=`nslookup rxcalc.net | grep -E -o -m 2 'Address\:.*' | tail -1 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
-        echo $REMOTE_HOST
-        ssh-keyscan -H $REMOTE_HOST >> ~/.ssh/known_hosts
+        # REMOTE_HOST=`nslookup rxcalc.net | grep -E -o -m 2 'Address\:.*' | tail -1 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+        # echo $REMOTE_HOST
+        ssh-keyscan -t rsa -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
     - name: Deploy with rsync
-      run: rsync -arvz -e "ssh -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
+      run: rsync -arvz -e "ssh -p ${{ secrets.DEPLOY_PORT }} -o HostKeyAlgorithms=+ssh-dss" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
