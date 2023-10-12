@@ -1,0 +1,23 @@
+name: "Deploy to Server (Beta)"
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: "Build deployment code"
+        env:
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.DEPLOY_KEY }}
+          local_dir: "dist/"
+          remote_dir: ${{ secrets.DEPLOY_DIR }}
+        run: |
+          npm install
+          CI=false npm run build
+          mkdir ~/.ssh
+          echo "$remote_key" > ~/.ssh/id_github
+          chmod 600 ~/.ssh/id_github
+          rsync -arvz -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir}/multicalc-beta
+          rm ~/.ssh/id_github
