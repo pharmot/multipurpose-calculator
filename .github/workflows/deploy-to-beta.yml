@@ -12,22 +12,23 @@ jobs:
     - run: npm install
     - run: npm run build
 
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@main
-      with:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
-          ARGS: "-arvz -i"
-          SOURCE: "dist/*"
-          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
-          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
-          TARGET: ${{ secrets.DEPLOY_DIR }}/multicalc-beta
-          SSH_CMD_ARGS: "-o HostKeyAlgorithms=+ssh-rsa, -o StrictHostKeyChecking=no"
-
-    # - name: Install SSH Key
-    #   uses: shimataro/ssh-key-action@v2
+    # - name: Deploy to Server
+    #   uses: easingthemes/ssh-deploy@main
     #   with:
-    #     key: ${{ secrets.DEPLOY_KEY }}
-    #     known_hosts: unnecessary
+    #       SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+    #       ARGS: "-arvz -i"
+    #       SOURCE: "dist/*"
+    #       REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+    #       REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+    #       TARGET: ${{ secrets.DEPLOY_DIR }}/multicalc-beta
+    #       SSH_CMD_ARGS: "-o HostKeyAlgorithms=+ssh-rsa, -o StrictHostKeyChecking=no"
+
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.DEPLOY_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        name: id_github
 
     # - name: Add Known Hosts
     #   run: |
@@ -35,5 +36,8 @@ jobs:
     #     # echo $REMOTE_HOST
     #     ssh-keyscan -t rsa -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
-    # - name: Deploy with rsync
-    #   run: rsync -arvz -e "ssh -o HostKeyAlgorithms=+ssh-rsa" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
+    - name: Deploy with rsync
+      run: |
+        cd /home/runner/.ssh
+        ls -al
+        rsync -arvz -e "ssh -i ~/.ssh/id_github -o HostKeyAlgorithms=+ssh-rsa" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
