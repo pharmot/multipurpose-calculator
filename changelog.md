@@ -1,6 +1,11 @@
 # Changelog
 <!-- ## [Unreleased] -->
 
+## [1.2.2] - 2024-01-02
+
+### Changed
+- Remove AFib checkbox from QTc calculator [#87](https://github.com/pharmot/multipurpose-calculator/issues/87)
+
 ## [1.2.1] - 2023-10-11
 
 ### Fixed
@@ -229,7 +234,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/pharmot/multipurpose-calculator/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/pharmot/multipurpose-calculator/compare/v1.0.5...v1.1.0
