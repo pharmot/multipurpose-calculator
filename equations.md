@@ -463,9 +463,6 @@ $\frac{\mathrm{predicted\ peak}-\mathrm{predicted\ trough}}{ke}$
 # Corrected QT Interval
 
 ### Calculation Process
-- **Determine QT value to use in equation**
-  - If atrial fibrillation, use the average of shortest and longest QT from EKG
-  - Otherwise, use QT interval from EKG
 - **Adjust for prolonged QRS interval**
   - If QRS > 120, use Modified Bogossian formula to correct the above (QT or average QT)
 - **Calculate QTc using the formula determined by the heart rate**
@@ -493,18 +490,10 @@ $\frac{\mathrm{predicted\ peak}-\mathrm{predicted\ trough}}{ke}$
 
 ```mermaid
 flowchart LR
-  AF[A fib?]:::gray
-  AF -->|No| QRS1[QRS?]:::gray
-  AF -->|Yes|QRS2[QRS?]:::gray
-
-  QRS1 -->|<120 msec| NL
-  NL[Use QT from EKG]:::start --> HR
-  QRS1 -->|>=120 msec| NH
+  QRS[QRS?]:::start -->|<120 msec| NL
+  NL[Use QT from EKG]:::green --> HR
+  QRS -->|>=120 msec| NH
   NH[Correct QT using Mod. Bogossian]:::blue --> HR
-  QRS2 -->|<120 msec| YL
-  YL[Use average highest & lowest QT from EKG]:::calc --> HR
-  QRS2 -->|>=120 msec| YH
-  YH[Average highest & lowest QT from EKG<br><b>and</b> correct QT using Mod. Bogossian]:::green --> HR
   HR[Determine which<br>formula to use]:::gray -->|HR < 50| F[use Fridericia formula]:::final
   HR -->|HR 50-70| G[use Bazett formula]:::final
   HR -->|HR >70| H[use Framingham formula]:::final

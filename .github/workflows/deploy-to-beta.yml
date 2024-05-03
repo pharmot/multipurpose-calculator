@@ -9,36 +9,61 @@ jobs:
       with:
         ref: dev
     
-    - run: npm install
-    - run: npm run build
+#     - run: npm install
+#     - run: npm run build
 
-    # - name: Deploy to Server
-    #   uses: easingthemes/ssh-deploy@main
-    #   with:
-    #       SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
-    #       ARGS: "-arvz -i"
-    #       SOURCE: "dist/*"
-    #       REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
-    #       REMOTE_USER: ${{ secrets.DEPLOY_USER }}
-    #       TARGET: ${{ secrets.DEPLOY_DIR }}/multicalc-beta
-    #       SSH_CMD_ARGS: "-o HostKeyAlgorithms=+ssh-rsa, -o StrictHostKeyChecking=no"
+#   # - name: Deploy to Server
+#   #   uses: easingthemes/ssh-deploy@main
+#   #   with:
+#   #       SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+#   #       ARGS: "-arvz -i"
+#   #       SOURCE: "dist/*"
+#   #       REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+#   #       REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+#   #       TARGET: ${{ secrets.DEPLOY_DIR }}/multicalc-beta
+#   #       SSH_CMD_ARGS: "-o HostKeyAlgorithms=+ssh-rsa, -o StrictHostKeyChecking=no"
 
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.DEPLOY_KEY }}
-        known_hosts: unnecessary
-        # known_hosts: ${{ secrets.KNOWN_HOSTS }}
-        name: id_github
+#     - name: Install SSH Key
+#       uses: shimataro/ssh-key-action@v2
+#       with:
+#         key: ${{ secrets.DEPLOY_KEY }}
+#         known_hosts: unnecessary
+#         # known_hosts: ${{ secrets.KNOWN_HOSTS }}
+#         name: id_github
 
-    - name: Add Known Hosts
+#     - name: Add Known Hosts
+#       run: |
+#         # REMOTE_HOST=`nslookup rxcalc.net | grep -E -o -m 2 'Address\:.*' | tail -1 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+#         # echo $REMOTE_HOST
+#         ssh-keyscan -t rsa -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+#     - name: Deploy with rsync
+#       run: |
+#         cd /home/runner/.ssh
+#         ls -al
+#         rsync -arvz -e "ssh -i ~/.ssh/id_github -o HostKeyAlgorithms=+ssh-rsa" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
+
+    - name: "Build deployment code"
       run: |
-        # REMOTE_HOST=`nslookup rxcalc.net | grep -E -o -m 2 'Address\:.*' | tail -1 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
-        # echo $REMOTE_HOST
-        ssh-keyscan -t rsa -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
-
-    - name: Deploy with rsync
+        npm install
+        CI=false npm run build
+    
+    - name: "Configure SSH"
+      env:
+        remote_key: ${{ secrets.DEPLOY_KEY }}
       run: |
-        cd /home/runner/.ssh
-        ls -al
-        rsync -arvz -e "ssh -i ~/.ssh/id_github -o HostKeyAlgorithms=+ssh-rsa" ./dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_DIR }}/multicalc-beta
+        mkdir ~/.ssh
+        echo "$remote_key" > ~/.ssh/id_github
+        chmod 600 ~/.ssh/id_github
+    
+    - name: "Deploy with rsync"
+      env:
+        remote_host: ${{ secrets.DEPLOY_HOST }}
+        remote_user: ${{ secrets.DEPLOY_USER }}
+        local_dir: "dist/"
+        remote_dir: ${{ secrets.DEPLOY_DIR }}
+      run: rsync -arvz -e "ssh -i ~/.ssh/id_github -o StrictHostKeyChecking=no" ${local_dir} ${remote_user}@${remote_host}:${remote_dir}/multicalc-beta
+    
+    - name: "Clean up SSH"
+      run: rm ~/.ssh/id_github
+        

@@ -7,7 +7,7 @@
 [![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)&nbsp;&nbsp;&nbsp;
 ![GitHub Release Date](https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2355a63a)&nbsp;&nbsp;&nbsp;
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)&nbsp;&nbsp;&nbsp;
-![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.2.0&color=%23orange&logo=windowsxp)&nbsp;&nbsp;&nbsp;
+![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.2.1&color=%2355a63a&logo=windowsxp)&nbsp;&nbsp;&nbsp;
 ![MIT Licensed](https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a)
 
 ## Open the Calculator
@@ -64,11 +64,22 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
-## [1.2.1] - 2024-04-30
+## [1.2.3] - 2024-05-03
 
 ### Changed
 - PCA max accumulated dose per 1 hour for all therapies
 - PCA pump limits updated to match new smart pumps
+
+## [1.2.2] - 2024-01-02
+
+### Changed
+- Remove AFib checkbox from QTc calculator
+
+## [1.2.1] - 2023-10-11
+
+### Fixed
+- Reset Button not resetting patient info
+
 
 ## [1.2.0] - 2023-10-06
 
@@ -236,7 +247,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-
+[1.2.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.3
+[1.2.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.2
 [1.2.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.1
 [1.2.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.0
 [1.1.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.1.0
