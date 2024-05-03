@@ -1,55 +1,22 @@
 <div class="card" id="card--pca">
   <div class="card-header h5">PCA Calculator</div>
   <div class="card-body">
-
-    <div class="form-row mb-1">
-      <div class="col-4">
-        <div class="form-row">
-          <label for="pca-drug">Drug and Order Set</label>
-        </div>
-        <div class="form-row">
-          <div class="input-group offset-1">
-            <select id="pca-drug" class="form-control small">
-              <option value="morphine">morphine</option>
-              <option value="hydromorphone">hydroMORPHONE</option>
-              <option value="fentanyl">fentaNYL</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="input-group offset-1">
-            <select id="pca-orderset" class="form-control small">
-              <option value="standard">Standard Dose</option>
-              <option value="high">High Dose</option>
-            </select>
-          </div>
-        </div>
+    <div class="form-row">
+      <label class="col-3" for="pca-drug">Drug and Therapy</label>
+      <div class="col-3 input-group">
+        <select id="pca-drug" class="form-control small">
+          <option value="morphine">morphine</option>
+          <option value="HYDROmorphone">HYDROmorphone</option>
+          <option value="fentaNYL">fentaNYL</option>
+        </select>
       </div>
-      <div class="col-6 offset-1">
-        <div class="form-row">
-          <label>Pump Limits for&nbsp;<span class="semibold text-secondary" id="pca-syringe">morphine 30 mg/30 mL</span>:</label>
-        </div>
-        <div class="form-row">
-          <div class="col">
-            <table class="table table-sm table-bordered pump-limits">
-              <caption>Pump upper limits are shown as 'soft-<b>hard</b>'</caption>
-              <thead>
-                <tr>
-                  <th scope="col" class="text-center">Dose</th>
-                  <th scope="col" class="text-center">CI Rate</th>
-                  <th scope="col" class="text-center">Max</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id="pca-pumplimit-dose">4-<b>5 mg/hr</b></td>
-                  <td id="pca-pumplimit-rate">2-<b>3 mg/hr</b></td>
-                  <td id="pca-pumplimit-max">30-<b>40 mg/4 hr</b></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="col-5 input-group">
+        <select id="pca-therapy" class="form-control small">
+          <option value="Standard">Standard</option>
+          <option value="Concentrated">Concentrated</option>
+          <option value="Palliative Care (Standard)">Palliative Care (Standard)</option>
+          <option value="Palliative Care (Concentrated)">Palliative Care (Concentrated)</option>
+        </select>
       </div>
     </div>
     <div class="col-10" id="col--pca-params">
@@ -58,7 +25,7 @@
         <div class="col-3 font-weight-bold">&nbsp;<span class="pca-ci-night hidden">Night</span>&nbsp;</div>
       </div>
       <div class="form-row">
-        <label for="pca-bolusDose" class="col-5">Patient Bolus Dose</label>
+        <label for="pca-bolusDose" class="col-5">PCA Dose</label>
         <div class="col-3 input-group">
           <input type="number" class="form-control input-pca" id="pca-bolusDose" step="any">
           <div class="input-group-append">
@@ -101,7 +68,7 @@
         <div class="col-3 input-group pca-ci-only hidden">
           <input type="number" class="form-control input-pca" id="pca-ciRate" step="any">
           <div class="input-group-append">
-            <div class="input-group-text pca-unitsPerOneHour">mg/hr</div>
+            <div class="input-group-text pca-unitsPerHour">mg/hr</div>
           </div>
         </div>
       </div>
@@ -140,7 +107,7 @@
         <div class="col-3 input-group">
           <input type="number" class="form-control input-pca" id="pca-orderedMax" step="any">
           <div class="input-group-append">
-            <div class="input-group-text pca-unitsPerHours">mg/4 hr</div>
+            <div class="input-group-text pca-unitsPerOneHour">mg/1 hr</div>
           </div>
         </div>
       </div>
@@ -167,6 +134,63 @@
         <div class="col-3 input-group">
           <div class="output" id="pca-averageFreq-night"></div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body border-top">
+    <div class="form-row mb-1">
+      <div class="col text-center semibold text-secondary" id="pca-syringe">morphine (Standard) 30 mg/30 mL</div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <table class="table table-sm table-bordered pump-limits">
+          <thead>
+            <tr>
+              <td class="h6">Pump Limits</td>
+              <th scope="col" class="text-center">Hard Min</th>
+              <th scope="col" class="text-center">Soft Min</th>
+              <th scope="col" class="text-center">Soft Max</th>
+              <th scope="col" class="text-center">Hard Max</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Loading Dose</th>
+              <td class="text-secondary font-italic">n/a</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-load-min-soft">0.1 mg</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-load-max-soft">2 mg</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-load-max-hard">4 mg</td>
+            </tr>
+            <tr>
+              <th scope="row">PCA Dose</th>
+              <td class="text-secondary font-italic">n/a</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-pca-min-soft">0.1 mg</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-pca-max-soft">4 mg</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-pca-max-hard">5 mg</td>
+            </tr>
+            <tr>
+              <th scope="row">Continuous Rate</th>
+              <td class="text-secondary font-italic">n/a</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-continuous-min-soft">0.1 mg/hr</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-continuous-max-soft">2 mg/hr</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-continuous-max-hard">3 mg/hr</td>
+            </tr>
+            <tr>
+              <th scope="row">Lockout Interval</th>
+              <td class="pca-pumplimit" id="pca-pumplimit-lockout-min-hard">5 min</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-lockout-min-soft">6 min</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-lockout-max-soft">60 min</td>
+              <td class="text-secondary font-italic">n/a</td>
+            </tr>
+            <tr>
+              <th scope="row">Max Accumulated Dose</th>
+              <td class="text-secondary font-italic">n/a</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-accumulated-min-soft">0.1 mg/1 hr</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-accumulated-max-soft">7.5 mg/1 hr</td>
+              <td class="pca-pumplimit" id="pca-pumplimit-accumulated-max-hard">15 mg/1 hr</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

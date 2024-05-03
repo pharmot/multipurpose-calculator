@@ -87,6 +87,7 @@ rules:
   semi:
     - error
     - always
+    - omitLastInOneLineBlock: true
   semi-spacing: warn
   space-before-blocks: warn
   space-before-function-paren:

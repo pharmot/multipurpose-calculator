@@ -153,15 +153,6 @@ $("#btnReset").on("click", () => {
   $('.highlighted').removeClass('highlighted');
   $('#nextdose-result').addClass('hidden');
 
-  // PCA
-  $("#pca-drug")[0].selectedIndex = 0;
-  $("#pca-orderset")[0].selectedIndex = 0;
-  $("#pca-continuous")[0].selectedIndex = 0;
-  $(".pca-bg-warning").removeClass("pca-bg-warning");
-  $(".pca-bg-danger").removeClass("pca-bg-danger");
-  $(".pca-bg-error").removeClass("pca-bg-error");
-
-
 });
 
 // Patient
