@@ -201,6 +201,10 @@
             <a href="module-util.html">module:util</a>
           </li>
         
+          <li>
+            <a href="module-formValidation.html">module:formValidation</a>
+          </li>
+        
       </ul>
     
 
@@ -223,6 +227,73 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+
+<h4 class="name" id="~guardrails">
+  <span class="type-signature">(inner, constant) </span>guardrails<span class="type-signature"> :Array.&lt;<a href="global.html#PcaOptions">PcaOptions</a>></span>
+</h4>
+
+
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line13">line 13</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
     
 
     
@@ -293,7 +364,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line169">line 169</a>
+          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line131">line 131</a>
         </li>
       </ul>
     </dd>
@@ -384,7 +455,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line150">line 150</a>
+          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line112">line 112</a>
         </li>
       </ul>
     </dd>
@@ -423,7 +494,7 @@
       </svg>
     </a>
     <h4 class="name" id="~changedDrug">
-      <span class="type-signature">(inner) </span>changedDrug<span class="signature">()</span><span class="type-signature"> &rarr; {Null}</span>
+      <span class="type-signature">(inner) </span>changedDrug<span class="signature">(clearInputs)</span><span class="type-signature"> &rarr; {Null}</span>
     </h4>
   </span>
 
@@ -433,98 +504,6 @@
 
   <div class="description">
     <p>Called when drug selection is changed. Changes units, hour max interval, and pump limits displayed on form.</p>
-  </div>
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source">
-      <ul class="dummy">
-        <li>
-          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line113">line 113</a>
-        </li>
-      </ul>
-    </dd>
-  
-
-  
-
-  
-
-  
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-        
-
-
-  
-
-  <span class='name-container'>
-    <a class="link-icon" href="#~checkPumpLimits">
-      <svg height="20" width="20" style="fill: black;">
-        <use xlink:href="#linkIcon"></use>
-      </svg>
-    </a>
-    <h4 class="name" id="~checkPumpLimits">
-      <span class="type-signature">(inner) </span>checkPumpLimits<span class="signature">(settings, softLimits, hardLimits, selectors)</span><span class="type-signature"></span>
-    </h4>
-  </span>
-
-  
-
-
-
-  <div class="description">
-    <p>Checks settings against pump limits and adds classes (background colors)
-to limit table if settings exceed parameters.</p>
   </div>
 
 
@@ -548,6 +527,8 @@ to limit table if settings exceed parameters.</p>
       
 
       
+        <th>Default</th>
+      
 
       <th class="last">Description</th>
     </tr>
@@ -557,14 +538,14 @@ to limit table if settings exceed parameters.</p>
     
       <tr>
         
-          <td class="name"><code>settings</code></td>
+          <td class="name"><code>clearInputs</code></td>
         
 
         <td class="type">
           
             
     <span class="param-type">
-      Array.&lt;number>
+      Boolean
     </span>
 
     
@@ -576,96 +557,15 @@ to limit table if settings exceed parameters.</p>
         
 
         
-
-        <td class="description last">
-          <p>Current pump settings [bolus, rate, max]</p>
-          
-        </td>
-      </tr>
-
-    
-      <tr>
-        
-          <td class="name"><code>softLimits</code></td>
-        
-
-        <td class="type">
-          
+          <td class="default">
             
-    <span class="param-type">
-      Array.&lt;number>
-    </span>
-
-    
-
-
-          
-        </td>
-
-        
-
-        
-
-        <td class="description last">
-          <p>Pump soft limits [bolus, rate, max]</p>
-          
-        </td>
-      </tr>
-
-    
-      <tr>
-        
-          <td class="name"><code>hardLimits</code></td>
-        
-
-        <td class="type">
-          
+              true
             
-    <span class="param-type">
-      Array.&lt;number>
-    </span>
-
-    
-
-
-          
-        </td>
-
-        
-
+          </td>
         
 
         <td class="description last">
-          <p>Pump hard limits [bolus, rate, max]</p>
-          
-        </td>
-      </tr>
-
-    
-      <tr>
-        
-          <td class="name"><code>selectors</code></td>
-        
-
-        <td class="type">
-          
-            
-    <span class="param-type">
-      Array.&lt;string>
-    </span>
-
-    
-
-
-          
-        </td>
-
-        
-
-        
-
-        <td class="description last">
-          <p>jQuery selectors for HTML elements [bolus, rate, max]</p>
+          <p>Default is to clear input fields when drug is changed. Set to false to keep values.</p>
           
         </td>
       </tr>
@@ -709,7 +609,183 @@ to limit table if settings exceed parameters.</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line281">line 281</a>
+          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line76">line 76</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#~checkPumpLimits">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="~checkPumpLimits">
+      <span class="type-signature">(inner) </span>checkPumpLimits<span class="signature">(pcaLimits, pcaOrdered)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Checks settings against pump limits and adds classes (background colors)
+to limit table if settings exceed parameters.</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>pcaLimits</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      <a href="global.html#PcaLimitSet">PcaLimitSet</a>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Limits for current PCA</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>pcaOrdered</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      <a href="global.html#PcaParams">PcaParams</a>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Current ordered PCA parameters</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="pca.js.html">pca.js</a>, <a href="pca.js.html#line235">line 235</a>
         </li>
       </ul>
     </dd>

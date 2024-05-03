@@ -1,0 +1,195 @@
+[
+  {
+    "drugName": "morphine",
+    "therapy": "Standard",
+    "dosingUnit": "mg",
+    "concentration": 1,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca": {          "min": { "soft": 0.1 }, "max": { "soft": 4, "hard": 5 } },
+      "continuous": {   "min": { "soft": 0.1 }, "max": { "soft": 2, "hard": 3 } },
+      "bolus": {        "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": {         "min": { "soft": 0.1 }, "max": { "soft": 2, "hard": 4 } },
+      "lockout": {      "min": { "hard": 5, "soft": 6 }, "max": { "soft": 60 } },
+      "accumulated": {  "min": { "soft": 0.1 }, "max": { "soft": 7.5, "hard": 15 } }
+    }
+  },
+  {
+    "drugName": "morphine",
+    "therapy": "Concentrated",
+    "dosingUnit": "mg",
+    "concentration": 5,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca": { "min": { "soft": 0.5 }, "max": { "soft": 5, "hard": 20 } },
+      "continuous": { "min": { "soft": 0.5 }, "max": { "soft": 5, "hard": 20 } },
+      "bolus": { "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": { "min": { "soft": 0.5 }, "max": { "soft": 5, "hard": 6 } },
+      "lockout": { "min": { "hard": 5, "soft": 6 }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 0.5 }, "max": { "soft": 100, "hard": 110  } }
+    }
+  },
+  {
+    "drugName": "morphine",
+    "therapy": "Palliative Care (Standard)",
+    "dosingUnit": "mg",
+    "concentration": 1,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca": { "min": { "soft": 0.5 }, "max": { "soft": 20, "hard": 0 } },
+      "continuous": { "min": { "soft": 0.5 }, "max": { "soft": 20, "hard": 0 } },
+      "bolus": { "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": { "min": { "soft": 0.5 }, "max": { "soft": 20, "hard": 0 } },
+      "lockout": { "min": { "hard": 2, "soft": 0 }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 0.5 }, "max": { "soft": 100, "hard": 0 } }
+    }
+  },
+  {
+    "drugName": "morphine",
+    "therapy": "Palliative Care (Concentrated)",
+    "dosingUnit": "mg",
+    "concentration": 5,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca": { "min": { "soft": 0.5 },
+      "max": { "soft": 20, "hard": 0 } },
+      "continuous": { "min": { "soft": 0.5 }, "max": { "soft": 20, "hard": 0 } },
+      "bolus": { "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": { "min": { "soft": 0.5 }, "max": { "soft": 20, "hard": 0 } },
+      "lockout": { "min": { "hard": 2, "soft": 0 }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 0.5 }, "max": { "soft": 100, "hard": 0 } }
+    }
+  },
+  {
+    "drugName": "HYDROmorphone",
+    "therapy": "Standard",
+    "dosingUnit": "mg",
+    "concentration": 1,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca":        { "min": { "soft": 0.1 }, "max": { "soft": 1, "hard": 2 } },
+      "continuous": { "min": { "soft": 0.1 }, "max": { "soft": 0, "hard": 5 } },
+      "bolus": { "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": { "min": { "soft": 0.1 }, "max": { "soft": 1, "hard": 2 } },
+      "lockout": { "min": { "hard": 5, "soft": 6 }, "max": { "soft": 30 } },
+      "accumulated": { "min": { "soft": 0.4 }, "max": { "soft": 4, "hard": 5 } }
+    }
+  },
+  {
+    "drugName": "HYDROmorphone",
+    "therapy": "Concentrated",
+    "dosingUnit": "mg",
+    "concentration": 2,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca": { "min": { "soft": 0.2 }, "max": { "soft": 3, "hard": 8 } },
+      "continuous": { "min": { "soft": 0.1 }, "max": { "soft": 3, "hard": 10 } },
+      "bolus": { "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": { "min": { "soft": 0.1 }, "max": { "soft": 2, "hard": 4 } },
+      "lockout": { "min": { "hard": 5, "soft": 6 }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 0.5 }, "max": { "soft": 20, "hard": 40 } }
+    }
+  },
+  {
+    "drugName": "HYDROmorphone",
+    "therapy": "Palliative Care (Standard)",
+    "dosingUnit": "mg",
+    "concentration": 1,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca": { "min": { "soft": 0.1 }, "max": { "soft": 8, "hard": 0 } },
+      "continuous": { "min": { "soft": 0.1 }, "max": { "soft": 10, "hard": 0 } },
+      "bolus": { "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": { "min": { "soft": 0.1 }, "max": { "soft": 4, "hard": 0 } },
+      "lockout": { "min": { "hard": 2, "soft": 0 }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 0.1 }, "max": { "soft": 40, "hard": 0} }
+    }
+  },
+  {
+    "drugName": "HYDROmorphone",
+    "therapy": "Palliative Care (Concentrated)",
+    "dosingUnit": "mg",
+    "concentration": 2,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca": { "min": { "soft": 0.1 }, "max": { "soft": 8, "hard": 0 } },
+      "continuous": { "min": { "soft": 0.1 }, "max": { "soft": 10, "hard": 0 } },
+      "bolus": { "min": { "soft": 0 }, "max": { "soft": 0, "hard": 0 } },
+      "load": { "min": { "soft": 0.1 }, "max": { "soft": 4, "hard": 0 } },
+      "lockout": { "min": { "hard": 2, "soft": 0 }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 0.1 }, "max": { "soft": 40, "hard": 0 } }
+    }
+  },
+  {
+    "drugName": "fentaNYL",
+    "therapy": "Standard",
+    "dosingUnit": "mcg",
+    "concentration": 20,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca":         { "min": { "soft": 5 }, "max": { "soft": 40, "hard": 50   } },
+      "continuous":  { "min": { "soft": 5 }, "max": { "soft": 40, "hard": 50   } },
+      "bolus":       { "min": { "soft": 0 }, "max": { "soft": 0,  "hard": 0    } },
+      "load":        { "min": { "soft": 5 }, "max": { "soft": 20, "hard": 50   } },
+      "lockout":     { "min": { "hard": 5, "soft": 6 }, "max": { "soft": 30 } },
+      "accumulated": { "min": { "soft": 5 }, "max": { "soft": 75, "hard": 125  } }
+    }
+  },
+  {
+    "drugName": "fentaNYL",
+    "therapy": "Concentrated",
+    "dosingUnit": "mcg",
+    "concentration": 50,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca":         { "min": { "soft": 12.5 }, "max": { "soft": 50,  "hard": 100  } },
+      "continuous":  { "min": { "soft": 10   }, "max": { "soft": 25,  "hard": 150  } },
+      "bolus":       { "min": { "soft": 0    }, "max": { "soft": 0,   "hard": 0    } },
+      "load":        { "min": { "soft": 12.5 }, "max": { "soft": 50,  "hard": 100  } },
+      "lockout":     { "min": { "hard": 5, "soft": 6    }, "max": { "soft": 30 } },
+      "accumulated": { "min": { "soft": 12.5 }, "max": { "soft": 300, "hard": 750  } }
+    }
+  },
+  {
+    "drugName": "fentaNYL",
+    "therapy": "Palliative Care (Standard)",
+    "dosingUnit": "mcg",
+    "concentration": 20,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca":         { "min": { "soft": 12.5 }, "max": { "soft": 100, "hard": 0    } },
+      "continuous":  { "min": { "soft": 10   }, "max": { "soft": 400, "hard": 0    } },
+      "bolus":       { "min": { "soft": 0    }, "max": { "soft": 0,   "hard": 0    } },
+      "load":        { "min": { "soft": 12.5 }, "max": { "soft": 100, "hard": 0    } },
+      "lockout":     { "min": { "hard": 2, "soft": 0    }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 12.5 }, "max": { "soft": 750, "hard": 0    } }
+    }
+  },
+  {
+    "drugName": "fentaNYL",
+    "therapy": "Palliative Care (Concentrated)",
+    "dosingUnit": "mcg",
+    "concentration": 50,
+    "volume": 30,
+    "maxIncludesBolus": false,
+    "limits": {
+      "pca":         { "min": { "soft": 12.5 }, "max": { "soft": 100, "hard": 0    } },
+      "continuous":  { "min": { "soft": 10   }, "max": { "soft": 400, "hard": 0    } },
+      "bolus":       { "min": { "soft": 0    }, "max": { "soft": 0,   "hard": 0    } },
+      "load":        { "min": { "soft": 12.5 }, "max": { "soft": 100, "hard": 0    } },
+      "lockout":     { "min": { "hard": 2, "soft": 0    }, "max": { "soft": 60 } },
+      "accumulated": { "min": { "soft": 12.5 }, "max": { "soft": 750, "hard": 0    } }
+    }
+  }
+]

@@ -64,6 +64,12 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
+## [1.2.3] - 2024-05-03
+
+### Changed
+- PCA max accumulated dose per 1 hour for all therapies
+- PCA pump limits updated to match new smart pumps
+
 ## [1.2.2] - 2024-01-02
 
 ### Changed
@@ -73,6 +79,7 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 ### Fixed
 - Reset Button not resetting patient info
+
 
 ## [1.2.0] - 2023-10-06
 
@@ -240,6 +247,7 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
+[1.2.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.3
 [1.2.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.2
 [1.2.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.1
 [1.2.0]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.0
