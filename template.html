@@ -28,19 +28,21 @@
   <div class="container-fluid mx-1 my-2 hd-0 age-adult" id="top-container">
     <div class="row">
       <%= require('html-loader!./partials/logo.html').default %>
-      <div class="col" id="col--top-nav">
+      <div class="col d-print-none" id="col--top-nav">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-initial-tab" data-toggle="tab" href="#nav-initial" role="tab">Initial</a>
-            <a class="nav-item nav-link" id="nav-adjustment-tab" data-toggle="tab" href="#nav-adjustment" role="tab">Single Level</a>
-            <a class="nav-item nav-link" id="nav-auc-tab" data-toggle="tab" href="#nav-auc" role="tab">AUC Dosing</a>
-            <a class="nav-item nav-link" id="nav-twolevel-tab" data-toggle="tab" href="#nav-twolevel" role="tab">Two-Level PK</a>
-            <a class="nav-item nav-link" id="nav-seconddose-tab" data-toggle="tab" href="#nav-seconddose" role="tab">Second Dose</a>
+            <a class="nav-item nav-link" id="nav-vanco-tab" data-toggle="tab" href="#nav-vanco" role="tab">Vancomycin</a>
             <a class="nav-item nav-link" id="nav-amg-tab" data-toggle="tab" href="#nav-amg" role="tab">AMG</a>
             <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
             <a class="nav-item nav-link" id="nav-qtc-tab" data-toggle="tab" href="#nav-qtc" role="tab">QTc</a>
+            <a class="nav-item nav-link" id="nav-pca-tab" data-toggle="tab" href="#nav-pca" role="tab">PCA</a>
+            <a class="nav-item nav-link" id="nav-kcentra-tab" data-toggle="tab" href="#nav-kcentra" role="tab">KCentra</a>
             <!-- <a class="nav-item nav-link" id="nav-tpn-tab" data-toggle="tab" href="#nav-tpn" role="tab">TPN</a> -->
-            <a class="nav-item nav-link" id="nav-more-tab" data-toggle="tab" href="#nav-more" role="tab">More...</a>
+            <a class="nav-item nav-link" id="nav-heparin-tab" data-toggle="tab" href="#nav-heparin" role="tab">Heparin</a>
+            <a class="nav-item nav-link" id="nav-nextdose-tab" data-toggle="tab" href="#nav-nextdose" role="tab">Std. Admin Times</a>
+            <a class="nav-item nav-link" id="nav-alligation-tab" data-toggle="tab" href="#nav-alligation" role="tab">Alligation</a>
+            <a class="nav-item nav-link" id="nav-warf-tab" data-toggle="tab" href="#nav-warf" role="tab">Warfarin</a>
+            <a class="nav-item nav-link active" id="nav-glucommander-tab" data-toggle="tab" href="#nav-glucommander" role="tab">Glucommander</a>
           </div>
         </nav>
       </div>
@@ -52,20 +54,54 @@
       </div>
       <div class="col" id="col--main-right">
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-initial">
-            <%= require('html-loader!./partials/initial.html').default %>
-          </div>
-          <div class="tab-pane fade" id="nav-adjustment">
-            <%= require('html-loader!./partials/adjustment.html').default %>
-          </div>
-          <div class="tab-pane fade" id="nav-auc">
-            <%= require('html-loader!./partials/auc.html').default %>
-          </div>
-          <div class="tab-pane fade" id="nav-twolevel">
-            <%= require('html-loader!./partials/twolevel.html').default %>
-          </div>
-          <div class="tab-pane fade" id="nav-seconddose">
-            <%= require('html-loader!./partials/seconddose.html').default %>
+          <div class="tab-pane fade" id="nav-vanco">
+            <div class="col-12 d-print-none">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" id="nav-vanco-initial-tab" data-toggle="tab" href="#nav-vanco-initial" role="tab">Initial Dosing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-vanco-seconddose-tab" data-toggle="tab" href="#nav-vanco-seconddose" role="tab">Second Dose</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" id="nav-vanco-none-tab" data-toggle="tab" href="#nav-vanco-none" role="tab">Historical:</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-vanco-initialpk-tab" data-toggle="tab" href="#nav-vanco-initialpk" role="tab">Initial PK</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-vanco-adjustment-tab" data-toggle="tab" href="#nav-vanco-adjustment" role="tab">Single Level</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-vanco-auc-tab" data-toggle="tab" href="#nav-vanco-auc" role="tab">AUC Dosing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-vanco-twolevel-tab" data-toggle="tab" href="#nav-vanco-twolevel" role="tab">Two-Level PK</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="tab-content" id="nav-vancoContent">
+                <div class="tab-pane fade show active" id="nav-vanco-initial">
+                  <%= require('html-loader!./partials/initial.html').default %>
+                </div>
+                <div class="tab-pane fade" id="nav-vanco-seconddose">
+                  <%= require('html-loader!./partials/seconddose.html').default %>
+                </div>
+                <div class="tab-pane fade" id="nav-vanco-initialpk">
+                  <%= require('html-loader!./partials/initialpk.html').default %>
+                </div>
+                <div class="tab-pane fade" id="nav-vanco-adjustment">
+                  <%= require('html-loader!./partials/adjustment.html').default %>
+                </div>
+                <div class="tab-pane fade" id="nav-vanco-auc">
+                  <%= require('html-loader!./partials/auc.html').default %>
+                </div>
+                <div class="tab-pane fade" id="nav-vanco-twolevel">
+                  <%= require('html-loader!./partials/twolevel.html').default %>
+                </div>
+              </div>
+            </div>            
           </div>
           <div class="tab-pane fade" id="nav-amg">
             <%= require('html-loader!./partials/amg.html').default %>
@@ -76,51 +112,26 @@
           <div class="tab-pane fade" id="nav-qtc">
             <%= require('html-loader!./partials/qtc.html').default %>
           </div>
-          <div class="tab-pane fade" id="nav-more">
-            <div class="col-12">
-              <ul class="nav nav-pills">
-                <li class="nav-item">
-                  <a class="nav-link active" id="nav-more-heparin-tab" data-toggle="tab" href="#nav-more-heparin" role="tab">Heparin</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="nav-more-pca-tab" data-toggle="tab" href="#nav-more-pca" role="tab">PCA</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="nav-more-kcentra-tab" data-toggle="tab" href="#nav-more-kcentra" role="tab">KCentra</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="nav-more-nextdose-tab" data-toggle="tab" href="#nav-more-nextdose" role="tab">Std. Admin Times</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="nav-more-alligation-tab" data-toggle="tab" href="#nav-more-alligation" role="tab">Alligation</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="nav-more-warf-tab" data-toggle="tab" href="#nav-more-warf" role="tab">Warfarin</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col">
-              <div class="tab-content" id="nav-moreContent">
-                <div class="tab-pane fade show active" id="nav-more-heparin">
-                  <%= require('html-loader!./partials/heparin.html').default %>
-                </div>
-                <div class="tab-pane fade" id="nav-more-pca">
-                  <%= require('html-loader!./partials/pca.html').default %>
-                </div>
-                <div class="tab-pane fade" id="nav-more-kcentra">
-                  <%= require('html-loader!./partials/kcentra.html').default %>
-                </div>
-                <div class="tab-pane fade" id="nav-more-nextdose">
-                  <%= require('html-loader!./partials/nextdose.html').default %>
-                </div>
-                <div class="tab-pane fade" id="nav-more-alligation">
-                  <%= require('html-loader!./partials/alligation.html').default %>
-                </div>
-                <div class="tab-pane fade" id="nav-more-warf">
-                  <%= require('html-loader!./partials/warf.html').default %>
-                </div>
-              </div>
-            </div>            
+          <div class="tab-pane fade" id="nav-pca">
+            <%= require('html-loader!./partials/pca.html').default %>
+          </div>
+          <div class="tab-pane fade" id="nav-kcentra">
+            <%= require('html-loader!./partials/kcentra.html').default %>
+          </div>
+          <div class="tab-pane fade" id="nav-heparin">
+            <%= require('html-loader!./partials/heparin.html').default %>
+          </div>
+          <div class="tab-pane fade" id="nav-nextdose">
+            <%= require('html-loader!./partials/nextdose.html').default %>
+          </div>
+          <div class="tab-pane fade" id="nav-alligation">
+            <%= require('html-loader!./partials/alligation.html').default %>
+          </div>
+          <div class="tab-pane fade" id="nav-warf">
+            <%= require('html-loader!./partials/warf.html').default %>
+          </div>
+          <div class="tab-pane fade show active" id="nav-glucommander">
+            <%= require('html-loader!./partials/glucommander.html').default %>
           </div>
         </div>
       </div>
