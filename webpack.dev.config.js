@@ -1,9 +1,26 @@
 const { merge } = require('webpack-merge');
 
 const commonConfig = require('./webpack.common.js');
+const path = require('path');
 
 const devConfig = {
   mode: 'development',
+  watchOptions: {
+    aggregateTimeout: 2000,
+    poll: 1000,
+    ignored: [
+      '**/node_modules/',
+      'docs/',
+    ],
+  },
+  devServer: {    
+    open: true,    
+    hot: false,
+    port: 9000,
+    static: {
+      directory: path.join(__dirname, 'src'),
+    },
+  },
   output: {
     // eslint-disable-next-line no-undef
     path: `${__dirname}/dist`,

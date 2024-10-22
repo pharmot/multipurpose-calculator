@@ -22,7 +22,7 @@
   "scripts": {
     "watch": "webpack --config webpack.dev.config.js --watch",
     "build": "webpack",
-    "dev": "webpack --config webpack.dev.config.js",
+    "dev": "webpack-dev-server --config webpack.dev.config.js",
     "jsdoc": "jsdoc  -c ./jsdoc.config.json",
     "devstats": "webpack --config webpack.dev.config.js --profile --json > stats.json",
     "stats": "webpack --config webpack.config.js --profile --json > stats.json",
@@ -40,6 +40,7 @@
     "jquery": "^3.6.0",
     "jsdoc": "^3.6.7",
     "mini-css-extract-plugin": "^2.4.3",
+    "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "postcss-loader": "^6.2.0",
     "sass": "^1.43.3",
@@ -47,7 +48,7 @@
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.2.4",
     "webpack": "^5.59.1",
-    "webpack-cli": "^4.9.1",
+    "webpack-cli": "^5.1.4",
     "webpack-merge": "^5.8.0"
   }
 }
