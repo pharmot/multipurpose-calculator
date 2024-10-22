@@ -1,0 +1,82 @@
+<div class="row hide-hd-0">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="alert alert-info mt-5">Not applicable to dialysis patients</div>
+  </div>
+</div>
+<div class="row" id="row--initialPkCalc">
+  <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
+    <div class="card-header h6">Initial Vancomycin PK Dosing</div>
+    <div class="card-body-alert card-body-alert-secondary">
+      The "Initial Dosing" recommendations should be used for most patients (weight-based or InsightRx).
+      This section is no longer routinely used.  Historically, PK dosing was considered if there was a
+      large discrepancy between the standard weight-based dosing and PK dosing, in patients with BMI &lt; 30.
+    </div>
+    <div class="card-body pt-1">
+      <div class="row mb-2">
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-row">
+            <label for="vancoInitialPK-halflife" class="col-6">Est. Halflife</label>
+            <div class="col-6 input-group">
+              <div class="output" id="vancoInitialPK-halflife"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="vancoInitialPK-recDose" class="col-6">Suggested Dose</label>
+            <div class="col-6 input-group">
+              <div class="output" id="vancoInitialPK-recDose"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="vancoInitialPK-recFreq" class="col-6">Suggested Frequency</label>
+            <div class="col-6 input-group">
+              <div class="output" id="vancoInitialPK-recFreq"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="vancoInitialPK-recLevel" class="col-6">Est. Trough</label>
+            <div class="col-6 input-group">
+              <div class="output" id="vancoInitialPK-recLevel"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-row">
+            <label for="vancoInitialPK-dose" class="col-6">Choose Dose</label>
+            <div class="col-5 input-group">
+              <input type="number" id="vancoInitialPK-dose" class="form-control input-initialPK validate-dose" step="250">
+              <div class="input-group-append">
+                <div class="input-group-text">mg</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="vancoInitialPK-interval" class="col-6">Choose Frequency</label>
+            <div class="input-group col-4">
+              <div class="input-group-prepend">
+                <div class="input-group-text">q</div>
+              </div>
+              <input type="number" id="vancoInitialPK-interval" class="form-control input-initialPK validate-freq" min="0" max="48" step="6">
+              <div class="input-group-append">
+                <div class="input-group-text">h</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="vancoInitialPK-level" class="col-6">Est. Trough</label>
+            <div class="col-5 input-group">
+              <div class="output" id="vancoInitialPK-level"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-row">
+            <table class="table table-sm table-bordered" id="vancoInitialPK-table"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@
 </div>
 <div class="row hide-hd-0 hide-hd-1 hide-age-infant hide-age-child">
   <div class="col-2"></div>
-  <div class="col-4">
+  <div class="col-8">
     <div class="alert alert-info mt-5 hide-hd-3 hide-hd-4">Not applicable to PD patients</div>
     <div class="alert alert-info mt-5 hide-hd-2 hide-hd-4">Not applicable to CRRT patients</div>
     <div class="alert alert-info mt-5 hide-hd-2 hide-hd-3">Not applicable to SLED patients</div>
@@ -45,10 +45,19 @@
           </div>
         </div>
         <div class="form-row">
-          <label class="col-4" for="revision-curTrough">Trough</label>
+          <label class="col-4" for="revision-curTrough" id="revision-curTrough-label">Trough</label>
           <div class="col-5 input-group">
             <input type="text" class="form-control input-revision current-trough validate-level" id="revision-curTrough">
             <div class="input-group-text">mcg/mL</div>
+          </div>
+        </div>
+        <div class="form-row hide-hd-0 hide-hd-2 hide-hd-3 hide-hd-4">
+          <label for="revision-levelTiming" class="col-4">Timing</label>
+          <div class="col-5 input-group">
+            <select id="revision-levelTiming" class="form-control">
+              <option>Pre-HD</option>
+              <option>Post-HD</option>
+            </select>
           </div>
         </div>
         <div class="form-row hide-hd-1 mb-3">
