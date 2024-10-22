@@ -31,7 +31,7 @@
       <div class="col d-print-none" id="col--top-nav">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link" id="nav-vanco-tab" data-toggle="tab" href="#nav-vanco" role="tab">Vancomycin</a>
+            <a class="nav-item nav-link active" id="nav-vanco-tab" data-toggle="tab" href="#nav-vanco" role="tab">Vancomycin</a>
             <a class="nav-item nav-link" id="nav-amg-tab" data-toggle="tab" href="#nav-amg" role="tab">AMG</a>
             <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
             <a class="nav-item nav-link" id="nav-qtc-tab" data-toggle="tab" href="#nav-qtc" role="tab">QTc</a>
@@ -42,7 +42,7 @@
             <a class="nav-item nav-link" id="nav-nextdose-tab" data-toggle="tab" href="#nav-nextdose" role="tab">Std. Admin Times</a>
             <a class="nav-item nav-link" id="nav-alligation-tab" data-toggle="tab" href="#nav-alligation" role="tab">Alligation</a>
             <a class="nav-item nav-link" id="nav-warf-tab" data-toggle="tab" href="#nav-warf" role="tab">Warfarin</a>
-            <a class="nav-item nav-link active" id="nav-glucommander-tab" data-toggle="tab" href="#nav-glucommander" role="tab">Glucommander</a>
+            <a class="nav-item nav-link" id="nav-glucommander-tab" data-toggle="tab" href="#nav-glucommander" role="tab">Glucommander</a>
           </div>
         </nav>
       </div>
@@ -54,7 +54,7 @@
       </div>
       <div class="col" id="col--main-right">
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade" id="nav-vanco">
+          <div class="tab-pane fade show active" id="nav-vanco">
             <div class="col-12 d-print-none">
               <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -130,7 +130,7 @@
           <div class="tab-pane fade" id="nav-warf">
             <%= require('html-loader!./partials/warf.html').default %>
           </div>
-          <div class="tab-pane fade show active" id="nav-glucommander">
+          <div class="tab-pane fade" id="nav-glucommander">
             <%= require('html-loader!./partials/glucommander.html').default %>
           </div>
         </div>
