@@ -20,6 +20,10 @@ module.exports = {
     ivig: './js/ivig.js',
     kcentra: './js/kcentra.js',
     util: './js/util.js',
+    glucommander: {
+      import: './js/glucommander.js',
+      dependOn: 'main',
+    },
   },
   resolve: {
     alias: {

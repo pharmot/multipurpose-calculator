@@ -97,19 +97,22 @@ export function roundTo(x, n = 0) {
 }
 
 /**
- * Displays a number, rounded, with units in the specified input element.
+ * Displays a number, rounded, with units in the specified HTML element.
  * If number is zero, clears input element instead, unless allowZero is true (then undefined will clear input)
+ * To get the result without specifying an HTML element, pass an empty string ('') for the first parameter.
  *
- * @param   {String|HTMLElement} el                        Valid jQuery selector for target element
+ * @param   {String|HTMLElement} el                        Valid jQuery selector for target element.
  * @param   {Number|Number[]}   [num = 0]                  The number or range to go in the input field. Range must be array with length of 2.
  * @param   {Number}            [round = -1]               The desired rounding factor
  * @param   {String}            [unit = ""]                Units to append to rounded value
  * @param   {String}            [pre = ""]                 Text to prepend to rounded value
  * @param   {Boolean}           [allowNegative = false]    Accept negative values as valid
  * @param   {Boolean}           [allowZero = false]        Accept 0 as valid
- * @returns {HTMLElement|String}                           The original DOM element, for chaining (or empty string if no HTMLElement specified)
+ * @returns {HTMLElement|String}                           The original DOM element for chaining, the function result if an empty string was provided instead of a selector, or an empty string if no HTMLElement specified
  */
 export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allowNegative = false, allowZero = false) {
+  // console.log(`[DISPLAY VALUE] ${el}, ${num}, ${round}, ${unit}, ${pre}, ${allowNegative}, ${allowZero}`);
+
   let txt = '';
   let wasNeg = false;
   let wasNeg2 = false;
@@ -190,7 +193,12 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
   if ( el === '' ) return txt;
   
   // Set text of specified element to result
-  $(el).html(txt);
+  if ( $(el)[0].nodeName === "INPUT" ) {
+    $(el).val(txt);
+  } else {
+    $(el).html(txt);  
+  }
+
   return el;
 }
 

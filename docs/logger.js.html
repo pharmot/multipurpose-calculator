@@ -74,7 +74,7 @@
 
     
 
-    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li><li id="warf-nav"><a href="module-warf.html">warf</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li><li id="Dose-nav"><a href="module-warf-Dose.html">Dose</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#resetDates">resetDates</a></li><li><a href="global.html#vancoColorScale">vancoColorScale</a></li></ul><div class="repo-link">
+    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="glucommander-nav"><a href="module-glucommander.html">glucommander</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li><li id="warf-nav"><a href="module-warf.html">warf</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li><li id="Dose-nav"><a href="module-warf-Dose.html">Dose</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#resetDates">resetDates</a></li><li><a href="global.html#vancoColorScale">vancoColorScale</a></li></ul><div class="repo-link">
     <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
 </svg>
@@ -102,15 +102,51 @@
 
 import * as arial from './arial.js';
 
+const colors = {
+  black:               "#2F2F2F",
+  brightBlack:         "#5A6374",
+  white:               "#D3D7CF",
+  brightWhite:         "#ffffff",
+  red:                 "#DC322F",
+  brightRed:           "#EF2929",
+  yellow:              "#C4A000",
+  brightYellow:        "#FCE94F",
+  green:               "#4E9A06",
+  brightGreen:         "#8AE234",
+  cyan:                "#06989A",
+  brightCyan:          "#34E2E2",
+  blue:                "#3465A4",
+  brightBlue:          "#729FCF",
+  purple:              "#A626A4",
+  brightPurple:        "#C577DD",
+}
+
+
 /**
  * Status of logger, determines if console wrapper functions are executed
  */
 export let enabled = false;
 
 /**
- * Enables logging
+ * Status of debugging, exported to allow modules to pre-fill their own test values
  */
-export function enable() { enabled = true;}
+export let debugEnabled = false;
+
+/**
+ * Enables logging
+*/
+export function enable() {
+  enabled = true;
+  black('               Logging enabled               ');
+}
+
+/**
+ * Enables debugger
+ */
+export function presetValues() {
+  debugEnabled = true;
+  gray('        Debug mode, values pre-filled        ');
+}
 /**
  * Wrapper for console.log, dependent on whether logging has been enabled.
  * @param   {String|Object|Array}  msg     Message to log to console
@@ -135,6 +171,130 @@ export function log(msg = '', title = '') {
 export function logArgs(...msg) {
   if ( !enabled ) return;
   console.log(...msg);
+}
+export function blue(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.blue};color: ${colors.brightWhite}`);
+}
+export function red(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.red};color: ${colors.brightWhite}`);
+}
+export function yellow(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.brightYellow};color: ${colors.black}`);
+}
+export function cyan(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.cyan};color: ${colors.brightWhite}`);
+}
+export function purple(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.purple};color: ${colors.brightWhite}`);
+}
+export function green(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.green};color: ${colors.brightWhite}`);
+}
+export function black(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.black};color: ${colors.brightWhite}`);
+}
+export function gray(msg) {
+  if ( !enabled ) return;
+  console.log(`%c ${msg} `, `background: ${colors.brightBlack};color: ${colors.brightWhite}`);
+}
+export function blueGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.blue};color: ${colors.brightWhite}`);
+}
+export function redGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.red};color: ${colors.brightWhite}`);
+}
+export function yellowGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.brightYellow};color: ${colors.black}`);
+}
+export function cyanGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.cyan};color: ${colors.brightWhite}`);
+}
+export function purpleGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.purple};color: ${colors.brightWhite}`);
+}
+export function greenGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.green};color: ${colors.brightWhite}`);
+}
+export function blackGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.black};color: ${colors.brightWhite}`);
+}
+export function grayGroup(msg) {
+  if ( !enabled ) return;
+  console.group(`%c ${msg} `, `background: ${colors.brightBlack};color: ${colors.brightWhite}`);
+}
+export function blueGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.blue};color: ${colors.brightWhite}`);
+}
+export function redGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.red};color: ${colors.brightWhite}`);
+}
+export function yellowGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.brightYellow};color: ${colors.black}`);
+}
+export function cyanGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.cyan};color: ${colors.brightWhite}`);
+}
+export function purpleGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.purple};color: ${colors.brightWhite}`);
+}
+export function greenGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.green};color: ${colors.brightWhite}`);
+}
+export function blackGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.black};color: ${colors.brightWhite}`);
+}
+export function grayGroupCollapsed(msg) {
+  if ( !enabled ) return;
+  console.groupCollapsed(`%c ${msg} `, `background: ${colors.brightBlack};color: ${colors.brightWhite}`);
+}
+export function blueText(msg) {
+  if ( !enabled ) return;
+  console.log(`%c${msg}`, `color: ${colors.blue}`);
+}
+export function redText(msg) {
+  if ( !enabled ) return;
+  console.log(`%c${msg}`, `color: ${colors.red}`);
+}
+export function yellowText(msg) {
+  if ( !enabled ) return;
+  console.log(`%c${msg}`, `color: ${colors.yellow}`);
+}
+export function cyanText(msg) {
+  if ( !enabled ) return;
+  console.log(`%c${msg}`, `color: ${colors.cyan}`);
+}
+export function purpleText(msg) {
+  if ( !enabled ) return;
+  console.log(`%c${msg}`, `color: ${colors.purple}`);
+}
+export function greenText(msg) {
+  if ( !enabled ) return;
+  console.log(`%c${msg}`, `color: ${colors.green}`);
+}
+export function grayText(msg) {
+  if ( !enabled ) return;
+  console.log(`%c${msg}`, `color: ${colors.brightBlack}`);
 }
 /**
  * Wrapper for console.error, dependent on whether logging has been enabled
@@ -182,6 +342,65 @@ export function groupEnd() {
   if (!enabled) return;
   console.groupEnd();
 }
+/**
+ * Shortcut to start a group with the name of a function and its arguments
+ * @example   LOG.beginFunction('myFunctionName', arguments);
+ *
+ * @param   {String} functionName - Name of the function, to serve as the group caption
+ * @param   {Any[]}  [args]       - The function's arguments object
+ * @returns {undefined}
+ */
+export function beginFunction(functionName, args){
+  if (!enabled) return;
+  console.groupCollapsed(`%c ${functionName} `, `color:${colors.brightYellow};background:${colors.blue}` );
+  if ( args ) {
+    console.group('%c Input ', `background: ${colors.brightBlue};color:${colors.brightWhite}`);
+    for ( let i = 0; i &lt; args.length; i++ ) {
+      log(JSON.parse(JSON.stringify(args[i])));
+    }
+    groupEnd();
+  }  
+}
+/**
+ * Use when exiting a function due to missing or invalid input(s)
+ *
+ * @param   {Any} [res] Result of the function
+ * @returns {undefined}
+ */
+export function exitFunction(res){
+  if (!enabled) return;
+  console.log('%c Required value(s) are missing or invalid ', `background: ${colors.red};color: ${colors.brightYellow}`);
+  
+  if ( res ) {
+    console.group('%c Result ', `background: ${colors.brightBlue};color:${colors.brightWhite}`);
+    log(JSON.parse(JSON.stringify(res)));
+    groupEnd();
+  }
+  groupEnd();
+}
+/**
+ * Shortcut for LOG.log({result: res});LOG.groupEnd()
+ * @param {Any} res result of function
+ */
+export function endResult(res){
+  if (!enabled) return;
+  console.group('%c Result             ', `background: ${colors.brightBlue};color:${colors.brightWhite}`);
+  if ( res ) log(JSON.parse(JSON.stringify(res)));
+  groupEnd();
+  console.log('%c                          ', `background: ${colors.blue}`);
+  groupEnd();
+}
+
+/**
+ * Log an object to the console as a deep copy
+ * @param {any} obj
+ */
+export function deep(obj){
+  if ( !enabled ) return;
+  console.log(JSON.parse(JSON.stringify(obj)));
+}
+
+
 //TODO: document outputTape function
 export function outputTape(parent, title = "") {
   let titleHtml = "";
