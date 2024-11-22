@@ -89,7 +89,7 @@ $(() => {
     $("#amg-warning").addClass('hidden');
 
     calculate.syncCurrentDFT("revision");
-    calculate.allForPatient();
+    
 
   } else {
     resetDates();
@@ -109,6 +109,7 @@ $(() => {
     { selector: ".validate-amgLevel", min: amg.config.check.levelMin, max: amg.config.check.levelMax },
     { selector: ".validate-time", inputType: "time" },
   ]);
+  calculate.allForPatient();
   $("#ptage").get(0).focus();
 });
 //---------------------------------------------------------------
