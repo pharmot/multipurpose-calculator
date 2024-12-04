@@ -27,7 +27,9 @@
   <%=  betaBanner %>
   <div class="container-fluid mx-1 my-2 hd-0 age-adult" id="top-container">
     <div class="row">
-      <%= require('html-loader!./partials/logo.html').default %>
+      <div class="col" id="col--logo">
+        <%= branding %>
+      </div>      
       <div class="col" id="col--top-nav">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -47,7 +49,7 @@
     </div>
     <div class="row" id="row--main">
       <div class="col" id="col--main-left">
-        <h1 class="h4" id="page-title">Multipurpose Calculator</h1>
+        <%= mpcTitle %>
         <%= require('html-loader!./partials/patient.html').default %>
       </div>
       <div class="col" id="col--main-right">
@@ -128,12 +130,12 @@
   </div>
   <footer class="footer">
     <div class="container">
-      <span class="text-muted small">v<%= buildversion %> &copy; <%= thisYear %> VMFH Pharmacy Services
+      <span class="text-muted small">v<%= buildversion %> &copy; <%= thisYear %>
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
         <a href="<%= homepage %>" target="_blank" rel="noopener noreferrer">Repository</a>
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
-        <a href="http://pharmot.github.io/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Documentation</a>
-          &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
+        <!-- <a href="http://pharmot.github.io/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Documentation</a>
+          &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp; -->
           <a href="<%= issues %>" target="_blank" rel="noopener noreferrer">Issues</a>
         </span>
       </div>
