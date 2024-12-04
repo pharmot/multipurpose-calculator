@@ -51,7 +51,7 @@
 - Created vscode snippets for commonly used Bootstrap elements
 
 ### Changed
-- Updated tints and shades of VMFH colors ([#77](https://github.com/pharmot/multipurpose-calculator/issues/77))
+- Updated tints and shades of branded colors [#77](https://github.com/pharmot/multipurpose-calculator/issues/77)
 - Split left column (patient info) into its own partial html file
 - Updated documentation
 - Updated eslint configuration
@@ -168,9 +168,9 @@
 
 ### Changed
 - Added year to displayDate Util function
-- Reposition Bayesian calculator alert higher on page ([#35](https://github.com/pharmot/multipurpose-calculator/issues/35))
-- VMFH Logo as svg instead of png
-- Modified monitoring recommendations to clarify when to draw trough ([#31](https://github.com/pharmot/multipurpose-calculator/issues/31), [#35](https://github.com/pharmot/multipurpose-calculator/issues/35))
+- Reposition Bayesian calculator alert higher on page [#35](https://github.com/pharmot/multipurpose-calculator/issues/35)
+- Logo as svg instead of png
+- Modified monitoring recommendations to clarify when to draw trough [#31](https://github.com/pharmot/multipurpose-calculator/issues/31), [#35](https://github.com/pharmot/multipurpose-calculator/issues/35)
 
 ### Fixed
 - IVIG calculator weight note aligned correctly ([#20](https://github.com/pharmot/multipurpose-calculator/issues/20))
