@@ -21,7 +21,11 @@ body {
   text-align: center;
 }
 
-
+#col--logo > #page-title {
+  min-height: 45px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
 #col--resetButton {
   flex-grow: 0;
