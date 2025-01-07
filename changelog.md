@@ -1,7 +1,7 @@
 # Changelog
 <!-- ## [Unreleased] -->
 
-## [1.3.1] - Unreleased
+## [1.3.1] - 2025-01-07
 ### Added
 - Glucommander dosing calculator ([[#70](https://github.com/pharmot/multipurpose-calculator/issues/70)])
 
@@ -20,7 +20,8 @@
 - Change dev script in package.json to use webpack-dev-server
 - Bump webpack-cli to 5.1.4
 - Remove initial vanco AUC calculations that weren't being used
-- Add support for input elements to displayValue function in util module 
+- Add support for input elements to displayValue function in util module
+- Replace Kcentra total units with wildcard in admin instructions and display in separate output field
 
 ## [1.2.3] - 2024-05-03
 

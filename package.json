@@ -1,7 +1,7 @@
 {
   "name": "multipurpose-calculator",
-  "version": "1.3.1-beta.4",
-  "public_hosted": true,
+  "version": "1.3.1",
+  "public_hosted": false,
   "description": "A dosing and kinetics calculator for pharmacists",
   "main": "multicalc.js",
   "directories": {
