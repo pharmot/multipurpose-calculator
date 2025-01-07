@@ -19,13 +19,20 @@
       </div>
     </div>
 
-    <div class="form-row mt-4 mb-4" id="kcentra--btnSum--wrapper">
+    <div class="form-row mt-4 mb-2" id="kcentra--btnSum--wrapper">
       <div class="col-12 input-group justify-content-center">
-        <button class="btn btn-light" id="kcentra--btnSum">Generate Text</button>
+        <button class="btn btn-light" id="kcentra--btnSum">Calculate Total/Generate Text</button>
+      </div>
+    </div>
+    <div class="form-row mt-2 mb-2">
+      <label class="col-2" for="#kcentra--totalUnits">Total</label>
+      <div class="input-group col-4">
+        <div class="output" id="kcentra--totalUnits"></div>
       </div>
     </div>
     <div class="form-row">
-      <div class="input-group col-8 offset-2" id="kcentra--textarea-wrapper">
+      <label class="col-2" for="kcentra--output">Admin Inst.</label>
+      <div class="input-group col-8" id="kcentra--textarea-wrapper">
         <textarea class="form-control admin-instructions" id="kcentra--output" readonly></textarea>
       </div>
     </div>

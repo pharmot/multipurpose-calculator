@@ -114,11 +114,11 @@ $$\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{S
 
 ### Maximum Doses
 
-| Parameter | Value |
-| --- | --- |
+| Parameter                | Value   |
+| ------------------------ | ------- |
 | Max initial TDD (non-HD) | 4500 mg |
-| Max MD for HD patient | 2000 mg |
-| Max MD for PD patient | 2000 mg |
+| Max MD for HD patient    | 2000 mg |
+| Max MD for PD patient    | 2000 mg |
 
 ### Data Validation
 
@@ -141,14 +141,14 @@ $$\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{S
 
 **Adults (calculated using ABW)**
 
-| **Adults** | Loading Dose (ABW) | Max LD |
-| --- | --- | --- |
-| Default | 25 mg/kg | 3 g |
-| Sepsis | 25-35 mg/kg | 3 g |
-| HD | 25 mg/kg | 3 g |
-| PD | 25 mg/kg | 2 g |
-| CRRT | 20-25 mg/kg | 3 g |
-| SLED | 20-25 mg/kg | 3 g |
+| **Adults**    | Loading Dose (ABW) | Max LD |
+| ------------- | ------------------ | ------ |
+| Default       | 25 mg/kg           | 3 g    |
+| Severe sepsis | 25-35 mg/kg        | 3 g    |
+| HD            | 25 mg/kg           | 2 g    |
+| PD            | 25 mg/kg           | 2 g    |
+| CRRT          | 20-25 mg/kg        | 3 g    |
+| SLED          | 20-25 mg/kg        | 3 g    |
 
 ## Dose Rounding
 
@@ -159,22 +159,106 @@ $$\mathrm{CrCl}_{\mathrm{Schwartz}}=\frac{\mathrm{k}\times\mathrm{ht}}{\mathrm{S
 ## Infusion Time
 
 | Dose | Infusion Time ($\mathrm{T}$) |
-| --- | --- |
-| if dose > 2500 | 3 hours |
+| ------------------- | --------- |
+| if dose > 2500      | 3 hours   |
 | else if dose > 2000 | 2.5 hours |
-| else if dose > 1500 | 2 hours |
+| else if dose > 1500 | 2 hours   |
 | else if dose > 1000 | 1.5 hours |
-| else | 1 hour |
+| else                | 1 hour    |
 
 ## Maintenance Dose
 
-| Dialysis | CrCl | Age | Recommendation |
-| --- | --- | --- | --- |
-| non-HD | (any) | age < 12 | `60-80 mg/kg/day divided q6h` |
-| non-HD | (any) | age < 18 | `60-70 mg/kg/day divided q6h` or<br> `60-70 mg/kg/day divided q8h` |
+### Non-Dialysis
+
+| CrCl  | Age         | Recommendation                                                     |
+| ----- | ----------- | ------------------------------------------------------------------ |
+| (any) | < 12 years  | `60-80 mg/kg/day divided q6h`                                      |
+| (any) | < 18 years  | `60-70 mg/kg/day divided q6h` or<br> `60-70 mg/kg/day divided q8h` |
+| ≥ 75  | < 40 years  | `15-20 mg/kg q8h`                                                  |
+| ≥ 75  | < 80 years  | `15-20 mg/kg q12h`                                                 |
+| ≥ 75  | ≥ 80 years  | `10-15 mg/kg q12h`                                                 |
+| 50-75 | < 70 years  | `15-20 mg/kg q12h`                                                 |
+| 50-75 | 70-79 years | `10-15 mg/kg q12h`                                                 |
+| 50-75 | ≥ 80 years  | `15-20 mg/kg q24h`                                                 |
+| 35-49 | < 70 years  | `15-20 mg/kg q24h`                                                 |
+| 35-49 | 70-79 years | `10-15 mg/kg q24h`                                                 |
+| 35-49 | ≥ 80 years  | `10 mg/kg q24h`                                                    |
+| 15-34 | < 80 years  | `10 mg/kg q24h`                                                    |
+| 15-34 | ≥ 80 years  | `7.5 mg/kg q24h`                                                   |
+| < 15  | > 18 years  | `15-20 mg/kg x1`*                                                  |
+
+*Consider checking level in 24-48 hours. Repeat dose when level ≤ 15 (≤ 20 for septic shock/CNS/meningitis)
+
+**Maximum initial maintenance dose**: 4.5 g/day
+
+### Dialysis
+
+**HD**: 10 mg/kg (ABW) after the first HD (max 1.5 g)
+
+**PD**: 10-15 mg/kg when level is < 15 mcg/mL (max 2 g)
+
+**CRRT**: 7.5-10 mg/kg q24h (max 4.5 g/day)
+
+**SLED**: 15-20 mg/kg after each session (max 4.5 g/day)
+
+## Strategy, Target, and Monitoring
+
+```mermaid
+flowchart LR
+  HDq[Dialysis?]:::gray -->|No| AKIq
+  
+  AKIq[AKI?]:::gray --> |No| InsightRx:::blue
+  InsightRx --> insightInd[CNS/meningitis?]:::gray
+  insightInd --> |No| AUC
+  insightInd --> |Yes| Trough15
+
+  Trough15 --> outlier[PK Outlier?]:::gray
+  AUC --> outlier
+  outlier --> |Yes|outlierLevel
+  outlierLevel[24-48 hours, then 24-48 hours later]:::green
+  outlier --> |No|standardLevel
+  standardLevel[First level in 72 hours]:::green
+  
+  
+  AKIq --> |Yes| WB[Weight-based]:::blue --> wtInd
+  wtInd[CNS/meningitis?]:::gray
+  wtInd --> |No| Trough10
+  wtInd --> |Yes| Trough15W
+
+  Trough15[Trough 15-20]:::calc 
+  Trough15W[Trough 15-20]:::calc 
+  Trough10[Trough 10-15]:::calc 
+  AUC[AUC 400-600]:::calc
+
+  Trough10 ---> akiLevel
+  Trough15W ---> akiLevel
+  akiLevel[First level in ~12 hours]:::green
+
+  HDq ---> |Yes| HDW[Weight-based]:::blue
+  HDW --> HDInd[SSTI or UTI?]:::gray
+  HDInd --> |No| HD15[Trough 15-20]:::calc
+  HDInd --> |Yes| HD10[Trough 10-15]:::calc
+  HD15 --> HDType[Type of dialysis?]:::gray
+  HD10 --> HDType
+  HDType --> |HD| iHD
+  HDType --> |PD| PD
+  HDType --> |CRRT| CRRT
+  HDType --> |SLED| SLED
+
+  iHD[Before every HD, start w/ 2nd after LD]:::green
+  PD[q24-48h]:::green
+  CRRT[q24h]:::green
+  SLED[before each run]:::green
 
 
-:pushpin: To Do
+  classDef gray fill:#dedede,stroke:#333,color:black
+  classDef calc fill:#FFE5B4,stroke:#FFA500,color:black
+  classDef start fill:#a9e695,stroke:#2e691a,color:black
+  classDef blue fill:#95dcfa,stroke:#1D7EA8,color:black
+  classDef green fill:#d5f291,stroke:#63870e,color:black
+  classDef final fill:#ececff,stroke:#c7b5ed,color:black
+```
+
 
 # Vancomycin Dosing Equations
 
@@ -223,42 +307,6 @@ equal to the low end of goal range and less than or equal to the high end of the
 goal range.  Uses the goal from the “monitoring” section above.  If the goal is
 an AUC range, uses trough 10-20 for this determination (10-15 for peds).
 
-## Initial Dosing (AUC Method)
-
-### Elimination Rate Constant - Matzke Method (ke)
-
-$$ke=(0.00083\times \mathrm{CrCl})+0.0044$$
-
-### Halflife ($t_\frac{1}{2}$)
-
-$$\mathrm{t}_{\frac{1}{2}}=\frac{\ln(2)}{ke}$$
-
-### Vancomycin Clearance (CL)
-
-**Use Matzke method if BMI > 30**
-
-$$\mathrm{CL}=\mathrm{V_d}\times\mathrm{ke}$$
-
-**Use Crass method if BMI ≤ 30**
-
-$$\mathrm{CL}=\left (9.656-0.078\times \mathrm{age} \right ) - \left(2.009 \times \mathrm{SCr} \right ) + \left ( 1.09 \times \mathrm{sex} \right ) + \left ( 0.04 \times \mathrm{wt}^{0.75} \right )$$
-
-> **sex** : 1 for male, 0 for female
-
-### Recommended Interval ($\tau$)
-
-$$\tau = \mathrm{t}_{\frac{1}{2}}+\mathrm{T}$$
-
-> **T** : *infusion time*
-
-### Recommended Total Daily Dose (TDD)
-
-$$\mathrm{TDD}=\mathrm{CL}\times \mathrm{AUC_{goal}}$$
-
-### Recommended Dose (D)
-
-$$\mathrm{D}=\mathrm{TDD}\times\frac{\tau}{24}$$
-
 ## Dose Revision
 
 ### Linear
@@ -273,7 +321,7 @@ $$\mathrm{D}_{2}=\left ( \frac{\mathrm{D}_{1}}{\mathrm{C}_{1}}\times\mathrm{C}_{
 
 $$\mathrm{C}_{2}=\frac{\mathrm{D}_{2}}{\mathrm{D}_{1}}\times\mathrm{C}_{1}$$
 
-### Single Level (Trough) Revision
+### Single Level (Trough) Revision (Non-HD)
 
 #### Calculated Elimination Rate Constant (ke)
 $$ke=\frac{\ln\left(\frac{\left[\left(\frac{\mathrm{dose}}{\mathrm{V_{d}}} \right ) + \mathrm{C}_{\mathrm{result}}\right ]}{\mathrm{C_{result}}} \right )}{\left(\tau -\mathrm{T_{trough}} \right )}$$
@@ -310,6 +358,31 @@ $$\tau_{\mathrm{new}}=\mathrm{T_{inf}}+ \left ( \frac{\ln\frac{\mathrm{C_{trough
 #### Remainder of calculations
 
 Use calculated ke in same equations/process as [initial PK dosing](#peak-and-trough)
+
+### Single Level (Trough) Revision (HD)
+
+Dose adjustment for HD patient requires goal trough of 10-15 or 15-20 to be selected.
+
+| Level Timing | Target (mcg/mL) | Level (mcg/mL) | Recommendation |
+| ------- | ----- | ----- | ----------- |
+| Pre-HD  | 10-15 | > 20  | hold        |
+| Pre-HD  | 10-15 | 15-20 | 7.5 mg/kg   |
+| Pre-HD  | 10-15 | 10-15 | 10 mg/kg    |
+| Pre-HD  | 10-15 | < 10  | 15-20 mg/kg |
+| Pre-HD  | 15-20 | > 25  | hold        |
+| Pre-HD  | 15-20 | 20-25 | 7.5 mg/kg   |
+| Pre-HD  | 15-20 | 15-20 | 10 mg/kg    |
+| Pre-HD  | 15-20 | < 15  | 15-20 mg/kg |
+| Post-HD | 10-15 | > 15  | hold        |
+| Post-HD | 10-15 | 10-15 | 7.5 mg/kg   |
+| Post-HD | 10-15 | < 10  | 10 mg/kg    |
+| Post-HD | 15-20 | > 20  | hold        |
+| Post-HD | 15-20 | 15-20 | 7.5 mg/kg   |
+| Post-HD | 15-20 | < 15  | 10 mg/kg    |
+
+
+"Hold dose and order trough before next HD"<br>_or_<br>
+"Give `ABW x dose recommendation` mg (`dose recommendation` mg/kg) after HD"
 
 ### Two-Level PK
 

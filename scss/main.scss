@@ -147,6 +147,9 @@ h1 {
     border: 0;
     background: transparent;
   }
+  @media print {
+    background: transparent;
+  }
 }
 
 .form-help-text {
@@ -201,6 +204,17 @@ h1 {
       height: 6rem;
     }
   }
+  @media print {
+    background: transparent;
+  }
+}
+.calc-direction {
+  @extend .output;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  color: $clr-vmfh-gray-dark;
+  overflow: hidden;
 }
 
 .form-control {
@@ -269,10 +283,16 @@ input {
 .highlighted {
   background-color: $clr-highlight;
   color: $clr-black;
+  @media print {
+    font-weight: bold;
+  }
 }
 
 .invalid {
   border-color: #c00;
+  @media print {
+    text-decoration: line-through;
+  }
 }
 
 .input-group.invalid > .input-group-prepend:first-child > .input-group-text,
@@ -311,6 +331,9 @@ input {
   margin-top: 20px;
   line-height: 50px;
   background-color: #f5f5f5;
+  @media print {
+    background: transparent;
+  }
 }
 
 /* ----------------------------------------------- */
@@ -419,6 +442,9 @@ textarea {
 #ivig-text[readonly],
 #kcentra--output[readonly] {
   background: fade-out($clr-bg-output, 0.7);
+  @media print {
+    background: transparent;
+  }
 }
 
 .demo-only {
@@ -475,6 +501,15 @@ a[data-toggle="modal"] {
   font-size: $len-275;
   padding: $len-25 $len-4;
   border: none;
+}
+
+.card-body-alert-primary {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  .alert-link {
+    color: #002752;
+  }
 }
 
 .card-body-alert-secondary {
@@ -679,6 +714,22 @@ ul {
 .hidden {
   display: none !important;
 }
+
 .pl-5px {
   padding-left: 5px !important;
+}
+
+@media print {
+  
+  .card-footer {
+    background: transparent;
+  }
+  button[type="button"],
+  a[data-toggle="modal"],
+  a[role="button"][data-toggle="tooltip"] {
+    display: none;
+  }
+  #vancoInitialMaintenance-PrintOnly {
+    border-style: dotted;
+  }
 }

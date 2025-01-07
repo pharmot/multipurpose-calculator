@@ -1,161 +1,98 @@
-
-<div class="row has-alert-only">
-  <div class="alert alert-primary alert-dismissible fade show mt-2 mb-0" role="alert" id="alert--see-protocol">
-    This protocol is to be used as a guideline, not a rule, and must be combined with clinical judgment.<br>
-    For outliers or exceptions, consult with another pharmacist. See Vancomycin Dosing Guidelines for full recommendations.</div>
+<div class="row hide-age-adult hide-hd-0">
+  <div class="col-2"></div>
+  <div class="col-4">
+    <div class="alert alert-info mt-5">Not applicable to pediatric dialysis patients.</div>
   </div>
-  <div class="row has-alert-only hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
-    <div id="alert--bayesian" class="alert alert-secondary mt-2 mb-0">
-      For <span class="font-italic semibold">initial dosing</span> in pharmacokinetic outliers (e.g. BMI &gt; 30), consider<br>
-      using a
-      <a class="alert-link" href="https://clincalc.com/Vancomycin/" rel="noopener noreferrer" target="_blank">calculator with Bayesian modeling</a> instead.
-      <p class="mt-1 mb-0">The "AUC Dosing" tab of this calculator should be used when levels are available (i.e. dose adjustment).</p>
+</div>
+<div class="row hide-peds-hd">
+  <div class="card" id="card--initial-dosing">
+    <div class="card-header h5">
+      Initial Vancomycin Dosing
     </div>
-  </div>
-  <div class="row hide-age-adult hide-hd-0">
-    <div class="col-2"></div>
-    <div class="col-4">
-      <div class="alert alert-info mt-5">Not applicable to pediatric dialysis patients.</div>
+    <div class="card-body-alert card-body-alert-primary fade show alert-dismissable" role="alert" id="alert--see-protocol">
+      This protocol is to be used as a guideline, not a rule, and must be combined with clinical judgment.<br>
+      For outliers or exceptions, consult with another pharmacist.<br>
+      See Vancomycin Dosing Guidelines for full recommendations.
     </div>
-  </div>
-  <div class="row hide-peds-hd">
-    <div class="card" id="card--initial-dosing">
-      <div class="card-header h5">
-        Initial Vancomycin Dosing
-      </div>
-      <div class="card-body">
-        <div class="form-row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
-          <label for="vancoIndication" class="col-3">Indication</label>
-          <div class="input-group col-9">
-            <select id="vancoIndication" class="form-control small">
-              <option>Serious Infection (e.g. bacteremia, endocarditis, osteomyelitis, pneumonia, meningitis)</option>
-              <option>SSTI or UTI (without concurrent sepsis)</option>
-              <option>Severe sepsis, septic shock, critically ill</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <label for="vancoInitialTargetLevel" class="col-3">Target Level</label>
-          <div class="input-group col-9">
-            <div class="output multi-line" id="vancoInitialTargetLevel"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <label for="vancoInitialLoad" class="col-3">Load</label>
-          <div class="input-group col-9">
-            <div class="output multi-line multi-line-2" id="vancoInitialLoad"></div>
-          </div>
-        </div>
-        <div class="form-row" id="row--vanco-md-bayesian">
-          <label for="vancoInitialMaintenance-bayesian" class="col-2">Maintenance</label>
-          <div class="col-1 icon-container justify-content-end">
-            <a role="button" data-toggle="tooltip" data-placement="right" data-html="true" title="default title" id="tooltip--vanco-md-bayesian"><i class="fa fa-info-circle"></i></a>
-          </div>
-          <div class="input-group col-9">
-            <div class="output multi-line multi-line-2" id="vancoInitialMaintenance-bayesian">Use <a href="https://clincalc.com/Vancomycin/" rel="noopener noreferrer" target="_blank">Bayesian modeling</a> to determine initial maintenance dose<br> <i>(BMI > 30)</i></div>
-          </div>
-        </div>
-        <div class="form-row" id="row--vanco-md-default">
-          <label for="vancoInitialMaintenance" class="col-3">Maintenance</label>
-          <div class="input-group col-9">
-            <div class="output multi-line multi-line-2" id="vancoInitialMaintenance"></div>
-          </div>
-        </div>
-        <div class="form-row hide-age-adult">
-          <div class="input-group col-9 offset-3 small">
-            See NeoFax/Pediatrics for more detailed information as different disease states have different maximum daily doses.
-          </div>
-        </div>
-        <div class="form-row">
-          <label for="vancoInitialMonitoring" class="col-3">Monitoring</label>
-          <div class="input-group col-9">
-            <div class="output multi-line multi-line-3" id="vancoInitialMonitoring"></div>
-          </div>
+    <div class="card-body">
+      <div class="form-row">
+        <label for="vancoIndication" class="col-3">Indication</label>
+        <div class="input-group col-9">
+          <select id="vancoIndication" class="form-control small">
+            <option>Serious Infection (e.g. bacteremia, endocarditis, osteomyelitis, pneumonia)</option>
+            <option>SSTI or UTI (without concurrent sepsis)</option>
+            <option>Severe sepsis, septic shock, critically ill</option>
+            <option>CNS infection/meningitis</option>
+            <option>CNS infection/meningitis with severe sepsis, septic shock, or critically ill</option>
+          </select>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row has-alert-only" id="row--initialPkAlert">
-    <div class="alert alert-secondary mt-2 mb-0 hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
-      The above recommendations should be used for most patients and the Bayesian calculator
-      should be used for pharmacokinetic outliers. Consider using PK dosing if there is a
-      large discrepancy between the above weight-based dosing and PK dosing, in patients with BMI &lt; 30.<br>
-      <button type="button" class="btn btn-sm btn-outline-secondary mt-2 py-1" id="btnShowInitialPk">Show Initial PK Dosing</button>
-    </div>
-  </div>
-  <div class="row fade fade-opacity" id="row--initialPkCalc">
-    <div class="card hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4" id="card--initial-pk">
-      <div class="card-header h6">Initial Vancomycin PK Dosing</div>
-      <div class="card-body-alert card-body-alert-secondary">
-        The above recommendations should be used for most patients and the Bayesian calculator
-        should be used for pharmacokinetic outliers. Consider using PK dosing if there is a
-        large discrepancy between the above weight-based dosing and PK dosing, in patients with BMI &lt; 30.
-      </div>
-      <div class="card-body pt-1">
-        <div class="row mb-2">
+      <div class="form-row hide-hd-1 hide-hd-2 hide-hd-3 hide-hd-4">
+        <div class="input-group col-3 offset-3">
+          <div class="form-check form-check-inline align-self-start ml-1">              
+            <input class="form-check-input" type="checkbox" id="vancoAki">
+            <label class="form-check-label" for="vancoAki">AKI?</label>
+            <div class="icon-container justify-content-end pl-2">
+              <a role="button" data-toggle="tooltip" data-placement="right" data-html="true" title="SCr change by &ge; 0.3 mg/dL within 48 hours, or<br>50% SCr change from baseline, or<br> CrCl change by &gt; 25 to 50%" id="tooltip--vanco-aki"><i class="fa fa-info-circle"></i></a>
+            </div>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="form-row">
-              <label for="vancoInitialPK-halflife" class="col-6">Est. Halflife</label>
-              <div class="col-6 input-group">
-                <div class="output" id="vancoInitialPK-halflife"></div>
-              </div>
-            </div>
-            <div class="form-row">
-              <label for="vancoInitialPK-recDose" class="col-6">Suggested Dose</label>
-              <div class="col-6 input-group">
-                <div class="output" id="vancoInitialPK-recDose"></div>
-              </div>
-            </div>
-            <div class="form-row">
-              <label for="vancoInitialPK-recFreq" class="col-6">Suggested Frequency</label>
-              <div class="col-6 input-group">
-                <div class="output" id="vancoInitialPK-recFreq"></div>
-              </div>
-            </div>
-            <div class="form-row">
-              <label for="vancoInitialPK-recLevel" id="vancoInitialPK-recLevel-label" class="col-6">Est. Level</label>
-              <div class="col-6 input-group">
-                <div class="output" id="vancoInitialPK-recLevel"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="form-row">
-              <label for="vancoInitialPK-dose" class="col-6">Choose Dose</label>
-              <div class="col-5 input-group">
-                <input type="number" id="vancoInitialPK-dose" class="form-control input-initialPK validate-dose" step="250">
-                <div class="input-group-append">
-                  <div class="input-group-text">mg</div>
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <label for="vancoInitialPK-interval" class="col-6">Choose Frequency</label>
-              <div class="input-group col-4">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">q</div>
-                </div>
-                <input type="number" id="vancoInitialPK-interval" class="form-control input-initialPK validate-freq" min="0" max="48" step="6">
-                <div class="input-group-append">
-                  <div class="input-group-text">h</div>
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <label for="vancoInitialPK-level" id="vancoInitialPK-level-label" class="col-6">Est. Level</label>
-              <div class="col-5 input-group">
-                <div class="output" id="vancoInitialPK-level"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="form-row">
-              <table class="table table-sm table-bordered" id="vancoInitialPK-table"></table>
+        <div class="input-group col-4">
+          <div class="form-check form-check-inline align-self-start ml-1">
+            <input class="form-check-input" type="checkbox" id="vancoOutlier">
+            <label class="form-check-label" for="vancoOutlier">PK Outlier?</label>
+            <div class="icon-container justify-content-end pl-2">
+              <a role="button" data-toggle="tooltip" data-placement="right" data-html="true" title="BMI &ge; 40<br>ESLD<br>septic shock<br>burn patient<br>limb amputation<br>CrCl &gt; 130 <b>or</b> SCr &lt; 0.4<br>renal transplant<br>para/quadraplegia<br>low muscle mass (cachexia)<br>age &lt; 35" id="tooltip--vanco-outlier"><i class="fa fa-info-circle"></i></a>
             </div>
           </div>
         </div>
       </div>
+      <div class="form-row">
+        <label for="vancoInitialMethod" class="col-3">Dosing Method/Target</label>
+        <div class="input-group col-4">
+          <div class="output multi-line mr-1" id="vancoInitialMethod"></div>
+        </div>
+        <div class="input-group col-5">
+          <div class="output multi-line ml-1" id="vancoInitialTargetLevel"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="vancoInitialLoad" class="col-3">Load</label>
+        <div class="input-group col-9">
+          <div class="output multi-line" id="vancoInitialLoad"></div>
+        </div>
+      </div>
+      <div class="form-row" id="row--vanco-md-bayesian">
+        <label for="vancoInitialMaintenance-bayesian" class="col-2">Maintenance</label>
+        <div class="col-1 icon-container justify-content-end">
+          <a role="button" data-toggle="tooltip" data-placement="right" data-html="true" title="default title" id="tooltip--vanco-md-bayesian"><i class="fa fa-info-circle"></i></a>
+        </div>
+        <div class="input-group col-9">
+          <div class="output multi-line multi-line-2" id="vancoInitialMaintenance-bayesian">Use InsightRx to determine initial maintenance dose.</div>
+        </div>
+      </div>
+      <div class="form-row" class="d-none d-print-flex" id="row--vanco-md-bayesian-print">
+        <div class="input-group col-9 offset-3">
+          <div class="output multi-line multi-line h-auto" id="vancoInitialMaintenance-PrintOnly">Use InsightRx to determine initial maintenance dose.</div>
+        </div>
+      </div>
+      <div class="form-row" id="row--vanco-md-default">
+        <label for="vancoInitialMaintenance" class="col-3">Maintenance</label>
+        <div class="input-group col-9">
+          <div class="output multi-line multi-line-2" id="vancoInitialMaintenance"></div>
+        </div>
+      </div>
+      <div class="form-row hide-age-adult">
+        <div class="input-group col-9 offset-3 small">
+          See NeoFax/Pediatrics for more detailed information as different disease states have different maximum daily doses.
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="vancoInitialMonitoring" class="col-3">Monitoring</label>
+        <div class="input-group col-9">
+          <div class="output multi-line multi-line-3" id="vancoInitialMonitoring"></div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
