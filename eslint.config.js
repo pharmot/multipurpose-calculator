@@ -93,11 +93,14 @@ export default defineConfig([
         'always',
         { 'arraysInObjects': true },
       ],
-      // 'quotes': [
-      //   'warn',
-      //   'double',
-      //   { 'allowTemplateLiterals': true },
-      // ],
+      'quotes': [
+        'warn',
+        'single',
+        {
+          'allowTemplateLiterals': true,
+          'avoidEscape': true,
+        },
+      ],
       'semi': [
         'error',
         'always',

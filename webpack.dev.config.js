@@ -1,5 +1,4 @@
 const { merge } = require('webpack-merge');
-
 const commonConfig = require('./webpack.common.js');
 const path = require('path');
 
@@ -13,11 +12,12 @@ const devConfig = {
       'docs/',
     ],
   },
-  devServer: {    
-    open: true,    
+  devServer: {
+    open: true,
     hot: false,
     port: 9000,
     static: {
+      /* eslint-disable-next-line no-undef */
       directory: path.join(__dirname, 'src'),
     },
   },
@@ -46,7 +46,6 @@ const devConfig = {
     ],
   },
 };
-
 // eslint-disable-next-line no-undef
 module.exports = () => {
   return merge(commonConfig, devConfig);

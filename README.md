@@ -60,6 +60,12 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
+## [1.4.1] - Unreleased
+
+### Added
+- NICU Equivalent Lytes Fluid Builder
+- NICU TPN/Fluid Builder
+
 ## [1.3.1] - 2025-01-07
 
 ### Added
@@ -252,6 +258,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
+[1.4.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.4.1
+[1.3.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.3.1
 [1.2.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.3
 [1.2.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.2
 [1.2.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.1

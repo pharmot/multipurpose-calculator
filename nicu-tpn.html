@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multipurpose Calculator - NICU TPN/Fluids</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="alternate icon" href="favicon.ico">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="manifest" href="site.webmanifest?v=<%= compilation.getStats().hash %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body <%= bodyStyle %> >
+  <div%=  betaBanner %>
+  <div class="modal fade" id="tapeNicuTpnModal" tabindex="-1">
+    <%= require('html-loader!./partials/tapeModalNicuTpn.html').default %>
+  </div>
+  <div class="container-fluid my-2">
+    <div class="row d-print-none">
+      <div class="col" id="col--logo"> <%= logoOnly %> </div>
+      <div class="col d-sm-flex align-items-center" id="col--title-link">
+        <%= mpcTitleLink %>
+        <div class="h4 page-title ml-sm-0 d-inline-flex text-dark"><div class="d-none d-sm-inline">&nbsp;-&nbsp;</div>NICU&nbsp;TPN/Fluids</div>
+      </div>
+    </div>
+    <div class="row d-none d-print-flex">
+      <div class="col text-center h4 page-title text-dark">Multipurpose Calculator - NICU TPN/Fluids</div>
+    </div>
+    <div class="row">
+      <div class="col-auto">
+        <div class="card mb-0" id="card--nicu-tpn-fluid">
+          <div class="card-header h5">Fluid Calculations</div>
+          <div class="card-body">
+            <div class="form-row mb-3">
+              <label for="nicu-tpn-wt" class="col-form-label col-4 col-sm-3">Dosing Weight</label>
+              <div class="col-4 col-sm-2 input-group">
+                <input type="number" id="nicu-tpn-wt" class="form-control input-nicu-tpn">
+                <div class="input-group-append">
+                  <div class="input-group-text">kg</div>
+                </div>
+              </div>
+              <div class="col-2 offset-1 offset-sm-5">
+                <button type="button" class="btn btn-outline-secondary px-3" id="nicu-tpn-reset" tabindex="999">Reset</button>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <label for="nicu-tpn-totalDailyFluids" class="col-form-label col-4 col-sm-3">Total daily fluids</label>
+              <div class="col-5 col-sm-3 offset-3 offset-sm-0 input-group">
+                <input type="number" id="nicu-tpn-totalDailyFluids" class="form-control input-nicu-tpn">
+                <div class="input-group-append">
+                  <div class="input-group-text">mL/kg/day</div>
+                </div>
+              </div>
+              <div class="col-5 col-sm-3 offset-7 offset-sm-0 input-group mt-1 mt-sm-0">
+                <div id="nicu-tpn-totalDailyFluidRate" class="output"></div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <label class="col-form-label col-12 col-sm-9">Medications&nbsp;<span class="small"> (Obligitory non-PN IV fluids - e.g., sedation)</span></label>
+              <div class="col-5 offset-7 col-sm-3 offset-sm-0 input-group">
+                <input type="number" id="nicu-tpn-medicationRate" class="form-control input-nicu-tpn">
+                <div class="input-group-append">
+                  <div class="input-group-text">mL/day</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <label for="nicu-tpn-lipidDose" class="col-form-label col-4 col-sm-3">Lipids 20%</label>
+              <div class="col-5 col-sm-3 offset-3 offset-sm-0 input-group">
+                <input type="number" id="nicu-tpn-lipidDose" class="form-control input-nicu-tpn">
+                <div class="input-group-append">
+                  <div class="input-group-text">g/kg/day</div>
+                </div>
+              </div>
+              <div class="col-5 col-sm-3 offset-7 offset-sm-0 input-group mt-1 mt-sm-0">
+                <div id="nicu-tpn-lipidRate" class="output"></div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <label for="nicu-tpn-npoRate" class="col-form-label col-7 col-sm-3">NPO Volume</label>
+              <div class="col-5 col-sm-3 input-group mt-1 mt-sm-0">
+                <div id="nicu-tpn-npoRate" class="output"></div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <label for="nicu-tpn-oralFeeds" class="col-form-label col-3">Oral Feeds</label>
+              <div class="col-9 col-sm-6 input-group">
+                <input type="number" id="nicu-tpn-oralFeeds" class="form-control input-nicu-tpn">
+                <div class="input-group-append">
+                  <div class="input-group-text">mL PO every</div>
+                </div>
+                <input type="number" id="nicu-tpn-oralFeedsFreq" class="form-control input-nicu-tpn" value="3">
+                <div class="input-group-append">
+                  <div class="input-group-text">hours</div>
+                </div>
+              </div>
+              <div class="col-5 col-sm-3 offset-7 offset-sm-0 input-group mt-1 mt-sm-0">
+                <div id="nicu-tpn-oralFeedRate" class="output"></div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <label for="nicu-tpn-adjRate" class="col-form-label col-7 col-sm-6">Fluids from PN (Adj. volume)</label>
+              <div class="col-5 col-sm-3 input-group mt-1 mt-sm-0">
+                <div id="nicu-tpn-adjRate" class="output"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body border-top">
+            <div class="form-row mb-1">
+              <label for="nicu-tpn-dextrose" class="col-form-label col-7 col-sm-4">Dextrose</label>
+              <div class="col-5 col-sm-3 input-group">
+                <input type="number" id="nicu-tpn-dextrose" class="form-control input-nicu-tpn">
+                <div class="input-group-append">
+                  <div class="input-group-text">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mb-1">
+              <label for="nicu-tpn-protein" class="col-form-label col-7 col-sm-4">Protein</label>
+              <div class="col-5 col-sm-3 input-group">
+                <input type="number" id="nicu-tpn-protein" class="form-control input-nicu-tpn">
+                <div class="input-group-append">
+                  <div class="input-group-text">g/kg/day</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <label for="nicu-tpn-lipidHourlyRate" class="col-form-label col-7 col-sm-4">Lipids 20%</label>
+              <div class="col-5 col-sm-3 input-group">
+                <div id="nicu-tpn-lipidHourlyRate" class="output"></div>
+              </div>
+            </div>
+            <div class="form-row mb-1">
+              <label for="nicu-tpn-pnRate" class="col-form-label col-7 col-sm-4">PN Rate</label>
+              <div class="col-5 col-sm-3 input-group">
+                <div id="nicu-tpn-pnRate" class="output"></div>
+              </div>
+              <div class="col-12 col-sm-4 small text-right text-sm-left col-form-label mb-1 mb-sm-0">(using adjusted volume)</div>
+            </div>
+            <div class="form-row mb-1">
+              <label for="nicu-tpn-pnVolume" class="col-form-label col-7 col-sm-4">PN Volume</label>
+              <div class="col-5 col-sm-3 input-group">
+                <div id="nicu-tpn-pnVolume" class="output"></div>
+              </div>
+              <div class="col-12 col-sm-4 small text-right text-sm-left col-form-label mb-1 mb-sm-0">(using NPO volume)</div>
+            </div>
+            <div class="form-row mb-1">
+              <label for="nicu-tpn-pnPercent" class="col-form-label col-7 col-sm-4">% of TPN receiving</label>
+              <div class="col-5 col-sm-3 input-group">
+                <div id="nicu-tpn-pnPercent" class="output"></div>
+              </div>
+            </div>
+            <div class="form-row mb-1">
+              <label for="nicu-tpn-gir" class="col-form-label col-7 col-sm-4">Glucose Infusion Rate</label>
+              <div class="col-5 col-sm-3 input-group">
+                <div id="nicu-tpn-gir" class="output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" id="card--nicu-tpn-totals">
+          <div class="card-header h5">Total Kilocalories From TPN</div>
+          <div class="card-body">
+            <div class="form-row mb-3">
+              <div class="col-3 col-sm-2 col-form-label text-left">Glucose</div>
+              <div class="col-4 col-sm-3 col-md-2 input-group">
+                <div class="output" id="nicu-tpn-dextrosePercent"></div>
+              </div>
+              <div class="col-5 col-sm-4 input-group">
+                <div class="output" id="nicu-tpn-dextroseTotal"></div>
+              </div>
+            </div>           
+            <div class="form-row mb-3">
+              <div class="col-3 col-sm-2 col-form-label text-left">Protein</div>
+              <div class="col-4 col-sm-3 col-md-2 input-group">
+                <div class="output" id="nicu-tpn-proteinPercent"></div>
+              </div>
+              <div class="col-5 col-sm-4 input-group">
+                <div class="output" id="nicu-tpn-proteinTotal"></div>
+              </div>
+              <div class="col-7 col-sm-5 d-md-none col-form-label pr-0"></div>
+              <div class="col-5 col-sm-4 pl-0 input-group">
+                <div class="output" id="nicu-tpn-aaTotal"></div>
+              </div>
+            </div>            
+            <div class="form-row mb-4">
+              <div class="col-3 col-sm-2 col-form-label text-left">Lipids</div>
+              <div class="col-4 col-sm-3 col-md-2 input-group">
+                <div class="output" id="nicu-tpn-lipidPercent"></div>
+              </div>
+              <div class="col-5 col-sm-4 input-group">
+                <div class="output" id="nicu-tpn-lipidTotal"></div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-7 col-sm-5 col-md-4 col-form-label text-left pr-0">Total from TPN</div>
+              <div class="input-group col-5 col-sm-4 pl-0">
+                <div class="output font-weight-bold" id="nicu-tpn-kcalTotal"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card--nicu-tpn-osm">
+          <div class="card-header h5">Estimated Osmolarity</div>
+          <div class="card-body">
+            <div class="form-row mb-1">
+              <div class="col-7 col-sm-5 col-xl-4 col-form-label text-left">From Dextrose</div>
+              <div class="col-5 col-sm-4 input-group">
+                <div class="output" id="nicu-tpn-dextroseOsm" ></div>
+              </div>
+            </div>           
+            <div class="form-row mb-3">
+              <div class="col-7 col-sm-5 col-xl-4 col-form-label text-left">From Protein</div>
+              <div class="col-5 col-sm-4 input-group">
+                <div class="output" id="nicu-tpn-proteinOsm"></div>
+              </div>
+            </div>            
+            <div class="form-row">
+              <div class="col-7 col-sm-5 col-xl-4 col-form-label text-left">Total Est. Osmolarity</div>
+              <div class="col-5 col-sm-4 input-group">
+                <div class="output font-weight-bold" id="nicu-tpn-totalOsm"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer small" id="card-footer--nicu-tpn-osm">
+            <div class="card-text">Keep osmolaritry from AA/Dex &lt; 850 mOsm/L for PIV to allow for other 50 mOsm/L from electrolytes, MVI/Trace, and other additives</div>
+          </div>
+        </div>
+        <div class="card" id="card--nicu-notes">
+          <div class="card-body text-left">
+            <ul class="pl-3">
+              <li>Please refer to <a href="https://commonspirit-wa-stjoseph.policystat.com/policy/17737592/latest" target="_blank">Neonatal Enteral Feeding Guidelines - NICU Level II & III</a> for detailed information regarding fluid advancement enteral and parental feeding.</li>
+              <li>In general: IVF advancement of 20 mL/kg/day, enteral advancement 20-40 mL/kg/day depending on birth weight and gestational age (see Table 1 in Policy)</li>
+              <li>Discontinue lipids when enteral feeds account for 90-100 mL/kg/day, discontinue TPN when enteral feeds are ~120 mL/kg/day</li>
+              <li>Day 1 TPN electrolytes for the most part require 0.5-1 mEq/kg sodium phosphate and 1-1.5 mEq/kg/day of calcium gluconate; Day 2, adjust based off of labs</li>
+            </ul>
+          </div>
+          <div class="col-12 mb-3">
+            <button type="button" class="btn btn-outline-secondary px-3" id="btnNicuTpnTape" data-toggle="modal" data-target="#tapeNicuTpnModal">Show Calculations</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <footer class="footer d-print-none">
+      <div class="container">
+        <span class="text-muted small">v<%= buildversion %> &copy; <%= thisYear %>
+          &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
+          <a href="<%= homepage %>" target="_blank" rel="noopener noreferrer">Repository</a>
+          &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
+          <!-- <a href="http://pharmot.github.io/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Documentation</a>
+          &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp; -->
+          <a href="<%= issues %>" target="_blank" rel="noopener noreferrer">Issues</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+  </html>
+  
+  
+  
+  
+  
+  
+  
+  
+  

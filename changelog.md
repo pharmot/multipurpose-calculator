@@ -1,5 +1,16 @@
 # Changelog
 <!-- ## [Unreleased] -->
+## [1.4.1] - Unreleased
+
+### Added
+- NICU Equivalent Lytes Fluid Builder
+- NICU TPN/Fluid Calculator
+- Periodic Table module
+- Dev dependencies: webpack-merge and yaml-loader
+- Custom column widths in between Bootstrap 12-column layout
+
+### Changed
+- Include logging in formValidation module
 
 ## [1.3.1] - 2025-01-07
 ### Added
@@ -262,7 +273,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.3.1...v1.4.1
 [1.3.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.3...v1.3.1
 [1.2.3]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.1...v1.2.2

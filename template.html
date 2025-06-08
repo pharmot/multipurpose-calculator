@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Multi-Purpose Calculator</title>
+  <title>Multipurpose Calculator</title>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -14,7 +14,7 @@
   <meta name="msapplication-TileColor" content="#2b5797">
   <meta name="theme-color" content="#ffffff">
 </head>
-<body <%= bodyStyle %> >
+<body class="homepage" <%= bodyStyle %> >
   <div class="modal fade" id="tapeModal" tabindex="-1">
     <%= require('html-loader!./partials/tapeModal.html').default %>
   </div>
@@ -45,6 +45,13 @@
             <a class="nav-item nav-link" id="nav-alligation-tab" data-toggle="tab" href="#nav-alligation" role="tab">Alligation</a>
             <a class="nav-item nav-link" id="nav-warf-tab" data-toggle="tab" href="#nav-warf" role="tab">Warfarin</a>
             <a class="nav-item nav-link" id="nav-glucommander-tab" data-toggle="tab" href="#nav-glucommander" role="tab">Glucommander</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">NICU Tools</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="nicu-lytes.html" target="_blank">Equivalent Lytes Custom Fluid</a>
+                <a class="dropdown-item" href="nicu-tpn.html" target="_blank">TPN/Fluid Calculator</a>
+              </div>
+            </li>
           </div>
         </nav>
       </div>
@@ -139,7 +146,7 @@
       </div>
     </div>
   </div>
-  <footer class="footer">
+  <footer class="footer homepage">
     <div class="container">
       <span class="text-muted small">v<%= buildversion %> &copy; <%= thisYear %>
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
