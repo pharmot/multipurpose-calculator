@@ -72,39 +72,33 @@
                 <div class="form-row mb-3">
                   <label for="nicu-lytes-hourlyRate" class="col-2">Actual Rate Running</label>
                   <div class="col-2 input-group">
-                    <input type="number" id="nicu-lytes-hourlyRate" class="form-control input-nicu-lytes">
-                    <div class="input-group-append">
-                      <div class="input-group-text">mL/hr</div>
-                    </div>
+                    <div class="output" id="nicu-lytes-hourlyRate"></div>
                   </div>
                   <label for="nicu-lytes-totalVolume" class="col-15 text-right">Volume</label>
                   <div class="col-2 input-group">
-                    <input type="number" id="nicu-lytes-totalVolume" class="form-control input-nicu-lytes" value="250" min="50" max="1000" step="10">
-                    <div class="input-group-append">
-                      <div class="input-group-text">mL</div>
-                    </div>
+                    <div class="output" >250 mL</div>
                   </div>
                 </div>
               </div>
-            </div> <!-- .row -->
+            </div>
             <div class="row">
-              <div class="col-auto" id="nicu-lytes-table1">
+              <div class="col-auto mb-4" id="nicu-lytes-table1">
                 <div class="form-row">
                   <label class="col-form-label col-25 offset-3 text-center pb-0">Intended Dose</label>
-                  <label class="col-form-label col-2 text-center small pb-0">Order dose per bag</label>
+                  <label class="col-form-label col-25 text-center small pb-0 font-weight-bold">Order dose per bag</label>
                   <label class="col-form-label col-2 text-center small pb-0">Total amt. per bag</label>
                   <label class="col-form-label col-2 text-center small pb-0">Total Concentration</label>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">sodium chloride</label>
+                  <label class="col-3">sodium chloride</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-NaCl" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-NaCl" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-NaCl" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-NaCl" class="output"></div>
@@ -114,15 +108,15 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">sodium acetate</label>
+                  <label class="col-3">sodium acetate</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-NaAcet" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-NaAcet" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-NaAcet" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-NaAcet" class="output"></div>
@@ -132,15 +126,15 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">potasium chloride</label>
+                  <label class="col-3">potassium chloride</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-KCl" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-KCl" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-KCl" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-KCl" class="output"></div>
@@ -150,15 +144,15 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">potasium phosphate</label>
+                  <label class="col-3">potassium phosphate</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-KPhos" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-KPhos" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-KPhos" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-KPhos" class="output"></div>
@@ -168,15 +162,15 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">calcium gluconate</label>
+                  <label class="col-3">calcium gluconate</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-CaGluc" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-CaGluc" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-CaGluc" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-CaGluc" class="output"></div>
@@ -186,15 +180,15 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">sodium phosphate</label>
+                  <label class="col-3">sodium phosphate</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-NaPhos" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-NaPhos" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-NaPhos" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-NaPhos" class="output"></div>
@@ -204,15 +198,15 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">magnesium sulfate</label>
+                  <label class="col-3">magnesium sulfate</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-MgSulf" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-MgSulf" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-MgSulf" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-MgSulf" class="output"></div>
@@ -222,15 +216,15 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-3">potassium acetate</label>
+                  <label class="col-3">potassium acetate</label>
                   <div class="col-25 input-group">
                     <input type="number" id="nicu-lytes-input-KAcet" class="form-control input-nicu-lytes" min="0" step="0.1"></input>
                     <div class="input-group-append">
                       <div class="input-group-text">mEq/kg/<strong>day</strong></div>
                     </div>
                   </div>
-                  <div class="col-2 input-group">
-                    <div id="nicu-lytes-bagDose-KAcet" class="output"></div>
+                  <div class="col-25 input-group">
+                    <div id="nicu-lytes-bagDose-KAcet" class="output font-weight-bold border-dark"></div>
                   </div>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-bagAmount-KAcet" class="output"></div>
@@ -244,18 +238,18 @@
                   <label class="col-2 small line-height-1 border rounded-0 border-top-0 border-dark">Ordering unit in fluid builder</label>
                   <label class="col-2 small line-height-1 border rounded-0 border-top-0 border-dark">For checking safe concentration</label>
                 </div>
-              </div> <!-- .col-auto #nicu-lytes-table1-->
-              <div class="col-auto" id="nicu-lytes-table2">
+              </div>
+              <div class="col-auto mb-4" id="nicu-lytes-table2">
                 <div class="form-row">
                   <div class="col-form-label col-2 h6 text-left mb-0">Totals</div>
                   <label class="col-form-label col-2 text-center pb-0 pr-0">Amount per bag</label>
                   <label class="col-form-label col-2 text-center pb-0 pr-0">Rate</label>
                   <div class="col-6  input-group pl-0">
-                    <div id="nicu-lytes-sodium-note" class="output hidden"></div>
+                    <div id="nicu-lytes-additive-note" class="output hidden alert-warning">No more than 3 additives, per USP 797</div>
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-2">sodium</label>
+                  <label class="col-2">sodium</label>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-total-sodium" class="output"></div>
                   </div>
@@ -263,11 +257,11 @@
                     <div id="nicu-lytes-total-sodium-rate" class="output"></div>
                   </div>
                   <div class="col-6 input-group">
-                    <div id="nicu-lytes-sodium-percent-nacl" class="output hidden"></div>
+                    <div id="nicu-lytes-sodium-note" class="output hidden"></div>
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-2">potassium</label>
+                  <label class="col-2">potassium</label>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-total-potassium" class="output"></div>
                   </div>
@@ -279,7 +273,7 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-2">phosphate</label>
+                  <label class="col-2">phosphate</label>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-total-phosphate" class="output"></div>
                   </div>
@@ -291,7 +285,7 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-2">calcium</label>
+                  <label class="col-2">calcium</label>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-total-calcium" class="output"></div>
                   </div>
@@ -300,7 +294,7 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <label for="" class="col-2">magnesium</label>
+                  <label class="col-2">magnesium</label>
                   <div class="col-2 input-group">
                     <div id="nicu-lytes-total-magnesium" class="output"></div>
                   </div>
@@ -308,7 +302,7 @@
                     <div id="nicu-lytes-total-magnesium-rate" class="output"></div>
                   </div>
                 </div>
-              </div> <!-- .col-auto #nicu-lytes-table2-->
+              </div>
               <div class="col-auto" id="nicu-lytes-table3">
                 <div class="form-row">
                   <div class="col-form-label col-3 h6 text-left mb-0">Equivalent Rates</div>
@@ -331,11 +325,11 @@
                     <div id="nicu-lytes-equivalent-qns" class="output"></div>                
                   </div>
                 </div>
-              </div> <!-- .col-auto #nicu-lytes-table3-->
-            </div> <!-- .row -->
-          </div> <!-- .card-body-->
-        </div> <!-- .card#card--nicu-lytes -->
-      </div><!-- .col-12 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <footer class="footer d-print-none homepage">
@@ -344,8 +338,6 @@
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
         <a href="<%= homepage %>" target="_blank" rel="noopener noreferrer">Repository</a>
         &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp;
-        <!-- <a href="http://pharmot.github.io/multipurpose-calculator/" target="_blank" rel="noopener noreferrer">Documentation</a>
-        &nbsp;&nbsp;&nbsp;&ndash;&nbsp;&nbsp;&nbsp; -->
         <a href="<%= issues %>" target="_blank" rel="noopener noreferrer">Issues</a>
       </span>
     </div>

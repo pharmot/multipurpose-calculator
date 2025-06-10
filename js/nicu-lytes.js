@@ -3,7 +3,6 @@
  * @since v1.4.0
  * @requires module:util
  * @requires module:formValidation
- * @requires module:periodicCalc
  * @requires module:logger
  */
 
@@ -12,18 +11,13 @@ $ = require( 'jquery' );
 import 'bootstrap';
 import '../scss/main.scss';
 import { checkValue, displayValue } from './util.js';
-// displayDate, , , getDateTime, getHoursBetweenDates, checkTimeInput, parseAge, displayTime 
-// import * as arial from "./arial.js";
 import { default as setupValidation } from './formValidation.js';
 import * as LOG from './logger.js';
-import { getValence, getAtomicMass } from './periodicCalc.js';
 
 /**
  * Length of timeout (in ms) for event handlers that use elements from other modules
  */
 const MODULE_DELAY = 100;
-
-let debug = false;
 let validatedFields;
 const comps = [
   { ident: 'NaCl', sodium: 1 },
@@ -40,40 +34,37 @@ const comps = [
 
 $( () => {
   if ( /debug/.test( location.search ) ) {
-    debug = true;
     LOG.enable();
+    LOG.presetValues();
+    $('#nicu-lytes-weight').val(0.785);
+    $('#nicu-lytes-dailyRatePerKg').val(160);
+    calculateNicuFluid();
   } else if ( /log/.test( location.search ) ) {
     LOG.enable();
   }
-  // $("[data-toggle=\"popover\"]").popover({ html: true });
-  // $("[data-toggle=\"tooltip\"]").tooltip();
-  // $(".hidden").addClass('hidden');
 
-  if ( debug ) {
-    LOG.presetValues();
-    $('#nicu-lytes-weight').val(4.4);
-    $('#nicu-lytes-dailyRatePerKg').val(60);
-    $('#nicu-lytes-hourlyRate').val(5.5);
-  } else {
-    // resetDates();
-  }
   validatedFields = setupValidation([
     { selector: '#nicu-lytes-weight', min: 0, max: 40 },
-    { selector: '#nicu-lytes-totalVolume', min: 0, max: 1000 },
+    { selector: '#nicu-lytes-dailyRatePerKg', min: 0, max: 999 },
+    { selector: '#nicu-lytes-input-NaCl', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-NaAcet', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-KCl', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-KPhos', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-CaGluc', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-NaPhos', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-MgSulf', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-KAcet', min: 0, max: 20 },
   ]);
-  // $("#nicu-wt").get(0).focus();
+  $('#nicu-lytes-name').get(0).focus();
 });
-//---------------------------------------------------------------
-// EVENT LISTENERS
 
-// Reset Button
 $( '#nicu-lytes-reset' ).on( 'click', () => {
   LOG.green( 'Reset' );
   $( '.input-nicu-lytes' ).val(null);
-  $( '#nicu-lytes-totalVolume' ).val( 250 );
-  $( '#nicu-lytes-dextroseConc' ).val( 5 );
   $( validatedFields ).removeClass( 'invalid' );
+  $('#nicu-lytes-name').get(0).focus();
 });
+
 $('.input-nicu-lytes').on('keyup', () => {
   setTimeout( () => {
     LOG.yellow('NICU Lytes Input Received');
@@ -102,19 +93,22 @@ class NicuFluidComponent {
     this.bagDosePerKg = 0;
     this.bagAmount = 0;
     this.bagConcentration = 0;
+    this.isIncluded = 0;
     return this;
   }
-  update({ wt, hourlyRate, totalVolume } = {}) {
+  update({ wt, hourlyRate } = {}) {
     LOG.beginFunction(`Update: ${this.ident}`, arguments);
     this.dailyDosePerKg = checkValue( $( `#${this.idInput}` ).val() );
-    if ( this.dailyDosePerKg > 0 && wt > 0 && hourlyRate > 0 && totalVolume > 0 ) {
-      this.bagDosePerKg =   this.dailyDosePerKg / ( hourlyRate * 24 ) * totalVolume;
+    if ( this.dailyDosePerKg > 0 && wt > 0 && hourlyRate > 0 ) {
+      this.bagDosePerKg =   this.dailyDosePerKg / ( hourlyRate * 24 ) * 250;
       this.bagAmount = this.bagDosePerKg * wt;
-      this.bagConcentration = this.bagAmount / totalVolume;
+      this.bagConcentration = this.bagAmount / 250;
+      this.isIncluded = 1;
     } else {
       this.bagDosePerKg = 0;
       this.bagAmount = 0;
       this.bagConcentration = 0;
+      this.isIncluded = 0;
     }
     displayValue(`#${this.idBagDosePerKg}`, this.bagDosePerKg, 0.1, ' mEq/kg/bag');
     displayValue(`#${this.idBagAmount}`, this.bagAmount, 0.1, ' mEq/bag');
@@ -129,18 +123,11 @@ function calculateNicuFluid() {
   
   const wt = checkValue( +$('#nicu-lytes-weight').val(), 0, 40 );
   const dailyRatePerKg = checkValue( +$('#nicu-lytes-dailyRatePerKg').val(), 0, 999 );
-  const inputHourlyRate = checkValue( +$('#nicu-lytes-hourlyRate').val(), 0, 999 );
-  const totalVolume = checkValue( +$('#nicu-lytes-totalVolume').val(), 0, 1000 );
 
-  const calcHourlyRate = dailyRatePerKg * wt / 24;
+  const hourlyRate = dailyRatePerKg * wt / 24;
+  displayValue('#nicu-lytes-hourlyRate', hourlyRate, 0.1, ' mL/hr');
 
-  if ( inputHourlyRate === 0 ) {
-    displayValue('#nicu-lytes-hourlyRate', calcHourlyRate, 0.1);
-  }
-
-  const hourlyRate = inputHourlyRate === 0 ? calcHourlyRate : inputHourlyRate;
-
-  const inputs = { wt, dailyRatePerKg, hourlyRate, totalVolume };
+  const inputs = { wt, dailyRatePerKg, hourlyRate };
   LOG.cyanGroupCollapsed('Update components');
   components.forEach( c => c.update( inputs ) );
   LOG.groupEnd();
@@ -150,17 +137,14 @@ function calculateNicuFluid() {
   const totalCaPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.calcium }, 0);
   const totalPhosPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.phosphate }, 0);
   const totalMgPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.magnesium }, 0);
+  const numberOfAdditives = components.reduce( ( tot, c ) => { return tot + c.isIncluded }, 0);
   LOG.log(`Na: ${totalNaPerBag}, K: ${totalKPerBag}, Ca: ${totalCaPerBag}, Phos: ${totalPhosPerBag}, Mg: ${totalMgPerBag}`);
 
-  const totalNaRate =  totalNaPerBag / totalVolume  * hourlyRate;
-  const totalKRate =  totalKPerBag / totalVolume  * hourlyRate;
-  const totalCaRate =  totalCaPerBag / totalVolume  * hourlyRate;
-  const totalPhosRate =  totalPhosPerBag / totalVolume  * hourlyRate;
-  const totalMgRate =  totalMgPerBag / totalVolume  * hourlyRate;
-
-  const mwNaCl = getAtomicMass('NaCl');
-  const valNaCl = getValence('NaCl');
-  const sodPercentNaCl =   totalNaPerBag / ( totalVolume / 100 ) / valNaCl  * mwNaCl  / 1000;
+  const totalNaRate =  totalNaPerBag / 250  * hourlyRate;
+  const totalKRate =  totalKPerBag / 250  * hourlyRate;
+  const totalCaRate =  totalCaPerBag / 250  * hourlyRate;
+  const totalPhosRate =  totalPhosPerBag / 250  * hourlyRate;
+  const totalMgRate =  totalMgPerBag / 250  * hourlyRate;
   const caPhosProduct = totalCaPerBag * totalPhosPerBag;
 
   displayValue('#nicu-lytes-total-sodium', totalNaPerBag, 0.1, ' mEq');
@@ -173,12 +157,11 @@ function calculateNicuFluid() {
   displayValue('#nicu-lytes-total-phosphate-rate', totalPhosRate, 0.1, ' mEq/hr');
   displayValue('#nicu-lytes-total-magnesium', totalMgPerBag, 0.1, ' mEq');
   displayValue('#nicu-lytes-total-magnesium-rate', totalMgRate, 0.1, ' mEq/hr');
-  displayValue('#nicu-lytes-sodium-percent-nacl', sodPercentNaCl, 0.01, '% NaCl', 'Bag contains the same amount of sodium as in ');
 
-  if ( sodPercentNaCl === 0 ) {
-    $('#nicu-lytes-sodium-percent-nacl').addClass('hidden');
+  if ( numberOfAdditives > 3 ) {
+    $('#nicu-lytes-additive-note').removeClass('hidden');
   } else {
-    $('#nicu-lytes-sodium-percent-nacl').removeClass('hidden');
+    $('#nicu-lytes-additive-note').addClass('hidden');
   }
   if ( totalNaPerBag > 38.5 ) {
     $('#nicu-lytes-sodium-note').html('Warning: NaCl exceeds the recommended 0.9% concentration');
@@ -207,24 +190,15 @@ function calculateNicuFluid() {
     $('#nicu-lytes-caPhos-note').html('');
     $('#nicu-lytes-caPhos-note').removeClass('alert-danger').removeClass('alert-warning').addClass('hidden');
   }
-
-  const nsEquivRate = calcHourlyRate * 0.154;
-  const hnsEquivRate = calcHourlyRate * 0.077;
-  const qnsEquivRate = calcHourlyRate * 0.0385;
+  const nsEquivRate = hourlyRate * 0.154;
+  const hnsEquivRate = hourlyRate * 0.077;
+  const qnsEquivRate = hourlyRate * 0.0385;
 
   displayValue('#nicu-lytes-equivalent-ns', nsEquivRate, 0.1, ' mEq/hr');
   displayValue('#nicu-lytes-equivalent-hns', hnsEquivRate, 0.1, ' mEq/hr');
   displayValue('#nicu-lytes-equivalent-qns', qnsEquivRate, 0.1, ' mEq/hr');
 
-
-  //  mL  x   mEq
-  //  hr      mL
 }
-
-
-// At the ordered daily rate, 1/4 NS (NaCl 0.225%) would deliver NaCl __ mEq/hr (contains 0.0385 mEq/mL)
-// At the ordered daily rate, 1/2 NS (NaCl 0.45%) would deliver NaCl __  mEq/hr (contains 0.077 mEq/mL)
-// At the ordered daily rate, NS (NaCl 0.9%) would deliver NaCl __ mEq/hr (contains 0.154 mEq/mL)
 
 
 /**
