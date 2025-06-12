@@ -49,13 +49,13 @@
             </div>
             <div class="form-row mb-3">
               <label for="nicu-tpn-totalDailyFluids" class="col-form-label col-4 col-sm-3">Total daily fluids</label>
-              <div class="col-5 col-sm-3 offset-3 offset-sm-0 input-group">
+              <div class="col-5 col-sm-3 offset-sm-0 input-group">
                 <input type="number" id="nicu-tpn-totalDailyFluids" class="form-control input-nicu-tpn">
                 <div class="input-group-append">
                   <div class="input-group-text">mL/kg/day</div>
                 </div>
               </div>
-              <div class="col-5 col-sm-3 offset-7 offset-sm-0 input-group mt-1 mt-sm-0">
+              <div class="col-5 col-sm-3 offset-7 offset-sm-3 input-group mt-1 mt-sm-0">
                 <div id="nicu-tpn-totalDailyFluidRate" class="output"></div>
               </div>
             </div>
@@ -76,12 +76,12 @@
                   <div class="input-group-text">g/kg/day</div>
                 </div>
               </div>
-              <div class="col-5 col-sm-3 offset-7 offset-sm-0 input-group mt-1 mt-sm-0">
+              <div class="col-5 col-sm-3 offset-7 offset-sm-3 input-group mt-1 mt-sm-0">
                 <div id="nicu-tpn-lipidRate" class="output"></div>
               </div>
             </div>
             <div class="form-row mb-3">
-              <label for="nicu-tpn-npoRate" class="col-form-label col-7 col-sm-3">NPO Volume</label>
+              <label for="nicu-tpn-npoRate" class="col-form-label col-7 col-sm-9">NPO Volume</label>
               <div class="col-5 col-sm-3 input-group mt-1 mt-sm-0">
                 <div id="nicu-tpn-npoRate" class="output"></div>
               </div>
@@ -103,7 +103,7 @@
               </div>
             </div>
             <div class="form-row mb-3">
-              <label for="nicu-tpn-adjRate" class="col-form-label col-7 col-sm-6">Fluids from PN (Adj. volume)</label>
+              <label for="nicu-tpn-adjRate" class="col-form-label col-7 col-sm-9">Fluids from PN (Adj. volume)</label>
               <div class="col-5 col-sm-3 input-group mt-1 mt-sm-0">
                 <div id="nicu-tpn-adjRate" class="output"></div>
               </div>
@@ -240,9 +240,15 @@
               <li>Discontinue lipids when enteral feeds account for 90-100 mL/kg/day, discontinue TPN when enteral feeds are ~120 mL/kg/day</li>
               <li>Day 1 TPN electrolytes for the most part require 0.5-1 mEq/kg sodium phosphate and 1-1.5 mEq/kg/day of calcium gluconate; Day 2, adjust based off of labs</li>
             </ul>
+            
           </div>
-          <div class="col-12 mb-3">
-            <button type="button" class="btn btn-outline-secondary px-3" id="btnNicuTpnTape" data-toggle="modal" data-target="#tapeNicuTpnModal">Show Calculations</button>
+          <div class="row">
+            <div class="col-12 col-sm-6 mb-3">
+              <p><a href="https://drive.google.com/file/d/1dNbjQAh8txqaekg4oI0huOCgBHQaP24t/view?usp=drive_link" target="_blank">Neonatal PN Order Form</a></p>
+            </div>
+            <div class="col-12 col-sm-6 mb-3">
+              <button type="button" class="btn btn-outline-secondary px-3" id="btnNicuTpnTape" data-toggle="modal" data-target="#tapeNicuTpnModal">Show Calculations</button>
+            </div>
           </div>
         </div>
         

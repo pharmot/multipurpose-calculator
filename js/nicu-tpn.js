@@ -81,7 +81,7 @@ $( '#nicu-tpn-reset' ).on( 'click', () => {
   LOG.green( 'Reset' );
   $('.input-nicu-tpn').val(null);
   $( validatedFields ).removeClass( 'invalid' );
-  $('#card-footer--nicu-tpn-osm, #nicu-tpn-totalOsm').removeClass('text-danger');
+  $('#card-footer--nicu-tpn-osm, #nicu-tpn-totalOsm, #nicu-tpn-pnRate').removeClass('text-danger');
   $('#nicu-tpn-oralFeedsFreq').val(3);
   calculateNicuTpn();
 });
@@ -107,13 +107,13 @@ function calculateNicuTpn() {
       ['Total daily fluids', displayValue('', totalDailyFluids, 0.0001, ' mL/kg/day')],
       ['Medications',        displayValue('', medicationRate, 0.0001,   ' mL/day')],
       ['Lipids 20%',         displayValue('', lipidDose,      0.0001,   ' g/kg/day')],
-      ['Oral Feeds', `${displayValue('', oralFeeds,      0.0001, ' mL PO ')}${displayValue('', oralFeedsFreq,  0.0001, ' hours', 'every ')}`],
-      ['Dextrose',           displayValue('', dextrose,       0.0001,   '%')],
-      ['Protein',            displayValue('', protein,        0.0001,   ' g/kg/day')],
     ],
   ];
-  // displayValue('#nicu-tpn-totalDailyFluids-weight', wt, 0.01, ' kg =', '&times; ' );
-  // displayValue('#nicu-tpn-lipidRate-weight', wt, 0.01, ' kg &div; 0.2 g/mL =', '&times; ' );
+  if ( oralFeeds > 0 && oralFeedsFreq > 0 ) {
+    tape.inputs[0].push(['Oral Feeds', `${displayValue('', oralFeeds,      0.0001, ' mL PO ')}${displayValue('', oralFeedsFreq,  0.0001, ' hours', 'every ')}`]);
+  }
+  tape.inputs[0].push(['Dextrose',           displayValue('', dextrose,       0.0001,   '%')]);
+  tape.inputs[0].push(['Protein',            displayValue('', protein,        0.0001,   ' g/kg/day')]);
   tape.fluids = [[]];
   const totalDailyFluidRate = totalDailyFluids * wt;
   if ( totalDailyFluidRate > 0 ) {
@@ -144,6 +144,11 @@ function calculateNicuTpn() {
 
   const adjRate = npoRate - oralFeedRate;
   const pnRate = adjRate / 24;
+  if ( pnRate > 0 && pnRate < 1 ) {
+    $('#nicu-tpn-pnRate').addClass('text-danger');
+  } else {
+    $('#nicu-tpn-pnRate').removeClass('text-danger');
+  }
   if ( adjRate > 0 ) {
     tape.fluids[0].push(['Adjusted volume', `${displayValue('', npoRate, 0.0001, ' mL/day')}${displayValue('', oralFeedRate, 0.0001, ' mL/day ', ' &minus; ')}${displayValue('', adjRate, 0.0001, ' mL/day', ' = ')}`]);
     tape.fluids[0].push(['PN rate', `${displayValue('', adjRate, 0.0001, ' mL/day')}`]);
