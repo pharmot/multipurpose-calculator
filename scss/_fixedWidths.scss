@@ -10,6 +10,7 @@
 
 #card--twolevel { @include fixed-width(580px); }
 
+#card--dph,
 #card--amg,
 #card--ivig {
   @include fixed-width(600px);

@@ -23,6 +23,7 @@ require("./qtc.js");
 require("./alligation.js");
 require("./warf.js");
 require("./insulin.js");
+require('./phenytoin.js');
 
 let debug = false;
 // let debugDefaultTab = "more";

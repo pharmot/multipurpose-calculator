@@ -45,6 +45,7 @@
             <a class="nav-item nav-link" id="nav-alligation-tab" data-toggle="tab" href="#nav-alligation" role="tab">Alligation</a>
             <a class="nav-item nav-link" id="nav-warf-tab" data-toggle="tab" href="#nav-warf" role="tab">Warfarin</a>
             <a class="nav-item nav-link" id="nav-insulin-tab" data-toggle="tab" href="#nav-insulin" role="tab">Insulin</a>
+            <a class="nav-item nav-link" id="nav-phenytoin-tab" data-toggle="tab" href="#nav-phenytoin" role="tab">Phenytoin</a>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">NICU Tools</a>
               <div class="dropdown-menu">
@@ -141,6 +142,9 @@
           </div>
           <div class="tab-pane fade" id="nav-insulin">
             <%= require('html-loader!./partials/insulin.html').default %>
+          </div>
+          <div class="tab-pane fade" id="nav-phenytoin">
+            <%= require('html-loader!./partials/phenytoin.html').default %>
           </div>
         </div>
       </div>
