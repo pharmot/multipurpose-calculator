@@ -33,7 +33,7 @@
       <div class="col" id="col--top-nav">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-vanco-tab" data-toggle="tab" href="#nav-vanco" role="tab">Vancomycin</a>
+            <a class="nav-item nav-link" id="nav-vanco-tab" data-toggle="tab" href="#nav-vanco" role="tab">Vancomycin</a>
             <a class="nav-item nav-link" id="nav-amg-tab" data-toggle="tab" href="#nav-amg" role="tab">AMG</a>
             <a class="nav-item nav-link" id="nav-ivig-tab" data-toggle="tab" href="#nav-ivig" role="tab">IVIG</a>
             <a class="nav-item nav-link" id="nav-qtc-tab" data-toggle="tab" href="#nav-qtc" role="tab">QTc</a>
@@ -45,6 +45,7 @@
             <a class="nav-item nav-link" id="nav-alligation-tab" data-toggle="tab" href="#nav-alligation" role="tab">Alligation</a>
             <a class="nav-item nav-link" id="nav-warf-tab" data-toggle="tab" href="#nav-warf" role="tab">Warfarin</a>
             <a class="nav-item nav-link" id="nav-insulin-tab" data-toggle="tab" href="#nav-insulin" role="tab">Insulin</a>
+            <a class="nav-item nav-link active" id="nav-phenytoin-tab" data-toggle="tab" href="#nav-phenytoin" role="tab">Phenytoin</a>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">NICU Tools</a>
               <div class="dropdown-menu">
@@ -63,7 +64,7 @@
       </div>
       <div class="col" id="col--main-right">
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-vanco">
+          <div class="tab-pane fade" id="nav-vanco">
             <div class="col-12 d-print-none">
               <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -141,6 +142,9 @@
           </div>
           <div class="tab-pane fade" id="nav-insulin">
             <%= require('html-loader!./partials/insulin.html').default %>
+          </div>
+          <div class="tab-pane fade show active" id="nav-phenytoin">
+            <%= require('html-loader!./partials/phenytoin.html').default %>
           </div>
         </div>
       </div>

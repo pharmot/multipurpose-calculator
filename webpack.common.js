@@ -93,6 +93,7 @@ module.exports = {
     insulin: './js/insulin.js',
     nicuLytes: './js/nicu-lytes.js',
     nicuTpn: './js/nicu-tpn.js',
+    phenytoin: './js/phenytoin.js',
   },
   resolve: {
     alias: {

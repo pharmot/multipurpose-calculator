@@ -578,3 +578,55 @@ flowchart LR
   classDef green fill:#d5f291,stroke:#63870e,color:black
   classDef final fill:#ececff,stroke:#c7b5ed,color:black
 ```
+
+# Corrected Phenytoin Calculation
+
+### Calculation Process
+- If concurrent valproic acid, do not calculate; recommend free phenytoin level
+- If albumin > 3.2, do not calculate; correction is not needed
+- If ESRD or dialysis, use the revised Winter-Tozer equation for renal failure(coefficient 0.2)  and recommend free phenytoin level
+- If Neuro ICU, use Kane-modified equation (coefficient 0.29) and recommend free phenytoin level
+- If general critical care, use Anderson-modified equation (coefficient 0.25) and recommend free phenytoin level
+- Otherwise, use Anderson-modified equation (coefficient 0.25)
+
+### Formula
+
+$\mathrm{est.\ total\ phenytoin}=\frac{P}{\left(C\times A\right)+0.1}$
+> $P$ : measured total phenytoin level (mcg/mL)<br>
+> $A$ : albumin level (g/dL)<br>
+> $C$ : coefficient
+
+### Diagram
+
+```mermaid
+flowchart TB
+  start[[Start]]:::cont --> vpa
+  vpa([Concurrent Valproic Acid?]):::quest -->|Yes| freeonly
+  vpa-->|No| albumin
+  albumin([Albumin > 3.2]):::quest-->|Yes|nocorr
+  albumin -->|No|esrd
+  esrd([ESRD or dialysis?]):::quest-->|Yes| RWT["0.2 (rev. WT renal)"]:::coeff-->free
+  esrd-->|No|neuro
+  neuro([Neuro ICU?]):::quest-->|Yes| KMfree["0.29 (KM)"]:::coeff-->free
+  neuro-->|No| AM["0.25 (AM)"]:::coeff
+  AM-->icu
+  freeonly[Free phenytoin level]:::disclaimer-->nocalc
+  nocorr[Correction not needed]:::disclaimer-->nocalc[\"(No calculation)"/]:::red  
+  icu([General ICU?]):::quest-->|Yes|free
+  
+  free[Free phenytoin level highly recommended]:::disclaimer
+  classDef quest fill:#ececff,stroke:#beabec,color:#000000
+  classDef red fill:#ffeeee,stroke:#ff0000,color:#000000
+  classDef disclaimer fill:#ccccff,stroke:#0000ff,color:#000
+  classDef coeff fill:#a2d035,stroke:#333,color:#000000
+  classDef avg fill:#c4f257,stroke:#a2d035,color:#000000
+  classDef cont fill:#8e9299,stroke:#54565a,color:#ffffff
+```
+### References
+1.  Barra ME, Phillips KM, Chung DY, Rosenthal ES. A Novel Correction Equation Avoids High-Magnitude Errors in Interpreting Therapeutic Drug Monitoring of Phenytoin Among Critically Ill Patients. Ther Drug Monit. 2020 Aug;42(4):617-625. doi: 10.1097/FTD.0000000000000739. PMID: 32049893; PMCID: PMC7377971.
+1.  Kiang TK, Ensom MH. A Comprehensive Review on the Predictive Performance of the Sheiner-Tozer and Derivative Equations for the Correction of Phenytoin Concentrations. Ann Pharmacother. 2016 Apr;50(4):311-25. doi: 10.1177/1060028016628166. Epub 2016 Jan 29. PMID: 26825643.
+1.  Kane SP, Bress AP, Tesoro EP. Characterization of unbound phenytoin concentrations in neurointensive care unit patients using a revised Winter-Tozer equation. Ann Pharmacother. 2013 May;47(5):628-36. doi: 10.1345/aph.1R651. Epub 2013 Apr 19. PMID: 23606554.
+1.  Soriano VV, Tesoro EP, Kane SP. Characterization of Free Phenytoin Concentrations in End-Stage Renal Disease Using the Winter-Tozer Equation. Ann Pharmacother. 2017 Aug;51(8):669-674. doi: 10.1177/1060028017707541. Epub 2017 May 4. PMID: 28470115.
+1.  Cheng W, Kiang TK, Bring P, Ensom MH. Predictive Performance of the Winter-Tozer and Derivative Equations for Estimating Free Phenytoin Concentration. Can J Hosp Pharm. 2016 Jul-Aug;69(4):269-79. doi: 10.4212/cjhp.v69i4.1573. Epub 2016 Aug 31. PMID: 27621486; PMCID: PMC5008422.
+1.  Horton NS, Hanton SL, Sheppard L, Birch K, Chadwick CA. Assessment of the accuracy of estimated free phenytoin concentrations in a mixed patient population. Eur J Hosp Pharm. 2025 Feb 21;32(2):143-148. doi: 10.1136/ejhpharm-2023-003878. PMID: 37802642.
+1.  Khan AM, Marvanova M. Prediction Accuracy of Winter-Tozer Equations to Estimate Free Phenytoin Concentrations in Non-Critically Ill Hospitalized Patients. Consult Pharm. 2017 Aug 1;32(8):461-467. doi: 10.4140/TCP.n.2017.461. PMID: 29029667.

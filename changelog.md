@@ -1,22 +1,23 @@
 # Changelog
 <!-- ## [Unreleased] -->
-## [1.4.1] - Unreleased
+## [1.4.1] - 2025-06-15
 
 ### Added
 - NICU Equivalent Lytes Fluid Builder
 - NICU TPN/Fluid Calculator
+- Corrected phenytoin level calculator ([#98](https://github.com/pharmot/multipurpose-calculator/issues/98))
 - Periodic Table module
 - Dev dependencies: webpack-merge and yaml-loader
 - Custom column widths in between Bootstrap 12-column layout
 
 ### Changed
 - Include logging in formValidation module
-- Link to vancomycin protocol
+- Link to vancomycin protocol ([#97](https://github.com/pharmot/multipurpose-calculator/issues/97))
 - Convert Glucommander to generic insulin calculator
 
 ## [1.3.1] - 2025-01-07
 ### Added
-- Glucommander dosing calculator ([[#70](https://github.com/pharmot/multipurpose-calculator/issues/70)])
+- Glucommander dosing calculator ([#70](https://github.com/pharmot/multipurpose-calculator/issues/70))
 
 ### Changed
 - Move all vancomycin tabs into one Vancomycin tab with subnavigation

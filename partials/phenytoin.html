@@ -1,0 +1,77 @@
+<div class="card" id="card--dph">
+  <div class="card-header h5">Corrected Phenytoin Level</div>
+  <div class="card-body">
+    <div class="form-row">
+      <label for="dph-total" class="col-form-label col-4">Total Phenytoin Level</label>
+      <div class="col-3 input-group">
+        <input type="number" id="dph-total" class="form-control input-dph" min="0">
+        <div class="input-group-append">
+          <div class="input-group-text">mcg/mL</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="qtc-qrs" class="col-form-label col-4">Albumin</label>
+      <div class="col-3 input-group">
+        <input type="number" id="dph-albumin" class="form-control input-dph" min="0">
+        <div class="input-group-append">
+          <div class="input-group-text">g/dL</div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-6">
+        <div class="form-row">
+          <div class="input-group col">
+            <div class="form-check">              
+              <input class="form-check-input checkbox-dph" type="checkbox" id="dph-icu">
+              <label class="form-check-label" for="dph-icu">General intensive care (critically ill)</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group col">
+            <div class="form-check">              
+              <input class="form-check-input checkbox-dph" type="checkbox" id="dph-neuro">
+              <label class="form-check-label" for="dph-neuro">Neuro intensive care patient</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-6">
+        
+        
+        
+        <div class="form-row">
+          <div class="input-group col">
+            <div class="form-check">              
+              <input class="form-check-input checkbox-dph" type="checkbox" id="dph-esrd">
+              <label class="form-check-label" for="dph-esrd">ESRD or dialysis</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group col">
+            <div class="form-check">              
+              <input class="form-check-input checkbox-dph" type="checkbox" id="dph-vpa">
+              <label class="form-check-label" for="dph-vpa">Concurrent valproic acid</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row mt-3">
+      <label for="dph-result" class="col-4">Corrected Phenytoin Level</label>
+      <div class="input-group col-8 ">
+        <div class="output" id="dph-result"></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="dph-info" class="col-4">Additional Info</label>
+      <div class="input-group col-8">
+        <div class="output multi-line multi-line-4" id="dph-info"></div>
+      </div>
+    </div>
+  </div>
+</div>
