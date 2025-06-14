@@ -90,7 +90,7 @@ module.exports = {
     ivig: './js/ivig.js',
     kcentra: './js/kcentra.js',
     main: './js/main.js',
-    glucommander: './js/glucommander.js',
+    insulin: './js/insulin.js',
     nicuLytes: './js/nicu-lytes.js',
     nicuTpn: './js/nicu-tpn.js',
   },

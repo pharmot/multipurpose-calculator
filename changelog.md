@@ -11,6 +11,8 @@
 
 ### Changed
 - Include logging in formValidation module
+- Link to vancomycin protocol
+- Convert Glucommander to generic insulin calculator
 
 ## [1.3.1] - 2025-01-07
 ### Added

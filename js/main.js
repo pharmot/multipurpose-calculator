@@ -22,7 +22,7 @@ require("./nextdose.js");
 require("./qtc.js");
 require("./alligation.js");
 require("./warf.js");
-require("./glucommander.js");
+require("./insulin.js");
 
 let debug = false;
 // let debugDefaultTab = "more";
