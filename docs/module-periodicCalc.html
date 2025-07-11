@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Module: ivig - Multipurpose Calculator Documentation
+      Module: periodicCalc - Multipurpose Calculator Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -83,7 +83,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        Module: ivig
+        Module: periodicCalc
       </h1>
     
 
@@ -101,7 +101,7 @@
       
         
           <div class="description">
-            <p>IVIG Rate Calculation and admin instruciton generation module</p>
+            <p>Periodic Table Calculation Module</p>
           </div>
         
 
@@ -129,7 +129,7 @@
     <dd class="tag-since">
       <ul class="dummy">
         <li>
-          v0.2.0
+          v1.4.1
         </li>
       </ul>
     </dd>
@@ -160,7 +160,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="ivig.js.html">ivig.js</a>, <a href="ivig.js.html#line1">line 1</a>
+          <a href="periodicCalc.js.html">periodicCalc.js</a>, <a href="periodicCalc.js.html#line1">line 1</a>
         </li>
       </ul>
     </dd>
@@ -193,20 +193,6 @@
     
 
     
-      <h3 class="subsection-title">Requires</h3>
-
-      <ul>
-        
-          <li>
-            <a href="module-util.html">module:util</a>
-          </li>
-        
-          <li>
-            <a href="module-arial.html">module:arial</a>
-          </li>
-        
-      </ul>
-    
 
     
 
@@ -215,21 +201,124 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
 
+    
+      <h3 class="subsection-title">Methods</h3>
+
+      
         
-            
 
-<h4 class="name" id="~drugs">
-  <span class="type-signature">(inner, constant) </span>drugs<span class="type-signature"> :Array.&lt;IvigProduct></span>
-</h4>
 
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#.elemental">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id=".elemental">
+      <span class="type-signature">(static) </span>elemental<span class="signature">(molecule, primary)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
 
 
 
   <div class="description">
-    <p>Product titrations that correspond with the products in the input/select</p>
+    <p>Calculates the elemental percent of a given element in a given molecule.</p>
   </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>molecule</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The molecular formula of the whole molecule.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>primary</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The element in question.</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
 
 
 
@@ -265,7 +354,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="ivig.js.html">ivig.js</a>, <a href="ivig.js.html#line28">line 28</a>
+          <a href="periodicCalc.js.html">periodicCalc.js</a>, <a href="periodicCalc.js.html#line59">line 59</a>
         </li>
       </ul>
     </dd>
@@ -283,12 +372,13 @@
 
 
 
-          
-        
-    
 
-    
-      <h3 class="subsection-title">Methods</h3>
+
+
+
+
+
+
 
       
         
@@ -297,13 +387,13 @@
   
 
   <span class='name-container'>
-    <a class="link-icon" href="#~getText">
+    <a class="link-icon" href="#.getAtomicMass">
       <svg height="20" width="20" style="fill: black;">
         <use xlink:href="#linkIcon"></use>
       </svg>
     </a>
-    <h4 class="name" id="~getText">
-      <span class="type-signature">(inner) </span>getText<span class="signature">(selected, wt, totalDose<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+    <h4 class="name" id=".getAtomicMass">
+      <span class="type-signature">(static) </span>getAtomicMass<span class="signature">(molecule, element<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
     </h4>
   </span>
 
@@ -312,7 +402,7 @@
 
 
   <div class="description">
-    <p>Generate admin instruction text for IVIG rate titration</p>
+    <p>Calculates the atomic mass of a molecule</p>
   </div>
 
 
@@ -347,14 +437,14 @@
     
       <tr>
         
-          <td class="name"><code>selected</code></td>
+          <td class="name"><code>molecule</code></td>
         
 
         <td class="type">
           
             
     <span class="param-type">
-      Integer
+      string
     </span>
 
     
@@ -376,7 +466,7 @@
         
 
         <td class="description last">
-          <p>Selected index of product selection</p>
+          <p>The molecular formula.</p>
           
         </td>
       </tr>
@@ -384,51 +474,14 @@
     
       <tr>
         
-          <td class="name"><code>wt</code></td>
+          <td class="name"><code>element</code></td>
         
 
         <td class="type">
           
             
     <span class="param-type">
-      Number
-    </span>
-
-    
-
-
-          
-        </td>
-
-        
-          <td class="attributes">
-            
-
-            
-
-            
-          </td>
-        
-
-        
-
-        <td class="description last">
-          <p>Patient's actual body weight, in kg</p>
-          
-        </td>
-      </tr>
-
-    
-      <tr>
-        
-          <td class="name"><code>totalDose</code></td>
-        
-
-        <td class="type">
-          
-            
-    <span class="param-type">
-      Number
+      string
     </span>
 
     
@@ -452,7 +505,7 @@
         
 
         <td class="description last">
-          <p>Total dose to be administered, in grams</p>
+          <p>Optional - Only get the mass of this element</p>
           
         </td>
       </tr>
@@ -496,7 +549,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="ivig.js.html">ivig.js</a>, <a href="ivig.js.html#line67">line 67</a>
+          <a href="periodicCalc.js.html">periodicCalc.js</a>, <a href="periodicCalc.js.html#line78">line 78</a>
         </li>
       </ul>
     </dd>
@@ -523,25 +576,19 @@
 
 
       
-    
-
-    
-      <h3 class="subsection-title">Type Definitions</h3>
-
-      
-          
+        
 
 
   
 
   <span class='name-container'>
-    <a class="link-icon" href="#~IvigProduct">
+    <a class="link-icon" href="#.getValence">
       <svg height="20" width="20" style="fill: black;">
         <use xlink:href="#linkIcon"></use>
       </svg>
     </a>
-    <h4 class="name" id="~IvigProduct">
-      <span class="type-signature"></span>IvigProduct<span class="type-signature"> :Object</span>
+    <h4 class="name" id=".getValence">
+      <span class="type-signature">(static) </span>getValence<span class="signature">(molecule)</span><span class="type-signature"> &rarr; {Number}</span>
     </h4>
   </span>
 
@@ -550,7 +597,7 @@
 
 
   <div class="description">
-    <p>IVIG Product Object</p>
+    <p>Looks up the valence of an element or compound</p>
   </div>
 
 
@@ -559,14 +606,10 @@
 
 
 
-
-
-
-  <h5 class="subsection-title">Properties:</h5>
-
+  <h5>Parameters:</h5>
   
 
-<table class="props">
+<table class="params">
   <thead>
     <tr>
       
@@ -585,95 +628,38 @@
 
   <tbody>
     
-
-    <tr>
-      
-        <td class="name"><code>rates</code></td>
-      
-
-      <td class="type">
+      <tr>
         
+          <td class="name"><code>molecule</code></td>
+        
+
+        <td class="type">
           
+            
     <span class="param-type">
-      Array.&lt;Number>
+      String
     </span>
 
     
 
 
-        
-      </td>
+          
+        </td>
 
         
 
         
 
         <td class="description last">
-          <p>Titration rates in mL/kg/hour</p>
-          </td>
-    </tr>
-
-  
-
-    <tr>
-      
-        <td class="name"><code>durations</code></td>
-      
-
-      <td class="type">
-        
+          <p>element or compound</p>
           
-    <span class="param-type">
-      Array.&lt;Number>
-    </span>
+        </td>
+      </tr>
 
     
-
-
-        
-      </td>
-
-        
-
-        
-
-        <td class="description last">
-          <p>Length in minutes of each titration step. Must have same length as <code>rates</code> property.</p>
-          </td>
-    </tr>
-
-  
-
-    <tr>
-      
-        <td class="name"><code>conc</code></td>
-      
-
-      <td class="type">
-        
-          
-    <span class="param-type">
-      Number
-    </span>
-
-    
-
-
-        
-      </td>
-
-        
-
-        
-
-        <td class="description last">
-          <p>Concentration of product, in g/mL (e.g. 0.1 = 10%)</p>
-          </td>
-    </tr>
-
-  
   </tbody>
 </table>
+
 
 
 
@@ -709,7 +695,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="ivig.js.html">ivig.js</a>, <a href="ivig.js.html#line15">line 15</a>
+          <a href="periodicCalc.js.html">periodicCalc.js</a>, <a href="periodicCalc.js.html#line15">line 15</a>
         </li>
       </ul>
     </dd>
@@ -735,7 +721,389 @@
 
 
 
+      
         
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#.mg2meq">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id=".mg2meq">
+      <span class="type-signature">(static) </span>mg2meq<span class="signature">(mg, mass, valence)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Converts from mg to mEq</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>mg</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      number
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Milligrams</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>mass</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      number
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Molar mass of compound</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>valence</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      number
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Valence of compound</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="periodicCalc.js.html">periodicCalc.js</a>, <a href="periodicCalc.js.html#line45">line 45</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#.mg2mmol">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id=".mg2mmol">
+      <span class="type-signature">(static) </span>mg2mmol<span class="signature">(mg, mass)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Converts from mg to mmol</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>mg</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      number
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Milligrams</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>mass</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      number
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Molar mass of compound</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="periodicCalc.js.html">periodicCalc.js</a>, <a href="periodicCalc.js.html#line32">line 32</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    
+
+    
 
     
   </article>

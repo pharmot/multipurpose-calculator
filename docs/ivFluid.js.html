@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Source: ivFluid.js - Multipurpose Calculator Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
+  
+
+  
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+  mixpanel.init("1919205b2da72e4da3b9b6639b444d59");</script>
+  <!-- end Mixpanel -->
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">Documentation</h3>
+
+    
+
+    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="glucommander-nav"><a href="module-glucommander.html">glucommander</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivFluid-nav"><a href="module-ivFluid.html">ivFluid</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="periodicCalc-nav"><a href="module-periodicCalc.html">periodicCalc</a></li><li id="phenytoin-nav"><a href="module-phenytoin.html">phenytoin</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li><li id="warf-nav"><a href="module-warf.html">warf</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li><li id="Dose-nav"><a href="module-warf-Dose.html">Dose</a></li><li id="NicuFluidComponent-nav"><a href="NicuFluidComponent.html">NicuFluidComponent</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#MODULE_DELAY">MODULE_DELAY</a></li><li><a href="global.html#resetDates">resetDates</a></li><li><a href="global.html#vancoColorScale">vancoColorScale</a></li></ul><div class="repo-link">
+    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+    <a href="https://github.com/pharmot/multipurpose-calculator">Repository</a>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        Source: ivFluid.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>/**
+ * IV Fluid Module
+ * @module ivFluid
+ * @since v1.4.0
+ */
+
+const sumVolume = ( acc, cur ) => { return acc + cur.volume };
+
+// const additives = [];
+// const fluids = [];
+// const macros = [];
+// const lytes = [];
+let qsFluid;
+
+class IVFluidComponent {
+  constructor(obj) {
+    this.id = obj.id;
+    this.unit = obj.unit;
+    this.roundingFactor = obj.roundingFactor || 0.1;
+    this.outputTotal = $(`#${obj.id}-total`);
+    this.outputConc = $(`#${obj.id}-tConc`);
+    
+    if ( obj.mgPerUnit ) {
+      this.outputPercent = $(`#${obj.id}-tPercent`);
+      this.percentRoundingFactor = obj.percentRoundingFactor || 0.1;
+      this.mgPerUnit = obj.mgPerUnit;
+    }
+    
+  }
+  get total() {
+    const self = this;
+    return everything.reduce((acc, cur) => { return acc + cur[self.id] }, 0);
+  }
+};
+export default class IvFluid {
+  constructor(obj) {
+    const self = this;
+    this.opts = {
+      id: {
+        pre:          obj.idPre,
+        inputAmount:  obj.idInputAmount  || '-amount',
+        outputVolume: obj.idOutputVolume || '-volume',
+        qsCheckbox:   obj.idQsCheckbox   || '-qs',
+        selectUnit:   obj.idSelectUnit   || '-units',
+        outputConc:   obj.idOutputConc   || '-conc',
+        outputAmount: obj.idOutputAmount || '-amt2',
+      },
+    };
+    this.components = {
+      dextrose: new IVFluidComponent({  opts: self.opts, id: 'dextrose',  unit: 'g',   mgPerUnit: 1000 }),
+      sodium: new IVFluidComponent({    opts: self.opts, id: 'sodium',    unit: 'mEq', mgPerUnit: 58.44, percentRoundingFactor: 0.01 }),
+      potassium: new IVFluidComponent({ opts: self.opts, id: 'potassium', unit: 'mEq'  }),
+      phosphate: new IVFluidComponent({ opts: self.opts, id: 'phosphate', unit: 'mmol' }),
+      calcium: new IVFluidComponent({   opts: self.opts, id: 'calcium',   unit: 'mEq'  }),
+      magnesium: new IVFluidComponent({ opts: self.opts, id: 'magnesium', unit: 'g'    }),
+      chloride: new IVFluidComponent({  opts: self.opts, id: 'chloride',  unit: 'mEq'  }),
+      acetate: new IVFluidComponent({   opts: self.opts, id: 'acetate',   unit: 'mEq'  }),
+      osmoles: new IVFluidComponent({   opts: self.opts, id: 'osmoles',   unit: 'mOsm' }),
+      sw: new Fluid({    opts: self.opts, id: 'sw' }),
+      d5w: new Fluid({   opts: self.opts, id: 'd5w',   osm: 0.252,    dextrose: 0.05 }),
+      d10w: new Fluid({  opts: self.opts, id: 'd10w',  osm: 0.504,    dextrose: 0.1 }),
+      d5ns: new Fluid({  opts: self.opts, id: 'd5ns',  osm: 0.56,    dextrose: 0.05,  sodium: 0.154, chloride: 0.154 }),
+      d5hns: new Fluid({ opts: self.opts, id: 'd5hns', osm: 0.406,    dextrose: 0.05, sodium: 0.077, chloride: 0.077 }),
+      d5qns: new Fluid({ opts: self.opts, id: 'd5qns', osm: 0.329,    dextrose: 0.05, sodium: 0.0385 }),
+      ns: new Fluid({    opts: self.opts, id: 'ns',    osm: 0.308,    sodium: 0.154,  chloride: 0.154 }),
+      hns: new Fluid({   opts: self.opts, id: 'hns',   osm: 0.154,    sodium: 0.077,  chloride: 0.077 }),
+      lr: new Fluid({
+        opts: self.opts,
+        id: 'lr',
+        osm: 0.273,
+        sodium: 0.13,
+        chloride: 0.109,
+        acetate: 0.028,
+        potassium: 0.004,
+        calcium: 3 / 1000,
+      }),
+      d5lr: new Fluid({
+        opts: self.opts,
+        id: 'd5lr',
+        osm: 525 / 1000,
+        dextrose: 5 / 100,
+        sodium: 130 / 1000,
+        chloride: 109 / 1000,
+        acetate: 28 / 1000,
+        potassium: 4 / 1000,
+        calcium: 2.7 / 1000,
+      }),
+      cacl: new Additive({
+        opts: self.opts,
+        id: 'cacl',
+        name: 'calcium chloride',
+        unit: ['mEq', 'g'],
+        conc: [1.36, 0.1],
+        osm: 2.04,
+        calcium: 1.36,
+        chloride: 1.36,
+      }),
+      cagluc: new Additive({
+        opts: self.opts,
+        id: 'cagluc',
+        unit: ['mEq', 'g'],
+        conc: [0.465, 0.1],
+        osm: 0.68,
+        calcium: 0.465,
+      }),
+      mg: new Additive({
+        opts: self.opts,
+        id: 'mg',
+        unit: ['g', 'mEq'],
+        conc: [0.5, 4.06],
+        osm: 4.06,
+        magnesium: 0.5,
+      }),
+      kacet: new Additive({
+        id: 'kacet',
+        unit: ['mEq'],
+        conc: [2],
+        osm: 4,
+        potassium: 2,
+        acetate: 2,
+      }),
+      kcl: new Additive({
+        opts: self.opts,
+        id: 'kcl',
+        unit: ['mEq'],
+        conc: [2],
+        osm: 4,
+        potassium: 2,
+        chloride: 2,
+      }),
+      naacet: new Additive({
+        opts: self.opts,
+        id: 'naacet',
+        unit: ['mEq'],
+        conc: [2],
+        osm: 4,
+        sodium: 2,
+        acetate: 2,
+      }),
+      nabicarb: new Additive({
+        opts: self.opts,
+        id: 'nabicarb',
+        unit: ['mEq'],
+        conc: [1],
+        osm: 2,
+        sodium: 1,
+        acetate: 1,
+      }),
+      nacl: new Additive({
+        id: 'nacl',
+        unit: ['mEq'],
+        conc: [4],
+        osm: 8,
+        sodium: 4,
+        chloride: 4,
+      }),
+      kphos: new Additive({
+        opts: self.opts,
+        id: 'kphos',
+        unit: ['mmol', 'mEq'],
+        conc: [3, 4.4],
+        osm: 7.4,
+        potassium: 4.4,
+        phosphate: 3,
+      }),
+      naphos: new Additive({
+        opts: self.opts,
+        id: 'naphos',
+        unit: ['mmol', 'mEq'],
+        conc: [3, 4],
+        osm: 12,
+        sodium: 4,
+        phosphate: 3,
+      }),
+      mv: new Additive({
+        opts: self.opts,
+        id: 'mv',
+        unit: ['dose'],
+        conc: [0.1],
+        osm: 4.11,
+      }),
+      thia: new Additive({
+        opts: self.opts,
+        id: 'thia',
+        name: 'thiamine',
+        unit: ['mg'],
+        conc: [100],
+        osm: 0.62,
+      }),
+      folic: new Additive({
+        opts: self.opts,
+        id: 'folic',
+        unit: ['mg'],
+        conc: [5],
+        osm: 0.2,
+      }),
+      cyan: new Additive({
+        opts: self.opts,
+        id: 'cyan',
+        name: 'cyanocobalamin',
+        unit: ['mcg'],
+        conc: [1000],
+        osm: 0.45,
+      }),
+      d50w: new Additive({
+        opts: self.opts,
+        id: 'd50w',
+        unit: ['g'],
+        conc: [0.5],
+        osm: 2.52,
+        dextrose: 0.5,
+      }),
+      aa: new Macro({
+        opts: self.opts,
+        id: 'aa',
+        unit: ['g', 'mL'],
+        conc: [0.1, 0.15],
+        osm: [0.95, 1.383],
+        phosphate: [0.01, 0.015], //is this actually the same? for AA15?
+        sodium: [0.01, 0.015], //is this actually the same? for AA15?
+        acetate: [0.089, 0.151],
+      }),
+      dex: new Macro({
+        opts: self.opts,
+        id: 'dex',
+        unit: ['g', 'mL'],
+        conc: [0.2, 0.3, 0.5, 0.7],
+        osm: [1.01, 1.514, 2.523, 3.53],
+        dextrose: [0.2, 0.3, 0.5, 0.7],
+      }),
+    };
+    this.lytes = [
+      this.components.dextrose,
+      this.components.sodium,
+      this.components.potassium,
+      this.components.phosphate,
+      this.components.calcium,
+      this.components.magnesium,
+      this.components.chloride,
+      this.components.acetate,
+      this.components.osmoles,
+    ];
+    this.fluids = [
+      this.components.sw,
+      this.components.d5w,
+      this.components.d10w,
+      this.components.d5ns,
+      this.components.d5hns,
+      this.components.d5qns,
+      this.components.ns,
+      this.components.hns,
+      this.components.lr,
+      this.components.d5lr,
+    ];
+    this.additives = [
+      this.components.cacl,
+      this.components.cagluc,
+      this.components.mg,
+      this.components.kacet,
+      this.components.kcl,
+      this.components.naacet,
+      this.components.nabicarb,
+      this.components.nacl,
+      this.components.kphos,
+      this.components.naphos,
+      this.components.mv,
+      this.components.thia,
+      this.components.folic,
+      this.components.cyan,
+      this.components.d50w,
+    ];
+    this.macros = [
+      this.components.aa,
+      this.components.dex,
+    ];
+  }
+  
+};
+
+class Ingredient {
+  constructor(obj) {
+    this.id = obj.id;
+    this.name = obj.name;
+    this._unit = obj.unit || ['mL'];
+    this._conc = obj.conc || [1];
+    this.lytes = {
+      na: obj.sodium || 0,
+      k: obj.potassium || 0,
+      ca: obj.calcium || 0,
+      cl: obj.chloride || 0,
+      mg: obj.magnesium || 0,
+      phos: obj.phosphate || 0,
+      acet: obj.acetate || 0,
+      dex: obj.dextrose || 0,
+      osm: obj.osm || 0,
+    };
+    this.inputAmount = $(`#${obj.opts.id.pre}${obj.id}${obj.opts.id.inputAmount}`);
+    this.outputVolume = $(`#${obj.opts.id.pre}${obj.id}${obj.opts.id.outputVolume}`);
+    this.volume = 0;
+  }
+  get conc() {
+    if ( this._conc.length > 1 ) {
+      return this._conc[this.selectUnit[0].selectedIndex];
+    }
+    return this._conc[0];
+  }
+  get unit() {
+    if ( this._unit.length > 1 ) {
+      return this._unit[this.selectUnit[0].selectedIndex];
+    }
+    return this._unit[0];
+  }
+  get unit2() {
+    if (this._unit.length > 1 ) {
+      return this._unit[Math.abs(this.selectUnit[0].selectedIndex - 1)];
+    }
+    return undefined;
+  }
+  get conc2() {
+    if (this._unit.length > 1 ) {
+      return this._conc[Math.abs(this.selectUnit[0].selectedIndex - 1)];
+    }
+    return undefined;
+  }
+  get sodium() { return this.lytes.na * this.volume}
+  get potassium() { return this.lytes.k * this.volume}
+  get calcium() { return this.lytes.ca * this.volume}
+  get chloride() { return this.lytes.cl * this.volume}
+  get magnesium() { return this.lytes.mg * this.volume}
+  get phosphate() { return this.lytes.phos * this.volume}
+  get acetate() { return this.lytes.acet * this.volume}
+  get dextrose() { return this.lytes.dex * this.volume}
+  get osmoles() { return this.lytes.osm * this.volume}
+}
+class Fluid extends Ingredient {
+  constructor(obj) {
+    super(obj);
+    this.isQS = false;
+    this.qsCheckbox = $(`#${obj.opts.id.pre}${obj.id}${obj.opts.id.qsCheckbox}`);
+  }
+}
+class Additive extends Ingredient {
+  constructor(obj) {
+    super(obj);
+    if (obj.unit.length > 1) {
+      this.selectUnit =  $(`#${obj.opts.id.pre}${obj.id}${obj.opts.id.selectUnit}`);
+      this.outputConc = $(`#${obj.opts.id.pre}${obj.id}${obj.opts.id.outputConc}`);
+      this.outputAmount = $(`#${obj.opts.id.pre}${obj.id}${obj.opts.id.outputAmount}`);
+    }
+  }
+}
+class Macro extends Ingredient {
+  constructor(obj) {
+    super(obj);
+    this.lytes = {
+      na: obj.sodium || Array(obj.conc.length).fill(0),
+      k: obj.potassium || Array(obj.conc.length).fill(0),
+      ca: obj.calcium || Array(obj.conc.length).fill(0),
+      cl: obj.chloride || Array(obj.conc.length).fill(0),
+      mg: obj.magnesium || Array(obj.conc.length).fill(0),
+      phos: obj.phosphate || Array(obj.conc.length).fill(0),
+      acet: obj.acetate || Array(obj.conc.length).fill(0),
+      dex: obj.dextrose || Array(obj.conc.length).fill(0),
+      osm: obj.osm || Array(obj.conc.length).fill(0),
+    };
+    this.selectUnit = $(`#${obj.id}-units`);
+    this.selectConc = $(`#${obj.id}-macroConc`);
+  }
+  get conc() {
+    if ( this._conc.length > 1 ) {
+      return this._conc[this.selectConc[0].selectedIndex];
+    }
+    return this._conc[0];
+  }
+  get sodium() { return this.lytes.na[this.selectConc[0].selectedIndex] * this.volume }
+  get potassium() { return this.lytes.k[this.selectConc[0].selectedIndex] * this.volume }
+  get calcium() { return this.lytes.ca[this.selectConc[0].selectedIndex] * this.volume }
+  get chloride() { return this.lytes.cl[this.selectConc[0].selectedIndex] * this.volume }
+  get magnesium() { return this.lytes.mg[this.selectConc[0].selectedIndex] * this.volume }
+  get phosphate() { return this.lytes.phos[this.selectConc[0].selectedIndex] * this.volume }
+  get acetate() { return this.lytes.acet[this.selectConc[0].selectedIndex] * this.volume }
+  get dextrose() { return this.lytes.dex[this.selectConc[0].selectedIndex] * this.volume }
+  get osmoles() { return this.lytes.osm[this.selectConc[0].selectedIndex] * this.volume }
+}
+
+
+const everything = macros.concat(fluids.concat(additives));
+
+// when qs base is checked, uncheck others, setAmount with current and old (if applicable)
+$('.check-qs').on('change', function(ev) {
+  const fluidID = ev.target.id.split('-', 1)[0];
+  const oldQsObj = fluids.find( ({ isQS }) => isQS === true );
+  const nonQS = fluids.filter( ({ id }) => id !== fluidID);
+  nonQS.forEach(fluid => { fluid.isQS = false });
+  const fluidObj = fluids.find( ({ id }) => id === fluidID );
+  if (ev.target.checked) {
+    fluidObj.isQS = true;
+    $(`.check-qs:not(#${ev.target.id})`).prop( 'checked', false );
+  } else {
+    fluidObj.isQS = false;
+  }
+  if (oldQsObj) {
+    setAmount(oldQsObj.id);
+  }
+  setAmount(fluidID);
+});
+
+$('.select-macroConc').on('change', function(ev) {
+  setAmount(ev.target.id.split('-', 1)[0]);
+});
+
+$('.input-amount').on('keyup', function(ev) {
+  setAmount(ev.target.id.split('-', 1)[0]);
+});
+
+$('.select-unit').on('change', function(ev) {
+  const additiveID = ev.target.id.split('-', 1)[0];
+  const obj = additives.find( ({ id }) => id === additiveID);
+  obj.outputConc.html(`${roundTo(obj.conc, 0.001)} ${obj.unit}/mL`);
+  setAmount(additiveID);
+});
+
+function setAmount(curID) {
+  const obj = everything.find( ({ id }) => id === curID );
+  const amt = +$(obj.inputAmount).val();
+  const vol = roundTo(amt / obj.conc, 0.00000000001);
+  if ( obj.outputAmount ) {
+    obj.outputAmount.html(vol > 0 ? `${roundTo(vol * obj.conc2, 0.001)} ${obj.unit2}` : '');
+  }
+  // calculate volume if this is the qs base
+  if ( !obj.isQS ) {
+    obj.volume = vol;
+  } else {
+    const others = everything.filter(({ id }) => id !== curID);
+    const otherVolume = others.reduce(sumVolume, 0);
+    obj.volume = otherVolume >= vol ? 0 : vol - otherVolume;
+  }
+  // output the volume
+  obj.outputVolume.html(amt > 0 ? `${roundTo(obj.volume, 0.1)} mL` : '');
+  
+  // if there is a qs base, recalculate its amounts
+  const qsBase = fluids.find( ({ isQS }) => isQS === true );
+  if ( qsBase ) {
+    if ( qsBase.id !== curID ) {
+      setAmount(qsBase.id);
+    }
+  }
+  getTotals();
+}
+
+function getTotals() {
+  const totalVolume = everything.reduce(sumVolume, 0);
+  $('#total-volume').html(totalVolume > 0 ? `${roundTo(totalVolume, 0.1)} mL` : '');
+  lytes.forEach(lyte => {
+    const amt = lyte.total;
+    if ( amt > 0 ) {
+      lyte.outputTotal.html(`${roundTo(amt, lyte.roundingFactor)} ${lyte.unit}`);
+      lyte.outputConc.html(`${roundTo(amt / (totalVolume / 1000), 0.1)} ${lyte.unit}/L`);
+      if (lyte.mgPerUnit) {
+        const conc = amt / totalVolume * (lyte.mgPerUnit / 10);
+        lyte.outputPercent.html(`${roundTo(conc, lyte.percentRoundingFactor)}%`);
+      }
+    } else {
+      lyte.outputTotal.html('');
+      lyte.outputConc.html('');
+      if (lyte.mgPerUnit) {
+        lyte.outputPercent.html('');
+      }
+    }
+  });
+
+  // move the osmolarity indicator and highlight the osmolarity category
+  const finOsm = osmoles.total / (totalVolume / 1000);
+  if ( finOsm > 0 ) {
+    const pos = `${roundTo(  finOsm / 1000  * 100, 0.0001 )  }%`;
+    $('.marker-current').css({ 'left': pos, 'display': 'block' });
+    if (finOsm > 1000) {
+      $('.marker-current').css({ 'transform': 'translateX(-5px) rotate(-45deg)' });
+    } else {
+      $('.marker-current').css({ 'transform': 'translateX(-5px) rotate(45deg)' });
+    }
+  } else {
+    $('.marker-current').css({ 'display': 'none' });
+  }
+  $('.osm-flag').removeClass('active');
+  let highlightClass = '.osm-flag--';
+  highlightClass += finOsm > 900 ? 'hyper2' :
+    finOsm > 500 ? 'hyper1' :
+      finOsm > 280 ? 'iso'    :
+        finOsm > 154 ? 'hypo2'  :
+          finOsm > 0 ? 'hypo1' : '';
+  if ( finOsm > 0 ) {
+    $(highlightClass).addClass('active');
+  }
+
+  // Calcium-Phosphate Solubility
+  const volLiters = totalVolume / 1000;
+  const caAmt = cacl.volume * 1.36 + cagluc.volume * 0.47; //mEq
+  const phosAmt1 = kphos.volume * 4.4 + naphos.volume * 4; //mEq
+  const freamine = aa.volume * aa.conc * 0.13;
+  const solubility1 = caAmt / volLiters * ( (phosAmt1 + freamine) / volLiters );
+  const phosAmt2 = (kphos.volume + naphos.volume) * 3 + aa.phosphate * aa.volume; //mmol
+  const solubility2 = (caAmt + phosAmt2) / volLiters;
+  $('#solu-value-1').html(solubility1 > 0 ? roundTo(solubility1, 1) : '');
+  $('#solu-value-2').html(solubility2 > 0 ? roundTo(solubility2, 1) : '');
+  $('#solu-slider-1').val(solubility1 > 0 ? solubility1 : 0);
+  $('#solu-slider-2').val(solubility2 > 0 ? solubility2 : 0);
+
+  if (solubility1 === 0) {
+    $('#solu-slider-2').val(0);
+  }
+  
+  $('.solu-wrapper').removeClass('warning danger');
+  // solu-wrapper-1, 2 addClass warning/danger
+  
+  if ( solubility1 >= 1200 ) {
+    $('.solu-wrapper-1').addClass('danger');
+  } else if ( solubility1 >= 300 ) {
+    $('.solu-wrapper-1').addClass('warning');
+  }
+  
+  if ( solubility2 >= 60 &amp;&amp; solubility1 > 0 ) {
+    $('.solu-wrapper-2').addClass('danger');
+  } else if ( solubility2 >= 30 &amp;&amp; solubility1 > 0) {
+    $('.solu-wrapper-2').addClass('warning');
+  }
+}
+
+function roundTo(x, n) {
+  let t = Math.round(x / n) * n;
+  t = Math.floor(t * 1000);
+  t = t / 1000;
+  return t;
+}
+/*
+
+//-------------------------------------------------------------
+function resetAll() {
+
+  slideSolu1.value = 0;
+  slideSolu2.value = 0;
+  document.documentElement.style.setProperty('--slide-2-color', 'darkgreen');
+  var ins = document.getElementsByTagName('input');
+  var outs = document.getElementsByClassName('output');
+  var combos = document.getElementsByTagName('select');
+  currentMarker.style.display = "none";
+
+  for(i=0;i&lt;outs.length;i++){
+    outs[i].innerHTML = "";
+  }
+
+  for(i=0;i&lt;combos.length;i++){
+    combos[i].selectedIndex = 0;
+  }
+
+  for(i=0;i&lt;ins.length;i++){
+    if(ins[i].type == "text") {
+      ins[i].value = "";
+    } else if (ins[i].type == "checkbox") {
+      ins[i].checked = false;
+    }
+  }
+  setColor('z');
+  aa.inputAmount.focus();
+}
+*/</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>
