@@ -73,7 +73,7 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 ## [1.3.1] - 2025-01-07
 
 ### Added
-- Glucommander dosing calculator
+- Insulin dosing calculator
 
 ### Changed
 - Change vancomycin calculations to reflect updated dosing guidelines

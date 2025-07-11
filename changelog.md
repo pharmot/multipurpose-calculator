@@ -13,7 +13,7 @@
 ### Changed
 - Include logging in formValidation module
 - Link to vancomycin protocol ([#97](https://github.com/pharmot/multipurpose-calculator/issues/97))
-- Convert Glucommander to generic insulin calculator
+- Convert Glucommander to generic insulin calculator ([#99](https://github.com/pharmot/multipurpose-calculator/issues/99))
 
 ## [1.3.1] - 2025-01-07
 ### Added
