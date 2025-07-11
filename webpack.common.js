@@ -51,15 +51,35 @@ const logoHtml = `<svg id="svg--logo" width="60.19749mm" height="11.90808mm" ver
     </g>
   </g>
 </svg>`;
-const branding = pjs.public_hosted ? '<h1 class="h4" id="page-title">Multipurpose Calculator</h1>' : logoHtml;
 const betaBanner = isBeta ? `<div class="container-fluid beta-notice"><div class="h6 text-white">TEST RELEASED VERSION ${pjs.version}</div></div>` : '';
 const bodyStyle =  isBeta ? `style="border: 4px solid #dc3545;margin:0 auto 70px;"` : '';
-const mpcTitle = pjs.public_hosted ? '' : `<h1 class="h4" id="page-title">Multipurpose Calculator</h1>`;
+const pageTitle = '<h1 class="h4 page-title">Multipurpose Calculator</h1>';
 
+// Used for index
+const branding = pjs.public_hosted ? pageTitle : logoHtml;
+const mpcTitle = pjs.public_hosted ? '' : pageTitle;
+
+// Used for subpages
+const logoOnly = pjs.public_hosted ? '' : logoHtml;
+const mpcTitleLink = `<a class="h4 page-title text-dark d-sm-inline-flex" href="index.html">Multipurpose&nbsp;Calculator</a>`;
+
+const templateParams = {
+  buildversion: pjs.version,
+  homepage: pjs.homepage,
+  issues: pjs.bugs.url,
+  thisYear: thisYear,
+  betaBanner: betaBanner,
+  bodyStyle: bodyStyle,
+  branding: branding,
+  mpcTitle: mpcTitle,
+  mpcTitleLink: mpcTitleLink,
+  logoOnly: logoOnly,
+};
 // eslint-disable-next-line no-undef
 module.exports = {
   entry: {
-    main: './js/main.js',
+    logger: './js/logger.js',
+    util: './js/util.js',
     amg: './js/amg.js',
     heparin: './js/heparin.js',
     pca: './js/pca.js',
@@ -69,38 +89,39 @@ module.exports = {
     alligation: './js/alligation.js',
     ivig: './js/ivig.js',
     kcentra: './js/kcentra.js',
-    util: './js/util.js',
-    glucommander: {
-      import: './js/glucommander.js',
-      dependOn: 'main',
-    },
+    main: './js/main.js',
+    insulin: './js/insulin.js',
+    nicuLytes: './js/nicu-lytes.js',
+    nicuTpn: './js/nicu-tpn.js',
+    phenytoin: './js/phenytoin.js',
   },
   resolve: {
     alias: {
-      jquery: "jquery/src/jquery",
+      jquery: 'jquery/src/jquery',
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './template.html',
-      templateParameters: {
-        buildversion: pjs.version,
-        homepage: pjs.homepage,
-        issues: pjs.bugs.url,
-        thisYear: thisYear,
-        betaBanner: betaBanner,
-        bodyStyle: bodyStyle,
-        branding: branding,
-        mpcTitle: mpcTitle,
-      },
-      minify: {
-        removeRedundantAttributes: false,
-      },
+      templateParameters: templateParams,
+      chunks: ['main'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './nicu-lytes.html',
+      filename: 'nicu-lytes.html',
+      templateParameters: templateParams,
+      chunks: ['nicuLytes'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './nicu-tpn.html',
+      filename: 'nicu-tpn.html',
+      templateParameters: templateParams,
+      chunks: ['nicuTpn'],
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: "**/*",
+          from: '**/*',
           // eslint-disable-next-line no-undef
           context: `${__dirname}/src`,
         },

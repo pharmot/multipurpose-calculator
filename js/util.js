@@ -117,10 +117,32 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
   let wasNeg = false;
   let wasNeg2 = false;
 
+  if ( typeof el === 'number' ) {
+    console.error(`[displayValue] First argument expects a string (jQuery selector) or HTML element but was provided a ${typeof el} instead: ${el}`);
+    console.log(...arguments);
+  }
+
+  if ( !(typeof num === 'number') ) {
+    console.error(`[displayValue] (selector ${el}) Third argument expects a number (rounding factor) but was provided a ${typeof round} instead: ${round}`);
+    console.log(...arguments);
+  } else if ( isNaN(round) ) {
+    console.error(`[displayValue] (selector ${el}) Third argument expects a number (rounding factor) but was provided NaN`);
+    console.log(...arguments);
+  }
+
   if ( Array.isArray(num) ) {
 
     if ( num.length === 2 ) {
       let [num1, num2] = num;
+
+      if ( !(typeof num1 === 'number') || !(typeof num2 === 'number' ) ) {
+        console.error(`[displayValue] (selector ${el}) Second argument expects an array of two numbers but was provided [${typeof num1}, ${typeof num1}] instead: ${JSON.stringify(num)}`);
+        console.log(...arguments);
+      } else if ( isNaN(num1) || isNaN(num2) ) {
+        console.error(`[displayValue] (selector ${el}) Second argument expects an array of two numbers but was provided ${JSON.stringify(num)}`);
+        console.log(...arguments);
+      }
+
       let num1Rounded, num2Rounded;
 
       // Make numbers positive if they're negative and negative is allowed
@@ -162,8 +184,18 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
       } else {
         txt = `${num1Rounded} - ${num2Rounded}`;
       }
+    } else {
+      console.error(`[DisplayValue] (selector ${el}) Second argument must be either a number or array of numbers, length 2. Array of length ${num.length} was received instead: ${JSON.stringify(num)}`);
+      console.log(...arguments);
     }
   } else {
+    if ( isNaN(num) ) {
+      console.error(`[displayValue] (selector ${el}) Second argument is NaN`);
+      console.log(...arguments);
+    } else if ( !(typeof num === 'number') ) {
+      console.error(`[displayValue] (selector ${el}) Second argument expects a number but was provided a ${typeof num} instead: ${num}`);
+      console.log(...arguments);
+    }
     if ( num !== Infinity && num !== -Infinity ) {
 
       // Make number positive if it's negative and negative is allowed
@@ -196,7 +228,7 @@ export function displayValue( el, num = 0, round = -1, unit = "", pre = "", allo
   if ( $(el)[0].nodeName === "INPUT" ) {
     $(el).val(txt);
   } else {
-    $(el).html(txt);  
+    $(el).html(txt);
   }
 
   return el;

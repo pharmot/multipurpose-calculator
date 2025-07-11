@@ -1,0 +1,192 @@
+<div class="row">
+  <div class="col">
+    <div class="card" id="card--gm-pta">
+      <div class="card-header h5">PTA Dosing</div>
+      <div class="card-body">        
+        <div class="form-row my-0">
+          <label for="gm-ptaBasal1" class="col text-center small">AM Basal</label>
+          <label for="gm-ptaBasal2" class="col text-center small">PM Basal</label>
+          <label for="gm-ptaTotalBasal" class="col text-center small">Total Basal</label>
+          <label for="gm-ptaBolus1" class="col text-center small ml-2">Breakfast</label>
+          <label for="gm-ptaBolus2" class="col text-center small">Lunch</label>
+          <label for="gm-ptaBolus3" class="col text-center small">Dinner</label>
+          <label for="gm-ptaTotalBolus" class="col text-center small">Total Bolus</label>
+          <label for="gm-ptaTdd" class="col text-center small ml-2">TDD</label>
+          <label for="gm-ptaPercentBasal" class="col text-center small">% Basal</label>
+        </div>
+        <div class="form-row mt-0">
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-basal gm-pta" id="gm-ptaDose1">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-basal gm-pta" id="gm-ptaDose2">
+          </div>
+          <div class="col input-group">
+            <div class="output" id="gm-ptaTotalBasal"></div>
+          </div>
+          <div class="col input-group ml-2">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-bolus gm-pta" id="gm-ptaDose3">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-bolus gm-pta" id="gm-ptaDose4">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-bolus gm-pta" id="gm-ptaDose5">
+          </div>
+          <div class="col input-group">
+            <div class="output" id="gm-ptaTotalBolus"></div>
+          </div>
+          <div class="col input-group ml-2">
+            <div class="output font-weight-bold" id="gm-ptaTdd"></div>
+          </div>
+          <div class="col input-group">
+            <div class="output" id="gm-ptaPercentBasal"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- TODO: move fixed width to scss -->
+<div class="row">
+  <div class="col">
+    <div class="card" id="card--gm-dosing" style="max-width: 700px">
+      <div class="card-header h5">Hospital Regimen</div>
+      <div class="card-body">
+        <div class="card-title h6">Weight-Based</div>
+        <div class="form-row">
+          <label for="gm-multiplier" class="col-2 offset-6 text-right semibold">Multiplier:</label>
+          <div class="col-3">
+            <select class="form-control" id="gm-multiplier">
+              <option value="0.3">0.3 units/kg/day</option>
+              <option value="0.5">0.5 units/kg/day</option>
+              <option value="0.7">0.7 units/kg/day</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col text-center small">% Reduction From PTA</div>
+          <div class="col text-center small mr-3">Percent as Basal</div>
+          <div class="col text-center small">TDD</div>
+          <div class="col offset-1 text-center small">Total Basal</div>
+          <div class="col text-center small">Breakfast</div>
+          <div class="col text-center small">Lunch</div>
+          <div class="col text-center small">Dinner</div>
+        </div>
+        <div class="form-row">
+          <div class="col input-group">
+            <div class="output" id="gm-fromPta-multiplier"></div>
+          </div>
+          <div class="col input-group mr-3">
+            <div class="output" id="gm-percentBasal-multiplier"></div>
+          </div>
+          <div class="col input-group">
+            <div class="output" id="gm-tdd-multiplier"></div>
+          </div>
+          <div class="col offset-1 input-group">
+            <div class="output" id="gm-basal-multiplier"></div>
+          </div>
+          <div class="col input-group">
+            <div class="output" id="gm-breakfast-multiplier"></div>
+          </div>
+          <div class="col input-group">
+            <div class="output" id="gm-lunch-multiplier"></div>
+          </div>
+          <div class="col input-group">
+            <div class="output" id="gm-dinner-multiplier"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="card-title h6">Custom Dosing</div>
+        <div class="form-row">
+          <div class="col text-center small">% Reduction From PTA</div>
+          <div class="col text-center small mr-3">Percent as Basal</div>
+          <div class="col text-center small">TDD</div>
+          <div class="col offset-1 text-center small">Total Basal</div>
+          <div class="col text-center small">Breakfast</div>
+          <div class="col text-center small">Lunch</div>
+          <div class="col text-center small">Dinner</div>
+        </div>
+        <div class="form-row">
+          <div class="col input-group">
+            <input type="number" min="0" max="100" value="20" step="1" class="form-control gm-custom gm-custom-param" id="gm-fromPta-custom0">
+          </div>
+          <div class="col input-group mr-3">
+            <input type="number" min="0" max="100" value="50" step="1" class="form-control gm-custom gm-custom-param" id="gm-percentBasal-custom0" >
+          </div>
+          <div class="col input-group">
+            <div class="output font-weight-bold" id="gm-tdd-custom0"></div>
+          </div>
+          <div class="col-1 calc-direction">
+            <i class="fa fa-arrow-right fa-2x gm-direction" id="gm-dir-custom0"></i>
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-basal-custom0">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-breakfast-custom0">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-lunch-custom0">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-dinner-custom0">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col input-group">
+            <input type="number" min="0" max="100" value="25" step="1" class="form-control gm-custom gm-custom-param" id="gm-fromPta-custom1">
+          </div>
+          <div class="col input-group mr-3">
+            <input type="number" min="0" max="100" value="50" step="1" class="form-control gm-custom gm-custom-param" id="gm-percentBasal-custom1" >
+          </div>
+          <div class="col input-group">
+            <div class="output font-weight-bold" id="gm-tdd-custom1"></div>
+          </div>
+          <div class="col-1 calc-direction">
+            <i class="fa fa-arrow-right fa-2x gm-direction" id="gm-dir-custom1"></i>
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-basal-custom1">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-breakfast-custom1">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-lunch-custom1">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-dinner-custom1">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col input-group">
+            <input type="number" min="0" max="100" value="30" step="1" class="form-control gm-custom gm-custom-param" id="gm-fromPta-custom2">
+          </div>
+          <div class="col input-group mr-3">
+            <input type="number" min="0" max="100" value="50" step="1" class="form-control gm-custom gm-custom-param" id="gm-percentBasal-custom2" >
+          </div>
+          <div class="col input-group">
+            <div class="output font-weight-bold" id="gm-tdd-custom2"></div>
+          </div>
+          <div class="col-1 calc-direction">
+            <i class="fa fa-arrow-right fa-2x gm-direction" id="gm-dir-custom2"></i>
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-basal-custom2">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-breakfast-custom2">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-lunch-custom2">
+          </div>
+          <div class="col input-group">
+            <input type="number" min="0" max="300" step="1" class="form-control gm-custom gm-custom-dose" id="gm-dinner-custom2">
+          </div>
+        </div>       
+      </div>
+    </div>
+  </div>
+</div>

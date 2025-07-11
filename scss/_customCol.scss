@@ -1,0 +1,57 @@
+@use "sass:map";
+
+$custom-cols: (
+  "05": 4.166667%,
+  "15": 12.5%,
+  "25": 20.83333%,
+  "35": 29.16667%,
+  "45": 41.66667%,
+  "55": 45.83333%,
+  "65": 54.16667%,
+  "75": 62.5%,
+  "85": 70.83333%,
+  "95": 79.16667%,
+  "105": 87.5%,
+  "115": 95.83333,
+) !default;
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+@mixin custom-column($incr, $pct, $size) {
+  .col#{$size}-#{$incr} {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    -ms-flex: 0 0 $pct;
+    flex: 0 0 $pct;
+    max-width: $pct;
+  }
+  .offset#{$size}-#{$incr} {
+    margin-left: $pct;
+  }
+}
+
+
+// Common properties for all breakpoints
+%grid-column {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@each $incr in map-keys($custom-cols) {
+  $pct: map-get($custom-cols, $incr);
+  @include custom-column($incr, $pct, "");
+  @each $breakpoint in map-keys($breakpoints) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @include custom-column($incr, $pct, $breakpoint);
+    }
+  }
+}

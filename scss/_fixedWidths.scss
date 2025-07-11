@@ -10,6 +10,7 @@
 
 #card--twolevel { @include fixed-width(580px); }
 
+#card--dph,
 #card--amg,
 #card--ivig {
   @include fixed-width(600px);
@@ -27,6 +28,10 @@
 #card--nextdose { @include fixed-width(700px); }
 #card--kcentra { @include fixed-width(700px); }
 #card--alligation { @include fixed-width(700px); }
+#nicu-lytes-table1 > .form-row { @include fixed-width(700px); }
+#nicu-lytes-table2 > .form-row { @include fixed-width(70rem); }
+#nicu-lytes-table3 > .form-row { @include fixed-width(700px); }
+#nicu-lytes-patient-inputs > .form-row { @include fixed-width(70rem); }
 // #col--pca-params { @include fixed-width(500px); }
 
 #card--auc,
@@ -42,4 +47,20 @@
 #card--warf,
 #nav-initial .has-alert-only .alert {
   @include fixed-width(650px);
+}
+
+#card--nicu-tpn-fluid {
+  max-width: 600px;
+}
+
+#card--nicu-tpn-totals,
+#card--nicu-tpn-osm,
+#card--nicu-notes {
+  max-width: 600px;
+  min-width: 380px;
+}
+
+#card--gm-pta,
+#card--gm-dosing {
+  max-width: 700px;
 }

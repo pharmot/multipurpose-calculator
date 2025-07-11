@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Source: nicu-lytes.js - Multipurpose Calculator Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-custom.css">
+  
+
+  
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+  mixpanel.init("1919205b2da72e4da3b9b6639b444d59");</script>
+  <!-- end Mixpanel -->
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">Documentation</h3>
+
+    
+
+    <h3>Modules</h3><ul><li id="alligation-nav"><a href="module-alligation.html">alligation</a></li><li id="amg-nav"><a href="module-amg.html">amg</a></li><li id="arial-nav"><a href="module-arial.html">arial</a></li><li id="formValidation-nav"><a href="module-formValidation.html">formValidation</a></li><li id="glucommander-nav"><a href="module-glucommander.html">glucommander</a></li><li id="growthCharts-nav"><a href="module-growthCharts.html">growthCharts</a></li><li id="heparin-nav"><a href="module-heparin.html">heparin</a></li><li id="ivFluid-nav"><a href="module-ivFluid.html">ivFluid</a></li><li id="ivig-nav"><a href="module-ivig.html">ivig</a></li><li id="kcentra-nav"><a href="module-kcentra.html">kcentra</a></li><li id="logger-nav"><a href="module-logger.html">logger</a></li><li id="nextdose-nav"><a href="module-nextdose.html">nextdose</a></li><li id="pca-nav"><a href="module-pca.html">pca</a></li><li id="periodicCalc-nav"><a href="module-periodicCalc.html">periodicCalc</a></li><li id="phenytoin-nav"><a href="module-phenytoin.html">phenytoin</a></li><li id="qtc-nav"><a href="module-qtc.html">qtc</a></li><li id="secondDose-nav"><a href="module-secondDose.html">secondDose</a></li><li id="util-nav"><a href="module-util.html">util</a></li><li id="vanco-nav"><a href="module-vanco.html">vanco</a></li><li id="warf-nav"><a href="module-warf.html">warf</a></li></ul><h3>Namespaces</h3><ul><li id="calculate-nav"><a href="calculate.html">calculate</a></li><li id="heparin-nav"><a href="module-heparin-heparin.html">heparin</a></li><li id="kcentra-nav"><a href="module-kcentra-kcentra.html">kcentra</a></li><li id="pt-nav"><a href="pt.html">pt</a></li></ul><h3>Classes</h3><ul><li id="Pca-nav"><a href="module-pca-Pca.html">Pca</a></li><li id="Dose-nav"><a href="module-warf-Dose.html">Dose</a></li><li id="NicuFluidComponent-nav"><a href="NicuFluidComponent.html">NicuFluidComponent</a></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#changedAmgMethod">changedAmgMethod</a></li><li><a href="global.html#displayChange">displayChange</a></li><li><a href="global.html#MODULE_DELAY">MODULE_DELAY</a></li><li><a href="global.html#resetDates">resetDates</a></li><li><a href="global.html#vancoColorScale">vancoColorScale</a></li></ul><div class="repo-link">
+    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+    <a href="https://github.com/pharmot/multipurpose-calculator">Repository</a>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        Source: nicu-lytes.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>/**
+ * NICU Equivalent Lytes Calculator
+ * @since v1.4.0
+ * @requires module:util
+ * @requires module:formValidation
+ * @requires module:logger
+ */
+
+// eslint-disable-next-line no-global-assign
+$ = require( 'jquery' );
+import 'bootstrap';
+import '../scss/main.scss';
+import { checkValue, displayValue } from './util.js';
+import { default as setupValidation } from './formValidation.js';
+import * as LOG from './logger.js';
+
+/**
+ * Length of timeout (in ms) for event handlers that use elements from other modules
+ */
+const MODULE_DELAY = 100;
+let validatedFields;
+const comps = [
+  { ident: 'NaCl', sodium: 1 },
+  { ident: 'NaAcet', sodium: 1 },
+  { ident: 'KCl', potassium: 1 },
+  { ident: 'KPhos', potassium: 1, phosphate: 1 },
+  { ident: 'CaGluc', calcium: 1 },
+  { ident: 'NaPhos', sodium: 1, phosphate: 1 },
+  { ident: 'MgSulf', magnesium: 1 },
+  { ident: 'KAcet', potassium: 1 },
+];
+//---------------------------------------------------------------
+// ON PAGE LOAD
+
+$( () => {
+  if ( /debug/.test( location.search ) ) {
+    LOG.enable();
+    LOG.presetValues();
+    $('#nicu-lytes-weight').val(0.785);
+    $('#nicu-lytes-dailyRatePerKg').val(160);
+    calculateNicuFluid();
+  } else if ( /log/.test( location.search ) ) {
+    LOG.enable();
+  }
+
+  validatedFields = setupValidation([
+    { selector: '#nicu-lytes-weight', min: 0, max: 40 },
+    { selector: '#nicu-lytes-dailyRatePerKg', min: 0, max: 999 },
+    { selector: '#nicu-lytes-input-NaCl', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-NaAcet', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-KCl', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-KPhos', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-CaGluc', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-NaPhos', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-MgSulf', min: 0, max: 20 },
+    { selector: '#nicu-lytes-input-KAcet', min: 0, max: 20 },
+  ]);
+  $('#nicu-lytes-name').get(0).focus();
+});
+
+$( '#nicu-lytes-reset' ).on( 'click', () => {
+  LOG.green( 'Reset' );
+  $( '.input-nicu-lytes' ).val(null);
+  $( validatedFields ).removeClass( 'invalid' );
+  $('#nicu-lytes-name').get(0).focus();
+});
+
+$('.input-nicu-lytes').on('keyup', () => {
+  setTimeout( () => {
+    LOG.yellow('NICU Lytes Input Received');
+    calculateNicuFluid();
+  }, MODULE_DELAY);
+});
+
+/** Class representing a component used in NICU Fluid builder */
+class NicuFluidComponent {
+  /**
+   * Create a NicuFluidComponent
+   * @param {NicuFluidComponentParams} cfg 
+   */
+  constructor( cfg ) {
+    this.ident = cfg.ident;
+    this.sodium = cfg.sodium || 0;
+    this.potassium = cfg.potassium || 0;
+    this.calcium = cfg.calcium || 0;
+    this.phosphate = cfg.phosphate || 0;
+    this.magnesium = cfg.magnesium || 0;
+    this.idInput = `nicu-lytes-input-${cfg.ident}`;
+    this.idBagDosePerKg = `nicu-lytes-bagDose-${cfg.ident}`;
+    this.idBagAmount =  `nicu-lytes-bagAmount-${cfg.ident}`;
+    this.idBagConcentration =  `nicu-lytes-bagConc-${cfg.ident}`;
+    this.dailyDosePerKg = 0;
+    this.bagDosePerKg = 0;
+    this.bagAmount = 0;
+    this.bagConcentration = 0;
+    this.isIncluded = 0;
+    return this;
+  }
+  update({ wt, hourlyRate } = {}) {
+    LOG.beginFunction(`Update: ${this.ident}`, arguments);
+    this.dailyDosePerKg = checkValue( $( `#${this.idInput}` ).val() );
+    if ( this.dailyDosePerKg > 0 &amp;&amp; wt > 0 &amp;&amp; hourlyRate > 0 ) {
+      this.bagDosePerKg =   this.dailyDosePerKg / ( hourlyRate * 24 ) * 250;
+      this.bagAmount = this.bagDosePerKg * wt;
+      this.bagConcentration = this.bagAmount / 250;
+      this.isIncluded = 1;
+    } else {
+      this.bagDosePerKg = 0;
+      this.bagAmount = 0;
+      this.bagConcentration = 0;
+      this.isIncluded = 0;
+    }
+    displayValue(`#${this.idBagDosePerKg}`, this.bagDosePerKg, 0.1, ' mEq/kg/bag');
+    displayValue(`#${this.idBagAmount}`, this.bagAmount, 0.1, ' mEq/bag');
+    displayValue(`#${this.idBagConcentration}`, this.bagConcentration, 0.0001, ' mEq/mL');
+    LOG.endResult(this);
+  }
+}
+
+const components = comps.map( c => new NicuFluidComponent( c ) );
+
+function calculateNicuFluid() {
+  
+  const wt = checkValue( +$('#nicu-lytes-weight').val(), 0, 40 );
+  const dailyRatePerKg = checkValue( +$('#nicu-lytes-dailyRatePerKg').val(), 0, 999 );
+
+  const hourlyRate = dailyRatePerKg * wt / 24;
+  displayValue('#nicu-lytes-hourlyRate', hourlyRate, 0.1, ' mL/hr');
+
+  const inputs = { wt, dailyRatePerKg, hourlyRate };
+  LOG.cyanGroupCollapsed('Update components');
+  components.forEach( c => c.update( inputs ) );
+  LOG.groupEnd();
+
+  const totalNaPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.sodium }, 0 );
+  const totalKPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.potassium }, 0);
+  const totalCaPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.calcium }, 0);
+  const totalPhosPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.phosphate }, 0);
+  const totalMgPerBag = components.reduce( ( tot, c ) => { return tot + c.bagAmount * c.magnesium }, 0);
+  const numberOfAdditives = components.reduce( ( tot, c ) => { return tot + c.isIncluded }, 0);
+  LOG.log(`Na: ${totalNaPerBag}, K: ${totalKPerBag}, Ca: ${totalCaPerBag}, Phos: ${totalPhosPerBag}, Mg: ${totalMgPerBag}`);
+
+  const totalNaRate =  totalNaPerBag / 250  * hourlyRate;
+  const totalKRate =  totalKPerBag / 250  * hourlyRate;
+  const totalCaRate =  totalCaPerBag / 250  * hourlyRate;
+  const totalPhosRate =  totalPhosPerBag / 250  * hourlyRate;
+  const totalMgRate =  totalMgPerBag / 250  * hourlyRate;
+  const caPhosProduct = totalCaPerBag * totalPhosPerBag;
+
+  displayValue('#nicu-lytes-total-sodium', totalNaPerBag, 0.1, ' mEq');
+  displayValue('#nicu-lytes-total-sodium-rate', totalNaRate, 0.1, ' mEq/hr');
+  displayValue('#nicu-lytes-total-potassium', totalKPerBag, 0.1, ' mEq');
+  displayValue('#nicu-lytes-total-potassium-rate', totalKRate, 0.1, ' mEq/hr');
+  displayValue('#nicu-lytes-total-calcium', totalCaPerBag, 0.1, ' mEq');
+  displayValue('#nicu-lytes-total-calcium-rate', totalCaRate, 0.1, ' mEq/hr');
+  displayValue('#nicu-lytes-total-phosphate', totalPhosPerBag, 0.1, ' mEq');
+  displayValue('#nicu-lytes-total-phosphate-rate', totalPhosRate, 0.1, ' mEq/hr');
+  displayValue('#nicu-lytes-total-magnesium', totalMgPerBag, 0.1, ' mEq');
+  displayValue('#nicu-lytes-total-magnesium-rate', totalMgRate, 0.1, ' mEq/hr');
+
+  if ( numberOfAdditives > 3 ) {
+    $('#nicu-lytes-additive-note').removeClass('hidden');
+  } else {
+    $('#nicu-lytes-additive-note').addClass('hidden');
+  }
+  if ( totalNaPerBag > 38.5 ) {
+    $('#nicu-lytes-sodium-note').html('Warning: NaCl exceeds the recommended 0.9% concentration');
+    $('#nicu-lytes-sodium-note').addClass('alert-danger').removeClass('alert-warning').removeClass('hidden');
+  } else if ( totalNaPerBag > 19.3 ) {
+    $('#nicu-lytes-sodium-note').html('Warning: NaCl exceeds the recommended 0.45% concentration');
+    $('#nicu-lytes-sodium-note').addClass('alert-warning').removeClass('alert-danger').removeClass('hidden');
+  } else {
+    $('#nicu-lytes-sodium-note').html('');
+    $('#nicu-lytes-sodium-note').removeClass('alert-danger').removeClass('alert-warning').addClass('hidden');
+  }
+  if ( totalKPerBag > 20 ) {
+    $('#nicu-lytes-potassium-note').html('Warning: Potassium exceeds the recommended 20 mEq/250 mL concentration');
+    $('#nicu-lytes-potassium-note').addClass('alert-danger').removeClass('hidden');
+  } else {
+    $('#nicu-lytes-potassium-note').html('');
+    $('#nicu-lytes-potassium-note').removeClass('alert-danger').addClass('hidden');
+  }
+  if ( caPhosProduct > 50 ) {
+    $('#nicu-lytes-caPhos-note').html('Ca-Phos product is too high, consider supplementing Ca gluconate via IV bolus');
+    $('#nicu-lytes-caPhos-note').addClass('alert-danger').removeClass('alert-warning').removeClass('hidden');
+  } else if ( totalCaPerBag > 0 &amp;&amp; totalPhosPerBag > 0 ) {
+    $('#nicu-lytes-caPhos-note').html('Fluid contains both Ca and Phos; ensure that a 0.22 micron filter is used');
+    $('#nicu-lytes-caPhos-note').removeClass('alert-danger').addClass('alert-warning').removeClass('hidden');
+  } else {
+    $('#nicu-lytes-caPhos-note').html('');
+    $('#nicu-lytes-caPhos-note').removeClass('alert-danger').removeClass('alert-warning').addClass('hidden');
+  }
+  const nsEquivRate = hourlyRate * 0.154;
+  const hnsEquivRate = hourlyRate * 0.077;
+  const qnsEquivRate = hourlyRate * 0.0385;
+
+  displayValue('#nicu-lytes-equivalent-ns', nsEquivRate, 0.1, ' mEq/hr');
+  displayValue('#nicu-lytes-equivalent-hns', hnsEquivRate, 0.1, ' mEq/hr');
+  displayValue('#nicu-lytes-equivalent-qns', qnsEquivRate, 0.1, ' mEq/hr');
+
+}
+
+
+/**
+ * NICU Fluid Component Parameters
+ * @typedef  {Object} NicuFluidComponentParams
+ * @property {String} ident        - Identifier
+ * @property {Number} [sodium]     - mEq of sodium per mEq of this component
+ * @property {Number} [potassium]  - mEq of potassium per mEq of this component
+ * @property {Number} [calcium]    - mEq of calcium per mEq of this component
+ * @property {Number} [phosphate]  - mEq of phosphate per mEq of this component
+ */</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>

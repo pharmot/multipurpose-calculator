@@ -3,7 +3,6 @@
   * Copyright 2020-2024 Andy Briggs (https://github.com/pharmot)
   * Licensed under MIT (https://github.com/pharmot/multipurpose-calculator/LICENSE)
   */
-
 // eslint-disable-next-line no-global-assign
 $ = require("jquery");
 import "bootstrap";
@@ -23,7 +22,8 @@ require("./nextdose.js");
 require("./qtc.js");
 require("./alligation.js");
 require("./warf.js");
-// require("./glucommander.js");
+require("./insulin.js");
+require('./phenytoin.js');
 
 let debug = false;
 // let debugDefaultTab = "more";
@@ -167,17 +167,17 @@ $("#btnReset").on("click", () => {
 // Patient
 $(".input-patient").on("keyup", () => {
   setTimeout( () => {
-    LOG.yellow('Input received: Patient')
+    LOG.yellow('Input received: Patient');
     calculate.allForPatient();
   }, 50);
 });
 $('#weight').on('keyup', () => {
   setTimeout( () => {
-    LOG.yellow('Input received: Weight')
+    LOG.yellow('Input received: Weight');
     calculate.allForPatient();
     calculate.ivig();
-  }, 50)
-})
+  }, 50);
+});
 
 $("#ptage").on("keyup", () => {
   // LOG.yellow('Input received: Age')
@@ -187,7 +187,7 @@ $("#ptage").on("keyup", () => {
   }, 1000);
 });
 $("#hd").on("change", (e) => {
-  LOG.yellow('HD status changed')
+  LOG.yellow('HD status changed');
   const hd = e.target.selectedIndex;
   $("#top-container").removeClass("hd-0 hd-1 hd-2 hd-3 hd-4");
   $("#top-container").addClass(`hd-${hd}`);
@@ -205,9 +205,9 @@ $("#hd").on("change", (e) => {
 $("#vancoAki").on("click keyup", () => {
   LOG.yellow('AKI status changed');
   calculate.vancoInitial();
-})
+});
 $("#schwartz-k-infant").on("change", () => {
-  LOG.yellow('Schwartz k value changed')
+  LOG.yellow('Schwartz k value changed');
   calculate.patientData();
   calculate.vancoInitial();
   calculate.vancoRevision();
@@ -216,35 +216,35 @@ $("#schwartz-k-infant").on("change", () => {
 
 // Vancomycin
 $("#vancoIndication").on("change", () => {
-  LOG.yellow('Vanco Indication Changed')
+  LOG.yellow('Vanco Indication Changed');
   calculate.patientData();
   calculate.vancoInitial();
 });
 
 $(".input-initialPK").on("keyup", () => {
-  LOG.yellow('Input received: Initial PK')
+  LOG.yellow('Input received: Initial PK');
   calculate.vancoInitial();
 });
 
 $("#peakTiming-dose").on("keyup", () => {
-  LOG.yellow('Input received: Peak Timing Dose')
+  LOG.yellow('Input received: Peak Timing Dose');
   calculate.peakTimingDuration();
 });
 
 $(".input-peakTiming").on("keyup", () => {
-  LOG.yellow('Input received: Peak Timing')
-  calculate.peakTiming()
+  LOG.yellow('Input received: Peak Timing');
+  calculate.peakTiming();
 });
 
 $(".input-auc").on("keyup", () => {
-  LOG.yellow('Input received: AUC')
+  LOG.yellow('Input received: AUC');
   calculate.syncCurrentDFT("auc");
   calculate.vancoAUC();
   calculate.vancoRevision();
 });
 
 $(".input-auc-interval").on("keyup", () => {
-  LOG.yellow('Input received: AUC Interval')
+  LOG.yellow('Input received: AUC Interval');
   calculate.vancoAUC(false);
 });
 
@@ -261,71 +261,71 @@ $(".input-revision").on("keyup", () => {
 });
 
 $(".input-aucDates").on("keyup", () => {
-  LOG.yellow('Input received: AUC Dates')
+  LOG.yellow('Input received: AUC Dates');
   calculate.vancoAUCDates();
 });
 $(".input-twolevel").on("keyup", () => {
-  LOG.yellow('Input received: Two-Level')
+  LOG.yellow('Input received: Two-Level');
   calculate.vancoTwolevel();
 });
 $(".input-twolevel-interval").on("keyup", () => {
-  LOG.yellow('Input received: Two-Level Interval')
+  LOG.yellow('Input received: Two-Level Interval');
   calculate.vancoTwolevel(false);
 });
 $("#twolevel-reset").on("click", () => {
-  LOG.green('Reset (Two-Level)')
+  LOG.green('Reset (Two-Level)');
   calculate.vancoTwolevel();
 });
 
 $("#revision-goalTrough").on("change", () => {
-  LOG.yellow('Input Received: Revision/Goal Trough')
+  LOG.yellow('Input Received: Revision/Goal Trough');
   calculate.vancoRevision();
 });
 $("#revision-levelTiming").on("change", () => {
-  LOG.yellow('Input Received: Revision/Level Timing')
+  LOG.yellow('Input Received: Revision/Level Timing');
   calculate.vancoRevision();
 });
 
 $(".input-steadystate").on("keyup", () => {
-  LOG.yellow('Input Received: Steady State Check')
+  LOG.yellow('Input Received: Steady State Check');
   calculate.vancoSteadyStateCheck();
 });
 $("#seconddose-time1").on("keyup", () => {
-  LOG.yellow('Input Received: Second Dose Time')
+  LOG.yellow('Input Received: Second Dose Time');
   calculate.secondDose();
 });
 $("[name='seconddose-freq']").on("change", () => {
-  LOG.yellow('Input Received: Second Dose Frequency')
+  LOG.yellow('Input Received: Second Dose Frequency');
   calculate.secondDose();
 });
 
 // Aminoglycosides
 $(".input-amg").on("keyup", () => {
-  LOG.yellow('Input Received: AMG')
+  LOG.yellow('Input Received: AMG');
   calculate.amg();
 });
 $("#amg-medication").on("change", () => {
-  LOG.yellow('Input Received: AMG Medication')
+  LOG.yellow('Input Received: AMG Medication');
   calculate.amg();
 });
 $("#amg-postAbxEffect").on("change", () => {
-  LOG.yellow('Input Received: AMG Post Abx Effect')
+  LOG.yellow('Input Received: AMG Post Abx Effect');
   calculate.amg();
 });
 $("#amg-Cf").on("change", () => {
-  LOG.yellow('AMG Method Changed')
+  LOG.yellow('AMG Method Changed');
   changedAmgMethod();
   calculate.amgWeight();
   calculate.amg();
 });
 $("#vancoOutlier").on("click keyup", () => {
-  LOG.yellow('Input Received: Vanco/Outlier')
+  LOG.yellow('Input Received: Vanco/Outlier');
   // Mark as selected if it is checked manually
   if ( $("#vancoOutlier").prop( "checked" ) ) {
-    LOG.purpleText('User marked as an outlier')
+    LOG.purpleText('User marked as an outlier');
     pt.outlierSelected = true;
   } else {
-    LOG.purpleText('User marked as not an outlier')
+    LOG.purpleText('User marked as not an outlier');
     pt.outlierSelected = false;
   }
   calculate.vancoInitial();
@@ -349,7 +349,7 @@ function changedAmgMethod() {
 }
 
 $("#amg-PrePostpartum").on("change", () => {
-  LOG.yellow('AMG - Pre/Postpartum Changed')
+  LOG.yellow('AMG - Pre/Postpartum Changed');
   calculate.amgWeight();
   calculate.amg();
 });
@@ -390,7 +390,7 @@ $("#aucDates-apply").on("click", e => {
   $(e.target).addClass("datesApplied");
   $("#vancoAUCPeakTime").val($("#aucDates-peakResult").html());
   $("#vancoAUCTroughTime").val($("#aucDates-troughResult").html());
-  LOG.green('AUC Dates Applied')
+  LOG.green('AUC Dates Applied');
   $("#aucDatesModal").modal("hide");
   calculate.vancoAUC();
 });
@@ -443,7 +443,7 @@ const pt = {
   set sex(x) {
     this._sex = /^[MmFf]$/.test(x) ? x.toUpperCase() : 0;
   },
-  get sex() { return this._sex || 0; },
+  get sex() { return this._sex || 0 },
   /**
    * Gets/sets the weight of the patient.
    * @function
@@ -451,8 +451,8 @@ const pt = {
    * @param {number} [x] Patient's weight
    * @returns {number} Patient's weight in kg, or 0 if invalid
    */
-  set wt(x) { this._wt = checkValue(x, this.config.check.wtMin, this.config.check.wtMax); },
-  get wt() { return this._wt || 0; },
+  set wt(x) { this._wt = checkValue(x, this.config.check.wtMin, this.config.check.wtMax) },
+  get wt() { return this._wt || 0 },
   /**
    * Gets/sets the height of the patient.
    * @function
@@ -460,8 +460,8 @@ const pt = {
    * @param    {number}     [x] Patient's height
    * @returns  {number}         Patient's height in cm, or 0 if invalid
    */
-  set ht(x) { this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax); },
-  get ht() { return this._ht || 0; },
+  set ht(x) { this._ht = checkValue(x, this.config.check.htMin, this.config.check.htMax) },
+  get ht() { return this._ht || 0 },
   /**
    * Gets/sets the age of the patient.
    * Accepts in years, months, days, or months/days.
@@ -484,7 +484,7 @@ const pt = {
     }
 
   },
-  get age() { return this._age || 0; },
+  get age() { return this._age || 0 },
   /**
    * Gets the age context of the patient. 
    * Possible values are `adult` (default), `child`, and `infant`
@@ -506,7 +506,7 @@ const pt = {
   set scr(x) {
     this._scr = checkValue(x, this.config.check.scrMin, this.config.check.scrMax);
   },
-  get scr() { return this._scr || 0; },
+  get scr() { return this._scr || 0 },
   /**
    * Gets the patient's body mass index
    * @function
@@ -706,7 +706,7 @@ const calculate = {
    * @returns  {undefined}
    */
   patientData() {
-    LOG.cyanGroupCollapsed('CALCULATE: Patient Data')
+    LOG.cyanGroupCollapsed('CALCULATE: Patient Data');
     // Remove highlighting on CrCls
     $(".outCrCl").removeClass("use-this");
 
@@ -765,10 +765,10 @@ const calculate = {
       LOG.purpleText('Not an outlier based on age, BMI, SCr or CrCl');
       if ( $("#vancoOutlier").prop( "checked" ) ) {
         if ( !pt.outlierSelected ) {
-          LOG.purpleText('User has not manually marked as an outlier; box unchecked')
+          LOG.purpleText('User has not manually marked as an outlier; box unchecked');
           $("#vancoOutlier").prop( "checked", false );
         } else {
-          LOG.purpleText('User marked as an outlier so status not automatically changed')
+          LOG.purpleText('User marked as an outlier so status not automatically changed');
         }
       }
       
@@ -817,7 +817,7 @@ const calculate = {
    * @returns  {undefined}
    */
   syncCurrentDFT(src) {
-    LOG.cyanGroupCollapsed('CALCULATE: Sync dose/frequency/trough')
+    LOG.cyanGroupCollapsed('CALCULATE: Sync dose/frequency/trough');
     pt.curDose = checkValue(+$(`#${src}-curDose`).val(), vanco.config.check.doseMin, vanco.config.check.doseMax);
     pt.curFreq = checkValue(+$(`#${src}-curFreq`).val(), vanco.config.check.freqMin, vanco.config.check.freqMax);
     pt.curTrough = checkValue(+$(`#${src}-curTrough`).val(), vanco.config.check.levelMin, vanco.config.check.levelMax);
@@ -831,7 +831,7 @@ const calculate = {
    * @requires module:amg
    */
   amgWeight() {
-    LOG.cyanGroupCollapsed('CALCULATE: AMG dosing weight')
+    LOG.cyanGroupCollapsed('CALCULATE: AMG dosing weight');
     /* Get dosing weight */
     const { dosingWeightString } = amg.getDosingWeight({
       age: pt.age,
@@ -846,7 +846,7 @@ const calculate = {
 
   },
   amg() {
-    LOG.cyanGroupCollapsed('CALCULATE: Aminoglycosides')
+    LOG.cyanGroupCollapsed('CALCULATE: Aminoglycosides');
     /* Get limits for input checking */
     const { goalPeakMin, goalPeakMax, freqMin, freqMax, doseMin, doseMax } = amg.config.check;
 
@@ -1036,7 +1036,7 @@ const calculate = {
    * @returns  {undefined}
    */
   vancoInitial() {
-    LOG.cyanGroupCollapsed('CALCULATE: Vanco Initial')
+    LOG.cyanGroupCollapsed('CALCULATE: Vanco Initial');
     $("#vancoInitialLoad").html(vanco.loadingDose({
       ht: pt.ht,
       wt: pt.wt,
@@ -1068,7 +1068,7 @@ const calculate = {
         maintTextTooltip = `<b>Calculated weight-based dose is</b> <br>${maintText}<br><b>but InsightRx should be used if not in AKI or ESRD/on dialysis.</b>`;
       }
     }
-    $("#tooltip--vanco-md-bayesian").attr("data-original-title", maintTextTooltip);    
+    $("#tooltip--vanco-md-bayesian").attr("data-original-title", maintTextTooltip);
     $('#vancoInitialMaintenance-PrintOnly').html(maintTextTooltip);
 
     if ( maintText.length > 0 && pt.hd === 0 && !$('#vancoAki').prop('checked') ) {
@@ -1151,7 +1151,7 @@ const calculate = {
    * @returns {undefined}
    */
   vancoRevision() {
-    LOG.cyanGroupCollapsed('CALCULATE: Vanco Revision')
+    LOG.cyanGroupCollapsed('CALCULATE: Vanco Revision');
     const cboGoal = $("#revision-goalTrough")[0];
     const { goalmin, goalmax, goaltrough } = cboGoal.options[cboGoal.selectedIndex].dataset;
     const { doseMin, doseMax, freqMin, freqMax } = vanco.config.check;
@@ -1220,7 +1220,7 @@ const calculate = {
    * @returns {undefined}
    */
   vancoSteadyStateCheck() {
-    LOG.blueGroupCollapsed('CALCULATE: Vanco Steady State')
+    LOG.blueGroupCollapsed('CALCULATE: Vanco Steady State');
     const firstDT = getDateTime($("#steadystate-dateFirst").val(), $("#steadystate-timeFirst").val());
     LOG.log(`First ${firstDT}`);
     const troughDT = getDateTime($("#steadystate-dateTrough").val(), $("#steadystate-timeTrough").val());
@@ -1231,7 +1231,7 @@ const calculate = {
       $("#steadystate-timeDiff").html(`${roundTo(timeDiff, 0.1)} hrs&nbsp;&nbsp;&nbsp;(${halflives} ${halflives === 1 ? "half-life" : "half-lives"})`);
       $("#steadystate-atSS").html(`${halflives < 4 ? "Not at" : "At"} steady state.`);
     } else {
-      LOG.redText('insufficient or invalid input')
+      LOG.redText('insufficient or invalid input');
       $("#steadystate-atSS").html("");
       $("#steadystate-timeDiff").html("");
     }
@@ -1245,7 +1245,7 @@ const calculate = {
    * @since v1.1.1
    */
   peakTimingDuration() {
-    LOG.cyanGroupCollapsed('CALCULATE: Vanco Peak Timing Duration')
+    LOG.cyanGroupCollapsed('CALCULATE: Vanco Peak Timing Duration');
     const dose = checkValue(+$("#peakTiming-dose").val(), vanco.config.check.doseMin, vanco.config.check.doseMax);
     const infTime = dose > 0 ? vanco.getInfusionTime(dose) * 60 : "";
     LOG.log(`Dose: ${dose}; Infusion time: ${infTime}`);
@@ -1263,10 +1263,10 @@ const calculate = {
    * @since v1.1.1
    */
   peakTiming() {
-    LOG.cyanGroupCollapsed('CALCULATE: Vanco Peak Timing')
+    LOG.cyanGroupCollapsed('CALCULATE: Vanco Peak Timing');
     const infTime = checkValue(+$("#peakTiming-infTime").val(), vanco.config.check.infTimeMin, vanco.config.check.infTimeMax);
     const startTime = getDateTime("1900-01-01", $("#peakTiming-startTime").val());
-    LOG.log({infTime, startTime});
+    LOG.log({ infTime, startTime });
     if ( startTime instanceof Date ) {
       startTime.setMinutes(startTime.getMinutes() + 60 + infTime );
       const time1 = displayTime(startTime);
@@ -1280,7 +1280,7 @@ const calculate = {
         $("#peakTiming-peak").html(`Draw peak between ${time1} and ${time2}.`);
       } else {
         $("#peakTiming-peak").html("");
-        LOG.redText('infTime not valid')
+        LOG.redText('infTime not valid');
       }
     } else {
       LOG.redText('startTime is not an instanceof Date');
@@ -1294,7 +1294,7 @@ const calculate = {
    * @returns {undefined}
    */
   vancoAUCDates() {
-    LOG.cyanGroupCollapsed('CALCULATE: Vanco AUC Dates')
+    LOG.cyanGroupCollapsed('CALCULATE: Vanco AUC Dates');
     const sameInterval = $("#aucDates-sameInterval").is(":checked");
     const dose1 = getDateTime($("#aucDates-doseDate-1").val(), $("#aucDates-doseTime-1").val());
     const dose2 = sameInterval ? dose1 : getDateTime($("#aucDates-doseDate-2").val(), $("#aucDates-doseTime-2").val());
@@ -1317,7 +1317,7 @@ const calculate = {
   vancoAUC(resetInterval = true) {
     LOG.cyanGroupCollapsed('CALCULATE: Vanco AUC');
     if ( !resetInterval) {
-      LOG.log('Interval not reset, user input preserved')
+      LOG.log('Interval not reset, user input preserved');
     }
     const params = {
       dose: pt.curDose,
@@ -1439,7 +1439,7 @@ const calculate = {
   vancoTwolevel(resetInterval = true) {
     LOG.cyanGroupCollapsed('CALCULATE: Vanco Two Level');
     if ( !resetInterval) {
-      LOG.log('Interval not reset, user input preserved')
+      LOG.log('Interval not reset, user input preserved');
     }
     const {
       levelMin,
@@ -1513,12 +1513,12 @@ const calculate = {
     }
     for ( const row of rows ) {
       rowHtml += `<tr><th scope="row">${row.title}</th>`;
-      if ( row.units === undefined ) { row.units = ""; }
-      if ( row.roundTo === undefined ) { row.roundTo = -1; }
+      if ( row.units === undefined ) { row.units = "" }
+      if ( row.roundTo === undefined ) { row.roundTo = -1 }
       for ( let i = 0; i < vanco.config.doses.length; i++ ) {
         let value = "";
         if ( Array.isArray(row.data) ) {
-          if ( row.data.length > 0 ) { value = row.data[i]; }
+          if ( row.data.length > 0 ) { value = row.data[i] }
         } else {
           value = row.data;
         }
@@ -1543,7 +1543,7 @@ const calculate = {
    * @returns {undefined}
    */
   secondDose() {
-    LOG.cyanGroupCollapsed('CALCULATE: Vanco Second Dose')
+    LOG.cyanGroupCollapsed('CALCULATE: Vanco Second Dose');
     const fd = checkTimeInput($("#seconddose-time1").val());
     let freqId = $("[name='seconddose-freq']:checked")[0].id;
     freqId = freqId.replace("seconddose-", "");
@@ -1573,7 +1573,7 @@ const calculate = {
    * @returns {undefined}
    */
   ivig() {
-    LOG.cyanGroupCollapsed('CALCULATE: IVIG')    
+    LOG.cyanGroupCollapsed('CALCULATE: IVIG');
     const dose = checkValue(+$("#ivig-dose").val());
     const selected = $("#ivig-product")[0].selectedIndex;
     $("#ivig-text").html(ivig.getText(selected, pt.wt, dose));

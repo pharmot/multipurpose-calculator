@@ -1,9 +1,163 @@
 {
   "extends": "stylelint-config-standard",
-  "plugins": ["stylelint-scss"],
+  "plugins": [ "stylelint-scss" ],
   "rules": {
-    "indentation": 2,
     "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true
+    "scss/at-rule-no-unknown": true,
+    // "selector-id-pattern": null,
+    "selector-class-pattern": null,
+    "no-invalid-double-slash-comments": null,
+    "import-notation": null,
+    "comment-empty-line-before": [
+      "always",
+      {
+        "except": [ "first-nested" ],
+        "ignore": [
+          "stylelint-commands",
+          "after-comment"
+        ]
+      }
+    ]
+
+
+
+
+  //   "alpha-value-notation": [
+  //     "percentage",
+  //     {
+  //       "exceptProperties": [
+  //         "opacity",
+  //         "fill-opacity",
+  //         "flood-opacity",
+  //         "stop-opacity",
+  //         "stroke-opacity"
+  //       ]
+  //     }
+  //   ],
+  //   "annotation-no-unknown": true,
+  //   "at-rule-descriptor-no-unknown": true,
+  //   "at-rule-descriptor-value-no-unknown": true,
+  //   "at-rule-empty-line-before": [
+  //     "always",
+  //     {
+  //       "except": [
+  //         "blockless-after-same-name-blockless",
+  //         "first-nested"
+  //       ],
+  //       "ignore": [ "after-comment" ]
+  //     }
+  //   ],
+  //   "at-rule-no-deprecated": true,
+  //   "at-rule-no-vendor-prefix": true,
+  //   "at-rule-prelude-no-invalid": [
+  //     true,
+  //     { "ignoreAtRules": [ "media" ] }
+  //   ],
+  //   "block-no-empty": true,
+  //   "color-function-alias-notation": "without-alpha",
+  //   "color-function-notation": "modern",
+  //   "color-hex-length": "short",
+  //   "comment-no-empty": true,
+  //   "comment-whitespace-inside": "always",
+  //   "custom-property-empty-line-before": [
+  //     "always",
+  //     {
+  //       "except": [
+  //         "after-custom-property",
+  //         "first-nested"
+  //       ],
+  //       "ignore": [
+  //         "after-comment",
+  //         "inside-single-line-block"
+  //       ]
+  //     }
+  //   ],
+  //   "custom-property-no-missing-var-function": true,
+  //   "declaration-block-no-duplicate-custom-properties": true,
+  //   "declaration-block-no-duplicate-properties": [
+  //     true,
+  //     { "ignore": [ "consecutive-duplicates-with-different-syntaxes" ] }
+  //   ],                
+  //   "declaration-block-no-redundant-longhand-properties": true,
+  //   "declaration-block-no-shorthand-property-overrides": true,
+  //   "declaration-block-single-line-max-declarations": 1,
+  //   "declaration-empty-line-before": [
+  //     "always",
+  //     {
+  //       "except": [
+  //         "after-declaration",
+  //         "first-nested"
+  //       ],
+  //       "ignore": [
+  //         "after-comment",
+  //         "inside-single-line-block"
+  //       ]
+  //     }
+  //   ],
+  //   "declaration-property-value-keyword-no-deprecated": true,
+  //   "declaration-property-value-no-unknown": true,
+  //   "font-family-name-quotes": "always-where-recommended",
+  //   "font-family-no-duplicate-names": true,
+  //   "font-family-no-missing-generic-family-keyword": true,
+  //   "function-calc-no-unspaced-operator": true,
+  //   "function-name-case": "lower",
+  //   "function-url-quotes": "always",
+  //   "hue-degree-notation": "angle",
+  //   "keyframe-block-no-duplicate-selectors": true,
+  //   "keyframe-declaration-no-important": true,
+  //   "keyframe-selector-notation": "percentage-unless-within-keyword-only-block",
+  //   "length-zero-no-unit": [
+  //     true,
+  //     { "ignore": ["custom-properties"] }
+  //   ],
+  //   "lightness-notation": "percentage",
+  //   "media-feature-name-no-unknown": true,
+  //   "media-feature-name-no-vendor-prefix": true,
+  //   "media-feature-name-value-no-unknown": true,
+  //   "media-feature-range-notation": "context",
+  //   "media-query-no-invalid": true,
+  //   "named-grid-areas-no-invalid": true,
+  //   "no-descending-specificity": true,
+  //   "no-duplicate-at-import-rules": true,
+  //   "no-duplicate-selectors": true,
+  //   "no-empty-source": true,
+  //   "no-invalid-position-at-import-rule": true,
+  //   "no-irregular-whitespace": true,
+  //   "number-max-precision": 4,
+  //   "property-no-unknown": true,
+  //   "property-no-vendor-prefix": true,
+  //   "selector-anb-no-unmatchable": true,
+  //   "selector-attribute-quotes": "always",
+  //   "selector-no-vendor-prefix": true,
+  //   "selector-not-notation": "complex",
+  //   "selector-pseudo-class-no-unknown": true,
+  //   "selector-pseudo-element-colon-notation": "double",
+  //   "selector-pseudo-element-no-unknown": true,
+  //   "selector-type-case": "lower",
+  //   "selector-type-no-unknown": [
+  //     true,
+  //     { "ignore": ["custom-elements"] }
+  //   ],
+  //   "shorthand-property-no-redundant-values": true,
+  //   "string-no-newline": [
+  //     true,
+  //     {
+  //       "ignore": [
+  //         "at-rule-preludes",
+  //         "declaration-values"
+  //       ]
+  //     }
+  //   ],
+  //   "syntax-string-no-invalid": true,
+  //   "value-keyword-case": "lower",
+  //   "value-no-vendor-prefix": [
+  //     true,
+  //     {
+  //       "ignoreValues": [
+  //         "box",
+  //         "inline-box"
+  //       ]
+  //     }
+  //   ]
   }
 }

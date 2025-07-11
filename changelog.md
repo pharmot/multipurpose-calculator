@@ -1,5 +1,41 @@
 # Changelog
 <!-- ## [Unreleased] -->
+## [1.4.1] - 2025-06-15
+
+### Added
+- NICU Equivalent Lytes Fluid Builder
+- NICU TPN/Fluid Calculator
+- Corrected phenytoin level calculator ([#98](https://github.com/pharmot/multipurpose-calculator/issues/98))
+- Periodic Table module
+- Dev dependencies: webpack-merge and yaml-loader
+- Custom column widths in between Bootstrap 12-column layout
+
+### Changed
+- Include logging in formValidation module
+- Link to vancomycin protocol ([#97](https://github.com/pharmot/multipurpose-calculator/issues/97))
+- Convert Glucommander to generic insulin calculator ([#99](https://github.com/pharmot/multipurpose-calculator/issues/99))
+
+## [1.3.1] - 2025-01-07
+### Added
+- Glucommander dosing calculator ([#70](https://github.com/pharmot/multipurpose-calculator/issues/70))
+
+### Changed
+- Move all vancomycin tabs into one Vancomycin tab with subnavigation
+- Vancomycin changes to reflect updated dosing guidelines ([#91](https://github.com/pharmot/multipurpose-calculator/issues/91))
+  - Remove Bayesian recommendation
+  - Add section for initial vanco dosing method
+  - Change initial PK statement to reflect protocol updates
+  - Add indication option for CNS/meningitis +/- severe sepsis
+  - Add AKI and PK Outlier checkboxes
+  - Change HD max load to 2 g and max maintenance to 1.5 g
+  - Change initial weight-based dosing to VMMC's historical recommendations
+- Expand logger module to include colors and more options for debugging functions and methods
+- Make screen-only elements visible when printing in black and white (highlighted CrCl, tooltips, etc.) ([#92](https://github.com/pharmot/multipurpose-calculator/issues/92))
+- Change dev script in package.json to use webpack-dev-server
+- Bump webpack-cli to 5.1.4
+- Remove initial vanco AUC calculations that weren't being used
+- Add support for input elements to displayValue function in util module
+- Replace Kcentra total units with wildcard in admin instructions and display in separate output field
 
 ## [1.3.1] - 2025-01-07
 ### Added
@@ -262,7 +298,8 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 - Initial pre-release for distribution among liaisons/vanco calc workgroup
 
-[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/pharmot/multipurpose-calculator/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.3.1...v1.4.1
 [1.3.1]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.3...v1.3.1
 [1.2.3]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/pharmot/multipurpose-calculator/compare/v1.2.1...v1.2.2

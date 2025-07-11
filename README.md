@@ -7,7 +7,6 @@
 [![Latest Github release](https://img.shields.io/github/release/pharmot/multipurpose-calculator?label=latest%20release&color=%2355a63a&logo=github)](https://github.com/pharmot/multipurpose-calculator/releases/latest)&nbsp;&nbsp;&nbsp;
 ![GitHub Release Date](https://img.shields.io/github/release-date/pharmot/multipurpose-calculator?color=%2355a63a)&nbsp;&nbsp;&nbsp;
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/pharmot/multipurpose-calculator/latest?sort=semver&color=%2327aae1)&nbsp;&nbsp;&nbsp;
-![Intranet version](https://img.shields.io/static/v1?label=intranet&message=v1.2.3&color=%2355a63a&logo=windowsxp)&nbsp;&nbsp;&nbsp;
 ![MIT Licensed](https://img.shields.io/github/license/pharmot/multipurpose-calculator?color=%2355a63a)
 
 ---
@@ -37,6 +36,10 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 - Standard administration times tool
 - Single and double alligation
 - Warfarin average dose adjustment calculator
+- SubQ insulin dosing calculator for hospital admission
+- Corrected phenytoin level
+- NICU TPN calculator
+- NICU custom IV fluid calculator
 
 # Documentation
 <ul>
@@ -60,10 +63,17 @@ A dosing and kinetics calculator for pharmacists.  This calculator is intended t
 
 [View full changelog here](changelog.md)
 
+## [1.4.1] - 2025-06-15
+
+### Added
+- NICU Equivalent Lytes Fluid Builder
+- NICU TPN/Fluid Builder
+- Corrected phenytoin level calculator
+
 ## [1.3.1] - 2025-01-07
 
 ### Added
-- Glucommander dosing calculator
+- Insulin dosing calculator
 
 ### Changed
 - Change vancomycin calculations to reflect updated dosing guidelines
@@ -252,6 +262,7 @@ Initial POC Release
 ## 0.0.1 - 2021-04-23
 Initial pre-release for distribution among liaisons/vanco calc workgroup
 
+[1.4.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.4.1
 [1.3.1]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.3.1
 [1.2.3]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.3
 [1.2.2]: https://github.com/pharmot/multipurpose-calculator/releases/tag/v1.2.2

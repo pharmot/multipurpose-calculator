@@ -353,9 +353,15 @@ function printArray(arr) {
   const values = [];
   let txt = "";
   arr.forEach(el => {
-    if ( el[1] !== "" ) {
-      labels.push(`${el[0]}:`);
-      values.push(el[1]);
+    if ( Array.isArray( el ) && el.length > 1 ) {
+      if ( el[1] !== "" ) {
+        if ( el[0].length > 0 ) {
+          labels.push(`${el[0]}:`);
+        } else {
+          labels.push(' ');
+        }
+        values.push(el[1]);
+      }
     }
   });
   labels = arial.padArray(labels);
